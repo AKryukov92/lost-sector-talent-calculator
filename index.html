@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<link href="css/jquery-ui.css" rel="stylesheet">
+	<link href="css/local.css" rel="stylesheet">
+	<style>
+	</style>
+</head>
+<body>
+<div id="tabs">
+	<div id="general-info" class="general-info">
+		<div style="width:100%"><span style="width:40px">Ссылка на билд:</span><input id="link-to-build" style="width:600px"></input></div>
+		<div style="float:right;clear:both;">Очки навыков <span id="points-left">0</span></div>
+		<div style="float:left">Уровень наемника <span id="merc-level">1</span></div>
+	</div>
+	<div style="clear:both;"/>
+	<ul>
+		<li><a href="#tabs-1">
+		Штурмовик<br/>
+		<svg>
+		<path id="path_assault" 
+			style="fill-opacity:0.25098039;fill-rule:evenodd;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+			d="m 63,2 -18,36 -41,6 29,30 -6,41 37,-19 36,18 -6,-41 28,-28 -40,-6 z"/>
+		</svg></a></li>
+		<li><a href="#tabs-2">Джаггернаут</br>
+		<svg>
+		<path id="path_juggernaut"
+			style="fill-opacity:0.25098039;stroke-width:3;stroke-opacity:1"
+			d="m 64,4 -44,9 c 0,0 -0,41 11,68 13,28 33,45 33,45 0,0 19,-15 33,-46 12,-27 10,-67 10,-67 z"/>
+		</svg>
+		</a></li>
+		<li><a href="#tabs-3">Скаут</br>
+		<svg>
+		<path id="scout_path_circle"
+			style="fill:none;fill-opacity:0.25098039;stroke-width:7;stroke-opacity:1"
+			d="M 111,63 A 48,48 0 0 1 62,111 48,48 0 0 1 14,63 48,48 0 0 1 62,14 48,48 0 0 1 111,62" />
+		<path id="scout_path_vertical"
+			style="fill:none;stroke-width:4;stroke-opacity:1"
+			d="M 63,-0 63,127"/>
+		<path id="scout_path_horizontal"
+			style="fill:none;stroke-width:4;stroke-opacity:1"
+			d="m 0,63 125,0"/>
+		</svg></a></li>
+		<li><a href="#tabs-4">Поддержка</br>
+		<svg>
+		<path id="path_support_cross"
+			style="fill-opacity:0.25098039;stroke-width:4;stroke-opacity:1"
+			d="m 80,4 -32,-0 0,42 -43,0 -0,33 43,0 0,42 33,0 0,-42 42,0 0,-33 -42,-0 z"
+		/>
+		<path id="path_support_wrench"
+			style="fill-opacity:1;stroke:none;"
+			d="m 33,95 -15,-3 -11,12 -3,-0 C 2,80 23,80 34,79 L 79,33 C 79,21 80,2 103,0 l 0,4 -11,11 2,15 16,4 11,-12 4,0 c -2,22 -19,22 -32,23 L 49,94 c -1,15 -1,30 -24,33 l -0,-4 12,-12 z"/>
+		</svg></a></li>
+	</ul>
+	<div id="tabs-1">
+		<div id="ass-layout" class="talents-background">
+		</div>
+		<div id="assault-talents">
+		</div>
+		<img src="assault1.png"/>
+	</div>
+	<div id="tabs-2"><img src="jagger1.png"/></div>
+	<div id="tabs-3"><img src="scout1.png"/></div>
+	<div id="tabs-4"><img src="sup1.png"/></div>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script>
+$( "#tabs" ).tabs();
+</script>
+<script src="js/data.js"></script>
+<script src="js/logic.js"></script>
+<script>
+//Количество доступных очков навыка вычисляется по формуле: (уровень - 4)*3+4
+function parse(val) {
+    var result = "Not found",
+        tmp = [];
+    location.search
+    //.replace ( "?", "" ) 
+    // this is better, there might be a question mark inside
+    .substr(1)
+        .split("&")
+        .forEach(function (item) {
+        tmp = item.split("=");
+        if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
+    });
+    return result;
+}
+</script>
+</body>
+</html>

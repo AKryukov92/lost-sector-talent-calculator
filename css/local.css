@@ -1,0 +1,60 @@
+.talents-background{
+	background-color:black;
+	margin:2px;
+	padding:5px;
+}
+.level-content{
+	background-color:#1f1f1f;
+	margin:3px;
+	padding:1px;
+	height:44px;
+	display:block;
+	clear:both;
+}
+.level-content div{
+	float:left;
+	height:40px;
+	width:40px;
+	margin:2px;
+	position:relative;
+}
+.level-content div img {
+	height:40px;
+	width:40px;
+}
+.level-content  .talent-container  .talent-rank{
+	color:red;
+	height:20px;
+	bottom:0px;
+	right:-8px;
+	position:absolute;
+}
+.level-content  .talent-container  .lock-rect{
+	position:absolute;
+	bottom:-2px;
+	right:-2px;
+	background-color:rgba(255, 0, 0, 0.4);
+}
+.level-content .talent-container .bright-img{
+	position:absolute;
+	bottom:0px;
+	right:0px;
+}
+.level-content .level-header{
+	color:#939182;
+	width:100px;
+	height:40px;
+}
+.level-content:hover .level-header{
+	color:#e7a516;
+}
+.general-info{
+	background-color:pink;
+	display:block;
+	width:100%;
+}
+.general-info div{
+	float:left;
+	margin:5px;
+	position:relative;
+}
