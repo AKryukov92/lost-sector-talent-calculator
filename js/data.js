@@ -1,5 +1,6 @@
 var patchdata = {
 	assault_data:{
+		prefix:"assault",
 		grid_width:14,
 		grid_height:12,
 		rows:[
@@ -436,7 +437,8 @@ var patchdata = {
 		]
 	},
 	juggernaut_data:{
-		grid_width:10,
+		prefix:"juggernaut",
+		grid_width:11,
 		grid_height:11,
 		rows:[
 			{ level:1 },
@@ -581,11 +583,12 @@ var patchdata = {
 			imageid:57,
 			name:"Blind defense",
 			description:"Increase the mercenary's general resistance by 40% for 1 turn, but he is losing the ability to see the enemy.",
-			AP_cost:20,
-			number_of_uses:2,
 			cost:1,
 			lvlreq:6,
-			talentreq:39
+			AP_cost:20,
+			number_of_uses:2,
+			talentreq:39,
+			column:8
 		},
 		{
 			id:48,
@@ -732,7 +735,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:8,
 			talentreq:48,
-			column:11
+			column:10
 		},
 		{
 			id:26,
@@ -783,7 +786,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:10,
 			talentreq:38,
-			column:8
+			column:7
 		},
 		{
 			id:77,
@@ -794,7 +797,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:10,
 			talentreq:38,
-			column:9
+			column:8
 		},
 		{
 			id:80,
@@ -828,7 +831,8 @@ var patchdata = {
 		]
 	},
 	scout_data:{
-		grid_width:10,
+		prefix:"scout",
+		grid_width:11,
 		grid_height:11,
 		rows:[
 			{ level:1 },
@@ -1054,7 +1058,7 @@ var patchdata = {
 			effect:"Increases maximum of move points for 5",
 			cost:1,
 			lvlreq:7,
-			column:7
+			column:5
 		},
 		{
 			id:19,
@@ -1067,8 +1071,8 @@ var patchdata = {
 			column:4
 		},
 		{
-			id:19,
-			imageid:19,
+			id:24,
+			imageid:24,
 			name:"Sniper Rifles (professional)",
 			description:"Sniper Rifles using skill of military classification.",
 			cost:1,

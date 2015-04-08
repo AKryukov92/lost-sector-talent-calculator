@@ -1,6 +1,6 @@
 ﻿function talentclick(event){
 	var talent = event.data;
-	var ranks = layout_model[get_row_for_level(talent.lvlreq)].columns[talent.column].items;
+	var ranks = model.layout_model[model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
 	var i;
 	for (i = 0; i < ranks.length; i++) {
 		if (!player_model.talent_learned(ranks[i]))
@@ -10,8 +10,8 @@
 	{
 		if (player_model.can_learn_talent(ranks[i])){
 			player_model.learn_talent(ranks[i]);
-			set_rank(get_row_for_level(ranks[0].lvlreq), ranks[i].column, ++i);
-			update_layout_options();
+			model.set_rank(model.get_row_for_level(ranks[0].lvlreq), ranks[i].column, ++i);
+			model.update_layout_options();
 		}
 	}
 }
@@ -19,7 +19,7 @@ function talentrightclick(event){
 	if (typeof last_visited_element == 'undefined')
 		return;
 	var talent = last_visited_element;
-	var ranks = layout_model[get_row_for_level(talent.lvlreq)].columns[talent.column].items;
+	var ranks = model.layout_model[model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
 	var i;
 	for (i = ranks.length; i > 0; i--) {
 		if (player_model.talent_learned(ranks[i-1]))
@@ -29,44 +29,14 @@ function talentrightclick(event){
 	{
 		if (player_model.can_unlearn_talent(ranks[i-1])) {
 			player_model.unlearn_talent(ranks[i-1]);
-			update_layout_options();
-			set_rank(get_row_for_level(talent.lvlreq), talent.column, --i);
+			model.update_layout_options();
+			model.set_rank(model.get_row_for_level(talent.lvlreq), talent.column, --i);
 		}
 	}
-}
-function update_layout_options(){
-	var i;
-	for (i = 0; i < patchdata.assault_data.talents.length; i++) {
-		var current = patchdata.assault_data.talents[i];
-		if (player_model.talent_learned(current)) {
-			$("#lock-rect" + current.id).hide();
-			$("#bright-img" + current.id).show();
-		} else {
-			$("#bright-img" + current.id).hide();
-			if (player_model.can_learn_talent(current))
-				$("#lock-rect" + current.id).hide();
-			else
-				$("#lock-rect" + current.id).show();
-		}
-	}
-}
-function set_rank(rowindex, colindex, rank){
-	if (typeof layout_model[rowindex] == 'undefined')
-		return;
-	if (typeof layout_model[rowindex].columns[colindex] == 'undefined')
-		return;
-	if (layout_model[rowindex].columns[colindex].items.length < rank)
-		return;
-	if (layout_model[rowindex].columns[colindex].items.length == 1)
-		return;
-	var basic = layout_model[rowindex].columns[colindex].items[0];
-	var temp = $("#talent-container" + basic.id + " #talent-container-rank");
-	$("#talent-container" + basic.id + " #talent-container-rank").html(rank + "/" + layout_model[rowindex].columns[colindex].items.length);
 }
 
 //Эта группа функций отвечает за то, чтобы событие правой кнопки мыши корректно вызывало соответствующую функцию для талантов
-function talenthover(event)
-{
+function talenthover(event) {
 	last_visited_element = event.data;
 	handled_recently = true;
 }
@@ -89,16 +59,210 @@ $(document).ready(function(){
 	$('#tabs').on('mousedown', function(e) {
 		e.preventDefault();
 	});
+	$("#assault-link").click(function(){
+		model.select_data("assault");
+	});
+	$("#juggernaut-link").click(function(){
+		model.select_data("juggernaut");
+	});
+	$("#scout-link").click(function(){
+		model.select_data("scout");
+	});
+	$("#support-link").click(function(){
+		model.select_data("support");
+	});
 });
-//load data
-var i = 0;
-var maxrow = 0;
-var maxcol = 0;
-var rowindex;
-var colindex;
 var last_visited_element = {};
 var handled_recently = false;
-var layout_model = [];
+
+var model = {
+	//load data
+	maxrow: 0,
+	maxcol: 0,
+	layout_model: [],
+	current_class_data: {},
+	select_data: function(class_name){
+		switch(class_name){
+			case "assault":
+			this.current_class_data = patchdata.assault_data;
+			break;
+			case "juggernaut":
+			this.current_class_data = patchdata.juggernaut_data;
+			break;
+			case "scout":
+			this.current_class_data = patchdata.scout_data;
+			break;
+			default: //"support":
+			this.current_class_data = class_name;
+		}
+		this.prepare_grid();
+		this.prepare_layout();
+		this.fill_grid_rows();
+		this.draw_talent_forks();
+		this.update_layout_options();
+	},
+	prepare_grid: function(){
+		$("#" + this.current_class_data.prefix + "-layout").empty();
+		this.layout_model = [];
+		maxrow = this.current_class_data.grid_height;
+		maxcol = this.current_class_data.grid_width;
+
+		var rowindex;
+		var colindex;
+		//Готовим сетку
+		for (rowindex = 0; rowindex < maxrow; rowindex++) {
+			this.layout_model[rowindex] = {};
+			this.layout_model[rowindex].columns = new Array();
+			for(colindex = 0; colindex < maxcol; colindex++) {
+				this.layout_model[rowindex].columns[colindex] = {};
+				this.layout_model[rowindex].columns[colindex].items = new Array();
+			}
+			if (rowindex >= this.current_class_data.rows.length){
+				console.log("rowindex is out of bounds");
+			}
+			var div_content;
+			div_content = "<div id=\"" + this.current_class_data.prefix + "-lvl" + rowindex + "\" class=\"level-content\">";
+			div_content += "<div class=\"level-header\">Уровень " + this.current_class_data.rows[rowindex].level + "</div></div>";
+			$("#" + this.current_class_data.prefix + "-layout").append(div_content);
+		}
+	},
+	prepare_layout: function(){
+		//Заполняем сетку строками с уровнями
+		for (i = 0; i < this.current_class_data.talents.length; i++) {
+			var current = this.current_class_data.talents[i];
+			var target_row;
+			if (typeof current.column == 'undefined'){
+				console.log("Column index for " + current.name + " is missing.");
+			}
+			if (typeof current.lvlreq == 'undefined'){
+				console.log("Required level for " + current.name + " is missing.");
+			}
+			if (current.column >= this.current_class_data.grid_width || target_row >= this.current_class_data.grid_height) {
+				console.log("Talent " + current.name + " is out of bounds");
+			}
+			if (typeof current.rankof != 'undefined'){
+				target_row = this.get_row_for_level(this.get_base_for_rank(current).lvlreq);
+				//console.log("last pushed:" + current.name + "variant 1. row " + target_row + " level " + current.lvlreq + " column " + current.column);
+			} else {
+				target_row = this.get_row_for_level(current.lvlreq);
+				//console.log("last pushed:" + current.name + " variant 2. row " + target_row + " level " + current.lvlreq + " column " + current.column);
+			}
+			
+			this.layout_model[target_row].columns[current.column].items.push(current);
+		}
+	},
+	fill_grid_rows: function(){
+		// Проецируем модель таблицы в html
+		for (rowindex = 0; rowindex < maxrow; rowindex++) {
+			for	(colindex = 0; colindex < maxcol; colindex++) {
+				if (this.layout_model[rowindex].columns[colindex].items.length > 0) {
+					var current = this.layout_model[rowindex].columns[colindex].items[0];
+					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div id=\"talent-container" + current.id + "\" class=\"talent-container\"></div>");
+					$("#talent-container" + current.id).append("<img src=\"skillspng/" + current.imageid + "g00.png\"/>");
+					$("#talent-container" + current.id).append("<img id=\"bright-img" + current.id + "\" class=\"bright-img\" src=\"skillspng/" + current.imageid + "00.png\"/>");
+					$("#talent-container" + current.id).append("<div id=\"lock-rect" + current.id + "\" class=\"lock-rect\"></div>");
+					if (typeof current.AP_cost != 'undefined'){
+						$("#talent-container" + current.id).append("<div " + current.id + " class=\"talent-green\"></div>");
+					}
+					
+					//$("#talent-container" + current.id).append("<div class=\"lock-rect\"></div>");
+					if (this.layout_model[rowindex].columns[colindex].items.length > 1) {
+						$("#talent-container" + current.id).append("<div id=\"talent-container-rank\" class=\"talent-rank\">0/" + this.layout_model[rowindex].columns[colindex].items.length + "</div>");
+					}
+					$("#talent-container" + current.id).click(current, talentclick);
+					$("#talent-container" + current.id).mouseover(current, talenthover);
+				} else {
+					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div class=\"talent-placeholder\"/>");
+				}
+			}
+		}
+	},
+	draw_talent_forks:function(){
+		for (rowindex = 0; rowindex < maxrow; rowindex++) {
+			for	(colindex = 0; colindex < maxcol; colindex++) {
+				if (this.layout_model[rowindex].columns[colindex].items == 0)
+					continue;
+				var current = this.layout_model[rowindex].columns[colindex].items[0];
+				var subs = this.get_submissive_talents(current);
+				var i = 0;
+				for(i = 0; i < subs.length; i++){//рисуем простые белые линии ко всем дочерним талантам
+					var div_content;
+					if (subs[i].column >= current.column){
+						var coldiff = subs[i].column-current.column;
+						var rowdiff = this.get_row_for_level(subs[i].lvlreq) - this.get_row_for_level(current.lvlreq);
+						div_content = "<svg class=\"talent-fork\" style=\"left:0px\" width=\"" + (44+coldiff*40) + "\"";
+						div_content+= " height=\"" + ((rowdiff-1)*49+9) + "\">";
+						div_content+= "<path style=\"fill:none;stroke-width:1;stroke-opacity:1;stroke:white;\"";
+						div_content+= " d=\"m 20,0 " + (coldiff*44) + ", " + ((rowdiff-1)*49+9)+ "\"></path>";
+						div_content+= "</svg>";
+					} else {
+						var coldiff = current.column - subs[i].column;
+						var rowdiff = this.get_row_for_level(subs[i].lvlreq) - this.get_row_for_level(current.lvlreq);
+						div_content = "<svg class=\"talent-fork\" style=\"right:0px\" width=\"" + (42 + coldiff*42) + "\"";
+						div_content+= " height=\""+((rowdiff-1)*49+9)+"\">";
+						div_content+="<path style=\"fill:none;stroke-width:1;stroke-opacity:1;stroke:white;\"";
+						div_content+=" d=\"m "+(coldiff*40+24)+",0 " + ((-coldiff)*44-4)+", " + ((rowdiff-1)*49+9) + "\"></path>";
+						div_content+="</svg>";
+					}
+					$("#talent-container" + current.id).append(div_content);
+				}
+			}
+		}
+	},
+	get_row_for_level: function(level){
+		var i;
+		for (i = 0; i < this.current_class_data.rows.length; i++){
+			if (this.current_class_data.rows[i].level == level)
+				return i;
+		}
+	},
+	get_base_for_rank: function(talent){
+		var j;
+		for (j = 0; j < this.current_class_data.talents.length; j++) {
+			if (this.current_class_data.talents[j].id == talent.rankof) {
+				return this.current_class_data.talents[j];
+			}
+		}
+	},
+	get_submissive_talents: function (talent){
+		var _ret = new Array();
+		var i;
+		for(i = 0; i < this.current_class_data.talents.length;i++){
+			if (this.current_class_data.talents[i].talentreq == talent.id)
+				_ret.push(this.current_class_data.talents[i]);
+		}
+		return _ret;
+	},
+	update_layout_options: function (){
+		var i;
+		for (i = 0; i < this.current_class_data.talents.length; i++) {
+			var current = this.current_class_data.talents[i];
+			if (player_model.talent_learned(current)) {
+				$("#lock-rect" + current.id).hide();
+				$("#bright-img" + current.id).show();
+			} else {
+				$("#bright-img" + current.id).hide();
+				if (player_model.can_learn_talent(current))
+					$("#lock-rect" + current.id).hide();
+				else
+					$("#lock-rect" + current.id).show();
+			}
+		}
+	},
+	set_rank: function (rowindex, colindex, rank){
+		if (typeof this.layout_model[rowindex] == 'undefined')
+			return;
+		if (typeof this.layout_model[rowindex].columns[colindex] == 'undefined')
+			return;
+		if (this.layout_model[rowindex].columns[colindex].items.length < rank)
+			return;
+		if (this.layout_model[rowindex].columns[colindex].items.length == 1)
+			return;
+		var basic = this.layout_model[rowindex].columns[colindex].items[0];
+		var temp = $("#talent-container" + basic.id + " #talent-container-rank");
+		$("#talent-container" + basic.id + " #talent-container-rank").html(rank + "/" + this.layout_model[rowindex].columns[colindex].items.length);
+	}
+}
 
 //Количество доступных очков навыка вычисляется по формуле: (уровень - 4)*3+4
 var player_model = {
@@ -207,132 +371,4 @@ var player_model = {
 	}
 };
 
-maxrow = patchdata.assault_data.grid_height;
-maxcol = patchdata.assault_data.grid_width;
-
-//Готовим сетку
-for (rowindex = 0; rowindex < maxrow; rowindex++) {
-	layout_model[rowindex] = {};
-	layout_model[rowindex].columns = new Array();
-	for(colindex = 0; colindex < maxcol; colindex++) {
-		layout_model[rowindex].columns[colindex] = {};
-		layout_model[rowindex].columns[colindex].items = new Array();
-	}
-	var div_content;
-	div_content = "<div id=\"ass-lvl" + rowindex + "\" class=\"level-content\">";
-	div_content += "<div class=\"level-header\">Уровень " + patchdata.assault_data.rows[rowindex].level + "</div></div>";
-	$("#ass-layout").append(div_content);
-}
-function get_row_for_level(level){
-	var i;
-	for (i = 0; i < patchdata.assault_data.rows.length; i++){
-		if (patchdata.assault_data.rows[i].level == level)
-			return i;
-	}
-}
-function get_base_for_rank(talent){
-	var j;
-	for (j = 0; j < patchdata.assault_data.talents.length; j++) {
-		if (patchdata.assault_data.talents[j].id == talent.rankof) {
-			return patchdata.assault_data.talents[j];
-		}
-	}
-}
-//Заполняем сетку строками с уровнями
-for (i = 0; i < patchdata.assault_data.talents.length; i++) {
-	var current = patchdata.assault_data.talents[i];
-	var target_row;
-	if (typeof current.rankof != 'undefined'){
-		target_row = get_row_for_level(get_base_for_rank(current).lvlreq);
-	} else {
-		target_row = get_row_for_level(current.lvlreq);
-	}
-	layout_model[target_row].columns[current.column].items.push(current);
-}
-// Проецируем модель таблицы в html
-for (rowindex = 0; rowindex < maxrow; rowindex++) {
-	for	(colindex = 0; colindex < maxcol; colindex++) {
-		if (layout_model[rowindex].columns[colindex].items.length > 0) {
-			var current = layout_model[rowindex].columns[colindex].items[0];
-			$("#ass-lvl" + rowindex).append("<div id=\"talent-container" + current.id + "\" class=\"talent-container\"></div>");
-			$("#talent-container" + current.id).append("<img src=\"skillspng/" + current.imageid + "g00.png\"/>");
-			$("#talent-container" + current.id).append("<img id=\"bright-img" + current.id + "\" class=\"bright-img\" src=\"skillspng/" + current.imageid + "00.png\"/>");
-			$("#talent-container" + current.id).append("<div id=\"lock-rect" + current.id + "\" class=\"lock-rect\"></div>");
-			if (typeof current.AP_cost != 'undefined'){
-				$("#talent-container" + current.id).append("<div " + current.id + " class=\"talent-green\"></div>");
-			}
-			
-			//$("#talent-container" + current.id).append("<div class=\"lock-rect\"></div>");
-			if (layout_model[rowindex].columns[colindex].items.length > 1) {
-				$("#talent-container" + current.id).append("<div id=\"talent-container-rank\" class=\"talent-rank\">0/" + layout_model[rowindex].columns[colindex].items.length + "</div>");
-			}
-			$("#talent-container" + current.id).click(current, talentclick);
-			$("#talent-container" + current.id).mouseover(current, talenthover);
-		} else {
-			$("#ass-lvl" + rowindex).append("<div class=\"talent-placeholder\"/>");
-		}
-	}
-}
-// for (rowindex = 1; rowindex < maxrow; rowindex++) {
-	// if (layout_model[rowindex].empty)
-		// continue;
-	// for(colindex = 1; colindex < maxcol; colindex++) {
-		// if (layout_model[rowindex].columns[colindex].items.length > 0) {
-			// var current = layout_model[rowindex].columns[colindex].items[0];
-		// }
-	// }
-// }
-// var i,j;
-// for (i = 0; i < patchdata.assault_data.talents; i++){
-	// rank = patchdata.assault_data.talents[i];
-	// for(j = 0; j < patchdata.assault_data.talents; j++){
-		// base = patchdata.assault_data.talents[j];
-		// if (base.id == rank.rankof){
-			// layout_model[base.row].columns[base.column].items.push(rank);
-		// }
-	// }
-// }
-function get_submissive_talents(talent){
-	var _ret = new Array();
-	var i;
-	for(i = 0; i < patchdata.assault_data.talents.length;i++){
-		if (patchdata.assault_data.talents[i].talentreq == talent.id)
-			_ret.push(patchdata.assault_data.talents[i]);
-	}
-	return _ret;
-}
-for (rowindex = 0; rowindex < maxrow; rowindex++) {
-	for	(colindex = 0; colindex < maxcol; colindex++) {
-		if (layout_model[rowindex].columns[colindex].items == 0)
-			continue;
-		var current = layout_model[rowindex].columns[colindex].items[0];
-		var subs = get_submissive_talents(current);
-		if (subs.length > 0){
-			console.log(current.name + " have " + subs.length + " submissive talents");
-		}
-		var i = 0;
-		for(i = 0; i < subs.length; i++){//рисуем простые белые линии ко всем дочерним талантам
-			var div_content;
-			if (subs[i].column >= current.column){
-				var coldiff = subs[i].column-current.column;
-				var rowdiff = get_row_for_level(subs[i].lvlreq) - get_row_for_level(current.lvlreq);
-				div_content = "<svg class=\"talent-fork\" style=\"left:0px\" width=\"" + (44+coldiff*40) + "\"";
-				div_content+= " height=\"" + ((rowdiff-1)*49+9) + "\">";
-				div_content+= "<path style=\"fill:none;stroke-width:1;stroke-opacity:1;stroke:white;\"";
-				div_content+= " d=\"m 20,0 " + (coldiff*44) + ", " + ((rowdiff-1)*49+9)+ "\"></path>";
-				div_content+= "</svg>";
-			} else {
-				var coldiff = current.column - subs[i].column;
-				var rowdiff = get_row_for_level(subs[i].lvlreq) - get_row_for_level(current.lvlreq);
-				div_content = "<svg class=\"talent-fork\" style=\"right:0px\" width=\"" + (42 + coldiff*42) + "\"";
-				div_content+= " height=\""+((rowdiff-1)*49+9)+"\">";
-				div_content+="<path style=\"fill:none;stroke-width:1;stroke-opacity:1;stroke:white;\"";
-				div_content+=" d=\"m "+(coldiff*40+24)+",0 " + ((-coldiff)*44-4)+", " + ((rowdiff-1)*49+9) + "\"></path>";
-				div_content+="</svg>";
-			}
-			$("#talent-container" + current.id).append(div_content);
-		}
-	}
-}
-
-update_layout_options();
+model.select_data("assault");
