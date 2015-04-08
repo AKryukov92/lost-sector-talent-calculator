@@ -1,19 +1,37 @@
 ﻿function talentclick(event){
 	var talent = event.data;
-	if (player_model.can_learn_talent(talent))
+	var ranks = layout_model[talent.row].columns[talent.column].items;
+	var i;
+	for (i = 0; i < ranks.length; i++) {
+		if (!player_model.talent_learned(ranks[i]))
+			break;
+	}
+	if (i < ranks.length)
 	{
-		player_model.learn_talent(talent);
-		update_layout_options();
+		if (player_model.can_learn_talent(ranks[i])){
+			player_model.learn_talent(ranks[i]);
+			set_rank(ranks[i].row, ranks[i].column, ++i);
+			update_layout_options();
+		}
 	}
 }
 function talentrightclick(event){
 	if (typeof last_visited_element == 'undefined')
 		return;
 	var talent = last_visited_element;
-	if (player_model.can_unlearn_talent(talent))
+	var ranks = layout_model[talent.row].columns[talent.column].items;
+	var i;
+	for (i = ranks.length; i > 0; i--) {
+		if (player_model.talent_learned(ranks[i-1]))
+			break;
+	}
+	if (i > 0)
 	{
-		player_model.unlearn_talent(talent);
-		update_layout_options();
+		if (player_model.can_unlearn_talent(ranks[i-1])) {
+			player_model.unlearn_talent(ranks[i-1]);
+			update_layout_options();
+			set_rank(talent.row, talent.column, --i);
+		}
 	}
 }
 function update_layout_options(){
@@ -141,7 +159,7 @@ var player_model = {
 		if (typeof talent.talentreq != 'undefined') {
 			var can_learn = false;
 			var i;
-			for (i = 0; i<this.talents.length; i++) {
+			for (i = 0; i < this.talents.length; i++) {
 				if (this.talents[i].id == talent.talentreq) {
 					can_learn = true;
 				}

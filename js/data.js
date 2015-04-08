@@ -92,7 +92,7 @@ var patchdata = {
 			effect:"Increases maximum of move points for 8",
 			cost:3,
 			lvlreq:6,
-			talentreq:43,
+			rankof:43,
 			row:5,
 			column:8
 		},
@@ -104,7 +104,7 @@ var patchdata = {
 			effect:"Increases maximum of move points for 11",
 			cost:3,
 			lvlreq:7,
-			talentreq:432,
+			rankof:43,
 			row:5,
 			column:8
 		},
@@ -185,7 +185,7 @@ var patchdata = {
 			effect:"Increases crit.hit chance for 5%",
 			cost:2,
 			lvlreq:9,
-			talentreq:45,
+			rankof:45,
 			row:6,
 			column:10
 		},
@@ -197,7 +197,7 @@ var patchdata = {
 			effect:"Increases crit.hit chance for 10%",
 			cost:3,
 			lvlreq:12,
-			talentreq:452,
+			rankof:45,
 			row:6,
 			column:10
 		},
@@ -231,7 +231,7 @@ var patchdata = {
 			effect:"Increases healing effectiveness for 40%.",
 			cost:2,
 			lvlreq:8,
-			talentreq:38,
+			rankof:38,
 			row:7,
 			column:8
 		},
@@ -319,7 +319,7 @@ var patchdata = {
 			effect:"Increases health maximum for 25.",
 			cost:3,
 			lvlreq:11,
-			talentreq:48,
+			rankof:48,
 			row:8,
 			column:12
 		},
