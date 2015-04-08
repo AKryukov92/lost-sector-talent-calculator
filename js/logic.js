@@ -258,6 +258,9 @@ for (rowindex = 0; rowindex < maxrow; rowindex++) {
 				$("#talent-container" + current.id).append("<img src=\"skillspng/" + current.imageid + "g00.png\"/>");
 				$("#talent-container" + current.id).append("<img id=\"bright-img" + current.id + "\" class=\"bright-img\" src=\"skillspng/" + current.imageid + "00.png\"/>");
 				$("#talent-container" + current.id).append("<div id=\"lock-rect" + current.id + "\" class=\"lock-rect\"></div>");
+				if (typeof current.AP_cost != 'undefined'){
+					$("#talent-container" + current.id).append("<div " + current.id + " class=\"talent-green\"></div>");
+				}
 				if (layout_model[rowindex].columns[colindex].items.length > 1)
 				{
 					$("#talent-container" + current.id).append("<div id=\"talent-container-rank\" class=\"talent-rank\">0/3</div>");
