@@ -139,13 +139,23 @@ var player_model = {
 		if (this.talent_learned(talent))
 			return false;
 		if (typeof talent.talentreq != 'undefined') {
+			var can_learn = false;
 			var i;
 			for (i = 0; i<this.talents.length; i++) {
 				if (this.talents[i].id == talent.talentreq) {
-					return true;
+					can_learn = true;
 				}
 			}
-			return false;
+			if (!can_learn)
+				return false;
+			else{
+				for (i = 0; i < this.talents.length; i++) {
+					if (this.talents[i].talentreq == talent.talentreq) {
+						return false;
+					}
+				}
+				return true;
+			}	
 		}
 		return true;
 	},
