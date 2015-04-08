@@ -35,6 +35,10 @@
 	right:-8px;
 	position:absolute;
 }
+.level-content  .talent-container  .talent-fork{
+	position:absolute;
+	top:40px;
+}
 .level-content  .talent-container  .lock-rect{
 	position:absolute;
 	bottom:-2px;

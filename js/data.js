@@ -1,6 +1,22 @@
-
 var patchdata = {
-	assault_talents:[
+	assault_data:{
+		grid_width:14,
+		grid_height:12,
+		rows:[
+			{ level:1 },
+			{ level:3 },
+			{ level:4 },
+			{ level:5 },
+			{ level:6 },
+			{ level:7 },
+			{ level:8 },
+			{ level:9 },
+			{ level:10 },
+			{ level:11 },
+			{ level:12 },
+			{ level:14 }
+		],
+		talents:[
 		{
 			id:1,
 			imageid:1,
@@ -9,8 +25,7 @@ var patchdata = {
 			effect:"Multiplies regeneration by 3",
 			cost:1,
 			lvlreq:1,
-			row:1,
-			column:1
+			column:0
 		},
 		{
 			id:2,
@@ -19,8 +34,7 @@ var patchdata = {
 			description:"Allows the use of pills and injections of Rebis.",
 			cost:1,
 			lvlreq:1,
-			row:1,
-			column:2
+			column:1
 		},
 		{
 			id:4,
@@ -29,8 +43,7 @@ var patchdata = {
 			description:"Allows you to use simple assault grenades in combat.",
 			cost:1,
 			lvlreq:3,
-			row:3,
-			column:1
+			column:0
 		},
 		{
 			id:35,
@@ -40,8 +53,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:4,
 			talentreq:2,
-			row:4,
-			column:2
+			column:1
 		},
 		{
 			id:62,
@@ -50,8 +62,7 @@ var patchdata = {
 			description:"Unlocks one cell for active items.",
 			effect:"Increases number of active slots for 1",
 			lvlreq:5,
-			row:5,
-			column:3
+			column:2
 		},
 		{
 			id:6,
@@ -60,8 +71,7 @@ var patchdata = {
 			description:"Pistols using skill of police classification.",
 			cost:1,
 			lvlreq:5,
-			row:5,
-			column:4
+			column:3
 		},
 		{
 			id:10,
@@ -70,8 +80,7 @@ var patchdata = {
 			description:"Assault Rifles using skill of police classification.",
 			cost:1,
 			lvlreq:5,
-			row:5,
-			column:6
+			column:5
 		},
 		{
 			id:43,
@@ -81,8 +90,7 @@ var patchdata = {
 			effect:"Increases maximum of move points for 5",
 			cost:1,
 			lvlreq:5,
-			row:5,
-			column:8
+			column:7
 		},
 		{
 			id:432,
@@ -93,8 +101,7 @@ var patchdata = {
 			cost:3,
 			lvlreq:6,
 			rankof:43,
-			row:5,
-			column:8
+			column:7
 		},
 		{
 			id:433,
@@ -105,8 +112,7 @@ var patchdata = {
 			cost:3,
 			lvlreq:7,
 			rankof:43,
-			row:5,
-			column:8
+			column:7
 		},
 		{
 			id:25,
@@ -116,8 +122,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:6,
 			talentreq:4,
-			row:6,
-			column:1
+			column:0
 		},
 		{
 			id:8,
@@ -126,8 +131,7 @@ var patchdata = {
 			description:"Sub-machine guns using skill of police classification.",
 			cost:1,
 			lvlreq:6,
-			row:6,
-			column:5
+			column:4
 		},
 		{
 			id:14,
@@ -136,8 +140,7 @@ var patchdata = {
 			description:"Shotguns using skill of police classification.",
 			cost:1,
 			lvlreq:6,
-			row:6,
-			column:7
+			column:6
 		},
 		{
 			id:54,
@@ -150,8 +153,7 @@ var patchdata = {
 			number_of_uses:2,
 			AP_cost:20,
 			radius:20,
-			row:6,
-			column:8
+			column:7
 		},
 		{
 			id:55,
@@ -163,8 +165,7 @@ var patchdata = {
 			talentreq:43,
 			number_of_uses:2,
 			AP_cost:20,
-			row:6,
-			column:9
+			column:8
 		},
 		{
 			id:45,
@@ -174,8 +175,7 @@ var patchdata = {
 			effect:"Increases crit.hit chance for 2%",
 			cost:1,
 			lvlreq:6,
-			row:6,
-			column:10
+			column:9
 		},
 		{
 			id:452,
@@ -186,8 +186,7 @@ var patchdata = {
 			cost:2,
 			lvlreq:9,
 			rankof:45,
-			row:6,
-			column:10
+			column:9
 		},
 		{
 			id:453,
@@ -198,8 +197,7 @@ var patchdata = {
 			cost:3,
 			lvlreq:12,
 			rankof:45,
-			row:6,
-			column:10
+			column:9
 		},
 		{
 			id:36,
@@ -209,8 +207,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:7,
 			talentreq:35,
-			row:7,
-			column:2
+			column:1
 		},
 		{
 			id:38,
@@ -221,7 +218,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:7,
 			row:7,
-			column:8
+			column:7
 		},
 		{
 			id:382,
@@ -232,8 +229,7 @@ var patchdata = {
 			cost:2,
 			lvlreq:8,
 			rankof:38,
-			row:7,
-			column:8
+			column:7
 		},
 		{
 			id:15,
@@ -242,8 +238,7 @@ var patchdata = {
 			description:"Explosives and mines setting and using skill.",
 			cost:1,
 			lvlreq:8,
-			row:8,
-			column:2
+			column:1
 		},
 		{
 			id:19,
@@ -253,8 +248,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:8,
 			talentreq:6,
-			row:8,
-			column:4
+			column:3
 		},
 		{
 			id:22,
@@ -264,8 +258,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:8,
 			talentreq:10,
-			row:8,
-			column:6
+			column:5
 		},
 		{
 			id:20,
@@ -275,8 +268,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:8,
 			talentreq:14,
-			row:8,
-			column:7
+			column:6
 		},
 		{
 			id:70,
@@ -286,8 +278,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:8,
 			talentreq:45,
-			row:8,
-			column:10
+			column:9
 		},
 		{
 			id:75,
@@ -297,8 +288,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:8,
 			talentreq:45,
-			row:8,
-			column:11
+			column:10
 		},
 		{
 			id:48,
@@ -308,8 +298,7 @@ var patchdata = {
 			effect:"Increases health maximum for 15.",
 			cost:1,
 			lvlreq:8,
-			row:8,
-			column:12
+			column:11
 		},
 		{
 			id:482,
@@ -320,8 +309,7 @@ var patchdata = {
 			cost:3,
 			lvlreq:11,
 			rankof:48,
-			row:8,
-			column:12
+			column:11
 		},
 		{
 			id:17,
@@ -331,8 +319,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:9,
 			talentreq:25,
-			row:9,
-			column:1
+			column:0
 		},
 		{
 			id:26,
@@ -342,8 +329,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:9,
 			talentreq:8,
-			row:9,
-			column:5
+			column:4
 		},
 		{
 			id:16,
@@ -353,8 +339,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:10,
 			talentreq:17,
-			row:10,
-			column:1
+			column:0
 		},
 		{
 			id:63,
@@ -365,8 +350,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
-			row:10,
-			column:2
+			column:1
 		},
 		{
 			id:64,
@@ -376,8 +360,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
-			row:10,
-			column:3
+			column:2
 		},
 		{
 			id:65,
@@ -387,8 +370,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
-			row:10,
-			column:4
+			column:3
 		},
 		{
 			id:72,
@@ -398,8 +380,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:10,
 			talentreq:38,
-			row:10,
-			column:7
+			column:6
 		},
 		{
 			id:77,
@@ -410,8 +391,7 @@ var patchdata = {
 			number_of_uses:1,
 			lvlreq:10,
 			talentreq:38,
-			row:10,
-			column:8
+			column:7
 		},
 		{
 			id:81,
@@ -421,8 +401,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:10,
 			talentreq:38,
-			row:10,
-			column:9
+			column:8
 		},
 		{
 			id:76,
@@ -432,8 +411,7 @@ var patchdata = {
 			cost:1,
 			lvlreq:12,
 			talentreq:48,
-			row:12,
-			column:12
+			column:11
 		},
 		{
 			id:86,
@@ -444,8 +422,7 @@ var patchdata = {
 			lvlreq:12,
 			talentreq:48,
 			AP_cost:1,
-			row:12,
-			column:13
+			column:12
 		},
 		{
 			id:51,
@@ -454,8 +431,8 @@ var patchdata = {
 			description:"Increases inflicting damage",
 			effect:"Increases damage multiplier (except melee) for 5%",
 			lvlreq:14,
-			row:14,
-			column:1
+			column:0
 		}
-	]
+		]
+	}
 }
