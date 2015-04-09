@@ -68,3 +68,32 @@
 	margin:5px;
 	position:relative;
 }
+.ui-tooltip {
+	position: absolute;
+	border:1px solid #e7a516;
+	background-color: rgba(55,55,55,0.9);
+	width:400px;
+	padding:10px;
+	font-family:'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
+}
+.ui-tooltip  h3 {
+	color:#00ff00;
+	margin:0px;
+}
+.ui-tooltip div {
+	color:white;
+	font-size:10pt;
+}
+.ui-tooltip div span {
+	color:#e7a516;
+}
+.ui-helper-hidden-accessible {
+border: 0;
+clip: rect(0 0 0 0);
+height: 1px;
+margin: -1px;
+overflow: hidden;
+padding: 0;
+position: absolute;
+width: 1px;
+}
