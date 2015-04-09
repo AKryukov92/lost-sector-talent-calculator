@@ -1,7 +1,6 @@
 var patchdata = {
 	assault_data:{
 		prefix:"assault",
-		grid_width:14,
 		grid_height:12,
 		rows:[
 			{ level:1 },
@@ -438,7 +437,6 @@ var patchdata = {
 	},
 	juggernaut_data:{
 		prefix:"juggernaut",
-		grid_width:11,
 		grid_height:11,
 		rows:[
 			{ level:1 },
@@ -832,7 +830,6 @@ var patchdata = {
 	},
 	scout_data:{
 		prefix:"scout",
-		grid_width:11,
 		grid_height:11,
 		rows:[
 			{ level:1 },
@@ -956,8 +953,8 @@ var patchdata = {
 			column:9
 		},
 		{
-			id:18,
-			imageid:18,
+			id:5,
+			imageid:5,
 			name:"Technician (specialist)",
 			cost:1,
 			lvlreq:6,
@@ -1224,6 +1221,437 @@ var patchdata = {
 			lvlreq:12,
 			talentreq:44,
 			column:8
+		},
+		{
+			id:51,
+			imageid:51,
+			name:"Weapon expert",
+			description:"Increases inflicting damage",
+			effect:"Increases damage multiplier (except melee) for 5%",
+			lvlreq:14,
+			column:0
+		}
+		]
+	},
+	support_data:{
+		prefix:"support",
+		grid_height:11,
+		rows:[
+			{ level:1 },
+			{ level:3 },
+			{ level:4 },
+			{ level:5 },
+			{ level:6 },
+			{ level:7 },
+			{ level:8 },
+			{ level:9 },
+			{ level:10 },
+			{ level:12 },
+			{ level:14 }
+		],
+		talents:[
+		{
+			id:1,
+			imageid:1,
+			name:"Passive regeneration",
+			description:"Slow health regeneration in peaceful locations (Factory and etc.).",
+			effect:"Multiplies regeneration by 3",
+			cost:1,
+			lvlreq:1,
+			column:0
+		},
+		{
+			id:2,
+			imageid:2,
+			name:"First aid",
+			description:"Allows the use of pills and injections of Rebis.",
+			cost:1,
+			lvlreq:1,
+			column:1
+		},
+		{
+			id:3,
+			imageid:3,
+			name:"Tactical grenades",
+			description:"Allows you to use tactical grenades of Rebis & EM types.",
+			cost:1,
+			lvlreq:5,
+			talentreq:4,
+			column:0
+		},
+		{
+			id:35,
+			imageid:35,
+			name:"Stimulants",
+			description:"Allows you to use steroid and adrenaline drugs in the battle",
+			cost:1,
+			lvlreq:4,
+			talentreq:2,
+			column:1
+		},
+		{
+			id:62,
+			imageid:62,
+			name:"Bandolier",
+			description:"Unlocks one cell for active items.",
+			effect:"Increases number of active slots for 1",
+			lvlreq:5,
+			column:2
+		},
+		{
+			id:12,
+			imageid:12,
+			name:"Launchers (specialist)",
+			description:"Launchers using skill of police classification.",
+			cost:1,
+			lvlreq:5,
+			column:5
+		},
+		{
+			id:42,
+			imageid:42,
+			name:"Explosion resistant",
+			description:"Adds basic resistance to explosions.",
+			effect:"Increases explosion resist for 5%",
+			cost:1,
+			lvlreq:5,
+			column:7
+		},
+		{
+			id:422,
+			imageid:42,
+			name:"Explosion resistant",
+			description:"Adds basic resistance to explosions.",
+			effect:"Increases explosion resist for 10%",
+			cost:2,
+			lvlreq:8,
+			rankof:42,
+			column:7
+		},
+		{
+			id:423,
+			imageid:42,
+			name:"Explosion resistant",
+			description:"Adds basic resistance to explosions.",
+			effect:"Increases explosion resist for 15%",
+			cost:3,
+			lvlreq:11,
+			rankof:42,
+			column:7
+		},
+		{
+			id:5,
+			imageid:5,
+			name:"Technician (specialist)",
+			cost:1,
+			lvlreq:6,
+			column:3
+		},
+		{
+			id:8,
+			imageid:8,
+			name:"Sub-machine guns (specialist)",
+			description:"Sub-machine guns using skill of police classification.",
+			cost:1,
+			lvlreq:6,
+			column:4
+		},
+		{
+			id:14,
+			imageid:14,
+			name:"Shotguns (specialist)",
+			description:"Shotguns using skill of police classification.",
+			cost:1,
+			lvlreq:6,
+			column:6
+		},
+		{
+			id:60,
+			imageid:60,
+			name:"Recovery",
+			description:"Recovers 35 armor units and 35 health units to an ally mercenary.",
+			cost:1,
+			lvlreq:6,
+			talentreq:42,
+			number_of_uses:3,
+			AP_cost:55,
+			radius:1,
+			column:7
+		},
+		{
+			id:61,
+			imageid:61,
+			name:"Sense",
+			description:"The mercenary feels at the presence of enemies.",
+			cost:1,
+			lvlreq:6,
+			talentreq:42,
+			radius:15,
+			column:8
+		},
+		{
+			id:41,
+			imageid:41,
+			name:"Fire resistant",
+			description:"Adds basic resistance to fire.",
+			effect:"Increases fire resist for 7%",
+			cost:1,
+			lvlreq:6,
+			column:9
+		},
+		{
+			id:412,
+			imageid:41,
+			name:"Fire resistant",
+			description:"Adds basic resistance to fire.",
+			effect:"Increases fire resist for 12%",
+			cost:2,
+			lvlreq:9,
+			rankof:41,
+			column:9
+		},
+		{
+			id:413,
+			imageid:41,
+			name:"Fire resistant",
+			description:"Adds basic resistance to fire.",
+			effect:"Increases fire resist for 20%",
+			cost:3,
+			lvlreq:12,
+			rankof:41,
+			column:9
+		},
+		{
+			id:36,
+			imageid:36,
+			name:"Hermogel",
+			description:"Allows you to use hermetic to repair the armor in the battle.",
+			cost:1,
+			lvlreq:7,
+			talentreq:35,
+			column:1
+		},
+		{
+			id:18,
+			imageid:18,
+			name:"Technician (professional)",
+			description:"Allows you to set up complex equipment in the battle zone.",
+			cost:1,
+			lvlreq:7,
+			talentreq:5,
+			column:3
+		},
+		{
+			id:40,
+			imageid:40,
+			name:"Chemical resistant",
+			description:"Adds basic resistance to acid.",
+			effect:"Increases acid resist for 10%",
+			cost:1,
+			lvlreq:7,
+			column:7
+		},
+		{
+			id:402,
+			imageid:40,
+			name:"Chemical resistant",
+			description:"Adds basic resistance to acid.",
+			effect:"Increases acid resist for 20%",
+			cost:2,
+			lvlreq:10,
+			rankof:40,
+			column:7
+		},
+		{
+			id:403,
+			imageid:40,
+			name:"Chemical resistant",
+			description:"Adds basic resistance to acid.",
+			effect:"Increases acid resist for 30%",
+			cost:3,
+			lvlreq:13,
+			rankof:40,
+			column:7
+		},
+		{
+			id:17,
+			imageid:17,
+			name:"Chemical grenades",
+			description:"Allows you to use chemical grenades.",
+			cost:1,
+			lvlreq:8,
+			talentreq:3,
+			column:0
+		},
+		{
+			id:15,
+			imageid:15,
+			name:"Demolisher",
+			description:"Explosives and mines setting and using skill.",
+			cost:1,
+			lvlreq:8,
+			column:1
+		},
+		{
+			id:21,
+			imageid:21,
+			name:"Launchers (professional)",
+			description:"Laun using skill of military classification.",
+			cost:1,
+			lvlreq:8,
+			talentreq:12,
+			column:5
+		},
+		{
+			id:20,
+			imageid:20,
+			name:"Shotguns (professional)",
+			description:"Shotguns using skill of military classification.",
+			cost:1,
+			lvlreq:8,
+			talentreq:14,
+			column:6
+		},
+		{
+			id:72,
+			imageid:72,
+			name:"Adjustment fire",
+			description:"Increases the mercenary's accuracy by 8 for each of his hits at a turn. The effect stacks. The counter resets at the beginning of the turn.",
+			cost:1,
+			lvlreq:8,
+			talentreq:41,
+			column:8
+		},
+		{
+			id:78,
+			imageid:78,
+			name:"Opener",
+			description:"The first bullet, shell, grenade or a hit at a target with full armor deals 140% damage.",
+			cost:1,
+			lvlreq:8,
+			talentreq:41,
+			column:9
+		},
+		{
+			id:83,
+			imageid:83,
+			name:"Common touch",
+			description:"If near the mercenary there is an ally, both apply 10% more damage.",
+			cost:1,
+			lvlreq:8,
+			talentreq:41,
+			column:10
+		},
+		{
+			id:46,
+			imageid:46,
+			name:"Personal armor",
+			description:"Increases basic amount of armor.",
+			effect:"Increases defence maximum for 10",
+			cost:1,
+			lvlreq:8,
+			column:11
+		},
+		{
+			id:16,
+			imageid:16,
+			name:"Spider grenades",
+			description:"Allows you to use spider grenades.",
+			cost:1,
+			lvlreq:9,
+			talentreq:17,
+			column:0
+		},
+		{
+			id:26,
+			imageid:26,
+			name:"Sub-machine guns (professional)",
+			description:"Sub-machine guns using skill of military classification.",
+			cost:1,
+			lvlreq:9,
+			talentreq:8,
+			column:4
+		},
+		{
+			id:63,
+			imageid:63,
+			name:"Pouch",
+			description:"Unlocks one cell for active items.",
+			effect:"Increases number of active slots for 1.",
+			cost:1,
+			lvlreq:10,
+			column:0
+		},
+		{
+			id:64,
+			imageid:64,
+			name:"Stash",
+			description:"Recovers 15 health units after using an active item.",
+			cost:1,
+			lvlreq:10,
+			talentreq:62,
+			column:2
+		},
+		{
+			id:65,
+			imageid:65,
+			name:"Quick hands",
+			description:"Restores 10 AP afte using an active item.",
+			cost:1,
+			lvlreq:10,
+			talentreq:62,
+			column:3
+		},
+		{
+			id:56,
+			imageid:56,
+			name:"Nanny",
+			description:"All allies in the specified range from the mercenary receive 10% bonus to general resistance. The mercenary itself does not receive the bonus.",
+			cost:1,
+			lvlreq:10,
+			talentreq:40,
+			radius:20,
+			column:6
+		},
+		{
+			id:75,
+			imageid:75,
+			name:"Berserker",
+			description:"When a mercenary receives 115 damage at a turn, increases its AP by 20 for one turn. The counter resets at the beginning of the turn.",
+			cost:1,
+			lvlreq:10,
+			talentreq:40,
+			column:7
+		},
+		{
+			id:76,
+			imageid:76,
+			name:"Accountant",
+			description:"20% of taken damage are summed and added to the mercenary attack. Bonus depends on armour-penetrating ability. The counter is reset after a succesful attack.",
+			cost:1,
+			lvlreq:10,
+			talentreq:40,
+			column:8
+		},
+		{
+			id:74,
+			imageid:74,
+			name:"Put off the ballast",
+			description:"Increases the mercenary's mobility by 15% when the armor falls below 40.",
+			cost:1,
+			lvlreq:12,
+			talentreq:46,
+			column:11
+		},
+		{
+			id:79,
+			imageid:79,
+			name:"Vendetta",
+			description:"When a member from your team dies, increases inflicting damage to all the team units by 15% for one turn. The effect does not stack.",
+			cost:1,
+			lvlreq:12,
+			talentreq:46,
+			column:12
 		},
 		{
 			id:51,

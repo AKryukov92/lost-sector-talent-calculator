@@ -6,8 +6,7 @@
 		if (!player_model.talent_learned(ranks[i]))
 			break;
 	}
-	if (i < ranks.length)
-	{
+	if (i < ranks.length) {
 		if (player_model.can_learn_talent(ranks[i])){
 			player_model.learn_talent(ranks[i]);
 			model.set_rank(model.get_row_for_level(ranks[0].lvlreq), ranks[i].column, ++i);
@@ -25,8 +24,7 @@ function talentrightclick(event){
 		if (player_model.talent_learned(ranks[i-1]))
 			break;
 	}
-	if (i > 0)
-	{
+	if (i > 0) {
 		if (player_model.can_unlearn_talent(ranks[i-1])) {
 			player_model.unlearn_talent(ranks[i-1]);
 			model.update_layout_options();
@@ -83,18 +81,19 @@ var model = {
 	current_class_data: {},
 	select_data: function(class_name){
 		switch(class_name){
-			case "assault":
-			this.current_class_data = patchdata.assault_data;
-			break;
 			case "juggernaut":
 			this.current_class_data = patchdata.juggernaut_data;
 			break;
 			case "scout":
 			this.current_class_data = patchdata.scout_data;
 			break;
-			default: //"support":
-			this.current_class_data = class_name;
+			case "support":
+			this.current_class_data = patchdata.support_data;
+			break;
+			default: //"assault":
+			this.current_class_data = patchdata.assault_data;
 		}
+		player_model.clear();
 		this.prepare_grid();
 		this.prepare_layout();
 		this.fill_grid_rows();
@@ -105,8 +104,12 @@ var model = {
 		$("#" + this.current_class_data.prefix + "-layout").empty();
 		this.layout_model = [];
 		maxrow = this.current_class_data.grid_height;
-		maxcol = this.current_class_data.grid_width;
-
+		var i;
+		maxcol = 0
+		for(i = 0; i < this.current_class_data.talents.length;i++)
+			if (this.current_class_data.talents[i].column > maxcol)
+				maxcol = this.current_class_data.talents[i].column;
+		maxcol++;
 		var rowindex;
 		var colindex;
 		//Готовим сетку
@@ -157,20 +160,20 @@ var model = {
 			for	(colindex = 0; colindex < maxcol; colindex++) {
 				if (this.layout_model[rowindex].columns[colindex].items.length > 0) {
 					var current = this.layout_model[rowindex].columns[colindex].items[0];
-					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div id=\"talent-container" + current.id + "\" class=\"talent-container\"></div>");
-					$("#talent-container" + current.id).append("<img src=\"skillspng/" + current.imageid + "g00.png\"/>");
-					$("#talent-container" + current.id).append("<img id=\"bright-img" + current.id + "\" class=\"bright-img\" src=\"skillspng/" + current.imageid + "00.png\"/>");
-					$("#talent-container" + current.id).append("<div id=\"lock-rect" + current.id + "\" class=\"lock-rect\"></div>");
+					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div id=\"" + this.current_class_data.prefix + "-talent-container" + current.id + "\" class=\"talent-container\"></div>");
+					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<img src=\"skillspng/" + current.imageid + "g00.png\"/>");
+					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<img id=\"" + this.current_class_data.prefix + "-bright-img" + current.id + "\" class=\"bright-img\" src=\"skillspng/" + current.imageid + "00.png\"/>");
+					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div id=\"" + this.current_class_data.prefix + "-lock-rect" + current.id + "\" class=\"lock-rect\"></div>");
 					if (typeof current.AP_cost != 'undefined'){
-						$("#talent-container" + current.id).append("<div " + current.id + " class=\"talent-green\"></div>");
+						$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div " + current.id + " class=\"talent-green\"></div>");
 					}
 					
 					//$("#talent-container" + current.id).append("<div class=\"lock-rect\"></div>");
 					if (this.layout_model[rowindex].columns[colindex].items.length > 1) {
-						$("#talent-container" + current.id).append("<div id=\"talent-container-rank\" class=\"talent-rank\">0/" + this.layout_model[rowindex].columns[colindex].items.length + "</div>");
+						$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div id=\"talent-container-rank\" class=\"talent-rank\">0/" + this.layout_model[rowindex].columns[colindex].items.length + "</div>");
 					}
-					$("#talent-container" + current.id).click(current, talentclick);
-					$("#talent-container" + current.id).mouseover(current, talenthover);
+					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).click(current, talentclick);
+					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).mouseover(current, talenthover);
 				} else {
 					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div class=\"talent-placeholder\"/>");
 				}
@@ -204,7 +207,7 @@ var model = {
 						div_content+=" d=\"m "+(coldiff*40+24)+",0 " + ((-coldiff)*44-4)+", " + ((rowdiff-1)*49+9) + "\"></path>";
 						div_content+="</svg>";
 					}
-					$("#talent-container" + current.id).append(div_content);
+					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append(div_content);
 				}
 			}
 		}
@@ -238,14 +241,14 @@ var model = {
 		for (i = 0; i < this.current_class_data.talents.length; i++) {
 			var current = this.current_class_data.talents[i];
 			if (player_model.talent_learned(current)) {
-				$("#lock-rect" + current.id).hide();
-				$("#bright-img" + current.id).show();
+				$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).hide();
+				$("#" + this.current_class_data.prefix + "-bright-img" + current.id).show();
 			} else {
-				$("#bright-img" + current.id).hide();
+				$("#" + this.current_class_data.prefix + "-bright-img" + current.id).hide();
 				if (player_model.can_learn_talent(current))
-					$("#lock-rect" + current.id).hide();
+					$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).hide();
 				else
-					$("#lock-rect" + current.id).show();
+					$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).show();
 			}
 		}
 	},
@@ -259,16 +262,23 @@ var model = {
 		if (this.layout_model[rowindex].columns[colindex].items.length == 1)
 			return;
 		var basic = this.layout_model[rowindex].columns[colindex].items[0];
-		var temp = $("#talent-container" + basic.id + " #talent-container-rank");
-		$("#talent-container" + basic.id + " #talent-container-rank").html(rank + "/" + this.layout_model[rowindex].columns[colindex].items.length);
+		var temp = $("#" + this.current_class_data.prefix + "-talent-container" + basic.id + " #talent-container-rank");
+		$("#" + this.current_class_data.prefix + "-talent-container" + basic.id + " #talent-container-rank").html(rank + "/" + this.layout_model[rowindex].columns[colindex].items.length);
+	},
+	update_requiremens_layout:function(lvlreq, ptsleft){
+		$("#merc-level").html(lvlreq);
+		$("#points-left").html(ptsleft);
 	}
 }
 
 //Количество доступных очков навыка вычисляется по формуле: (уровень - 4)*3+4
 var player_model = {
-	selected_class: "assault",
 	required_level:0,
 	talents: [],
+	clear:function(){
+		this.talents = [];
+		model.update_requiremens_layout(1,1);
+	},
 	get_spent_talents_points: function (){
 		var i;
 		var count = 0;
@@ -346,8 +356,7 @@ var player_model = {
 		console.log("learning " + talent.name);
 		this.talents.push(talent);
 		var spent_points = this.get_spent_talents_points();
-		$("#merc-level").html(this.get_required_level(spent_points));
-		$("#points-left").html(this.get_available_talent_points(spent_points));
+		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
 	},
 	can_unlearn_talent: function (talent) {
 		var i;
@@ -366,8 +375,7 @@ var player_model = {
 		console.log("unlearning " + talent.name);
 		this.talents.splice(this.talents.indexOf(talent),1);
 		var spent_points = this.get_spent_talents_points();
-		$("#merc-level").html(this.get_required_level(spent_points));
-		$("#points-left").html(this.get_available_talent_points(spent_points));
+		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
 	}
 };
 
