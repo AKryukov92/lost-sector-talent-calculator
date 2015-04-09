@@ -69,6 +69,7 @@ $(document).ready(function(){
 	$("#support-link").click(function(){
 		model.select_data("support");
 	});
+	model.select_data("assault");
 });
 var last_visited_element = {};
 var handled_recently = false;
@@ -97,6 +98,7 @@ var model = {
 		this.prepare_grid();
 		this.prepare_layout();
 		this.fill_grid_rows();
+		this.prepare_tooltips();
 		this.draw_talent_forks();
 		this.update_layout_options();
 	},
@@ -160,7 +162,8 @@ var model = {
 			for	(colindex = 0; colindex < maxcol; colindex++) {
 				if (this.layout_model[rowindex].columns[colindex].items.length > 0) {
 					var current = this.layout_model[rowindex].columns[colindex].items[0];
-					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div id=\"" + this.current_class_data.prefix + "-talent-container" + current.id + "\" class=\"talent-container\"></div>");
+					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div id=\"" + this.current_class_data.prefix + "-talent-container" + current.id + "\" class=\"talent-container\" title=\"\"></div>");
+					
 					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<img src=\"skillspng/" + current.imageid + "g00.png\"/>");
 					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<img id=\"" + this.current_class_data.prefix + "-bright-img" + current.id + "\" class=\"bright-img\" src=\"skillspng/" + current.imageid + "00.png\"/>");
 					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div id=\"" + this.current_class_data.prefix + "-lock-rect" + current.id + "\" class=\"lock-rect\"></div>");
@@ -178,6 +181,121 @@ var model = {
 					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div class=\"talent-placeholder\"/>");
 				}
 			}
+		}
+	},
+	build_tooltip_header:function(current){
+		var tooltip_content = "<h3>" + current.name + "</h3>";
+		if (typeof current.cost != 'undefined')
+			tooltip_content += "<div><span>Cost:</span> " + current.cost + " skill point</div>";
+		if (typeof current.lvlreq != 'undefined') {
+			tooltip_content += "<div><span>Required:</span> Mercenary level " + current.lvlreq;
+			if (typeof current.talentreq != 'undefined'){
+				var j;
+				for (j = 0; j < this.current_class_data.talents.length; j++){
+					if (this.current_class_data.talents[j].id == current.talentreq) {
+						tooltip_content += ", " + this.current_class_data.talents[j].name;
+					}
+				}
+			}
+			tooltip_content += "</div>";
+		}
+		if (typeof current.number_of_uses != 'undefined')
+			tooltip_content += "<div><span>Number of uses:</span> " + current.number_of_uses + "</div>";";";
+		if (typeof current.AP_cost != 'undefined')
+			tooltip_content += "<div><span>AP cost:</span> " + current.AP_cost + "</div>";
+		if (typeof current.description != 'undefined')
+			tooltip_content += "<div><span>Description:</span> " + current.description + "</div>";
+		return tooltip_content;
+	},
+	update_tooltip:function(current){
+		var tooltip_content;
+		var tooltip_header;
+		if (typeof current.effect != 'undefined') {
+			var ranks = this.layout_model[this.get_row_for_level(this.get_base_for_rank(current).lvlreq)].columns[current.column].items;
+			if (ranks.length == 0)
+				console.log("No ranks found for " + current.name);
+			var j;
+			var max_learned;
+			var max_learned_index;
+			for (j = 0; j < ranks.length; j++) {
+				if (player_model.talent_learned(ranks[j])) {
+					if (typeof max_learned == 'undefined') {
+						max_learned = ranks[j];
+						max_learned_index = j;
+					} else if (ranks[j].lvlreq > max_learned.lvlreq) {
+						max_learned = ranks[j];
+						max_learned_index = j;
+					}
+				}
+			}
+			max_learned_index++;
+			if (typeof max_learned != 'undefined') {
+				if (typeof max_learned.effect == 'undefined') {
+					console.log("effect not found for " + max_learned.name);
+				}
+				tooltip_header = this.build_tooltip_header(max_learned);
+				tooltip_content += "<div><span>Current rank:" + max_learned_index + "/" + ranks.length + "<br/>Effect:</span>";
+				tooltip_content += max_learned.effect;
+				tooltip_content += "</div>";
+			}
+			var min_unlearned;
+			var min_unlearned_index;
+			for (j = 0; j < ranks.length; j++) {
+				if (!player_model.talent_learned(ranks[j])) {
+					if (typeof min_unlearned == 'undefined') {
+						min_unlearned = ranks[j];
+						min_unlearned_index = j;
+					} else if (ranks[j].lvlreq < min_unlearned.lvlreq) {
+						min_unlearned = ranks[j];
+						min_unlearned_index = j;
+					}
+				}
+			}
+			min_unlearned_index++;
+			if (typeof min_unlearned == 'undefined') {
+				if (typeof max_learned == 'undefined') {
+					tooltip_header = this.build_tooltip_header(ranks[0]);
+					tooltip_content += "<div><span>Next rank:1/" + ranks.length + "<br/>Effect:</span>";
+					tooltip_content += ranks[0].effect;
+					tooltip_content += "</div>";
+				}
+			} else {
+				if (typeof min_unlearned.effect == 'undefined') {
+					console.log("effect not found for " + min_unlearned.name);
+				}
+				tooltip_header = this.build_tooltip_header(min_unlearned);
+				tooltip_content += "<div><span>Next rank:" + min_unlearned_index + "/" + ranks.length + "<br/>Effect:</span>";
+				tooltip_content += min_unlearned.effect;
+				tooltip_content += "</div>";
+			}
+		}
+		$(function(){
+			$("#" + model.current_class_data.prefix + "-talent-container" + model.get_base_for_rank(current).id).tooltip({
+				track:true,
+				content:(tooltip_header + tooltip_content)
+			})
+		});
+// function talentclick(event){
+	// var talent = event.data;
+	// var ranks = model.layout_model[model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
+	// var i;
+	// for (i = 0; i < ranks.length; i++) {
+		// if (!player_model.talent_learned(ranks[i]))
+			// break;
+	// }
+	// if (i < ranks.length) {
+		// if (player_model.can_learn_talent(ranks[i])){
+			// player_model.learn_talent(ranks[i]);
+			// model.set_rank(model.get_row_for_level(ranks[0].lvlreq), ranks[i].column, ++i);
+			// model.update_layout_options();
+		// }
+	// }
+// }
+	},
+	prepare_tooltips:function(){
+		var i;
+		for(i = 0; i < model.current_class_data.talents.length; i++) {
+			this.update_tooltip(model.current_class_data.talents[i]);
 		}
 	},
 	draw_talent_forks:function(){
@@ -220,6 +338,8 @@ var model = {
 		}
 	},
 	get_base_for_rank: function(talent){
+		if (typeof talent.rankof == 'undefined')
+			return talent;
 		var j;
 		for (j = 0; j < this.current_class_data.talents.length; j++) {
 			if (this.current_class_data.talents[j].id == talent.rankof) {
@@ -270,7 +390,6 @@ var model = {
 		$("#points-left").html(ptsleft);
 	}
 }
-
 //Количество доступных очков навыка вычисляется по формуле: (уровень - 4)*3+4
 var player_model = {
 	required_level:0,
@@ -357,6 +476,7 @@ var player_model = {
 		this.talents.push(talent);
 		var spent_points = this.get_spent_talents_points();
 		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
+		model.update_tooltip(talent);
 	},
 	can_unlearn_talent: function (talent) {
 		var i;
@@ -376,7 +496,6 @@ var player_model = {
 		this.talents.splice(this.talents.indexOf(talent),1);
 		var spent_points = this.get_spent_talents_points();
 		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
+		model.update_tooltip(talent);
 	}
 };
-
-model.select_data("assault");
