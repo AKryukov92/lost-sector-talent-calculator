@@ -65,7 +65,7 @@ $(document).ready(function(){
 		model.select_data("sc");
 	});
 	$("#support-link").click(function(){
-		model.select_data("support");
+		model.select_data("su");
 	});
 	$("#link-to-build").click(function(){window.prompt("Copy to clipboard: Ctrl+C, Enter", $("#link-to-build").val());});
 	model.select_data("as");
@@ -82,12 +82,14 @@ $(document).ready(function(){
 	if (typeof result != 'undefined') {
 		var game_version = result.split("_")[0];
 		var talent_input = result.split("_")[1];
-		model.select_data(game_version.substr(game_version.length - 2, 2));
+		var class_prefix = game_version.substr(game_version.length - 2, 2);
+		model.select_data(class_prefix);
+		var index = $('#tabs a[href="#tab-'+ class_prefix + ']').parent().index();
+		$("#tabs").tabs("option", "active", index);
 		var data_version = game_version.substr(game_version.length - 3, 1);
 		if (data_version == patchdata.data_version) {
 			player_model.learn_encoded_talents(talent_input);
 		}
-		var tempgadsfasdf = 0;
 	}
 	// return result;
 });
