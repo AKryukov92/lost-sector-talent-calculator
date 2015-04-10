@@ -21,9 +21,9 @@ var patchdata = {
 		{
 			id:1,
 			imageid:1,
-			name:"Passive regeneration",
-			description:"Slow health regeneration in peaceful locations (Factory and etc.).",
-			effect:"Multiplies regeneration by 3",
+			name:"Пассивная регенерация",
+			description:"Медленно восстанавливает здоровье наемника на мирных локациях (Фабрика и другие).",
+			effect:"Умножает регенерацию здоровья на 3",
 			cost:1,
 			lvlreq:1,
 			column:0
@@ -31,8 +31,8 @@ var patchdata = {
 		{
 			id:2,
 			imageid:2,
-			name:"First aid",
-			description:"Allows the use of pills and injections of Rebis.",
+			name:"Первая помощь",
+			description:"Позволяет использовать таблетки и инъекции ребиса.",
 			cost:1,
 			lvlreq:1,
 			column:1
@@ -40,8 +40,8 @@ var patchdata = {
 		{
 			id:4,
 			imageid:4,
-			name:"Assault grenades",
-			description:"Allows you to use simple assault grenades in combat.",
+			name:"Штурмовые гранаты",
+			description:"Позволяет пользоваться простыми штурмовыми гранатами.",
 			cost:1,
 			lvlreq:3,
 			column:0
@@ -49,8 +49,8 @@ var patchdata = {
 		{
 			id:35,
 			imageid:35,
-			name:"Stimulants",
-			description:"Allows you to use steroid and adrenaline drugs in the battle",
+			name:"Стимуляторы",
+			description:"Позволяет использовать стероидные и адреналиновые препараты.",
 			cost:1,
 			lvlreq:4,
 			talentreq:2,
@@ -59,17 +59,17 @@ var patchdata = {
 		{
 			id:62,
 			imageid:62,
-			name:"Bandolier",
-			description:"Unlocks one cell for active items.",
-			effect:"Increases number of active slots for 1",
+			name:"Патронташ",
+			description:"Открывает одну ячейку для активных предметов.",
+			effect:"Увеличивает количество активных слотов на 1.",
 			lvlreq:5,
 			column:2
 		},
 		{
 			id:6,
 			imageid:6,
-			name:"Pistols",
-			description:"Pistols using skill of police classification.",
+			name:"Пистолеты (специалист)",
+			description:"Позволяет использовать пистолеты полицейской классификации.",
 			cost:1,
 			lvlreq:5,
 			column:3
@@ -77,8 +77,8 @@ var patchdata = {
 		{
 			id:10,
 			imageid:10,
-			name:"Assault rifles",
-			description:"Assault Rifles using skill of police classification.",
+			name:"Штурмовые винтовки",
+			description:"Позволяет использовать штурмовые винтовки полицейской классификации.",
 			cost:1,
 			lvlreq:5,
 			column:5
@@ -86,9 +86,9 @@ var patchdata = {
 		{
 			id:43,
 			imageid:43,
-			name:"Fast running",
-			description:"Increases the amount of MP (yellow movement points) allowing to move further.",
-			effect:"Increases maximum of move points for 5",
+			name:"Быстрый бег",
+			description:"Увеличивает количество очков движения, позволяя передвигаться дальше.",
+			effect:"Увеличивает максимум очков движения на 5",
 			cost:1,
 			lvlreq:5,
 			column:7
@@ -96,9 +96,9 @@ var patchdata = {
 		{
 			id:432,
 			imageid:43,
-			name:"Fast running",
-			description:"Increases the amount of MP (yellow movement points) allowing to move further.",
-			effect:"Increases maximum of move points for 8",
+			name:"Быстрый бег",
+			description:"Увеличивает количество очков движения, позволяя передвигаться дальше.",
+			effect:"Увеличивает максимум очков движения на 8",
 			cost:3,
 			lvlreq:6,
 			rankof:43,
@@ -107,9 +107,9 @@ var patchdata = {
 		{
 			id:433,
 			imageid:43,
-			name:"Fast running",
-			description:"Increases the amount of MP (yellow movement points) allowing to move further.",
-			effect:"Increases maximum of move points for 11",
+			name:"Быстрый бег",
+			description:"Увеличивает количество очков движения, позволяя передвигаться дальше.",
+			effect:"Увеличивает максимум очков движения на 11",
 			cost:3,
 			lvlreq:7,
 			rankof:43,
@@ -118,8 +118,8 @@ var patchdata = {
 		{
 			id:25,
 			imageid:25,
-			name:"Battle grenades",
-			description:"All you to use combat grenades.",
+			name:"Боевые гранаты",
+			description:"Позволяет использовать боевые гранаты.",
 			cost:1,
 			lvlreq:6,
 			talentreq:4,
@@ -128,8 +128,8 @@ var patchdata = {
 		{
 			id:8,
 			imageid:8,
-			name:"Sub-machine guns (specialist)",
-			description:"Sub-machine guns using skill of police classification.",
+			name:"Пистолеты-пулеметы (специалист)",
+			description:"позволяет использовать пистолеты-пулеметы полицейской классификации.",
 			cost:1,
 			lvlreq:6,
 			column:4
@@ -137,8 +137,8 @@ var patchdata = {
 		{
 			id:14,
 			imageid:14,
-			name:"Shotguns (specialist)",
-			description:"Shotguns using skill of police classification.",
+			name:"Дробовики (специалист)",
+			description:"Позволяет использовать дробовики полицейской классификации.",
 			cost:1,
 			lvlreq:6,
 			column:6
@@ -146,8 +146,8 @@ var patchdata = {
 		{
 			id:54,
 			imageid:54,
-			name:"Inspiration",
-			description:"All your allies in the specified range from the mercenary receive increased mobility by 20% for 1 turn. Does not apply on the activating mercenary. Does not stack with the spring effect.",
+			name:"Летучка",
+			description:"Союзники в указанном радиусе от наемника получают увеличение мобильности на 20% на 1 ход. Не действует на активировавшего намника. Не складывается с эффектом спринта.",
 			cost:1,
 			lvlreq:6,
 			talentreq:43,
@@ -159,8 +159,8 @@ var patchdata = {
 		{
 			id:55,
 			imageid:55,
-			name:"Sprint",
-			description:"In mercenary's mobility by 40% until the end of the turn.",
+			name:"Спринт",
+			description:"Увеличивает мобильность наемника на 40% до конца текущего хода.",
 			cost:1,
 			lvlreq:6,
 			talentreq:43,
@@ -171,9 +171,9 @@ var patchdata = {
 		{
 			id:45,
 			imageid:45,
-			name:"Shooting for sure",
-			description:"Increases the chance to deal critical damage.",
-			effect:"Increases crit.hit chance for 2%",
+			name:"Стрельба наверняка",
+			description:"Увеличивает шанс нанести цели критический урон.",
+			effect:"Увеличивает шанс крит.попадания на 2%",
 			cost:1,
 			lvlreq:6,
 			column:9
@@ -181,9 +181,9 @@ var patchdata = {
 		{
 			id:452,
 			imageid:45,
-			name:"Shooting for sure",
-			description:"Increases the chance to deal critical damage.",
-			effect:"Increases crit.hit chance for 5%",
+			name:"Стрельба наверняка",
+			description:"Увеличивает шанс нанести цели критический урон.",
+			effect:"Увеличивает шанс крит.попадания на 5%",
 			cost:2,
 			lvlreq:9,
 			rankof:45,
@@ -192,9 +192,9 @@ var patchdata = {
 		{
 			id:453,
 			imageid:45,
-			name:"Shooting for sure",
-			description:"Increases the chance to deal critical damage.",
-			effect:"Increases crit.hit chance for 10%",
+			name:"Стрельба наверняка",
+			description:"Увеличивает шанс нанести цели критический урон.",
+			effect:"Увеличивает шанс крит.попадания на 10%",
 			cost:3,
 			lvlreq:12,
 			rankof:45,
@@ -203,8 +203,8 @@ var patchdata = {
 		{
 			id:36,
 			imageid:36,
-			name:"Hermogel",
-			description:"Allows you to use hermetic to repair the armor in the battle.",
+			name:"Гермогели",
+			description:"Позволяет использовать герметики для восстановления брони в бою.",
 			cost:1,
 			lvlreq:7,
 			talentreq:35,
@@ -213,9 +213,9 @@ var patchdata = {
 		{
 			id:38,
 			imageid:38,
-			name:"Perceptivity to recovery",
-			description:"Increases the incoming recovering of health and armor.",
-			effect:"Increases healing effectiveness for 20%.",
+			name:"Восприимчивость к восстановлению",
+			description:"Увеличивает эффективность восстановления своего здоровья и брони.",
+			effect:"Увеличивает эффективность лечения на 20%.",
 			cost:1,
 			lvlreq:7,
 			row:7,
@@ -224,9 +224,9 @@ var patchdata = {
 		{
 			id:382,
 			imageid:38,
-			name:"Perceptivity to recovery",
-			description:"Increases the incoming recovering of health and armor.",
-			effect:"Increases healing effectiveness for 40%.",
+			name:"Восприимчивость к восстановлению",
+			description:"Увеличивает эффективность восстановления своего здоровья и брони.",
+			effect:"Увеличивает эффективность лечения на 40%.",
 			cost:2,
 			lvlreq:8,
 			rankof:38,
@@ -235,8 +235,8 @@ var patchdata = {
 		{
 			id:15,
 			imageid:15,
-			name:"Demolisher",
-			description:"Explosives and mines setting and using skill.",
+			name:"Подрывник",
+			description:"Позволяет использовать и устанавливать взрывчатку и мины.",
 			cost:1,
 			lvlreq:8,
 			column:1
@@ -244,8 +244,8 @@ var patchdata = {
 		{
 			id:19,
 			imageid:19,
-			name:"Pistols (professional)",
-			description:"Pistols using skill of military or large-caliber classification.",
+			name:"Пистолеты (профессионал)",
+			description:"Позволяет использовать пистолеты армейской или крупнокалиберной классификации.",
 			cost:1,
 			lvlreq:8,
 			talentreq:6,
@@ -254,8 +254,8 @@ var patchdata = {
 		{
 			id:22,
 			imageid:22,
-			name:"Assault Rifles (professional)",
-			description:"Assault Rifles using skill of military classification.",
+			name:"Штурмовые винтовки (профессионал)",
+			description:"Позволяет использовать штурмовые винтовки армейской классификации.",
 			cost:1,
 			lvlreq:8,
 			talentreq:10,
@@ -264,8 +264,8 @@ var patchdata = {
 		{
 			id:20,
 			imageid:20,
-			name:"Shotguns (professional)",
-			description:"Shotguns using skill of military classification.",
+			name:"Дробовики (специалист)",
+			description:"Позволяет использовать дробовики армейской классификации.",
 			cost:1,
 			lvlreq:8,
 			talentreq:14,
@@ -274,8 +274,8 @@ var patchdata = {
 		{
 			id:70,
 			imageid:70,
-			name:"Lean",
-			description:"Increases accuracy by 7 units in sitting position.",
+			name:"Упор",
+			description:"Увеличивает точность наемника на 7 в сидячем положении.",
 			cost:1,
 			lvlreq:8,
 			talentreq:45,
@@ -284,8 +284,8 @@ var patchdata = {
 		{
 			id:75,
 			imageid:75,
-			name:"Berserker",
-			description:"When a mercenary receives 115 damage at a turn, increases its AP by 20 for one turn. The counter resets at the beginning of the turn.",
+			name:"Берсеркер",
+			description:"При получении наемником 115 повреждений за один ход, увеличивает его очки действий на 20 на 1 ход. Счетчик сбрасывается в начале хода.",
 			cost:1,
 			lvlreq:8,
 			talentreq:45,
@@ -294,9 +294,9 @@ var patchdata = {
 		{
 			id:48,
 			imageid:48,
-			name:"Solid",
-			description:"Increases the basic amount of health.",
-			effect:"Increases health maximum for 15.",
+			name:"Крепкий",
+			description:"Увеличивает базовое количество здоровья.",
+			effect:"Увеличивает запас здоровья на 15.",
 			cost:1,
 			lvlreq:8,
 			column:11
@@ -304,9 +304,9 @@ var patchdata = {
 		{
 			id:482,
 			imageid:48,
-			name:"Solid",
-			description:"Increases the basic amount of health.",
-			effect:"Increases health maximum for 25.",
+			name:"Крепкий",
+			description:"Увеличивает базовое количество здоровья.",
+			effect:"Увеличивает запас здоровья на 25.",
 			cost:3,
 			lvlreq:11,
 			rankof:48,
@@ -315,8 +315,8 @@ var patchdata = {
 		{
 			id:17,
 			imageid:17,
-			name:"Chemical grenades",
-			description:"Allows you to use chemical grenades",
+			name:"Химические гранаты",
+			description:"Позволяет использовать химические гранаты.",
 			cost:1,
 			lvlreq:9,
 			talentreq:25,
@@ -325,8 +325,8 @@ var patchdata = {
 		{
 			id:26,
 			imageid:26,
-			name:"Sub-machine guns (professional)",
-			description:"Sub-machine guns using skill of military classification.",
+			name:"Пистолеты-пулеметы (профессионал)",
+			description:"Позволяет использовать пистолеты-пулеметы армейской классификации.",
 			cost:1,
 			lvlreq:9,
 			talentreq:8,
@@ -335,8 +335,8 @@ var patchdata = {
 		{
 			id:16,
 			imageid:16,
-			name:"Spider grenades",
-			description:"Allows you to use spider grenades.",
+			name:"Гранаты-пауки",
+			description:"Позволяет использовать гранаты-пауки.",
 			cost:1,
 			lvlreq:10,
 			talentreq:17,
@@ -345,9 +345,9 @@ var patchdata = {
 		{
 			id:63,
 			imageid:63,
-			name:"Pouch",
-			description:"Unlocks one cell for active items.",
-			effect:"Increases number of active slots for 1.",
+			name:"Подсумок",
+			description:"Открывает одну ячейку для активных предметов.",
+			effect:"Увеличивает количество активных слотов на 1..",
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
@@ -356,8 +356,8 @@ var patchdata = {
 		{
 			id:64,
 			imageid:64,
-			name:"Stash",
-			description:"Recovers 15 health units after using an active item.",
+			name:"Заначка",
+			description:"Восстанавливает 15 ед. здоровья наемника после использовать активного предмета.",
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
@@ -366,8 +366,8 @@ var patchdata = {
 		{
 			id:65,
 			imageid:65,
-			name:"Quick hands",
-			description:"Restores 10 AP afte using an active item.",
+			name:"Быстрые руки",
+			description:"Восстанавливает 10 очков действия наемника после использования активного предмета.",
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
@@ -376,8 +376,8 @@ var patchdata = {
 		{
 			id:72,
 			imageid:72,
-			name:"Adjustment fire",
-			description:"Increases the mercenary's accuracy by 8 for each of his hits at a turn. The effect stacks. The counter resets at the beginning of the turn.",
+			name:"Пристрелка",
+			description:"Увеличивает точность наемника на 8 ед. за каждую его атаку в ход. Эффект суммируется. Счетчик сбрасывается в начале хода.",
 			cost:1,
 			lvlreq:10,
 			talentreq:38,
@@ -386,8 +386,8 @@ var patchdata = {
 		{
 			id:77,
 			imageid:77,
-			name:"Lucky coin",
-			description:"Once per battle saves life by reducing the damage of one bullet, explosion or melee hit, which had to kill the mercenary, leaving 50% of the current health and 0% armor.",
+			name:"Счастливая монетка",
+			description:"Спасает от одной смертельной пули или взрыва, но оставляет только 50% текущего здоровья и 0% брони, а также вызывает ослепление на 1 ход. Этот урон не учитывается навыками, срабатывающими от полученного урона.",
 			cost:1,
 			number_of_uses:1,
 			lvlreq:10,
@@ -397,8 +397,8 @@ var patchdata = {
 		{
 			id:81,
 			imageid:81,
-			name:"Vindictive",
-			description:"When the mercenary receives damage, the unit that dealt that damage, receives a 15% decrease of general resistance for 1 round. The effect is only valid, if at the battle there are not less than 2 enemies alive.",
+			name:"Злопамятный",
+			description:"При получении наемником повреждений, у персонажа, нанесшего ему урон последним, уменьшается общее сопротивление на 15% на 1 ход. Эффект действует, только если  бою присутствует не менее 2 живых противников.",
 			cost:1,
 			lvlreq:10,
 			talentreq:38,
@@ -407,8 +407,8 @@ var patchdata = {
 		{
 			id:76,
 			imageid:76,
-			name:"Accountant",
-			description:"20% of taken damage are summed and added to the mercenary attack. Bonus depends on armour-penetrating ability. The counter is reset after a succesful attack.",
+			name:"Счетовод",
+			description:"20% от полученных повреждений суммируются и прибавляются к атаке наемника. Чем выше бронепробиваемость оружия наемника, тем меньше бонус. Счетчик сбрасывается после успешной атаки.",
 			cost:1,
 			lvlreq:12,
 			talentreq:48,
@@ -417,8 +417,8 @@ var patchdata = {
 		{
 			id:86,
 			imageid:86,
-			name:"Shoot 'till the end",
-			description:"If after the attack remains less than 0 of total AP the attack has increased by 50% chance of critical hit. The chance is calculated for each bullet separately.",
+			name:"Стрелять до конца",
+			description:"Следующая атака после активации потратит все ваши ОД, но будет иметь повышенный на 50% шанс критического попадания. Шанс считается для каждой пули отдельно. Для активации можно использовать очки движения.",
 			cost:1,
 			lvlreq:12,
 			talentreq:48,
@@ -428,9 +428,9 @@ var patchdata = {
 		{
 			id:51,
 			imageid:51,
-			name:"Weapon expert",
-			description:"Increases inflicting damage",
-			effect:"Increases damage multiplier (except melee) for 5%",
+			name:"Эксперт по оружию",
+			description:"Увеличивает наносимый урон.",
+			effect:"Увеличивает наносимый урон (кроме ближнего боя) на 5%",
 			lvlreq:14,
 			column:0
 		}
@@ -456,9 +456,9 @@ var patchdata = {
 		{
 			id:1,
 			imageid:1,
-			name:"Passive regeneration",
-			description:"Slow health regeneration in peaceful locations (Factory and etc.).",
-			effect:"Multiplies regeneration by 3",
+			name:"Пассивная регенерация",
+			description:"Медленно восстанавливает здоровье наемника на мирных локациях (Фабрика и другие).",
+			effect:"Умножает регенерацию здоровья на 3",
 			cost:1,
 			lvlreq:1,
 			column:0
@@ -466,8 +466,8 @@ var patchdata = {
 		{
 			id:2,
 			imageid:2,
-			name:"First aid",
-			description:"Allows the use of pills and injections of Rebis.",
+			name:"Первая помощь",
+			description:"Позволяет использовать таблетки и инъекции ребиса.",
 			cost:1,
 			lvlreq:1,
 			column:1
@@ -475,8 +475,8 @@ var patchdata = {
 		{
 			id:4,
 			imageid:4,
-			name:"Assault grenades",
-			description:"Allows you to use simple assault grenades in combat.",
+			name:"Штурмовые гранаты",
+			description:"Позволяет пользоваться простыми штурмовыми гранатами.",
 			cost:1,
 			lvlreq:3,
 			column:0
@@ -484,8 +484,8 @@ var patchdata = {
 		{
 			id:35,
 			imageid:35,
-			name:"Stimulants",
-			description:"Allows you to use steroid and adrenaline drugs in the battle",
+			name:"Стимуляторы",
+			description:"Позволяет использовать стероидные и адреналиновые препараты.",
 			cost:1,
 			lvlreq:4,
 			talentreq:2,
@@ -494,17 +494,17 @@ var patchdata = {
 		{
 			id:62,
 			imageid:62,
-			name:"Bandolier",
-			description:"Unlocks one cell for active items.",
-			effect:"Increases number of active slots for 1",
+			name:"Патронташ",
+			description:"Открывает одну ячейку для активных предметов.",
+			effect:"Увеличивает количество активных слотов на 1.",
 			lvlreq:5,
 			column:2
 		},
 		{
 			id:9,
 			imageid:9,
-			name:"Shields (specialist)",
-			description:"Shields using skill of police classification.",
+			name:"Щиты (специалист)",
+			description:"Позволяет использовать щиты полицейской классификации.",
 			cost:2,
 			lvlreq:5,
 			column:3
@@ -512,8 +512,8 @@ var patchdata = {
 		{
 			id:11,
 			imageid:11,
-			name:"Machine guns (specialist)",
-			description:"Machine guns using skill of police classification.",
+			name:"Пулеметы (специалист)",
+			description:"Позволяет использовать пулеметы полицейской классификации.",
 			cost:1,
 			lvlreq:5,
 			column:5
@@ -521,9 +521,9 @@ var patchdata = {
 		{
 			id:39,
 			imageid:39,
-			name:"Staunch",
-			description:"Adds basic resistance to any damage.",
-			effect:"Increases total resist for 5%",
+			name:"Стойкий",
+			description:"Добавляет базовое сопротивление любому урону.",
+			effect:"Увеличивает общую стойкость к урону на 5%",
 			cost:1,
 			lvlreq:5,
 			column:7
@@ -531,9 +531,9 @@ var patchdata = {
 		{
 			id:392,
 			imageid:39,
-			name:"Staunch",
-			description:"Adds basic resistance to any damage.",
-			effect:"Increases total resist for 7%",
+			name:"Стойкий",
+			description:"Добавляет базовое сопротивление любому урону.",
+			effect:"Увеличивает общую стойкость к урону на 7%",
 			cost:3,
 			lvlreq:6,
 			column:7,
@@ -542,8 +542,8 @@ var patchdata = {
 		{
 			id:7,
 			imageid:7,
-			name:"Melee weapon(specialist)",
-			description:"Melee weapon using skill of police classification.",
+			name:"Холодное оружие (специалист)",
+			description:"Позволяет использовать холодное оружие полицейской классификации.",
 			lvlreq:6,
 			cost:1,
 			column:3
@@ -551,8 +551,8 @@ var patchdata = {
 		{
 			id:8,
 			imageid:8,
-			name:"Sub-machine guns (specialist)",
-			description:"Sub-machine guns using skill of police classification.",
+			name:"Пистолеты-пулеметы (специалист)",
+			description:"позволяет использовать пистолеты-пулеметы полицейской классификации.",
 			cost:1,
 			lvlreq:6,
 			column:4
@@ -560,8 +560,8 @@ var patchdata = {
 		{
 			id:14,
 			imageid:14,
-			name:"Shotguns (specialist)",
-			description:"Shotguns using skill of police classification.",
+			name:"Дробовики (специалист)",
+			description:"Позволяет использовать дробовики полицейской классификации.",
 			cost:1,
 			lvlreq:6,
 			column:6
@@ -569,8 +569,8 @@ var patchdata = {
 		{
 			id:56,
 			imageid:56,
-			name:"Nanny",
-			description:"All allies in the specified range from the mercenary receive 10% bonus to general resistance. The mercenary itself does not receive the bonus.",
+			name:"Нянька",
+			description:"Все союзники в указанном радиусе от наемника получают бонус 10% общего сопротивления к урону. Сам наемник бонус не получает.",
 			cost:1,
 			lvlreq:6,
 			talentreq:39,
@@ -580,8 +580,8 @@ var patchdata = {
 		{
 			id:57,
 			imageid:57,
-			name:"Blind defense",
-			description:"Increase the mercenary's general resistance by 40% for 1 turn, but he is losing the ability to see the enemy.",
+			name:"Глухая оборона",
+			description:"Увеличивает общее сопротивление наемника на 40% на 1 ход, при этом боец теряет способность видеть врага.",
 			cost:1,
 			lvlreq:6,
 			AP_cost:20,
@@ -592,9 +592,9 @@ var patchdata = {
 		{
 			id:48,
 			imageid:48,
-			name:"Solid",
-			description:"Increases the basic amount of health.",
-			effect:"Increases health maximum for 15.",
+			name:"Крепкий",
+			description:"Увеличивает базовое количество здоровья.",
+			effect:"Увеличивает запас здоровья на 15.",
 			cost:1,
 			lvlreq:6,
 			column:9
@@ -602,9 +602,9 @@ var patchdata = {
 		{
 			id:482,
 			imageid:48,
-			name:"Solid",
-			description:"Increases the basic amount of health.",
-			effect:"Increases health maximum for 25.",
+			name:"Крепкий",
+			description:"Увеличивает базовое количество здоровья.",
+			effect:"Увеличивает запас здоровья на 25.",
 			cost:2,
 			lvlreq:9,
 			rankof:48,
@@ -613,9 +613,9 @@ var patchdata = {
 		{
 			id:483,
 			imageid:48,
-			name:"Solid",
-			description:"Increases the basic amount of health.",
-			effect:"Increases health maximum for 35.",
+			name:"Крепкий",
+			description:"Увеличивает базовое количество здоровья.",
+			effect:"Увеличивает запас здоровья на 35.",
 			cost:4,
 			lvlreq:13,
 			rankof:48,
@@ -624,8 +624,8 @@ var patchdata = {
 		{
 			id:25,
 			imageid:25,
-			name:"Battle grenades",
-			description:"All you to use combat grenades.",
+			name:"Боевые гранаты",
+			description:"Позволяет использовать боевые гранаты.",
 			cost:2,
 			lvlreq:7,
 			talentreq:4,
@@ -634,8 +634,8 @@ var patchdata = {
 		{
 			id:36,
 			imageid:36,
-			name:"Hermogel",
-			description:"Allows you to use hermetic to repair the armor in the battle.",
+			name:"Гермогели",
+			description:"Позволяет использовать герметики для восстановления брони в бою.",
 			cost:1,
 			lvlreq:7,
 			talentreq:35,
@@ -644,8 +644,8 @@ var patchdata = {
 		{
 			id:23,
 			imageid:23,
-			name:"Machine guns (professional)",
-			description:"Machine guns using skill of military classification.",
+			name:"Пулеметы (профессионал)",
+			description:"Позволяет использовать пулеметы армейской классификации.",
 			cost:1,
 			lvlreq:7,
 			talentreq:11,
@@ -654,9 +654,9 @@ var patchdata = {
 		{
 			id:38,
 			imageid:38,
-			name:"Perceptivity to recovery",
-			description:"Increases the incoming recovering of health and armor.",
-			effect:"Increases healing effectiveness for 20%.",
+			name:"Восприимчивость к восстановлению",
+			description:"Увеличивает эффективность восстановления своего здоровья и брони.",
+			effect:"Увеличивает эффективность лечения на 20%.",
 			cost:1,
 			lvlreq:7,
 			row:7,
@@ -665,9 +665,9 @@ var patchdata = {
 		{
 			id:382,
 			imageid:38,
-			name:"Perceptivity to recovery",
-			description:"Increases the incoming recovering of health and armor.",
-			effect:"Increases healing effectiveness for 40%.",
+			name:"Восприимчивость к восстановлению",
+			description:"Увеличивает эффективность восстановления своего здоровья и брони.",
+			effect:"Увеличивает эффективность лечения на 40%.",
 			cost:2,
 			lvlreq:8,
 			rankof:38,
@@ -676,9 +676,9 @@ var patchdata = {
 		{
 			id:383,
 			imageid:38,
-			name:"Perceptivity to recovery",
-			description:"Increases the incoming recovering of health and armor.",
-			effect:"Increases healing effectiveness for 60%.",
+			name:"Восприимчивость к восстановлению",
+			description:"Увеличивает эффективность восстановления своего здоровья и брони.",
+			effect:"Увеличивает эффективность лечения на 60%.",
 			cost:3,
 			lvlreq:10,
 			rankof:38,
@@ -687,9 +687,9 @@ var patchdata = {
 		{
 			id:44,
 			imageid:44,
-			name:"Martial art",
-			description:"Increases inflicting damage at close combat.",
-			effect:"Increases melee damage multiplier for 20%",
+			name:"Искусство боя",
+			description:"Увеличивает наносимый урон в ближнем бою.",
+			effect:"Увеличивает урон в ближнем бою на 20%",
 			cost:1,
 			lvlreq:8,
 			column:0
@@ -697,9 +697,9 @@ var patchdata = {
 		{
 			id:442,
 			imageid:44,
-			name:"Martial art",
-			description:"Increases inflicting damage at close combat.",
-			effect:"Increases melee damage multiplier for 40%",
+			name:"Искусство боя",
+			description:"Увеличивает наносимый урон в ближнем бою.",
+			effect:"Увеличивает урон в ближнем бою на 40%",
 			cost:2,
 			lvlreq:11,
 			rankof:44,
@@ -708,8 +708,8 @@ var patchdata = {
 		{
 			id:20,
 			imageid:20,
-			name:"Shotguns (professional)",
-			description:"Shotguns using skill of military classification.",
+			name:"Дробовики (специалист)",
+			description:"Позволяет использовать дробовики армейской классификации.",
 			cost:1,
 			lvlreq:8,
 			talentreq:14,
@@ -718,8 +718,8 @@ var patchdata = {
 		{
 			id:71,
 			imageid:71,
-			name:"Bipods",
-			description:"Increases the mercenary's accuracy by 10 units, but reduces his mobility by 10 times. Works until the end of the current turn.",
+			name:"Сошки",
+			description:"Увеличивает точность наемника на 10 ед., при этом снижая его мобильность в 10 раз. Действует до конца текущего хода.",
 			cost:1,
 			lvlreq:8,
 			talentreq:48,
@@ -729,8 +729,8 @@ var patchdata = {
 		{
 			id:84,
 			imageid:84,
-			name:"No gaps",
-			description:"Critical strikes do not deal additional damage to the mercenary.",
+			name:"Без зазоров",
+			description:"Критические атаки не наносят наемнику дополнительных повреждений.",
 			cost:1,
 			lvlreq:8,
 			talentreq:48,
@@ -739,8 +739,8 @@ var patchdata = {
 		{
 			id:26,
 			imageid:26,
-			name:"Sub-machine guns (professional)",
-			description:"Sub-machine guns using skill of military classification.",
+			name:"Пистолеты-пулеметы (профессионал)",
+			description:"Позволяет использовать пистолеты-пулеметы армейской классификации.",
 			cost:1,
 			lvlreq:9,
 			talentreq:8,
@@ -749,9 +749,9 @@ var patchdata = {
 		{
 			id:63,
 			imageid:63,
-			name:"Pouch",
-			description:"Unlocks one cell for active items.",
-			effect:"Increases number of active slots for 1.",
+			name:"Подсумок",
+			description:"Открывает одну ячейку для активных предметов.",
+			effect:"Увеличивает количество активных слотов на 1..",
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
@@ -760,8 +760,8 @@ var patchdata = {
 		{
 			id:64,
 			imageid:64,
-			name:"Stash",
-			description:"Recovers 15 health units after using an active item.",
+			name:"Заначка",
+			description:"Восстанавливает 15 ед. здоровья наемника после использовать активного предмета.",
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
@@ -770,8 +770,8 @@ var patchdata = {
 		{
 			id:65,
 			imageid:65,
-			name:"Quick hands",
-			description:"Restores 10 AP afte using an active item.",
+			name:"Быстрые руки",
+			description:"Восстанавливает 10 очков действия наемника после использования активного предмета.",
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
@@ -780,8 +780,8 @@ var patchdata = {
 		{
 			id:74,
 			imageid:74,
-			name:"Put off the ballast",
-			description:"Increases the mercenary's mobility by 15% when the armor falls below 40.",
+			name:"Сбросить лишнее",
+			description:"Увеличивает мобильность наемника на 15% при падении очков брони ниже 40.",
 			cost:1,
 			lvlreq:10,
 			talentreq:38,
@@ -790,7 +790,7 @@ var patchdata = {
 		{
 			id:77,
 			imageid:77,
-			name:"Lucky coin",
+			name:"Счастливая монетка",
 			description:"Once per battle saves life by reducing the damage of one bullet, explosion or melee hit, which had to kill mercenary, leaving 50% of the current health and 0% armor.",
 			number_of_uses:1,
 			cost:1,
@@ -801,8 +801,8 @@ var patchdata = {
 		{
 			id:80,
 			imageid:80,
-			name:"Martyr",
-			description:"When receiving summarily 200 damage, the rest fighters of your team are granted a 20% bonus general resistance for one turn. The counter resets after actuation.",
+			name:"Мученик",
+			description:"При получении суммарно 200 повреждений, всем прочим бойцам вашей команды выдается бонус 20% общего сопротивления на 1 ход. Счетчик сбрасывается при срабатывании.",
 			cost:1,
 			lvlreq:12,
 			talentreq:44,
@@ -811,7 +811,7 @@ var patchdata = {
 		{
 			id:81,
 			imageid:81,
-			name:"Vindictive",
+			name:"Злопамятный",
 			description:"When the mercenary receives damage, the unit that dealth that damage, receives a 15% decrease of general resistance for 1 round. The effect is only valid, if at the battle there are not less than 2 enemies alive.",
 			cost:1,
 			lvlreq:12,
@@ -821,9 +821,9 @@ var patchdata = {
 		{
 			id:51,
 			imageid:51,
-			name:"Weapon expert",
-			description:"Increases inflicting damage",
-			effect:"Increases damage multiplier (except melee) for 5%",
+			name:"Эксперт по оружию",
+			description:"Увеличивает наносимый урон.",
+			effect:"Увеличивает наносимый урон (кроме ближнего боя) на 5%",
 			lvlreq:14,
 			column:0
 		}
@@ -849,9 +849,9 @@ var patchdata = {
 		{
 			id:1,
 			imageid:1,
-			name:"Passive regeneration",
-			description:"Slow health regeneration in peaceful locations (Factory and etc.).",
-			effect:"Multiplies regeneration by 3",
+			name:"Пассивная регенерация",
+			description:"Медленно восстанавливает здоровье наемника на мирных локациях (Фабрика и другие).",
+			effect:"Умножает регенерацию здоровья на 3",
 			cost:1,
 			lvlreq:1,
 			column:0
@@ -859,8 +859,8 @@ var patchdata = {
 		{
 			id:2,
 			imageid:2,
-			name:"First aid",
-			description:"Allows the use of pills and injections of Rebis.",
+			name:"Первая помощь",
+			description:"Позволяет использовать таблетки и инъекции ребиса.",
 			cost:1,
 			lvlreq:1,
 			column:1
@@ -868,8 +868,8 @@ var patchdata = {
 		{
 			id:4,
 			imageid:4,
-			name:"Assault grenades",
-			description:"Allows you to use simple assault grenades in combat.",
+			name:"Штурмовые гранаты",
+			description:"Позволяет пользоваться простыми штурмовыми гранатами.",
 			cost:1,
 			lvlreq:3,
 			column:0
@@ -877,8 +877,8 @@ var patchdata = {
 		{
 			id:35,
 			imageid:35,
-			name:"Stimulants",
-			description:"Allows you to use steroid and adrenaline drugs in the battle",
+			name:"Стимуляторы",
+			description:"Позволяет использовать стероидные и адреналиновые препараты.",
 			cost:1,
 			lvlreq:4,
 			talentreq:2,
@@ -887,8 +887,8 @@ var patchdata = {
 		{
 			id:3,
 			imageid:3,
-			name:"Tactical grenades",
-			description:"Allows you to use tactical grenades of Rebis & EM types.",
+			name:"Тактические гранаты",
+			description:"Позволяет использовать тактические гранаты по типу ребис и ЭМ гранат.",
 			cost:1,
 			lvlreq:5,
 			talentreq:4,
@@ -897,17 +897,17 @@ var patchdata = {
 		{
 			id:62,
 			imageid:62,
-			name:"Bandolier",
-			description:"Unlocks one cell for active items.",
-			effect:"Increases number of active slots for 1",
+			name:"Патронташ",
+			description:"Открывает одну ячейку для активных предметов.",
+			effect:"Увеличивает количество активных слотов на 1.",
 			lvlreq:5,
 			column:2
 		},
 		{
 			id:6,
 			imageid:6,
-			name:"Pistols",
-			description:"Pistols using skill of police classification.",
+			name:"Пистолеты (специалист)",
+			description:"Позволяет использовать пистолеты полицейской классификации.",
 			cost:1,
 			lvlreq:5,
 			column:4
@@ -915,8 +915,8 @@ var patchdata = {
 		{
 			id:13,
 			imageid:13,
-			name:"Sniper rifles",
-			description:"Sniper Rifles using skill of police classification.",
+			name:"Снайперские винтовки (специалист)",
+			description:"Позволяет использовать снайперские винтовки полицейской классификации.",
 			cost:1,
 			lvlreq:5,
 			column:6
@@ -924,9 +924,9 @@ var patchdata = {
 		{
 			id:47,
 			imageid:47,
-			name:"Ballistics expert",
-			description:"Increases inflicting damage.",
-			effect:"Increases damage multiplier (except melee) for 5%",
+			name:"Эксперт по баллистике",
+			description:"Увеличивает наносимый урон.",
+			effect:"Увеличивает наносимый урон (кроме ближнего боя) на 5%",
 			cost:1,
 			lvlreq:5,
 			column:9
@@ -934,9 +934,9 @@ var patchdata = {
 		{
 			id:472,
 			imageid:47,
-			name:"Ballistics expert",
-			description:"Increases inflicting damage.",
-			effect:"Increases damage multiplier (except melee) for 8%",
+			name:"Эксперт по баллистике",
+			description:"Увеличивает наносимый урон.",
+			effect:"Увеличивает наносимый урон (кроме ближнего боя) на 8%",
 			cost:3,
 			lvlreq:8,
 			rankof:47,
@@ -945,9 +945,9 @@ var patchdata = {
 		{
 			id:473,
 			imageid:47,
-			name:"Ballistics expert",
-			description:"Increases inflicting damage.",
-			effect:"Increases damage multiplier (except melee) for 10%",
+			name:"Эксперт по баллистике",
+			description:"Увеличивает наносимый урон.",
+			effect:"Увеличивает наносимый урон (кроме ближнего боя) на 10%",
 			cost:3,
 			lvlreq:11,
 			rankof:47,
@@ -956,7 +956,8 @@ var patchdata = {
 		{
 			id:5,
 			imageid:5,
-			name:"Technician (specialist)",
+			name:"Техник (специалист)",
+			description:"Позволяет устанавливать простое оборудование в зоне битвы.",
 			cost:1,
 			lvlreq:6,
 			column:3
@@ -964,8 +965,8 @@ var patchdata = {
 		{
 			id:7,
 			imageid:7,
-			name:"Melee weapon(specialist)",
-			description:"Melee weapon using skill of police classification.",
+			name:"Холодное оружие (специалист)",
+			description:"Позволяет использовать холодное оружие полицейской классификации.",
 			cost:1,
 			lvlreq:6,
 			column:5
@@ -973,9 +974,9 @@ var patchdata = {
 		{
 			id:45,
 			imageid:45,
-			name:"Shooting for sure",
-			description:"Increases the chance to deal critical damage.",
-			effect:"Increases crit.hit chance for 2%",
+			name:"Стрельба наверняка",
+			description:"Увеличивает шанс нанести цели критический урон.",
+			effect:"Увеличивает шанс крит.попадания на 2%",
 			cost:1,
 			lvlreq:6,
 			column:8
@@ -983,9 +984,9 @@ var patchdata = {
 		{
 			id:452,
 			imageid:45,
-			name:"Shooting for sure",
-			description:"Increases the chance to deal critical damage.",
-			effect:"Increases crit.hit chance for 5%",
+			name:"Стрельба наверняка",
+			description:"Увеличивает шанс нанести цели критический урон.",
+			effect:"Увеличивает шанс крит.попадания на 5%",
 			cost:2,
 			lvlreq:7,
 			rankof:45,
@@ -994,9 +995,9 @@ var patchdata = {
 		{
 			id:453,
 			imageid:45,
-			name:"Shooting for sure",
-			description:"Increases the chance to deal critical damage.",
-			effect:"Increases crit.hit chance for 10%",
+			name:"Стрельба наверняка",
+			description:"Увеличивает шанс нанести цели критический урон.",
+			effect:"Увеличивает шанс крит.попадания на 10%",
 			cost:2,
 			lvlreq:10,
 			rankof:45,
@@ -1005,9 +1006,9 @@ var patchdata = {
 		{
 			id:454,
 			imageid:45,
-			name:"Shooting for sure",
-			description:"Increases the chance to deal critical damage.",
-			effect:"Increases crit.hit chance for 15%",
+			name:"Стрельба наверняка",
+			description:"Увеличивает шанс нанести цели критический урон.",
+			effect:"Увеличивает шанс крит.попадания на 15%",
 			cost:3,
 			lvlreq:13,
 			rankof:45,
@@ -1016,8 +1017,8 @@ var patchdata = {
 		{
 			id:58,
 			imageid:58,
-			name:"Tactical estimation",
-			description:"Decreases the general resistance of the selected enemy by 30% for one turn.",
+			name:"Тактическая оценка",
+			description:"Уменьшает общее сопротивление выбранного противника на 30% на 1 ход.",
 			cost:1,
 			lvlreq:6,
 			talentreq:47,
@@ -1029,8 +1030,8 @@ var patchdata = {
 		{
 			id:59,
 			imageid:59,
-			name:"Concentration",
-			description:"Increases mercenary's inflicting damage by 20% on this turn. -20 AP on next turn.",
+			name:"Концентрация",
+			description:"Увеличивает наносимый урон на 20% до конца хода и снимает 20 ОД на следующем ходу.",
 			cost:1,
 			lvlreq:6,
 			talentreq:47,
@@ -1041,8 +1042,8 @@ var patchdata = {
 		{
 			id:36,
 			imageid:36,
-			name:"Hermogel",
-			description:"Allows you to use hermetic to repair the armor in the battle.",
+			name:"Гермогели",
+			description:"Позволяет использовать герметики для восстановления брони в бою.",
 			cost:1,
 			lvlreq:7,
 			talentreq:35,
@@ -1051,9 +1052,9 @@ var patchdata = {
 		{
 			id:43,
 			imageid:43,
-			name:"Fast running",
-			description:"Increases the amount of MP (yellow movement points) allowing to move further.",
-			effect:"Increases maximum of move points for 5",
+			name:"Быстрый бег",
+			description:"Увеличивает количество очков движения, позволяя передвигаться дальше.",
+			effect:"Увеличивает максимум очков движения на 5",
 			cost:1,
 			lvlreq:7,
 			column:5
@@ -1061,8 +1062,8 @@ var patchdata = {
 		{
 			id:19,
 			imageid:19,
-			name:"Pistols (professional)",
-			description:"Pistols using skill of military or large-caliber classification.",
+			name:"Пистолеты (профессионал)",
+			description:"Позволяет использовать пистолеты армейской или крупнокалиберной классификации.",
 			cost:1,
 			lvlreq:8,
 			talentreq:6,
@@ -1071,8 +1072,8 @@ var patchdata = {
 		{
 			id:24,
 			imageid:24,
-			name:"Sniper Rifles (professional)",
-			description:"Sniper Rifles using skill of military classification.",
+			name:"Снайперские винтовки (профессионал)",
+			description:"Позволяет использовать снайперские винтовки армейской классификации.",
 			cost:1,
 			lvlreq:8,
 			talentreq:13,
@@ -1081,9 +1082,9 @@ var patchdata = {
 		{
 			id:44,
 			imageid:44,
-			name:"Martial art",
-			description:"Increases inflicting damage at close combat.",
-			effect:"Increases melee damage multiplier for 20%",
+			name:"Искусство боя",
+			description:"Увеличивает наносимый урон в ближнем бою.",
+			effect:"Увеличивает урон в ближнем бою на 20%",
 			cost:1,
 			lvlreq:8,
 			column:7
@@ -1091,9 +1092,9 @@ var patchdata = {
 		{
 			id:442,
 			imageid:44,
-			name:"Martial art",
-			description:"Increases inflicting damage at close combat.",
-			effect:"Increases melee damage multiplier for 40%",
+			name:"Искусство боя",
+			description:"Увеличивает наносимый урон в ближнем бою.",
+			effect:"Увеличивает урон в ближнем бою на 40%",
 			cost:3,
 			lvlreq:11,
 			rankof:44,
@@ -1102,8 +1103,8 @@ var patchdata = {
 		{
 			id:70,
 			imageid:70,
-			name:"Lean",
-			description:"Increases accuracy by 7 units in sitting position.",
+			name:"Упор",
+			description:"Увеличивает точность наемника на 7 в сидячем положении.",
 			cost:1,
 			lvlreq:8,
 			talentreq:45,
@@ -1112,8 +1113,8 @@ var patchdata = {
 		{
 			id:73,
 			imageid:73,
-			name:"Overwhelmed height",
-			description:"Increases the chance of critical attack by 30% for the target located 2 meters below or more. Change is calculated for each bullet separately.",
+			name:"Подавляющая высота",
+			description:"Увеличивает шанс критической атаки на 30% по цели, находящейся на 2 или более метров ниже наемника. Шанс считается для каждой пули отдельно.",
 			cost:1,
 			lvlreq:8,
 			talentreq:45,
@@ -1123,8 +1124,8 @@ var patchdata = {
 		{
 			id:17,
 			imageid:17,
-			name:"Chemical grenades",
-			description:"Allows you to use chemical grenades.",
+			name:"Химические гранаты",
+			description:"Позволяет использовать химические гранаты..",
 			cost:1,
 			lvlreq:9,
 			talentreq:3,
@@ -1133,8 +1134,8 @@ var patchdata = {
 		{
 			id:16,
 			imageid:16,
-			name:"Spider grenades",
-			description:"Allows you to use spider grenades.",
+			name:"Гранаты-пауки",
+			description:"Позволяет использовать гранаты-пауки.",
 			cost:1,
 			lvlreq:10,
 			talentreq:17,
@@ -1143,9 +1144,9 @@ var patchdata = {
 		{
 			id:63,
 			imageid:63,
-			name:"Pouch",
-			description:"Unlocks one cell for active items.",
-			effect:"Increases number of active slots for 1.",
+			name:"Подсумок",
+			description:"Открывает одну ячейку для активных предметов.",
+			effect:"Увеличивает количество активных слотов на 1..",
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
@@ -1154,8 +1155,8 @@ var patchdata = {
 		{
 			id:64,
 			imageid:64,
-			name:"Stash",
-			description:"Recovers 15 health units after using an active item.",
+			name:"Заначка",
+			description:"Восстанавливает 15 ед. здоровья наемника после использовать активного предмета.",
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
@@ -1164,8 +1165,8 @@ var patchdata = {
 		{
 			id:65,
 			imageid:65,
-			name:"Quick hands",
-			description:"Restores 10 AP afte using an active item.",
+			name:"Быстрые руки",
+			description:"Восстанавливает 10 очков действия наемника после использования активного предмета.",
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
@@ -1174,8 +1175,8 @@ var patchdata = {
 		{
 			id:72,
 			imageid:72,
-			name:"Adjustment fire",
-			description:"Increases the mercenary's accuracy by 8 for each of his hits at a turn. The effect stacks. The counter resets at the beginning of the turn.",
+			name:"Пристрелка",
+			description:"Увеличивает точность наемника на 8 ед. за каждую его атаку в ход. Эффект суммируется. Счетчик сбрасывается в начале хода.",
 			cost:1,
 			lvlreq:10,
 			talentreq:43,
@@ -1184,8 +1185,9 @@ var patchdata = {
 		{
 			id:85,
 			imageid:85,
-			name:"Critical damage",
-			description:"Increases the critical damage dealt by the mercenary.",
+			name:"Критический урон",
+			description:"Увеличивает повреждения от критических атак наемника.",
+			effect:"Устанавливает множитель урона от крит. попаданий равным 2",
 			cost:1,
 			lvlreq:10,
 			talentreq:43,
@@ -1194,8 +1196,8 @@ var patchdata = {
 		{
 			id:86,
 			imageid:86,
-			name:"Shoot 'till the end",
-			description:"If after the attack remains less than 0 of total AP the attack has increased by 50% chance of critical hit. The chance is calculated for each bullet separately.",
+			name:"Стрелять до конца",
+			description:"Следующая атака после активации потратит все ваши ОД, но будет иметь повышенный на 50% шанс критического попадания. Шанс считается для каждой пули отдельно. Для активации можно использовать очки движения.",
 			cost:1,
 			lvlreq:10,
 			talentreq:43,
@@ -1205,8 +1207,8 @@ var patchdata = {
 		{
 			id:71,
 			imageid:71,
-			name:"Bipods",
-			description:"Increases the mercenary's accuracy by 10 units, but reduces his mobility by 10 times. Works until the end of the current turn.",
+			name:"Сошки",
+			description:"Увеличивает точность наемника на 10 ед., при этом снижая его мобильность в 10 раз. Действует до конца текущего хода.",
 			cost:1,
 			lvlreq:12,
 			talentreq:44,
@@ -1216,8 +1218,8 @@ var patchdata = {
 		{
 			id:82,
 			imageid:82,
-			name:"Fair verdict",
-			description:"When the mercenary kills an enemy all the allies (except of him) get 20% additional mobility for 1 turn. Effect does not stack.",
+			name:"Справедливый суд",
+			description:"При убийстве наемником врага, все союзники (кроме него) получают бонус в 20% мобильности на 1 ход. Эффект не суммируется.",
 			cost:1,
 			lvlreq:12,
 			talentreq:44,
@@ -1226,9 +1228,9 @@ var patchdata = {
 		{
 			id:51,
 			imageid:51,
-			name:"Weapon expert",
-			description:"Increases inflicting damage",
-			effect:"Increases damage multiplier (except melee) for 5%",
+			name:"Эксперт по оружию",
+			description:"Увеличивает наносимый урон.",
+			effect:"Увеличивает наносимый урон (кроме ближнего боя) на 5%",
 			lvlreq:14,
 			column:0
 		}
@@ -1254,9 +1256,9 @@ var patchdata = {
 		{
 			id:1,
 			imageid:1,
-			name:"Passive regeneration",
-			description:"Slow health regeneration in peaceful locations (Factory and etc.).",
-			effect:"Multiplies regeneration by 3",
+			name:"Пассивная регенерация",
+			description:"Медленно восстанавливает здоровье наемника на мирных локациях (Фабрика и другие).",
+			effect:"Умножает регенерацию здоровья на 3",
 			cost:1,
 			lvlreq:1,
 			column:0
@@ -1264,8 +1266,8 @@ var patchdata = {
 		{
 			id:2,
 			imageid:2,
-			name:"First aid",
-			description:"Allows the use of pills and injections of Rebis.",
+			name:"Первая помощь",
+			description:"Позволяет использовать таблетки и инъекции ребиса.",
 			cost:1,
 			lvlreq:1,
 			column:1
@@ -1273,8 +1275,8 @@ var patchdata = {
 		{
 			id:4,
 			imageid:4,
-			name:"Assault grenades",
-			description:"Allows you to use simple assault grenades in combat.",
+			name:"Штурмовые гранаты",
+			description:"Позволяет пользоваться простыми штурмовыми гранатами.",
 			cost:1,
 			lvlreq:3,
 			column:0
@@ -1282,8 +1284,8 @@ var patchdata = {
 		{
 			id:3,
 			imageid:3,
-			name:"Tactical grenades",
-			description:"Allows you to use tactical grenades of Rebis & EM types.",
+			name:"Тактические гранаты",
+			description:"Позволяет использовать тактические гранаты по типу ребис и ЭМ гранат.",
 			cost:1,
 			lvlreq:5,
 			talentreq:4,
@@ -1292,8 +1294,8 @@ var patchdata = {
 		{
 			id:35,
 			imageid:35,
-			name:"Stimulants",
-			description:"Allows you to use steroid and adrenaline drugs in the battle",
+			name:"Стимуляторы",
+			description:"Позволяет использовать стероидные и адреналиновые препараты.",
 			cost:1,
 			lvlreq:4,
 			talentreq:2,
@@ -1302,17 +1304,17 @@ var patchdata = {
 		{
 			id:62,
 			imageid:62,
-			name:"Bandolier",
-			description:"Unlocks one cell for active items.",
-			effect:"Increases number of active slots for 1",
+			name:"Патронташ",
+			description:"Открывает одну ячейку для активных предметов.",
+			effect:"Увеличивает количество активных слотов на 1.",
 			lvlreq:5,
 			column:2
 		},
 		{
 			id:12,
 			imageid:12,
-			name:"Launchers (specialist)",
-			description:"Launchers using skill of police classification.",
+			name:"Пусковые установки (специалист)",
+			description:"Позволяет использовать пусковые установки полицейской классификации.",
 			cost:1,
 			lvlreq:5,
 			column:5
@@ -1320,9 +1322,9 @@ var patchdata = {
 		{
 			id:42,
 			imageid:42,
-			name:"Explosion resistant",
-			description:"Adds basic resistance to explosions.",
-			effect:"Increases explosion resist for 5%",
+			name:"Взрывостойкий",
+			description:"Добавляет базовое сопротивление взрывам.",
+			effect:"Увеличивает сопротивление взрывам на 5%",
 			cost:1,
 			lvlreq:5,
 			column:7
@@ -1330,9 +1332,9 @@ var patchdata = {
 		{
 			id:422,
 			imageid:42,
-			name:"Explosion resistant",
-			description:"Adds basic resistance to explosions.",
-			effect:"Increases explosion resist for 10%",
+			name:"Взрывостойкий",
+			description:"Добавляет базовое сопротивление взрывам.",
+			effect:"Увеличивает сопротивление взрывам на 10%",
 			cost:2,
 			lvlreq:8,
 			rankof:42,
@@ -1341,9 +1343,9 @@ var patchdata = {
 		{
 			id:423,
 			imageid:42,
-			name:"Explosion resistant",
-			description:"Adds basic resistance to explosions.",
-			effect:"Increases explosion resist for 15%",
+			name:"Взрывостойкий",
+			description:"Добавляет базовое сопротивление взрывам.",
+			effect:"Увеличивает сопротивление взрывам на 15%",
 			cost:3,
 			lvlreq:11,
 			rankof:42,
@@ -1352,7 +1354,8 @@ var patchdata = {
 		{
 			id:5,
 			imageid:5,
-			name:"Technician (specialist)",
+			name:"Техник (специалист)",
+			description:"Позволяет устанавливать простое оборудование в зоне битвы.",
 			cost:1,
 			lvlreq:6,
 			column:3
@@ -1360,8 +1363,8 @@ var patchdata = {
 		{
 			id:8,
 			imageid:8,
-			name:"Sub-machine guns (specialist)",
-			description:"Sub-machine guns using skill of police classification.",
+			name:"Пистолеты-пулеметы (специалист)",
+			description:"позволяет использовать пистолеты-пулеметы полицейской классификации.",
 			cost:1,
 			lvlreq:6,
 			column:4
@@ -1369,8 +1372,8 @@ var patchdata = {
 		{
 			id:14,
 			imageid:14,
-			name:"Shotguns (specialist)",
-			description:"Shotguns using skill of police classification.",
+			name:"Дробовики (специалист)",
+			description:"Позволяет использовать дробовики полицейской классификации.",
 			cost:1,
 			lvlreq:6,
 			column:6
@@ -1378,8 +1381,8 @@ var patchdata = {
 		{
 			id:60,
 			imageid:60,
-			name:"Recovery",
-			description:"Recovers 35 armor units and 35 health units to an ally mercenary.",
+			name:"Восстановление",
+			description:"Восстанавливает 35 ед. брони и 35 ед. здоровья союзному наемнику.",
 			cost:1,
 			lvlreq:6,
 			talentreq:42,
@@ -1391,8 +1394,8 @@ var patchdata = {
 		{
 			id:61,
 			imageid:61,
-			name:"Sense",
-			description:"The mercenary feels at the presence of enemies.",
+			name:"Чутье",
+			description:"Наемник чувствует присутствие противников рядом.",
 			cost:1,
 			lvlreq:6,
 			talentreq:42,
@@ -1402,9 +1405,9 @@ var patchdata = {
 		{
 			id:41,
 			imageid:41,
-			name:"Fire resistant",
-			description:"Adds basic resistance to fire.",
-			effect:"Increases fire resist for 7%",
+			name:"Огнеупорный",
+			description:"Добавляет базовое сопротивление огню.",
+			effect:"Увеличивает сопротивление огню на 7%",
 			cost:1,
 			lvlreq:6,
 			column:9
@@ -1412,9 +1415,9 @@ var patchdata = {
 		{
 			id:412,
 			imageid:41,
-			name:"Fire resistant",
-			description:"Adds basic resistance to fire.",
-			effect:"Increases fire resist for 12%",
+			name:"Огнеупорный",
+			description:"Добавляет базовое сопротивление огню.",
+			effect:"Увеличивает сопротивление огню на 12%",
 			cost:2,
 			lvlreq:9,
 			rankof:41,
@@ -1423,9 +1426,9 @@ var patchdata = {
 		{
 			id:413,
 			imageid:41,
-			name:"Fire resistant",
-			description:"Adds basic resistance to fire.",
-			effect:"Increases fire resist for 20%",
+			name:"Огнеупорный",
+			description:"Добавляет базовое сопротивление огню.",
+			effect:"Увеличивает сопротивление огню на 20%",
 			cost:3,
 			lvlreq:12,
 			rankof:41,
@@ -1434,8 +1437,8 @@ var patchdata = {
 		{
 			id:36,
 			imageid:36,
-			name:"Hermogel",
-			description:"Allows you to use hermetic to repair the armor in the battle.",
+			name:"Гермогели",
+			description:"Позволяет использовать герметики для восстановления брони в бою.",
 			cost:1,
 			lvlreq:7,
 			talentreq:35,
@@ -1444,8 +1447,8 @@ var patchdata = {
 		{
 			id:18,
 			imageid:18,
-			name:"Technician (professional)",
-			description:"Allows you to set up complex equipment in the battle zone.",
+			name:"Техник (профессионал)",
+			description:"Позволяет устанавливать сложное оборудование в зоне битвы.",
 			cost:1,
 			lvlreq:7,
 			talentreq:5,
@@ -1454,9 +1457,9 @@ var patchdata = {
 		{
 			id:40,
 			imageid:40,
-			name:"Chemical resistant",
-			description:"Adds basic resistance to acid.",
-			effect:"Increases acid resist for 10%",
+			name:"Химзащита",
+			description:"Добавляет базовое сопротивление кислоте.",
+			effect:"Увеличивает сопротивление кислоте на 10%",
 			cost:1,
 			lvlreq:7,
 			column:7
@@ -1464,9 +1467,9 @@ var patchdata = {
 		{
 			id:402,
 			imageid:40,
-			name:"Chemical resistant",
-			description:"Adds basic resistance to acid.",
-			effect:"Increases acid resist for 20%",
+			name:"Химзащита",
+			description:"Добавляет базовое сопротивление кислоте.",
+			effect:"Увеличивает сопротивление кислоте на 20%",
 			cost:2,
 			lvlreq:10,
 			rankof:40,
@@ -1475,9 +1478,9 @@ var patchdata = {
 		{
 			id:403,
 			imageid:40,
-			name:"Chemical resistant",
-			description:"Adds basic resistance to acid.",
-			effect:"Increases acid resist for 30%",
+			name:"Химзащита",
+			description:"Добавляет базовое сопротивление кислоте.",
+			effect:"Увеличивает сопротивление кислоте на 30%",
 			cost:3,
 			lvlreq:13,
 			rankof:40,
@@ -1486,8 +1489,8 @@ var patchdata = {
 		{
 			id:17,
 			imageid:17,
-			name:"Chemical grenades",
-			description:"Allows you to use chemical grenades.",
+			name:"Химические гранаты",
+			description:"Позволяет использовать химические гранаты..",
 			cost:1,
 			lvlreq:8,
 			talentreq:3,
@@ -1496,8 +1499,8 @@ var patchdata = {
 		{
 			id:15,
 			imageid:15,
-			name:"Demolisher",
-			description:"Explosives and mines setting and using skill.",
+			name:"Подрывник",
+			description:"Позволяет использовать и устанавливать взрывчатку и мины.",
 			cost:1,
 			lvlreq:8,
 			column:1
@@ -1505,8 +1508,8 @@ var patchdata = {
 		{
 			id:21,
 			imageid:21,
-			name:"Launchers (professional)",
-			description:"Laun using skill of military classification.",
+			name:"Пусковые установки (профессионал)",
+			description:"Позволяет использовать пусковые установки армейской классификации.",
 			cost:1,
 			lvlreq:8,
 			talentreq:12,
@@ -1515,8 +1518,8 @@ var patchdata = {
 		{
 			id:20,
 			imageid:20,
-			name:"Shotguns (professional)",
-			description:"Shotguns using skill of military classification.",
+			name:"Дробовики (специалист)",
+			description:"Позволяет использовать дробовики армейской классификации.",
 			cost:1,
 			lvlreq:8,
 			talentreq:14,
@@ -1525,8 +1528,8 @@ var patchdata = {
 		{
 			id:72,
 			imageid:72,
-			name:"Adjustment fire",
-			description:"Increases the mercenary's accuracy by 8 for each of his hits at a turn. The effect stacks. The counter resets at the beginning of the turn.",
+			name:"Пристрелка",
+			description:"Увеличивает точность наемника на 8 ед. за каждую его атаку в ход. Эффект суммируется. Счетчик сбрасывается в начале хода.",
 			cost:1,
 			lvlreq:8,
 			talentreq:41,
@@ -1535,8 +1538,8 @@ var patchdata = {
 		{
 			id:78,
 			imageid:78,
-			name:"Opener",
-			description:"The first bullet, shell, grenade or a hit at a target with full armor deals 140% damage.",
+			name:"Открывашка",
+			description:"Первая пуля, снаряд, граната или удар по цели с полной броней наносит 140% повреждений.",
 			cost:1,
 			lvlreq:8,
 			talentreq:41,
@@ -1545,8 +1548,8 @@ var patchdata = {
 		{
 			id:83,
 			imageid:83,
-			name:"Common touch",
-			description:"If near the mercenary there is an ally, both apply 10% more damage.",
+			name:"Чувство локтя",
+			description:"Если рядом с наемником есть союзник, оба наносят на 10% урона больше.",
 			cost:1,
 			lvlreq:8,
 			talentreq:41,
@@ -1555,9 +1558,9 @@ var patchdata = {
 		{
 			id:46,
 			imageid:46,
-			name:"Personal armor",
-			description:"Increases basic amount of armor.",
-			effect:"Increases defence maximum for 10",
+			name:"Личная броня",
+			description:"Увеличивает базовое количество брони.",
+			effect:"Увеличивает запас брони на 10",
 			cost:1,
 			lvlreq:8,
 			column:11
@@ -1565,8 +1568,8 @@ var patchdata = {
 		{
 			id:16,
 			imageid:16,
-			name:"Spider grenades",
-			description:"Allows you to use spider grenades.",
+			name:"Гранаты-пауки",
+			description:"Позволяет использовать гранаты-пауки.",
 			cost:1,
 			lvlreq:9,
 			talentreq:17,
@@ -1575,8 +1578,8 @@ var patchdata = {
 		{
 			id:26,
 			imageid:26,
-			name:"Sub-machine guns (professional)",
-			description:"Sub-machine guns using skill of military classification.",
+			name:"Пистолеты-пулеметы (профессионал)",
+			description:"Позволяет использовать пистолеты-пулеметы армейской классификации.",
 			cost:1,
 			lvlreq:9,
 			talentreq:8,
@@ -1585,9 +1588,9 @@ var patchdata = {
 		{
 			id:63,
 			imageid:63,
-			name:"Pouch",
-			description:"Unlocks one cell for active items.",
-			effect:"Increases number of active slots for 1.",
+			name:"Подсумок",
+			description:"Открывает одну ячейку для активных предметов.",
+			effect:"Увеличивает количество активных слотов на 1..",
 			cost:1,
 			lvlreq:10,
 			column:0
@@ -1595,8 +1598,8 @@ var patchdata = {
 		{
 			id:64,
 			imageid:64,
-			name:"Stash",
-			description:"Recovers 15 health units after using an active item.",
+			name:"Заначка",
+			description:"Восстанавливает 15 ед. здоровья наемника после использовать активного предмета.",
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
@@ -1605,8 +1608,8 @@ var patchdata = {
 		{
 			id:65,
 			imageid:65,
-			name:"Quick hands",
-			description:"Restores 10 AP afte using an active item.",
+			name:"Быстрые руки",
+			description:"Восстанавливает 10 очков действия наемника после использования активного предмета.",
 			cost:1,
 			lvlreq:10,
 			talentreq:62,
@@ -1615,8 +1618,8 @@ var patchdata = {
 		{
 			id:56,
 			imageid:56,
-			name:"Nanny",
-			description:"All allies in the specified range from the mercenary receive 10% bonus to general resistance. The mercenary itself does not receive the bonus.",
+			name:"Нянька",
+			description:"Все союзники в указанном радиусе от наемника получают бонус 10% общего сопротивления к урону. Сам наемник бонус не получает.",
 			cost:1,
 			lvlreq:10,
 			talentreq:40,
@@ -1626,8 +1629,8 @@ var patchdata = {
 		{
 			id:75,
 			imageid:75,
-			name:"Berserker",
-			description:"When a mercenary receives 115 damage at a turn, increases its AP by 20 for one turn. The counter resets at the beginning of the turn.",
+			name:"Берсеркер",
+			description:"При получении наемником 115 повреждений за один ход, увеличивает его очки действий на 20 на 1 ход. Счетчик сбрасывается в начале хода.",
 			cost:1,
 			lvlreq:10,
 			talentreq:40,
@@ -1636,8 +1639,8 @@ var patchdata = {
 		{
 			id:76,
 			imageid:76,
-			name:"Accountant",
-			description:"20% of taken damage are summed and added to the mercenary attack. Bonus depends on armour-penetrating ability. The counter is reset after a succesful attack.",
+			name:"Счетовод",
+			description:"20% от полученных повреждений суммируются и прибавляются к атаке наемника. Чем выше бронепробиваемость оружия наемника, тем меньше бонус. Счетчик сбрасывается после успешной атаки.",
 			cost:1,
 			lvlreq:10,
 			talentreq:40,
@@ -1646,8 +1649,8 @@ var patchdata = {
 		{
 			id:74,
 			imageid:74,
-			name:"Put off the ballast",
-			description:"Increases the mercenary's mobility by 15% when the armor falls below 40.",
+			name:"Сбросить лишнее",
+			description:"Увеличивает мобильность наемника на 15% при падении очков брони ниже 40.",
 			cost:1,
 			lvlreq:12,
 			talentreq:46,
@@ -1656,8 +1659,8 @@ var patchdata = {
 		{
 			id:79,
 			imageid:79,
-			name:"Vendetta",
-			description:"When a member from your team dies, increases inflicting damage to all the team units by 15% for one turn. The effect does not stack.",
+			name:"Вендетта",
+			description:"При смерти члена вашей команды увеличивает наносимый урон всеми бойцами команды на 15% на 1 ход. Эффект не суммируется.",
 			cost:1,
 			lvlreq:12,
 			talentreq:46,
@@ -1666,9 +1669,9 @@ var patchdata = {
 		{
 			id:51,
 			imageid:51,
-			name:"Weapon expert",
-			description:"Increases inflicting damage",
-			effect:"Increases damage multiplier (except melee) for 5%",
+			name:"Эксперт по оружию",
+			description:"Увеличивает наносимый урон.",
+			effect:"Увеличивает наносимый урон (кроме ближнего боя) на 5%",
 			lvlreq:14,
 			column:0
 		}
