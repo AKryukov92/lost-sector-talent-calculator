@@ -67,7 +67,7 @@ $(document).ready(function(){
 	$("#support-link").click(function(){
 		model.select_data("su");
 	});
-	$("#link-to-build").click(function(){window.prompt("Copy to clipboard: Ctrl+C, Enter", $("#link-to-build").val());});
+	$("#link-to-build").click(function(){window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());});
 	var result,
 		tmp = [];
 	location.search
@@ -214,9 +214,9 @@ var model = {
 	build_tooltip_header:function(current){
 		var tooltip_content = "<h3>" + current.name + "</h3>";
 		if (typeof current.cost != 'undefined')
-			tooltip_content += "<div><span>Cost:</span> " + current.cost + " skill point</div>";
+			tooltip_content += "<div><span>Стоимость:</span> " + current.cost + " очков навыков</div>";
 		if (typeof current.lvlreq != 'undefined') {
-			tooltip_content += "<div><span>Required:</span> Mercenary level " + current.lvlreq;
+			tooltip_content += "<div><span>Требуется:</span> Боец уровня " + current.lvlreq;
 			if (typeof current.talentreq != 'undefined'){
 				var j;
 				for (j = 0; j < this.current_class_data.talents.length; j++){
@@ -228,11 +228,11 @@ var model = {
 			tooltip_content += "</div>";
 		}
 		if (typeof current.number_of_uses != 'undefined')
-			tooltip_content += "<div><span>Number of uses:</span> " + current.number_of_uses + "</div>";";";
+			tooltip_content += "<div><span>Число использований:</span> " + current.number_of_uses + "</div>";";";
 		if (typeof current.AP_cost != 'undefined')
-			tooltip_content += "<div><span>AP cost:</span> " + current.AP_cost + "</div>";
+			tooltip_content += "<div><span>Затраты ОД:</span> " + current.AP_cost + "</div>";
 		if (typeof current.description != 'undefined')
-			tooltip_content += "<div><span>Description:</span> " + current.description + "</div>";
+			tooltip_content += "<div><span>Описание:</span> " + current.description + "</div>";
 		return tooltip_content;
 	},
 	update_tooltip:function(current){
@@ -262,7 +262,7 @@ var model = {
 					console.log("effect not found for " + max_learned.name);
 				}
 				tooltip_header = this.build_tooltip_header(max_learned);
-				tooltip_content += "<div><span>Current rank:" + max_learned_index + "/" + ranks.length + "<br/>Effect:</span>";
+				tooltip_content += "<div><span>Текущий ранг:" + max_learned_index + "/" + ranks.length + "<br/>Эффект:</span>";
 				tooltip_content += max_learned.effect;
 				tooltip_content += "</div>";
 			}
@@ -283,7 +283,7 @@ var model = {
 			if (typeof min_unlearned == 'undefined') {
 				if (typeof max_learned == 'undefined') {
 					tooltip_header = this.build_tooltip_header(ranks[0]);
-					tooltip_content += "<div><span>Next rank:1/" + ranks.length + "<br/>Effect:</span>";
+					tooltip_content += "<div><span>Следующий ранг:1/" + ranks.length + "<br/>Эффект:</span>";
 					tooltip_content += ranks[0].effect;
 					tooltip_content += "</div>";
 				}
@@ -292,7 +292,7 @@ var model = {
 					console.log("effect not found for " + min_unlearned.name);
 				}
 				tooltip_header = this.build_tooltip_header(min_unlearned);
-				tooltip_content += "<div><span>Next rank:" + min_unlearned_index + "/" + ranks.length + "<br/>Effect:</span>";
+				tooltip_content += "<div><span>Следующий ранг:" + min_unlearned_index + "/" + ranks.length + "<br/>Эффект:</span>";
 				tooltip_content += min_unlearned.effect;
 				tooltip_content += "</div>";
 			}
