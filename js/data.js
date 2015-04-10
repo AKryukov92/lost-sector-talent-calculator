@@ -1,7 +1,9 @@
 var patchdata = {
+	game_version: 98,
+	data_version: 1,
 	assault_data:{
-		prefix:"assault",
-		grid_height:12,
+		prefix:"as",
+		grid_height:11,
 		rows:[
 			{ level:1 },
 			{ level:3 },
@@ -12,7 +14,6 @@ var patchdata = {
 			{ level:8 },
 			{ level:9 },
 			{ level:10 },
-			{ level:11 },
 			{ level:12 },
 			{ level:14 }
 		],
@@ -436,7 +437,7 @@ var patchdata = {
 		]
 	},
 	juggernaut_data:{
-		prefix:"juggernaut",
+		prefix:"ju",
 		grid_height:11,
 		rows:[
 			{ level:1 },
@@ -829,7 +830,7 @@ var patchdata = {
 		]
 	},
 	scout_data:{
-		prefix:"scout",
+		prefix:"sc",
 		grid_height:11,
 		rows:[
 			{ level:1 },
@@ -1234,7 +1235,7 @@ var patchdata = {
 		]
 	},
 	support_data:{
-		prefix:"support",
+		prefix:"su",
 		grid_height:11,
 		rows:[
 			{ level:1 },
@@ -1268,6 +1269,15 @@ var patchdata = {
 			cost:1,
 			lvlreq:1,
 			column:1
+		},
+		{
+			id:4,
+			imageid:4,
+			name:"Assault grenades",
+			description:"Allows you to use simple assault grenades in combat.",
+			cost:1,
+			lvlreq:3,
+			column:0
 		},
 		{
 			id:3,

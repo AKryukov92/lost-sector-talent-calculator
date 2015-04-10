@@ -51,16 +51,16 @@
 		</svg></a></li>
 	</ul>
 	<div id="tabs-1">
-		<div id="assault-layout" class="talents-background"></div>
+		<div id="as-layout" class="talents-background"></div>
 	</div>
 	<div id="tabs-2">
-		<div id="juggernaut-layout" class="talents-background"></div>
+		<div id="ju-layout" class="talents-background"></div>
 	</div>
 	<div id="tabs-3">
-		<div id="scout-layout" class="talents-background"></div>
+		<div id="sc-layout" class="talents-background"></div>
 	</div>
 	<div id="tabs-4">
-		<div id="support-layout" class="talents-background"></div>
+		<div id="su-layout" class="talents-background"></div>
 	</div>
 </div>
 <script src="js/jquery.js"></script>
@@ -70,23 +70,6 @@ $( "#tabs" ).tabs();
 </script>
 <script src="js/data.js"></script>
 <script src="js/logic.js"></script>
-<script>
-//Количество доступных очков навыка вычисляется по формуле: (уровень - 4)*3+4
-function parse(val) {
-    var result = "Not found",
-        tmp = [];
-    location.search
-    //.replace ( "?", "" ) 
-    // this is better, there might be a question mark inside
-    .substr(1)
-        .split("&")
-        .forEach(function (item) {
-        tmp = item.split("=");
-        if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
-    });
-    return result;
-}
-</script>
 <script src="js/analytics.js"/>
 </body>
 </html>

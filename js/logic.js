@@ -9,7 +9,6 @@
 	if (i < ranks.length) {
 		if (player_model.can_learn_talent(ranks[i])){
 			player_model.learn_talent(ranks[i]);
-			model.set_rank(model.get_row_for_level(ranks[0].lvlreq), ranks[i].column, ++i);
 			model.update_layout_options();
 		}
 	}
@@ -28,7 +27,6 @@ function talentrightclick(event){
 		if (player_model.can_unlearn_talent(ranks[i-1])) {
 			player_model.unlearn_talent(ranks[i-1]);
 			model.update_layout_options();
-			model.set_rank(model.get_row_for_level(talent.lvlreq), talent.column, --i);
 		}
 	}
 }
@@ -58,18 +56,40 @@ $(document).ready(function(){
 		e.preventDefault();
 	});
 	$("#assault-link").click(function(){
-		model.select_data("assault");
+		model.select_data("as");
 	});
 	$("#juggernaut-link").click(function(){
-		model.select_data("juggernaut");
+		model.select_data("ju");
 	});
 	$("#scout-link").click(function(){
-		model.select_data("scout");
+		model.select_data("sc");
 	});
 	$("#support-link").click(function(){
 		model.select_data("support");
 	});
-	model.select_data("assault");
+	$("#link-to-build").click(function(){window.prompt("Copy to clipboard: Ctrl+C, Enter", $("#link-to-build").val());});
+	model.select_data("as");
+	var result,
+		tmp = [];
+	location.search
+		.replace ( "?", "" )
+		.split("&")
+		.forEach(function (item) {
+			tmp = item.split("=");
+			if (tmp[0] === "talent")
+				result = decodeURIComponent(tmp[1]);
+		});
+	if (typeof result != 'undefined') {
+		var game_version = result.split("_")[0];
+		var talent_input = result.split("_")[1];
+		model.select_data(game_version.substr(game_version.length - 2, 2));
+		var data_version = game_version.substr(game_version.length - 3, 1);
+		if (data_version == patchdata.data_version) {
+			player_model.learn_encoded_talents(talent_input);
+		}
+		var tempgadsfasdf = 0;
+	}
+	// return result;
 });
 var last_visited_element = {};
 var handled_recently = false;
@@ -82,13 +102,13 @@ var model = {
 	current_class_data: {},
 	select_data: function(class_name){
 		switch(class_name){
-			case "juggernaut":
+			case "ju":
 			this.current_class_data = patchdata.juggernaut_data;
 			break;
-			case "scout":
+			case "sc":
 			this.current_class_data = patchdata.scout_data;
 			break;
-			case "support":
+			case "su":
 			this.current_class_data = patchdata.support_data;
 			break;
 			default: //"assault":
@@ -107,10 +127,14 @@ var model = {
 		this.layout_model = [];
 		maxrow = this.current_class_data.grid_height;
 		var i;
+		var power = 1;
 		maxcol = 0
-		for(i = 0; i < this.current_class_data.talents.length;i++)
+		for(i = 0; i < this.current_class_data.talents.length;i++){
 			if (this.current_class_data.talents[i].column > maxcol)
 				maxcol = this.current_class_data.talents[i].column;
+			this.current_class_data.talents[i].power = power;
+			power *= 2;
+		}
 		maxcol++;
 		var rowindex;
 		var colindex;
@@ -281,24 +305,7 @@ var model = {
 					content:model.build_tooltip_header(current)
 				})
 			});
-			
 		}
-// function talentclick(event){
-	// var talent = event.data;
-	// var ranks = model.layout_model[model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
-	// var i;
-	// for (i = 0; i < ranks.length; i++) {
-		// if (!player_model.talent_learned(ranks[i]))
-			// break;
-	// }
-	// if (i < ranks.length) {
-		// if (player_model.can_learn_talent(ranks[i])){
-			// player_model.learn_talent(ranks[i]);
-			// model.set_rank(model.get_row_for_level(ranks[0].lvlreq), ranks[i].column, ++i);
-			// model.update_layout_options();
-		// }
-	// }
-// }
 	},
 	prepare_tooltips:function(){
 		var i;
@@ -307,9 +314,11 @@ var model = {
 		}
 	},
 	draw_talent_forks:function(){
+		var rowindex;
+		var colindex;
 		for (rowindex = 0; rowindex < maxrow; rowindex++) {
 			for	(colindex = 0; colindex < maxcol; colindex++) {
-				if (this.layout_model[rowindex].columns[colindex].items == 0)
+				if (this.layout_model[rowindex].columns[colindex].items.length == 0)
 					continue;
 				var current = this.layout_model[rowindex].columns[colindex].items[0];
 				var subs = this.get_submissive_talents(current);
@@ -364,13 +373,13 @@ var model = {
 		}
 		return _ret;
 	},
-	update_layout_options: function (){
+	update_layout_options1: function (){
 		var i;
 		for (i = 0; i < this.current_class_data.talents.length; i++) {
 			var current = this.current_class_data.talents[i];
 			if (player_model.talent_learned(current)) {
-				$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).hide();
 				$("#" + this.current_class_data.prefix + "-bright-img" + current.id).show();
+				$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).hide();
 			} else {
 				$("#" + this.current_class_data.prefix + "-bright-img" + current.id).hide();
 				if (player_model.can_learn_talent(current))
@@ -380,18 +389,37 @@ var model = {
 			}
 		}
 	},
-	set_rank: function (rowindex, colindex, rank){
-		if (typeof this.layout_model[rowindex] == 'undefined')
-			return;
-		if (typeof this.layout_model[rowindex].columns[colindex] == 'undefined')
-			return;
-		if (this.layout_model[rowindex].columns[colindex].items.length < rank)
-			return;
-		if (this.layout_model[rowindex].columns[colindex].items.length == 1)
-			return;
-		var basic = this.layout_model[rowindex].columns[colindex].items[0];
-		var temp = $("#" + this.current_class_data.prefix + "-talent-container" + basic.id + " #talent-container-rank");
-		$("#" + this.current_class_data.prefix + "-talent-container" + basic.id + " #talent-container-rank").html(rank + "/" + this.layout_model[rowindex].columns[colindex].items.length);
+	update_layout_options:function(){
+		var rowindex, colindex;
+		for (rowindex = 0; rowindex < maxrow; rowindex++) {
+			for	(colindex = 0; colindex < maxcol; colindex++) {
+				if (this.layout_model[rowindex].columns[colindex].items.length == 0)
+					continue;
+				var current = this.layout_model[rowindex].columns[colindex].items[0];
+				if (player_model.talent_learned(current)) {
+					$("#" + this.current_class_data.prefix + "-bright-img" + current.id).show();
+					$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).hide();
+				} else {
+					$("#" + this.current_class_data.prefix + "-bright-img" + current.id).hide();
+					if (player_model.can_learn_talent(current))
+						$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).hide();
+					else
+						$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).show();
+				}
+				if (this.layout_model[rowindex].columns[colindex].items.length > 1){
+					var basic = this.get_base_for_rank(current);
+					var ranks = this.layout_model[model.get_row_for_level(current.lvlreq)].columns[current.column].items;
+					var i;
+					var learned_count = 0;
+					for (i = 0; i < ranks.length; i++) {
+						if (player_model.talent_learned(ranks[i])){
+							learned_count++;
+						}
+					}
+					$("#" + this.current_class_data.prefix + "-talent-container" + basic.id + " #talent-container-rank").html(learned_count + "/" + this.layout_model[rowindex].columns[colindex].items.length);
+				}
+			}
+		}
 	},
 	update_requiremens_layout:function(lvlreq, ptsleft){
 		$("#merc-level").html(lvlreq);
@@ -409,17 +437,76 @@ var player_model = {
 	get_spent_talents_points: function (){
 		var i;
 		var count = 0;
-		for (i=0;i<this.talents.length;i++) {
+		for (i = 0; i < this.talents.length; i++) {
 			if (typeof this.talents[i].cost != 'undefined')
 				count += this.talents[i].cost;
 		}
 		return count;
 	},
+	get_powersum:function(){
+		var i;
+		var powersum = 0;
+		for(i = 0; i < this.talents.length; i++) {
+			powersum += this.talents[i].power;
+		}
+		return powersum;
+	},
+	convert_powersum_to_string:function(){
+		var powersum = this.get_powersum();
+		var modulo;
+		var code = "";
+		do {
+			modulo = powersum % 33;
+			powersum = (powersum-modulo)/33;
+			if (modulo >= 10) {
+				code += String.fromCharCode(modulo+87);
+			} else {
+				code += modulo;
+			}
+		} while (powersum > 0);
+		return code;
+	},
+	convert_string_to_powersum:function(input){
+		var powersum = 0;
+		var power = 1;
+		var chr;
+		var i = 0;
+		while (i < input.length){
+			chr = input.charCodeAt(i);
+			if (chr >= 97 && chr <= 122){
+				powersum += (chr - 87) * power;
+			} else if (chr >= 48 && chr <= 57){
+				powersum += (chr - 48) * power;
+			} else {
+				console.log("unexpected character: " + chr)
+			}
+			power *= 33;
+			i++;
+		}
+		return powersum;
+	},
+	learn_encoded_talents:function(input){
+		var powersum = this.convert_string_to_powersum(input);
+		var i;
+		if (powersum >= model.current_class_data.talents[model.current_class_data.talents.length - 1].power*2) {
+			powersum = 0;
+		}
+		for (i = model.current_class_data.talents.length - 1; i >= 0; i--) {
+			var talent = model.current_class_data.talents[i];
+			if (talent.power <= powersum) {
+				this.add_talent(talent);
+				powersum -= talent.power;
+			}
+		}
+		var spent_points = this.get_spent_talents_points();
+		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
+		model.update_layout_options();
+	},
 	get_required_level: function (spent_points) {
 		var max_level_to_invest;
 		if (spent_points == 0)
 			max_level_to_invest = 1;
-		if (spent_points <=4) {
+		if (spent_points <= 4) {
 			max_level_to_invest = spent_points;
 		} else {
 			max_level_to_invest = Math.ceil((spent_points - 4) / 3) + 4;
@@ -480,11 +567,15 @@ var player_model = {
 	learn_talent: function (talent){
 		if (this.talent_learned(talent))
 			return;
-		console.log("learning " + talent.name);
-		this.talents.push(talent);
 		var spent_points = this.get_spent_talents_points();
 		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
+		this.add_talent(talent);
+	},
+	add_talent:function(talent){
+		console.log("learning " + talent.name);
+		this.talents.push(talent);
 		model.update_tooltip(talent);
+		this.update_link();
 	},
 	can_unlearn_talent: function (talent) {
 		var i;
@@ -500,10 +591,19 @@ var player_model = {
 	unlearn_talent: function (talent){
 		if(!this.talent_learned(talent))
 			return;
-		console.log("unlearning " + talent.name);
-		this.talents.splice(this.talents.indexOf(talent),1);
 		var spent_points = this.get_spent_talents_points();
 		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
+		this.remove_talent(talent);
+	},
+	remove_talent:function(talent){
+		console.log("unlearning " + talent.name);
+		this.talents.splice(this.talents.indexOf(talent),1);
 		model.update_tooltip(talent);
+		this.update_link();
+	},
+	update_link:function(){
+		console.log(this.get_powersum() + " " + this.convert_string_to_powersum(this.convert_powersum_to_string()));
+		var link = "http://lstc.wc.lt?talent=" + patchdata.game_version + patchdata.data_version + model.current_class_data.prefix + "_" + this.convert_powersum_to_string();
+		$("#link-to-build").val(link);
 	}
 };
