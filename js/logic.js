@@ -208,8 +208,8 @@ var model = {
 		return tooltip_content;
 	},
 	update_tooltip:function(current){
-		var tooltip_content;
-		var tooltip_header;
+		var tooltip_content = "";
+		var tooltip_header = "";
 		if (typeof current.effect != 'undefined') {
 			var ranks = this.layout_model[this.get_row_for_level(this.get_base_for_rank(current).lvlreq)].columns[current.column].items;
 			if (ranks.length == 0)
@@ -268,13 +268,21 @@ var model = {
 				tooltip_content += min_unlearned.effect;
 				tooltip_content += "</div>";
 			}
+			$(function(){
+				$("#" + model.current_class_data.prefix + "-talent-container" + model.get_base_for_rank(current).id).tooltip({
+					track:true,
+					content:(tooltip_header + tooltip_content)
+				})
+			});
+		} else {
+			$(function(){
+				$("#" + model.current_class_data.prefix + "-talent-container" + current.id).tooltip({
+					track:true,
+					content:model.build_tooltip_header(current)
+				})
+			});
+			
 		}
-		$(function(){
-			$("#" + model.current_class_data.prefix + "-talent-container" + model.get_base_for_rank(current).id).tooltip({
-				track:true,
-				content:(tooltip_header + tooltip_content)
-			})
-		});
 // function talentclick(event){
 	// var talent = event.data;
 	// var ranks = model.layout_model[model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
