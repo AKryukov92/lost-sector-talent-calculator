@@ -68,7 +68,6 @@ $(document).ready(function(){
 		model.select_data("su");
 	});
 	$("#link-to-build").click(function(){window.prompt("Copy to clipboard: Ctrl+C, Enter", $("#link-to-build").val());});
-	model.select_data("as");
 	var result,
 		tmp = [];
 	location.search
@@ -90,7 +89,10 @@ $(document).ready(function(){
 		if (data_version == patchdata.data_version) {
 			player_model.learn_encoded_talents(talent_input);
 		}
+	} else {
+		model.select_data("as");
 	}
+	
 	// return result;
 });
 var last_visited_element = {};
@@ -604,7 +606,6 @@ var player_model = {
 		this.update_link();
 	},
 	update_link:function(){
-		console.log(this.get_powersum() + " " + this.convert_string_to_powersum(this.convert_powersum_to_string()));
 		var link = "http://lstc.wc.lt?talent=" + patchdata.game_version + patchdata.data_version + model.current_class_data.prefix + "_" + this.convert_powersum_to_string();
 		$("#link-to-build").val(link);
 	}
