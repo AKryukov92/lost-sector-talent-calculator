@@ -83,7 +83,7 @@ $(document).ready(function(){
 		var talent_input = result.split("_")[1];
 		var class_prefix = game_version.substr(game_version.length - 2, 2);
 		model.select_data(class_prefix);
-		var index = $('#tabs a[href="#tab-'+ class_prefix + ']').parent().index();
+		var index = $('#tabs a[href="#tabs-'+ class_prefix + '"]').parent().index();
 		$("#tabs").tabs("option", "active", index);
 		var data_version = game_version.substr(game_version.length - 3, 1);
 		if (data_version == patchdata.data_version) {
@@ -571,9 +571,9 @@ var player_model = {
 	learn_talent: function (talent){
 		if (this.talent_learned(talent))
 			return;
+		this.add_talent(talent);
 		var spent_points = this.get_spent_talents_points();
 		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
-		this.add_talent(talent);
 	},
 	add_talent:function(talent){
 		console.log("learning " + talent.name);
@@ -595,9 +595,9 @@ var player_model = {
 	unlearn_talent: function (talent){
 		if(!this.talent_learned(talent))
 			return;
+		this.remove_talent(talent);
 		var spent_points = this.get_spent_talents_points();
 		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
-		this.remove_talent(talent);
 	},
 	remove_talent:function(talent){
 		console.log("unlearning " + talent.name);
