@@ -1,0 +1,1223 @@
+﻿patchdata.item_data = [
+/*Ближний бой*/
+{
+	name:"Разводной ключ",
+	category:1,/*"Легкое оружие"*/
+	mobility:95,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:100,
+		cost:50,
+		min_dist:0,
+		max_dist:1.5
+	}
+	]
+},
+{
+	name:"Бейсбольна¤ бита",
+	category:1,
+	mobility:90,
+	lvlreq:2,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:100,
+		cost:45,
+		min_dist:0,
+		max_dist:1.9
+	}]
+},
+{
+	name:"Лом",
+	category:1,
+	mobility:85,
+	lvlreq:3,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:100,
+		cost:50,
+		min_dist:0,
+		max_dist:2
+	}
+	]
+},
+{
+	name:"Боевой нож",
+	category:1,
+	mobility:100,
+	lvlreq:5,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:100,
+		cost:30,
+		min_dist:0,
+		max_dist:1.5
+	}
+	]
+},
+{
+	name:"Дубинка-шокер",
+	category:1,
+	mobility:95,
+	lvlreq:6,
+	talentreq:7,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:100,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5,
+		special_duration:1
+		special:"Делит мобильность на 2"
+	}
+	]
+},
+{
+	name:"Мачете",
+	category:1,
+	mobility:90,
+	lvlreq:6,
+	talentreq:7,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:100,
+		cost:33,
+		min_dist:0,
+		max_dist:1.8
+	}
+	]
+},
+{
+	name:"Полицейска¤ дубинка",
+	category:1,
+	mobility:100,
+	lvlreq:7,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:100,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+		special_duration:1
+		special:"Делит мобильность на 2"
+	}
+	]
+},
+{
+	name:"“опор",
+	category:1,
+	mobility:80,
+	lvlreq:7,
+	talentreq:7,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:100,
+		cost:50,
+		min_dist:0,
+		max_dist:2.1
+	}
+	]
+},
+/*Пистолеты*/
+{
+	name:"Norinco 77b",
+	category:1,
+	mobility:100,
+	clip:10,
+	ammo:20,
+	reload_cost:20,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:35,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:2,/*Мягкие пули*/
+		accuracy:49,
+		cost:20,
+		min_dist:4,
+		max_dist:14,
+		bullets:1
+	},
+	{
+		name:"Прицельно",
+		type:2,/*Мягкие пули*/
+		accuracy:57,
+		cost:30,
+		min_dist:4,
+		max_dist:16,
+		bullets:1
+	}]
+},
+{
+	name:"USP45",
+	category:1,
+	mobility:100,
+	clip:12,
+	ammo:24,
+	reload_cost:20,
+	lvlreq:2,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:35,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:2,/*Мягкие пули*/
+		accuracy:49,
+		cost:20,
+		min_dist:4,
+		max_dist:14,
+		bullets:1
+	},
+	{
+		name:"Прицельно",
+		type:2,/*Мягкие пули*/
+		accuracy:57,
+		cost:30,
+		min_dist:4,
+		max_dist:16,
+		bullets:1
+	}]
+},
+{
+	name:"M1911",
+	category:1,
+	mobility:100,
+	clip:7,
+	ammo:14,
+	reload_cost:20,
+	lvlreq:4,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:35,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:3,/*Пули*/
+		accuracy:42,
+		cost:32,
+		min_dist:4,
+		max_dist:16,
+		bullets:1
+	},
+	{
+		name:"Прицельно",
+		type:3,/*Пули*/
+		accuracy:62,
+		cost:40,
+		min_dist:6,
+		max_dist:18,
+		bullets:1
+	}]
+},
+{
+	name:"Беретта 93P",
+	category:1,
+	mobility:100,
+	clip:16,
+	ammo:32,
+	reload_cost:20,
+	lvlreq:5,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:35,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Очередь",
+		type:2,/*Мягкие пули*/
+		accuracy:31,
+		cost:40,
+		min_dist:4,
+		max_dist:13,
+		bullets:8
+	},
+	{
+		name:"Прицельно",
+		type:2,/*Мягкие пули*/
+		accuracy:57,
+		cost:25,
+		min_dist:4,
+		max_dist:15,
+		bullets:1
+	}]
+},
+{
+	name:"Glock 17",
+	category:1,
+	mobility:100,
+	clip:17,
+	ammo:34,
+	reload_cost:20,
+	lvlreq:6,
+	talentreq:6,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:35,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:2,/*Мягкие пули*/
+		accuracy:49,
+		cost:20,
+		min_dist:4,
+		max_dist:14,
+		bullets:1
+	},
+	{
+		name:"Прицельно",
+		type:2,/*Мягкие пули*/
+		accuracy:57,
+		cost:30,
+		min_dist:4,
+		max_dist:16,
+		bullets:1
+	}]
+},
+{
+	name:"Magnum",
+	category:1,
+	mobility:95,
+	clip:6,
+	ammo:14,
+	reload_cost:35,
+	lvlreq:7,
+	talentreq:6,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:35,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:3,/*Пули*/
+		accuracy:42,
+		cost:32,
+		min_dist:4,
+		max_dist:16,
+		bullets:1
+	},
+	{
+		name:"Прицельно",
+		type:3,/*Пули*/
+		accuracy:62,
+		cost:40,
+		min_dist:6,
+		max_dist:18,
+		bullets:1
+	}]
+},
+{
+	name:"Mk23",
+	category:1,
+	mobility:100,
+	clip:12,
+	ammo:24,
+	reload_cost:20,
+	lvlreq:9,
+	talentreq:19,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:35,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:2,/*Мягкие пули*/
+		accuracy:51,
+		cost:20,
+		min_dist:3,
+		max_dist:14,
+		bullets:1
+	},
+	{
+		name:"Прицельно",
+		type:2,/*Мягкие пули*/
+		accuracy:59,
+		cost:30,
+		min_dist:4,
+		max_dist:16,
+		bullets:1
+	}]
+},
+{
+	name:"Desert Eagle",
+	category:1,
+	mobility:95,
+	clip:7,
+	ammo:14,
+	reload_cost:20,
+	lvlreq:10,
+	talentreq:19,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:35,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:3,/*Пули*/
+		accuracy:42,
+		cost:32,
+		min_dist:4,
+		max_dist:16,
+		bullets:1
+	},
+	{
+		name:"Прицельно",
+		type:3,/*Пули*/
+		accuracy:62,
+		cost:40,
+		min_dist:6,
+		max_dist:18,
+		bullets:1
+	}]
+},
+{
+	name:"Glock 18",
+	category:1,
+	mobility:97,
+	clip:16,
+	ammo:48,
+	reload_cost:20,
+	lvlreq:11,
+	talentreq:19,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:35,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Очередь",
+		type:2,/*Мягкие пули*/
+		accuracy:31,
+		cost:40,
+		min_dist:4,
+		max_dist:13,
+		bullets:8
+	},
+	{
+		name:"Прицельно",
+		type:2,/*Мягкие пули*/
+		accuracy:57,
+		cost:25,
+		min_dist:4,
+		max_dist:15,
+		bullets:1
+	}]
+},
+/*ПП*/
+{
+	name:"MAC-11",
+	category:1,
+	mobility:94,
+	clip:45,
+	ammo:135,
+	reload_cost:25,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:40,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Очередь",
+		type:2,/*Мягкие пули*/
+		accuracy:41,
+		cost:30,
+		min_dist:6,
+		max_dist:14,
+		bullets:15
+	}]
+},
+{
+	name:"Uzi",
+	category:1,
+	mobility:92,
+	clip:60,
+	ammo:120,
+	reload_cost:20,
+	lvlreq:2,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:40,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Очередь",
+		type:2,/*Мягкие пули*/
+		accuracy:51,
+		cost:32,
+		min_dist:8,
+		max_dist:16,
+		bullets:10
+	}
+	{
+		name:"Прицельно",
+		type:2,/*Мягкие пули*/
+		accuracy:61,
+		cost:40,
+		min_dist:10,
+		max_dist:22,
+		bullets:5
+	}]
+},
+{
+	name:"TMP",
+	category:1,
+	mobility:96,
+	clip:45,
+	ammo:90,
+	reload_cost:20,
+	lvlreq:3,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:40,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Очередь",
+		type:2,/*Мягкие пули*/
+		accuracy:43,
+		cost:30,
+		min_dist:4,
+		max_dist:15,
+		bullets:15
+	}]
+},
+{
+	name:"P90",
+	category:1,
+	mobility:90,
+	clip:50,
+	ammo:100,
+	reload_cost:20,
+	lvlreq:6,
+	talentreq:8,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:40,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Очередь",
+		type:3,/*Пули*/
+		accuracy:52,
+		cost:33,
+		min_dist:8,
+		max_dist:22,
+		bullets:8
+	},
+	{
+		name:"Прицельно",
+		type:3,/*Пули*/
+		accuracy:69,
+		cost:45,
+		min_dist:12,
+		max_dist:26,
+		bullets:6
+	}]
+},
+{
+	name:"UMP45",
+	category:1,
+	mobility:92,
+	clip:60,
+	ammo:120,
+	reload_cost:20,
+	lvlreq:7,
+	talentreq:6,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:40,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Очередь",
+		type:2,/*Мягкие пули*/
+		accuracy:51,
+		cost:32,
+		min_dist:8,
+		max_dist:16,
+		bullets:10
+	},
+	{
+		name:"Прицельно",
+		type:2,/*Мягкие пули*/
+		accuracy:61,
+		cost:40,
+		min_dist:10,
+		max_dist:22,
+		bullets:5
+	}]
+},
+{
+	name:"PP-2000",
+	category:1,
+	mobility:94,
+	clip:45,
+	ammo:135,
+	reload_cost:25,
+	lvlreq:9,
+	talentreq:26,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:40,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Очередь",
+		type:3,/*Пули*/
+		accuracy:43,
+		cost:30,
+		min_dist:6,
+		max_dist:15,
+		bullets:15
+	}]
+},
+{
+	name:"KRISS Vector",
+	category:1,
+	mobility:90,
+	clip:50,
+	ammo:100,
+	reload_cost:20,
+	lvlreq:10,
+	talentreq:26,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:40,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Очередь",
+		type:3,/*Пули*/
+		accuracy:52,
+		cost:33,
+		min_dist:8,
+		max_dist:22,
+		bullets:8
+	},
+	{
+		name:"Прицельно",
+		type:3,/*Пули*/
+		accuracy:69,
+		cost:45,
+		min_dist:12,
+		max_dist:26,
+		bullets:6
+	}]
+},
+{
+	name:"Calico M950",
+	category:1,
+	mobility:93,
+	clip:60,
+	ammo:120,
+	reload_cost:20,
+	lvlreq:12,
+	talentreq:26,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:40,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Очередь",
+		type:2,/*Мягкие пули*/
+		accuracy:51,
+		cost:32,
+		min_dist:8,
+		max_dist:16,
+		bullets:10
+	},
+	{
+		name:"Прицельно",
+		type:2,/*Мягкие пули*/
+		accuracy:61,
+		cost:40,
+		min_dist:10,
+		max_dist:22,
+		bullets:5
+	}]
+},
+/*Дробовик*/
+{
+	name:"Дробовик Ремингтон M870",
+	category:2,
+	mobility:85,
+	clip:3,
+	ammo:12,
+	reload_cost:20,
+	lvlreq:2,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:2,/*Мягкие пули*/
+		accuracy:34,
+		cost:40,
+		min_dist:4,
+		max_dist:9,
+		bullets:1
+	}]
+},
+{
+	name:"Дробовик Шарк",
+	category:2,
+	mobility:85,
+	clip:3,
+	ammo:12,
+	reload_cost:30,
+	lvlreq:4,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:4,/*Дробь*/
+		accuracy:34,
+		cost:40,
+		min_dist:4,
+		max_dist:9,
+		bullets:1
+	}]
+},
+{
+	name:"SPAS 12",
+	category:2,
+	mobility:78,
+	clip:6,
+	ammo:24,
+	reload_cost:20,
+	lvlreq:6,
+	talentreq:14,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:4,/*Дробь*/
+		accuracy:43,
+		cost:45,
+		min_dist:4,
+		max_dist:14,
+		bullets:1
+	}]
+},
+{
+	name:"Protecta",
+	category:2,
+	mobility:77,
+	clip:12,
+	ammo:24,
+	reload_cost:60,
+	lvlreq:7,
+	talentreq:14,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:4,/*Дробь*/
+		accuracy:38,
+		cost:28,
+		min_dist:4,
+		max_dist:12,
+		bullets:1
+	}]
+},
+{
+	name:"Pancor Jackhammer",
+	category:2,
+	mobility:80,
+	clip:10,
+	ammo:24,
+	reload_cost:40,
+	lvlreq:8,
+	talentreq:20,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:4,/*Дробь*/
+		accuracy:38,
+		cost:30,
+		min_dist:4,
+		max_dist:12,
+		bullets:1
+	}]
+},
+{
+	name:"XM26LSS",
+	category:2,
+	mobility:85,
+	clip:3,
+	ammo:12,
+	reload_cost:30,
+	lvlreq:8,
+	talentreq:20,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:4,/*Дробь*/
+		accuracy:34,
+		cost:40,
+		min_dist:4,
+		max_dist:9,
+		bullets:1
+	}]
+},
+{
+	name:"Benelli M4",
+	category:2,
+	mobility:78,
+	clip:6,
+	ammo:24,
+	reload_cost:20,
+	lvlreq:9,
+	talentreq:20,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:4,/*Дробь*/
+		accuracy:43,
+		cost:45,
+		min_dist:4,
+		max_dist:14,
+		bullets:1
+	}]
+},
+{
+	name:"AA-12",
+	category:2,
+	mobility:78,
+	clip:12,
+	ammo:24,
+	reload_cost:40,
+	lvlreq:10,
+	talentreq:20,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:4,/*Дробь*/
+		accuracy:38,
+		cost:30,
+		min_dist:4,
+		max_dist:12,
+		bullets:1
+	},
+	{
+		name:"Очередь",
+		type:4,/*Дробь*/
+		accuracy:25,
+		cost:50,
+		min_dist:4,
+		max_dist:12,
+		bullets:3
+	}]
+},
+{
+	name:"Дробовик Дозер",
+	category:2,
+	mobility:85,
+	clip:3,
+	ammo:12,
+	reload_cost:30,
+	lvlreq:11,
+	talentreq:20,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:4,/*Дробь*/
+		accuracy:37,
+		cost:40,
+		min_dist:4,
+		max_dist:9,
+		bullets:1
+	}]
+},
+{
+	name:"FN TPS",
+	category:2,
+	mobility:79,
+	clip:7,
+	ammo:21,
+	reload_cost:20,
+	lvlreq:12,
+	talentreq:20,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:4,/*Дробь*/
+		accuracy:43,
+		cost:45,
+		min_dist:4,
+		max_dist:14,
+		bullets:1
+	}]
+},
+{
+	name:"USAS 12",
+	category:2,
+	mobility:78,
+	clip:15,
+	ammo:24,
+	reload_cost:40,
+	lvlreq:12,
+	talentreq:20,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Навскидку",
+		type:4,/*Дробь*/
+		accuracy:41,
+		cost:30,
+		min_dist:4,
+		max_dist:12,
+		bullets:1
+	},
+	{
+		name:"Очередь",
+		type:4,/*Дробь*/
+		accuracy:28,
+		cost:50,
+		min_dist:4,
+		max_dist:12,
+		bullets:3
+	}]
+},
+/*Штурмова¤ винтовка*/
+{
+	name:"Galil",
+	category:2,
+	mobility:80,
+	clip:28,
+	ammo:56,
+	reload_cost:20,
+	lvlreq:2,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Очередь",
+		type:3,/*Пули*/
+		accuracy:,64
+		cost:45,
+		min_dist:14,
+		max_dist:26,
+		bullets:8
+	},
+	{
+		name:"Прицельно",
+		type:3,/*Пули*/
+		accuracy:71,
+		cost:55,
+		min_dist:16,
+		max_dist:30,
+		bullets:6
+	}]
+},
+{
+	name:,
+	category:,
+	mobility:,
+	clip:,
+	ammo:,
+	reload_cost:,
+	lvlreq:,
+	talentreq:,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:,
+		cost:,
+		min_dist:,
+		max_dist:
+	},
+	{
+		name:"Очередь",
+		name:"Прицельно",
+		name:"Навскидку",
+		type:2,/*Мягкие пули*/
+		type:3,/*Пули*/
+		type:4,/*Дробь*/
+		accuracy:,
+		cost:,
+		min_dist:,
+		max_dist:,
+		bullets:
+	},
+	{
+		name:"Очередь",
+		name:"Прицельно",
+		name:"Навскидку",
+		type:2,/*Мягкие пули*/
+		type:3,/*Пули*/
+		type:4,/*Дробь*/
+		accuracy:,
+		cost:,
+		min_dist:,
+		max_dist:,
+		bullets:
+	}]
+},
+/*Снайперска¤ винтовка*/
+{
+	name:"Steyr Scout",
+	category:2,
+	mobility:63,
+	clip:4,
+	ammo:8,
+	reload_cost:30,
+	lvlreq:3,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:2
+	},
+	{
+		name:"Навскидку",
+		type:3,/*Пули*/
+		accuracy:59,
+		cost:50,
+		min_dist:14,
+		max_dist:40,
+		bullets:1
+	},
+	{
+		name:"Прицельно",
+		type:3,/*Пули*/
+		accuracy:76,
+		cost:60,
+		min_dist:18,
+		max_dist:45,
+		bullets:1
+	}]
+}
+
+
+
+{
+	name:,
+	category:,
+	mobility:,
+	clip:,
+	ammo:,
+	reload_cost:,
+	lvlreq:,
+	talentreq:,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:,
+		cost:,
+		min_dist:,
+		max_dist:
+	},
+	{
+		name:"Очередь",
+		name:"Прицельно",
+		name:"Навскидку",
+		type:2,/*Мягкие пули*/
+		type:3,/*Пули*/
+		type:4,/*Дробь*/
+		accuracy:,
+		cost:,
+		min_dist:,
+		max_dist:,
+		bullets:
+	},
+	{
+		name:"Очередь",
+		name:"Прицельно",
+		name:"Навскидку",
+		type:2,/*Мягкие пули*/
+		type:3,/*Пули*/
+		type:4,/*Дробь*/
+		accuracy:,
+		cost:,
+		min_dist:,
+		max_dist:,
+		bullets:
+	}]
+},
+]
