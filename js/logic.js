@@ -119,37 +119,57 @@ var model = {
 			this.current_class_data = patchdata.assault_data;
 		}
 		player_model.clear();
-		this.prepare_grid();
-		this.prepare_layout();
-		this.fill_grid_rows();
+		this.assign_power_to_talents();
+		this.create_layout_model();
+		this.prepare_layout_model();
+		//Раскомментируй следующие две строчки, чтобы сетка построилась динамически.
+		// this.prepare_grid();
+		// this.fill_grid_rows();
+		this.assign_click_routines();
 		this.prepare_tooltips();
 		this.draw_talent_forks();
 		this.update_layout_options();
 	},
-	prepare_grid: function(){
-		$("#" + this.current_class_data.prefix + "-layout").empty();
-		this.layout_model = [];
-		maxrow = this.current_class_data.grid_height;
+	assign_power_to_talents:function(){
+		this.maxrow = this.current_class_data.grid_height;
 		var i;
 		var power = 1;
-		maxcol = 0
+		this.maxcol = 0
 		for(i = 0; i < this.current_class_data.talents.length;i++){
-			if (this.current_class_data.talents[i].column > maxcol)
-				maxcol = this.current_class_data.talents[i].column;
+			if (this.current_class_data.talents[i].column > this.maxcol)
+				this.maxcol = this.current_class_data.talents[i].column;
 			this.current_class_data.talents[i].power = power;
 			power *= 2;
 		}
-		maxcol++;
+		this.maxcol++;
+	},
+	create_layout_model:function(){
+		this.layout_model = [];
+		this.maxrow = this.current_class_data.grid_height;
+		var i;
 		var rowindex;
 		var colindex;
 		//Готовим сетку
-		for (rowindex = 0; rowindex < maxrow; rowindex++) {
+		for (rowindex = 0; rowindex < this.maxrow; rowindex++) {
 			this.layout_model[rowindex] = {};
 			this.layout_model[rowindex].columns = new Array();
-			for(colindex = 0; colindex < maxcol; colindex++) {
+			for(colindex = 0; colindex < this.maxcol; colindex++) {
 				this.layout_model[rowindex].columns[colindex] = {};
 				this.layout_model[rowindex].columns[colindex].items = new Array();
 			}
+			if (rowindex >= this.current_class_data.rows.length){
+				console.log("rowindex is out of bounds");
+			}
+		}
+	},
+	prepare_grid: function(){
+		$("#" + this.current_class_data.prefix + "-layout").empty();
+		this.maxrow = this.current_class_data.grid_height;
+		var i;
+		var rowindex;
+		var colindex;
+		//Готовим сетку
+		for (rowindex = 0; rowindex < this.maxrow; rowindex++) {
 			if (rowindex >= this.current_class_data.rows.length){
 				console.log("rowindex is out of bounds");
 			}
@@ -159,8 +179,9 @@ var model = {
 			$("#" + this.current_class_data.prefix + "-layout").append(div_content);
 		}
 	},
-	prepare_layout: function(){
+	prepare_layout_model: function(){
 		//Заполняем сетку строками с уровнями
+		var i;
 		for (i = 0; i < this.current_class_data.talents.length; i++) {
 			var current = this.current_class_data.talents[i];
 			var target_row;
@@ -180,14 +201,13 @@ var model = {
 				target_row = this.get_row_for_level(current.lvlreq);
 				//console.log("last pushed:" + current.name + " variant 2. row " + target_row + " level " + current.lvlreq + " column " + current.column);
 			}
-			
 			this.layout_model[target_row].columns[current.column].items.push(current);
 		}
 	},
 	fill_grid_rows: function(){
 		// Проецируем модель таблицы в html
-		for (rowindex = 0; rowindex < maxrow; rowindex++) {
-			for	(colindex = 0; colindex < maxcol; colindex++) {
+		for (rowindex = 0; rowindex < this.maxrow; rowindex++) {
+			for	(colindex = 0; colindex < this.maxcol; colindex++) {
 				if (this.layout_model[rowindex].columns[colindex].items.length > 0) {
 					var current = this.layout_model[rowindex].columns[colindex].items[0];
 					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div id=\"" + this.current_class_data.prefix + "-talent-container" + current.id + "\" class=\"talent-container\" title=\"\"></div>");
@@ -203,10 +223,19 @@ var model = {
 					if (this.layout_model[rowindex].columns[colindex].items.length > 1) {
 						$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div id=\"talent-container-rank\" class=\"talent-rank\">0/" + this.layout_model[rowindex].columns[colindex].items.length + "</div>");
 					}
-					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).click(current, talentclick);
-					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).mouseover(current, talenthover);
 				} else {
 					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div class=\"talent-placeholder\"/>");
+				}
+			}
+		}
+	},
+	assign_click_routines:function(){
+		for (rowindex = 0; rowindex < this.maxrow; rowindex++) {
+			for	(colindex = 0; colindex < this.maxcol; colindex++) {
+				if (this.layout_model[rowindex].columns[colindex].items.length > 0) {
+					var current = this.layout_model[rowindex].columns[colindex].items[0];
+					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).click(current, talentclick);
+					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).mouseover(current, talenthover);
 				}
 			}
 		}
@@ -320,8 +349,8 @@ var model = {
 	draw_talent_forks:function(){
 		var rowindex;
 		var colindex;
-		for (rowindex = 0; rowindex < maxrow; rowindex++) {
-			for	(colindex = 0; colindex < maxcol; colindex++) {
+		for (rowindex = 0; rowindex < this.maxrow; rowindex++) {
+			for	(colindex = 0; colindex < this.maxcol; colindex++) {
 				if (this.layout_model[rowindex].columns[colindex].items.length == 0)
 					continue;
 				var current = this.layout_model[rowindex].columns[colindex].items[0];
@@ -395,8 +424,8 @@ var model = {
 	},
 	update_layout_options:function(){
 		var rowindex, colindex;
-		for (rowindex = 0; rowindex < maxrow; rowindex++) {
-			for	(colindex = 0; colindex < maxcol; colindex++) {
+		for (rowindex = 0; rowindex < this.maxrow; rowindex++) {
+			for	(colindex = 0; colindex < this.maxcol; colindex++) {
 				if (this.layout_model[rowindex].columns[colindex].items.length == 0)
 					continue;
 				var current = this.layout_model[rowindex].columns[colindex].items[0];
