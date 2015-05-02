@@ -91,16 +91,15 @@
 }
 .ui-tabs .ui-tabs-nav {
 	margin: 0;
-	/* padding: .2em .2em 0; */
+	float:left;
 }
 .ui-tabs .ui-tabs-nav li {
 	list-style: none;
-	float: left;
-	width:180px;
+	overflow:auto;
 	position: relative;
 	top: 0;
-	margin: 2px 3px 0 2px;
-	border-bottom-width: 0;
+	margin: 5px 0 2px 2px;
+	border-right-width: 0;
 	padding: 0;
 	white-space: nowrap;
 }
@@ -111,8 +110,7 @@
 	text-decoration: none;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active {
-	margin-bottom: -1px;
-	padding-bottom: 1px;
+	margin-right: -1px;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
 .ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,
@@ -124,30 +122,11 @@
 }
 .ui-tabs .ui-tabs-panel {
 	display: block;
+	float:left;
 	border-width: 0;
-	/* padding: 1em 1.4em; */
-	width:746px;
 	background: none;
 }
-/* SVG */
 
-.ui-state-default a svg path{
-	fill:#939182;
-	stroke:#939182;
-}
-.ui-state-default a svg{
-	width:128px;
-	height:128px;
-	margin:5px;
-}
-.ui-state-active a svg path{
-	fill:#e7a516;
-	stroke:#e7a516;
-}
-.ui-state-hover a svg path{
-	fill:#c77405;
-	stroke:#c77405;
-}
 /* Component containers
 ----------------------------------*/
 .ui-widget {
@@ -168,7 +147,7 @@
 	border: 1px solid #dddddd;
 	background: #757575;
 	color: #333333;
-	width:750px;
+	display:inline-block;
 }
 .ui-widget-content a {
 	color: #333333;
@@ -234,6 +213,7 @@
 .ui-state-active a:link,
 .ui-state-active a:visited {
 	color: #eb8f00;
+	background-color:black;
 	text-decoration: none;
 }
 
@@ -517,7 +497,7 @@
 .ui-corner-top,
 .ui-corner-right,
 .ui-corner-tr {
-	border-top-right-radius: 4px;
+	border-bottom-left-radius: 4px;
 }
 .ui-corner-all,
 .ui-corner-bottom,
