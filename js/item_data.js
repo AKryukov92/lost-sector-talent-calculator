@@ -4,6 +4,7 @@
 	name:"Разводной ключ",
 	category:1,/*"Легкое оружие"*/
 	mobility:95,
+	imageid:415,
 	attacks:[
 	{
 		name:"Удар",
@@ -17,9 +18,11 @@
 },
 {
 	name:"Бейсбольна¤ бита",
+	short_name:"Бита",
 	category:1,
 	mobility:90,
 	lvlreq:2,
+	imageid:413,
 	attacks:[
 	{
 		name:"Удар",
@@ -35,6 +38,7 @@
 	category:1,
 	mobility:85,
 	lvlreq:3,
+	imageid:414,
 	attacks:[
 	{
 		name:"Удар",
@@ -51,6 +55,7 @@
 	category:1,
 	mobility:96,
 	lvlreq:4,
+	imageid:509,
 	attacks:[
 	{
 		name:"Удар",
@@ -68,6 +73,7 @@
 	category:1,
 	mobility:100,
 	lvlreq:5,
+	imageid:417,
 	attacks:[
 	{
 		name:"Удар",
@@ -85,6 +91,7 @@
 	mobility:95,
 	lvlreq:6,
 	talentreq:7,
+	imageid:409,
 	attacks:[
 	{
 		name:"Удар",
@@ -104,6 +111,7 @@
 	mobility:90,
 	lvlreq:6,
 	talentreq:7,
+	imageid:416,
 	attacks:[
 	{
 		name:"Удар",
@@ -117,9 +125,11 @@
 },
 {
 	name:"Полицейска¤ дубинка",
+	short_name:"Полис батон",
 	category:1,
 	mobility:100,
 	lvlreq:7,
+	imageid:412,
 	attacks:[
 	{
 		name:"Удар",
@@ -139,6 +149,7 @@
 	mobility:80,
 	lvlreq:7,
 	talentreq:7,
+	imageid:418,
 	attacks:[
 	{
 		name:"Удар",
@@ -158,6 +169,7 @@
 	clip:10,
 	ammo:20,
 	reload_cost:20,
+	imageid:405,
 	attacks:[
 	{
 		name:"Удар",
@@ -194,6 +206,7 @@
 	ammo:24,
 	reload_cost:20,
 	lvlreq:2,
+	imageid:446,
 	attacks:[
 	{
 		name:"Удар",
@@ -230,6 +243,7 @@
 	ammo:14,
 	reload_cost:20,
 	lvlreq:4,
+	imageid:506,
 	attacks:[
 	{
 		name:"Удар",
@@ -266,6 +280,7 @@
 	ammo:32,
 	reload_cost:20,
 	lvlreq:5,
+	imageid:448,
 	attacks:[
 	{
 		name:"Удар",
@@ -303,6 +318,7 @@
 	reload_cost:20,
 	lvlreq:6,
 	talentreq:6,
+	imageid:485,
 	attacks:[
 	{
 		name:"Удар",
@@ -340,6 +356,7 @@
 	reload_cost:35,
 	lvlreq:7,
 	talentreq:6,
+	imageid:431,
 	attacks:[
 	{
 		name:"Удар",
@@ -377,6 +394,7 @@
 	reload_cost:20,
 	lvlreq:9,
 	talentreq:19,
+	imageid:519,
 	attacks:[
 	{
 		name:"Удар",
@@ -414,6 +432,7 @@
 	reload_cost:20,
 	lvlreq:10,
 	talentreq:19,
+	imageid:447,
 	attacks:[
 	{
 		name:"Удар",
@@ -451,6 +470,7 @@
 	reload_cost:20,
 	lvlreq:11,
 	talentreq:19,
+	imageid:546,
 	attacks:[
 	{
 		name:"Удар",
@@ -487,6 +507,7 @@
 	clip:45,
 	ammo:135,
 	reload_cost:25,
+	imageid:493,
 	attacks:[
 	{
 		name:"Удар",
@@ -514,6 +535,7 @@
 	ammo:120,
 	reload_cost:20,
 	lvlreq:2,
+	imageid:426,
 	attacks:[
 	{
 		name:"Удар",
@@ -550,6 +572,7 @@
 	ammo:90,
 	reload_cost:20,
 	lvlreq:3,
+	imageid:494,
 	attacks:[
 	{
 		name:"Удар",
@@ -578,6 +601,7 @@
 	reload_cost:20,
 	lvlreq:6,
 	talentreq:8,
+	imageid:427,
 	attacks:[
 	{
 		name:"Удар",
@@ -615,6 +639,7 @@
 	reload_cost:20,
 	lvlreq:7,
 	talentreq:6,
+	imageid:445,
 	attacks:[
 	{
 		name:"Удар",
@@ -652,6 +677,7 @@
 	reload_cost:25,
 	lvlreq:9,
 	talentreq:26,
+	imageid:449,
 	attacks:[
 	{
 		name:"Удар",
@@ -680,6 +706,7 @@
 	reload_cost:20,
 	lvlreq:10,
 	talentreq:26,
+	imageid:461,
 	attacks:[
 	{
 		name:"Удар",
@@ -717,6 +744,7 @@
 	reload_cost:20,
 	lvlreq:12,
 	talentreq:26,
+	imageid:553,
 	attacks:[
 	{
 		name:"Удар",
@@ -748,12 +776,14 @@
 /*Дробовик*/
 {
 	name:"Дробовик Ремингтон M870",
+	short_name:"Ремингтон M870",
 	category:2,
 	mobility:85,
 	clip:3,
 	ammo:12,
 	reload_cost:20,
 	lvlreq:2,
+	imageid:401,
 	attacks:[
 	{
 		name:"Удар",
@@ -781,6 +811,7 @@
 	ammo:12,
 	reload_cost:30,
 	lvlreq:4,
+	imageid:423,
 	attacks:[
 	{
 		name:"Удар",
@@ -809,6 +840,7 @@
 	reload_cost:20,
 	lvlreq:6,
 	talentreq:14,
+	imageid:459,
 	attacks:[
 	{
 		name:"Удар",
@@ -837,6 +869,7 @@
 	reload_cost:60,
 	lvlreq:7,
 	talentreq:14,
+	imageid:544,
 	attacks:[
 	{
 		name:"Удар",
@@ -858,6 +891,7 @@
 },
 {
 	name:"Pancor Jackhammer",
+	short_name:"Панкор",
 	category:2,
 	mobility:80,
 	clip:10,
@@ -865,6 +899,7 @@
 	reload_cost:40,
 	lvlreq:8,
 	talentreq:20,
+	imageid:452,
 	attacks:[
 	{
 		name:"Удар",
@@ -893,6 +928,7 @@
 	reload_cost:30,
 	lvlreq:8,
 	talentreq:20,
+	imageid:547,
 	attacks:[
 	{
 		name:"Удар",
@@ -921,6 +957,7 @@
 	reload_cost:20,
 	lvlreq:9,
 	talentreq:20,
+	imageid:488,
 	attacks:[
 	{
 		name:"Удар",
@@ -949,6 +986,7 @@
 	reload_cost:40,
 	lvlreq:10,
 	talentreq:20,
+	imageid:464,
 	attacks:[
 	{
 		name:"Удар",
@@ -986,6 +1024,7 @@
 	reload_cost:30,
 	lvlreq:11,
 	talentreq:20,
+	imageid:550,
 	attacks:[
 	{
 		name:"Удар",
@@ -1014,6 +1053,7 @@
 	reload_cost:20,
 	lvlreq:12,
 	talentreq:20,
+	imageid:516,
 	attacks:[
 	{
 		name:"Удар",
@@ -1042,6 +1082,7 @@
 	reload_cost:40,
 	lvlreq:12,
 	talentreq:20,
+	imageid:542,
 	attacks:[
 	{
 		name:"Удар",
@@ -1079,6 +1120,7 @@
 	ammo:56,
 	reload_cost:20,
 	lvlreq:2,
+	imageid:402,
 	attacks:[
 	{
 		name:"Удар",
@@ -1115,6 +1157,7 @@
 	ammo:56,
 	reload_cost:20,
 	lvlreq:4,
+	imageid:537,
 	attacks:[
 	{
 		name:"Удар",
@@ -1152,6 +1195,7 @@
 	reload_cost:20,
 	lvlreq:5,
 	talentreq:10,
+	imageid:424,
 	attacks:[
 	{
 		name:"Удар",
@@ -1189,6 +1233,7 @@
 	reload_cost:20,
 	lvlreq:5,
 	talentreq:10,
+	imageid:457,
 	attacks:[
 	{
 		name:"Удар",
@@ -1226,6 +1271,7 @@
 	reload_cost:25,
 	lvlreq:6,
 	talentreq:10,
+	imageid:428,
 	attacks:[
 	{
 		name:"Удар",
@@ -1263,6 +1309,7 @@
 	reload_cost:20,
 	lvlreq:7,
 	talentreq:10,
+	imageid:454,
 	attacks:[
 	{
 		name:"Удар",
@@ -1300,6 +1347,7 @@
 	reload_cost:20,
 	lvlreq:7,
 	talentreq:10,
+	imageid:533,
 	attacks:[
 	{
 		name:"Удар",
@@ -1337,6 +1385,7 @@
 	reload_cost:25,
 	lvlreq:8,
 	talentreq:22,
+	imageid:450,
 	attacks:[
 	{
 		name:"Удар",
@@ -1374,6 +1423,7 @@
 	reload_cost:20,
 	lvlreq:9,
 	talentreq:22,
+	imageid:441,
 	attacks:[
 	{
 		name:"Удар",
@@ -1411,6 +1461,7 @@
 	reload_cost:20,
 	lvlreq:9,
 	talentreq:22,
+	imageid:453,
 	attacks:[
 	{
 		name:"Удар",
@@ -1448,6 +1499,7 @@
 	reload_cost:25,
 	lvlreq:10,
 	talentreq:22,
+	imageid:429,
 	attacks:[
 	{
 		name:"Удар",
@@ -1485,6 +1537,7 @@
 	reload_cost:20,
 	lvlreq:11,
 	talentreq:22,
+	imageid:456,
 	attacks:[
 	{
 		name:"Удар",
@@ -1522,6 +1575,7 @@
 	reload_cost:25,
 	lvlreq:12,
 	talentreq:22,
+	imageid:430,
 	attacks:[
 	{
 		name:"Удар",
@@ -1559,6 +1613,7 @@
 	reload_cost:20,
 	lvlreq:12,
 	talentreq:22,
+	imageid:540,
 	attacks:[
 	{
 		name:"Удар",
@@ -1596,6 +1651,7 @@
 	reload_cost:15,
 	lvlreq:12,
 	talentreq:22,
+	imageid:551,
 	attacks:[
 	{
 		name:"Удар",
@@ -1633,6 +1689,7 @@
 	ammo:8,
 	reload_cost:30,
 	lvlreq:3,
+	imageid:403,
 	attacks:[
 	{
 		name:"Удар",
@@ -1670,6 +1727,7 @@
 	reload_cost:10,
 	lvlreq:5,
 	talentreq:13,
+	imageid:503,
 	attacks:[
 	{
 		name:"Удар",
@@ -1707,6 +1765,7 @@
 	reload_cost:15,
 	lvlreq:6,
 	talentreq:13,
+	imageid:502,
 	attacks:[
 	{
 		name:"Удар",
@@ -1744,6 +1803,7 @@
 	reload_cost:30,
 	lvlreq:7,
 	talentreq:13,
+	imageid:462,
 	attacks:[
 	{
 		name:"Удар",
@@ -1781,6 +1841,7 @@
 	reload_cost:30,
 	lvlreq:8,
 	talentreq:24,
+	imageid:442,
 	attacks:[
 	{
 		name:"Удар",
@@ -1810,7 +1871,7 @@
 	}]
 },
 {
-	name:"DSR",
+	name:"DSR50",
 	category:2,
 	mobility:60,
 	clip:1,
@@ -1818,6 +1879,7 @@
 	reload_cost:20,
 	lvlreq:9,
 	talentreq:24,
+	imageid:434,
 	attacks:[
 	{
 		name:"Удар",
@@ -1855,6 +1917,7 @@
 	reload_cost:30,
 	lvlreq:10,
 	talentreq:24,
+	imageid:532,
 	attacks:[
 	{
 		name:"Удар",
@@ -1892,6 +1955,7 @@
 	reload_cost:30,
 	lvlreq:11,
 	talentreq:24,
+	imageid:505,
 	attacks:[
 	{
 		name:"Удар",
@@ -1929,6 +1993,7 @@
 	reload_cost:10,
 	lvlreq:12,
 	talentreq:24,
+	imageid:458,
 	attacks:[
 	{
 		name:"Удар",
@@ -1966,6 +2031,7 @@
 	reload_cost:25,
 	lvlreq:12,
 	talentreq:24,
+	imageid:543,
 	attacks:[
 	{
 		name:"Удар",
@@ -2004,6 +2070,7 @@
 	reload_cost:20,
 	lvlreq:5,
 	talentreq:12,
+	imageid:465,
 	attacks:[
 	{
 		name:"Удар",
@@ -2033,6 +2100,7 @@
 	reload_cost:45,
 	lvlreq:7,
 	talentreq:12,
+	imageid:466,
 	attacks:[
 	{
 		name:"Удар",
@@ -2055,6 +2123,7 @@
 },
 {
 	name:"Многозарядный Гранатомет Милкор",
+	short_name:"Милкор",
 	category:2,
 	mobility:66,
 	clip:6,
@@ -2062,6 +2131,7 @@
 	reload_cost:50,
 	lvlreq:8,
 	talentreq:21,
+	imageid:410,
 	attacks:[
 	{
 		name:"Удар",
@@ -2091,6 +2161,7 @@
 	reload_cost:30,
 	lvlreq:8,
 	talentreq:12,
+	imageid:500,
 	attacks:[
 	{
 		name:"Удар",
@@ -2120,6 +2191,7 @@
 	reload_cost:45,
 	lvlreq:9,
 	talentreq:21,
+	imageid:425,
 	attacks:[
 	{
 		name:"Удар",
@@ -2149,6 +2221,7 @@
 	reload_cost:45,
 	lvlreq:12,
 	talentreq:21,
+	imageid:549,
 	attacks:[
 	{
 		name:"Удар",
@@ -2179,6 +2252,7 @@
 	reload_cost:50,
 	lvlreq:5,
 	talentreq:11,
+	imageid:432,
 	attacks:[
 	{
 		name:"Удар",
@@ -2216,6 +2290,7 @@
 	reload_cost:50,
 	lvlreq:6,
 	talentreq:11,
+	imageid:536,
 	attacks:[
 	{
 		name:"Удар",
@@ -2253,6 +2328,7 @@
 	reload_cost:45,
 	lvlreq:7,
 	talentreq:23,
+	imageid:463,
 	attacks:[
 	{
 		name:"Удар",
@@ -2290,6 +2366,7 @@
 	reload_cost:50,
 	lvlreq:8,
 	talentreq:23,
+	imageid:460,
 	attacks:[
 	{
 		name:"Удар",
@@ -2327,6 +2404,7 @@
 	reload_cost:40,
 	lvlreq:9,
 	talentreq:23,
+	imageid:560,
 	attacks:[
 	{
 		name:"Удар",
@@ -2364,6 +2442,7 @@
 	reload_cost:30,
 	lvlreq:10,
 	talentreq:23,
+	imageid:497,
 	attacks:[
 	{
 		name:"Удар",
@@ -2401,6 +2480,7 @@
 	reload_cost:40,
 	lvlreq:10,
 	talentreq:23,
+	imageid:526,
 	attacks:[
 	{
 		name:"Удар",
@@ -2437,63 +2517,14 @@
 	protection:82,
 	lvlreq:5,
 	talentreq:9,
+	imageid:408,
 },
 {
-	name:"Щит",
+	name:"Полицейский щит",
 	category:2,
 	mobility:80,
 	protection:73,
 	lvlreq:7,
 	talentreq:9,
-},
-{
-	name:,
-	category:,
-	mobility:,
-	clip:,
-	ammo:,
-	reload_cost:,
-	lvlreq:,
-	talentreq:,
-	attacks:[
-	{
-		name:"Удар",
-		type:1,/*Удар в ближнем бою*/
-		accuracy:90,
-		cost:45,
-		min_dist:0,
-		max_dist:1.5
-	},
-	{
-		name:"Запуск",
-		name:"Очередь",
-		name:"Прицельно",
-		name:"Навскидку",
-		type:2,/*Мягкие пули*/
-		type:3,/*Пули*/
-		type:4,/*Дробь*/
-		type:5,/*Крупный калибр*/
-		type:6,/*Взрыв*/
-		accuracy:,
-		radius:,
-		cost:,
-		min_dist:,
-		max_dist:,
-		bullets:
-	},
-	{
-		name:"Очередь",
-		name:"Прицельно",
-		name:"Навскидку",
-		type:2,/*Мягкие пули*/
-		type:3,/*Пули*/
-		type:4,/*Дробь*/
-		type:5,/*Крупный калибр*/
-		accuracy:,
-		cost:,
-		min_dist:,
-		max_dist:,
-		bullets:
-	}]
-},
+}
 ]
