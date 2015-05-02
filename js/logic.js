@@ -36,6 +36,13 @@ function talenthover(event) {
 	last_visited_element = event.data;
 	handled_recently = true;
 }
+function setgrade(element, value){
+  if (value === 0) {
+	element.html( "" );
+  } else {
+	element.html( "+" + value );
+  }
+}
 $(document).ready(function(){ 
   document.oncontextmenu = function() {return false;};
   
@@ -92,9 +99,40 @@ $(document).ready(function(){
 	} else {
 		model.select_data("as");
 	}
-	
+
+    $( "#armor-slider" ).slider({
+      value:0,
+      min: 0,
+      max: 15,
+      step: 1,
+      slide: function( event, ui ) {
+		  setgrade($( "#armor-value" ),ui.value );
+      }
+    });
+    $( "#armor-value" ).html( "" );
+    $( "#primary-slider" ).slider({
+      value:0,
+      min: 0,
+      max: 15,
+      step: 1,
+      slide: function( event, ui ) {
+		  setgrade($( "#primary-value" ),ui.value );
+      }
+    });
+    $( "#primary-value" ).html( "" );
+    $( "#secondary-slider" ).slider({
+      value:0,
+      min: 0,
+      max: 15,
+      step: 1,
+      slide: function( event, ui ) {
+		  setgrade($( "#secondary-value" ),ui.value );
+      }
+    });
+    $( "#secondary-value" ).html( "" );
 	// return result;
 });
+
 var last_visited_element = {};
 var handled_recently = false;
 
