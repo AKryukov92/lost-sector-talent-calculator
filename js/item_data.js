@@ -1,10 +1,72 @@
-﻿patchdata.item_data = [
+﻿patchdata.weapontype_map = [
+	{
+		category_id:0,
+		category_name: "armor",
+		slots:["armor"]
+	},
+	{
+		category_id:1,
+		category_name:"melee",
+		slots:["primary","secondary"]
+	},
+	{
+		category_id:2,
+		category_name:"pistols",
+		slots:["primary","secondary"]
+	},
+	{
+		category_id:3,
+		category_name:"smgs",
+		slots:["primary","secondary"]
+	},
+	{
+		category_id:4,
+		category_name:"shotguns",
+		slots:["primary"]
+	},
+	{
+		category_id:5,
+		category_name:"assault-rifles",
+		slots:["primary"]
+	},
+	{
+		category_id:6,
+		category_name:"sniper-rifles",
+		slots:["primary"]
+	},
+	{
+		category_id:7,
+		category_name:"machineguns",
+		slots:["primary"]
+	},
+	{
+		category_id:8,
+		category_name:"launchers",
+		slots:["primary"]
+	},
+	{
+		category_id:9,
+		category_name:"shields",
+		slots:["primary"]
+	},
+	{
+		category_id:10,
+		category_name:"hats",
+		slots:["primary"]
+	},
+	{
+		category_id:11,
+		category_name:"consumables",
+		slots:["primary"]
+	},
+]
+patchdata.item_data = [
 /*Ближний бой*/
 {
 	name:"Разводной ключ",
-	category:1,/*"Легкое оружие"*/
+	category:1,/*Ближний бой*/
 	mobility:95,
-	imageid:415,
+	id:415,
 	attacks:[
 	{
 		name:"Удар",
@@ -18,11 +80,10 @@
 },
 {
 	name:"Бейсбольна¤ бита",
-	short_name:"Бита",
 	category:1,
 	mobility:90,
 	lvlreq:2,
-	imageid:413,
+	id:413,
 	attacks:[
 	{
 		name:"Удар",
@@ -38,7 +99,7 @@
 	category:1,
 	mobility:85,
 	lvlreq:3,
-	imageid:414,
+	id:414,
 	attacks:[
 	{
 		name:"Удар",
@@ -55,7 +116,7 @@
 	category:1,
 	mobility:96,
 	lvlreq:4,
-	imageid:509,
+	id:509,
 	attacks:[
 	{
 		name:"Удар",
@@ -73,7 +134,7 @@
 	category:1,
 	mobility:100,
 	lvlreq:5,
-	imageid:417,
+	id:417,
 	attacks:[
 	{
 		name:"Удар",
@@ -91,7 +152,7 @@
 	mobility:95,
 	lvlreq:6,
 	talentreq:7,
-	imageid:409,
+	id:409,
 	attacks:[
 	{
 		name:"Удар",
@@ -100,7 +161,7 @@
 		cost:45,
 		min_dist:0,
 		max_dist:1.5,
-		special_duration:1
+		special_duration:1,
 		special:"Делит мобильность на 2"
 	}
 	]
@@ -111,7 +172,7 @@
 	mobility:90,
 	lvlreq:6,
 	talentreq:7,
-	imageid:416,
+	id:416,
 	attacks:[
 	{
 		name:"Удар",
@@ -125,11 +186,10 @@
 },
 {
 	name:"Полицейска¤ дубинка",
-	short_name:"Полис батон",
 	category:1,
 	mobility:100,
 	lvlreq:7,
-	imageid:412,
+	id:412,
 	attacks:[
 	{
 		name:"Удар",
@@ -137,8 +197,8 @@
 		accuracy:100,
 		cost:45,
 		min_dist:0,
-		max_dist:1.5
-		special_duration:1
+		max_dist:1.5,
+		special_duration:1,
 		special:"Делит мобильность на 2"
 	}
 	]
@@ -146,10 +206,11 @@
 {
 	name:"Топор",
 	category:1,
+	type:1,/*Ближний бой*/
 	mobility:80,
 	lvlreq:7,
 	talentreq:7,
-	imageid:418,
+	id:418,
 	attacks:[
 	{
 		name:"Удар",
@@ -164,12 +225,12 @@
 /*Пистолеты*/
 {
 	name:"Norinco 77b",
-	category:1,
+	category:2,/*Пистолеты*/
 	mobility:100,
 	clip:10,
 	ammo:20,
 	reload_cost:20,
-	imageid:405,
+	id:405,
 	attacks:[
 	{
 		name:"Удар",
@@ -200,13 +261,13 @@
 },
 {
 	name:"USP45",
-	category:1,
+	category:2,
 	mobility:100,
 	clip:12,
 	ammo:24,
 	reload_cost:20,
 	lvlreq:2,
-	imageid:446,
+	id:446,
 	attacks:[
 	{
 		name:"Удар",
@@ -237,13 +298,13 @@
 },
 {
 	name:"M1911",
-	category:1,
+	category:2,
 	mobility:100,
 	clip:7,
 	ammo:14,
 	reload_cost:20,
 	lvlreq:4,
-	imageid:506,
+	id:506,
 	attacks:[
 	{
 		name:"Удар",
@@ -274,13 +335,13 @@
 },
 {
 	name:"Беретта 93P",
-	category:1,
+	category:2,
 	mobility:100,
 	clip:16,
 	ammo:32,
 	reload_cost:20,
 	lvlreq:5,
-	imageid:448,
+	id:448,
 	attacks:[
 	{
 		name:"Удар",
@@ -311,14 +372,14 @@
 },
 {
 	name:"Glock 17",
-	category:1,
+	category:2,
 	mobility:100,
 	clip:17,
 	ammo:34,
 	reload_cost:20,
 	lvlreq:6,
 	talentreq:6,
-	imageid:485,
+	id:485,
 	attacks:[
 	{
 		name:"Удар",
@@ -349,14 +410,14 @@
 },
 {
 	name:"Magnum",
-	category:1,
+	category:2,
 	mobility:95,
 	clip:6,
 	ammo:14,
 	reload_cost:35,
 	lvlreq:7,
 	talentreq:6,
-	imageid:431,
+	id:431,
 	attacks:[
 	{
 		name:"Удар",
@@ -387,14 +448,14 @@
 },
 {
 	name:"Mk23",
-	category:1,
+	category:2,
 	mobility:100,
 	clip:12,
 	ammo:24,
 	reload_cost:20,
 	lvlreq:9,
 	talentreq:19,
-	imageid:519,
+	id:519,
 	attacks:[
 	{
 		name:"Удар",
@@ -425,14 +486,14 @@
 },
 {
 	name:"Desert Eagle",
-	category:1,
+	category:2,
 	mobility:95,
 	clip:7,
 	ammo:14,
 	reload_cost:20,
 	lvlreq:10,
 	talentreq:19,
-	imageid:447,
+	id:447,
 	attacks:[
 	{
 		name:"Удар",
@@ -463,14 +524,14 @@
 },
 {
 	name:"Glock 18",
-	category:1,
+	category:2,
 	mobility:97,
 	clip:16,
 	ammo:48,
 	reload_cost:20,
 	lvlreq:11,
 	talentreq:19,
-	imageid:546,
+	id:546,
 	attacks:[
 	{
 		name:"Удар",
@@ -502,12 +563,12 @@
 /*ПП*/
 {
 	name:"MAC-11",
-	category:1,
+	category:3,/*ПП*/
 	mobility:94,
 	clip:45,
 	ammo:135,
 	reload_cost:25,
-	imageid:493,
+	id:493,
 	attacks:[
 	{
 		name:"Удар",
@@ -529,13 +590,13 @@
 },
 {
 	name:"Uzi",
-	category:1,
+	category:3,
 	mobility:92,
 	clip:60,
 	ammo:120,
 	reload_cost:20,
 	lvlreq:2,
-	imageid:426,
+	id:426,
 	attacks:[
 	{
 		name:"Удар",
@@ -553,7 +614,7 @@
 		min_dist:8,
 		max_dist:16,
 		bullets:10
-	}
+	},
 	{
 		name:"Прицельно",
 		type:2,/*Мягкие пули*/
@@ -566,13 +627,13 @@
 },
 {
 	name:"TMP",
-	category:1,
+	category:3,
 	mobility:96,
 	clip:45,
 	ammo:90,
 	reload_cost:20,
 	lvlreq:3,
-	imageid:494,
+	id:494,
 	attacks:[
 	{
 		name:"Удар",
@@ -594,14 +655,14 @@
 },
 {
 	name:"P90",
-	category:1,
+	category:3,
 	mobility:90,
 	clip:50,
 	ammo:100,
 	reload_cost:20,
 	lvlreq:6,
 	talentreq:8,
-	imageid:427,
+	id:427,
 	attacks:[
 	{
 		name:"Удар",
@@ -632,14 +693,14 @@
 },
 {
 	name:"UMP45",
-	category:1,
+	category:3,
 	mobility:92,
 	clip:60,
 	ammo:120,
 	reload_cost:20,
 	lvlreq:7,
 	talentreq:6,
-	imageid:445,
+	id:445,
 	attacks:[
 	{
 		name:"Удар",
@@ -670,14 +731,14 @@
 },
 {
 	name:"PP-2000",
-	category:1,
+	category:3,
 	mobility:94,
 	clip:45,
 	ammo:135,
 	reload_cost:25,
 	lvlreq:9,
 	talentreq:26,
-	imageid:449,
+	id:449,
 	attacks:[
 	{
 		name:"Удар",
@@ -699,14 +760,14 @@
 },
 {
 	name:"KRISS Vector",
-	category:1,
+	category:3,
 	mobility:90,
 	clip:50,
 	ammo:100,
 	reload_cost:20,
 	lvlreq:10,
 	talentreq:26,
-	imageid:461,
+	id:461,
 	attacks:[
 	{
 		name:"Удар",
@@ -737,14 +798,14 @@
 },
 {
 	name:"Calico M950",
-	category:1,
+	category:3,
 	mobility:93,
 	clip:60,
 	ammo:120,
 	reload_cost:20,
 	lvlreq:12,
 	talentreq:26,
-	imageid:553,
+	id:553,
 	attacks:[
 	{
 		name:"Удар",
@@ -776,14 +837,13 @@
 /*Дробовик*/
 {
 	name:"Дробовик Ремингтон M870",
-	short_name:"Ремингтон M870",
-	category:2,
+	category:4,/*Дробовик*/
 	mobility:85,
 	clip:3,
 	ammo:12,
 	reload_cost:20,
 	lvlreq:2,
-	imageid:401,
+	id:401,
 	attacks:[
 	{
 		name:"Удар",
@@ -805,13 +865,13 @@
 },
 {
 	name:"Дробовик Шарк",
-	category:2,
+	category:4,
 	mobility:85,
 	clip:3,
 	ammo:12,
 	reload_cost:30,
 	lvlreq:4,
-	imageid:423,
+	id:423,
 	attacks:[
 	{
 		name:"Удар",
@@ -833,14 +893,14 @@
 },
 {
 	name:"SPAS 12",
-	category:2,
+	category:4,
 	mobility:78,
 	clip:6,
 	ammo:24,
 	reload_cost:20,
 	lvlreq:6,
 	talentreq:14,
-	imageid:459,
+	id:459,
 	attacks:[
 	{
 		name:"Удар",
@@ -862,14 +922,14 @@
 },
 {
 	name:"Protecta",
-	category:2,
+	category:4,
 	mobility:77,
 	clip:12,
 	ammo:24,
 	reload_cost:60,
 	lvlreq:7,
 	talentreq:14,
-	imageid:544,
+	id:544,
 	attacks:[
 	{
 		name:"Удар",
@@ -892,14 +952,14 @@
 {
 	name:"Pancor Jackhammer",
 	short_name:"Панкор",
-	category:2,
+	category:4,
 	mobility:80,
 	clip:10,
 	ammo:24,
 	reload_cost:40,
 	lvlreq:8,
 	talentreq:20,
-	imageid:452,
+	id:452,
 	attacks:[
 	{
 		name:"Удар",
@@ -921,14 +981,14 @@
 },
 {
 	name:"XM26LSS",
-	category:2,
+	category:4,
 	mobility:85,
 	clip:3,
 	ammo:12,
 	reload_cost:30,
 	lvlreq:8,
 	talentreq:20,
-	imageid:547,
+	id:547,
 	attacks:[
 	{
 		name:"Удар",
@@ -950,14 +1010,14 @@
 },
 {
 	name:"Benelli M4",
-	category:2,
+	category:4,
 	mobility:78,
 	clip:6,
 	ammo:24,
 	reload_cost:20,
 	lvlreq:9,
 	talentreq:20,
-	imageid:488,
+	id:488,
 	attacks:[
 	{
 		name:"Удар",
@@ -979,14 +1039,14 @@
 },
 {
 	name:"AA-12",
-	category:2,
+	category:4,
 	mobility:78,
 	clip:12,
 	ammo:24,
 	reload_cost:40,
 	lvlreq:10,
 	talentreq:20,
-	imageid:464,
+	id:464,
 	attacks:[
 	{
 		name:"Удар",
@@ -1017,14 +1077,14 @@
 },
 {
 	name:"Дробовик Дозер",
-	category:2,
+	category:4,
 	mobility:85,
 	clip:3,
 	ammo:12,
 	reload_cost:30,
 	lvlreq:11,
 	talentreq:20,
-	imageid:550,
+	id:550,
 	attacks:[
 	{
 		name:"Удар",
@@ -1046,14 +1106,14 @@
 },
 {
 	name:"FN TPS",
-	category:2,
+	category:4,
 	mobility:79,
 	clip:7,
 	ammo:21,
 	reload_cost:20,
 	lvlreq:12,
 	talentreq:20,
-	imageid:516,
+	id:516,
 	attacks:[
 	{
 		name:"Удар",
@@ -1075,14 +1135,14 @@
 },
 {
 	name:"USAS 12",
-	category:2,
+	category:4,
 	mobility:78,
 	clip:15,
 	ammo:24,
 	reload_cost:40,
 	lvlreq:12,
 	talentreq:20,
-	imageid:542,
+	id:542,
 	attacks:[
 	{
 		name:"Удар",
@@ -1114,13 +1174,13 @@
 /*Штурмова¤ винтовка*/
 {
 	name:"Galil",
-	category:2,
+	category:5,/*ШВ*/
 	mobility:80,
 	clip:28,
 	ammo:56,
 	reload_cost:20,
 	lvlreq:2,
-	imageid:402,
+	id:402,
 	attacks:[
 	{
 		name:"Удар",
@@ -1133,7 +1193,7 @@
 	{
 		name:"Очередь",
 		type:3,/*Пули*/
-		accuracy:,64
+		accuracy:64,
 		cost:45,
 		min_dist:14,
 		max_dist:26,
@@ -1151,13 +1211,13 @@
 },
 {
 	name:"QBZ95B",
-	category:2,
+	category:5,
 	mobility:80,
 	clip:28,
 	ammo:56,
 	reload_cost:20,
 	lvlreq:4,
-	imageid:537,
+	id:537,
 	attacks:[
 	{
 		name:"Удар",
@@ -1188,14 +1248,14 @@
 },
 {
 	name:"M4A1",
-	category:2,
+	category:5,
 	mobility:78,
 	clip:24,
 	ammo:48,
 	reload_cost:20,
 	lvlreq:5,
 	talentreq:10,
-	imageid:424,
+	id:424,
 	attacks:[
 	{
 		name:"Удар",
@@ -1226,14 +1286,14 @@
 },
 {
 	name:"G36",
-	category:2,
+	category:5,
 	mobility:82,
 	clip:28,
 	ammo:56,
 	reload_cost:20,
 	lvlreq:5,
 	talentreq:10,
-	imageid:457,
+	id:457,
 	attacks:[
 	{
 		name:"Удар",
@@ -1264,14 +1324,14 @@
 },
 {
 	name:"Scar",
-	category:2,
+	category:5,
 	mobility:78,
 	clip:30,
 	ammo:60,
 	reload_cost:25,
 	lvlreq:6,
 	talentreq:10,
-	imageid:428,
+	id:428,
 	attacks:[
 	{
 		name:"Удар",
@@ -1302,14 +1362,14 @@
 },
 {
 	name:"FAMAS",
-	category:2,
+	category:5,
 	mobility:80,
 	clip:28,
 	ammo:56,
 	reload_cost:20,
 	lvlreq:7,
 	talentreq:10,
-	imageid:454,
+	id:454,
 	attacks:[
 	{
 		name:"Удар",
@@ -1340,14 +1400,14 @@
 },
 {
 	name:"M16A2",
-	category:2,
+	category:5,
 	mobility:77,
 	clip:24,
 	ammo:48,
 	reload_cost:20,
 	lvlreq:7,
 	talentreq:10,
-	imageid:533,
+	id:533,
 	attacks:[
 	{
 		name:"Удар",
@@ -1378,14 +1438,14 @@
 },
 {
 	name:"АК 47",
-	category:2,
+	category:5,
 	mobility:77,
 	clip:30,
 	ammo:60,
 	reload_cost:25,
 	lvlreq:8,
 	talentreq:22,
-	imageid:450,
+	id:450,
 	attacks:[
 	{
 		name:"Удар",
@@ -1416,14 +1476,14 @@
 },
 {
 	name:"АС 'ВАЛ'",
-	category:2,
+	category:5,
 	mobility:78,
 	clip:24,
 	ammo:48,
 	reload_cost:20,
 	lvlreq:9,
 	talentreq:22,
-	imageid:441,
+	id:441,
 	attacks:[
 	{
 		name:"Удар",
@@ -1454,14 +1514,14 @@
 },
 {
 	name:"АК 74М",
-	category:2,
+	category:5,
 	mobility:82,
 	clip:30,
 	ammo:60,
 	reload_cost:20,
 	lvlreq:9,
 	talentreq:22,
-	imageid:453,
+	id:453,
 	attacks:[
 	{
 		name:"Удар",
@@ -1492,14 +1552,14 @@
 },
 {
 	name:"Steyr AUG A1",
-	category:2,
+	category:5,
 	mobility:78,
 	clip:30,
 	ammo:60,
 	reload_cost:25,
 	lvlreq:10,
 	talentreq:22,
-	imageid:429,
+	id:429,
 	attacks:[
 	{
 		name:"Удар",
@@ -1530,14 +1590,14 @@
 },
 {
 	name:"FN F2000",
-	category:2,
+	category:5,
 	mobility:80,
 	clip:30,
 	ammo:60,
 	reload_cost:20,
 	lvlreq:11,
 	talentreq:22,
-	imageid:456,
+	id:456,
 	attacks:[
 	{
 		name:"Удар",
@@ -1568,14 +1628,14 @@
 },
 {
 	name:"Steyr AUG A3",
-	category:2,
+	category:5,
 	mobility:80,
 	clip:30,
 	ammo:60,
 	reload_cost:25,
 	lvlreq:12,
 	talentreq:22,
-	imageid:430,
+	id:430,
 	attacks:[
 	{
 		name:"Удар",
@@ -1606,14 +1666,14 @@
 },
 {
 	name:"TAR 21",
-	category:2,
+	category:5,
 	mobility:81,
 	clip:30,
 	ammo:60,
 	reload_cost:20,
 	lvlreq:12,
 	talentreq:22,
-	imageid:540,
+	id:540,
 	attacks:[
 	{
 		name:"Удар",
@@ -1644,14 +1704,14 @@
 },
 {
 	name:"XM8",
-	category:2,
+	category:5,
 	mobility:78,
 	clip:24,
 	ammo:48,
 	reload_cost:15,
 	lvlreq:12,
 	talentreq:22,
-	imageid:551,
+	id:551,
 	attacks:[
 	{
 		name:"Удар",
@@ -1683,13 +1743,13 @@
 /*Снайперска¤ винтовка*/
 {
 	name:"Steyr Scout",
-	category:2,
+	category:6,/*снайперские*/
 	mobility:63,
 	clip:4,
 	ammo:8,
 	reload_cost:30,
 	lvlreq:3,
-	imageid:403,
+	id:403,
 	attacks:[
 	{
 		name:"Удар",
@@ -1720,14 +1780,14 @@
 },
 {
 	name:"M24",
-	category:2,
+	category:6,
 	mobility:63,
 	clip:1,
 	ammo:5,
 	reload_cost:10,
 	lvlreq:5,
 	talentreq:13,
-	imageid:503,
+	id:503,
 	attacks:[
 	{
 		name:"Удар",
@@ -1758,14 +1818,14 @@
 },
 {
 	name:"M40A5",
-	category:2,
+	category:6,
 	mobility:61,
 	clip:1,
 	ammo:9,
 	reload_cost:15,
 	lvlreq:6,
 	talentreq:13,
-	imageid:502,
+	id:502,
 	attacks:[
 	{
 		name:"Удар",
@@ -1796,14 +1856,14 @@
 },
 {
 	name:"AWP",
-	category:2,
+	category:6,
 	mobility:63,
 	clip:4,
 	ammo:8,
 	reload_cost:30,
 	lvlreq:7,
 	talentreq:13,
-	imageid:462,
+	id:462,
 	attacks:[
 	{
 		name:"Удар",
@@ -1834,14 +1894,14 @@
 },
 {
 	name:"СВД",
-	category:2,
+	category:6,
 	mobility:66,
 	clip:5,
 	ammo:10,
 	reload_cost:30,
 	lvlreq:8,
 	talentreq:24,
-	imageid:442,
+	id:442,
 	attacks:[
 	{
 		name:"Удар",
@@ -1872,14 +1932,14 @@
 },
 {
 	name:"DSR50",
-	category:2,
+	category:6,
 	mobility:60,
 	clip:1,
 	ammo:5,
 	reload_cost:20,
 	lvlreq:9,
 	talentreq:24,
-	imageid:434,
+	id:434,
 	attacks:[
 	{
 		name:"Удар",
@@ -1910,14 +1970,14 @@
 },
 {
 	name:"SR25",
-	category:2,
+	category:6,
 	mobility:67,
 	clip:10,
 	ammo:10,
 	reload_cost:30,
 	lvlreq:10,
 	talentreq:24,
-	imageid:532,
+	id:532,
 	attacks:[
 	{
 		name:"Удар",
@@ -1948,14 +2008,14 @@
 },
 {
 	name:"Barrett M82",
-	category:2,
+	category:6,
 	mobility:62,
 	clip:4,
 	ammo:8,
 	reload_cost:30,
 	lvlreq:11,
 	talentreq:24,
-	imageid:505,
+	id:505,
 	attacks:[
 	{
 		name:"Удар",
@@ -1986,14 +2046,14 @@
 },
 {
 	name:"Barrett M99-1",
-	category:2,
+	category:6,
 	mobility:60,
 	clip:1,
 	ammo:5,
 	reload_cost:10,
 	lvlreq:12,
 	talentreq:24,
-	imageid:458,
+	id:458,
 	attacks:[
 	{
 		name:"Удар",
@@ -2024,14 +2084,14 @@
 },
 {
 	name:"Walther WA2000",
-	category:2,
+	category:6,
 	mobility:63,
 	clip:4,
 	ammo:8,
 	reload_cost:25,
 	lvlreq:12,
 	talentreq:24,
-	imageid:543,
+	id:543,
 	attacks:[
 	{
 		name:"Удар",
@@ -2063,14 +2123,14 @@
 /*Взрывное*/
 {
 	name:"Гранатомет М79",
-	category:2,
+	category:7,/*взрывное*/
 	mobility:69,
 	clip:1,
 	ammo:8,
 	reload_cost:20,
 	lvlreq:5,
 	talentreq:12,
-	imageid:465,
+	id:465,
 	attacks:[
 	{
 		name:"Удар",
@@ -2093,14 +2153,14 @@
 },
 {
 	name:"M72 LAW",
-	category:2,
+	category:7,
 	mobility:56,
 	clip:1,
 	ammo:2,
 	reload_cost:45,
 	lvlreq:7,
 	talentreq:12,
-	imageid:466,
+	id:466,
 	attacks:[
 	{
 		name:"Удар",
@@ -2123,15 +2183,14 @@
 },
 {
 	name:"Многозарядный Гранатомет Милкор",
-	short_name:"Милкор",
-	category:2,
+	category:7,
 	mobility:66,
 	clip:6,
 	ammo:6,
 	reload_cost:50,
 	lvlreq:8,
 	talentreq:21,
-	imageid:410,
+	id:410,
 	attacks:[
 	{
 		name:"Удар",
@@ -2154,14 +2213,14 @@
 },
 {
 	name:"Арбалет",
-	category:2,
+	category:7,
 	mobility:75,
 	clip:1,
 	ammo:5,
 	reload_cost:30,
 	lvlreq:8,
 	talentreq:12,
-	imageid:500,
+	id:500,
 	attacks:[
 	{
 		name:"Удар",
@@ -2184,14 +2243,14 @@
 },
 {
 	name:"РПГ-7",
-	category:2,
+	category:7,
 	mobility:54,
 	clip:1,
 	ammo:2,
 	reload_cost:45,
 	lvlreq:9,
 	talentreq:21,
-	imageid:425,
+	id:425,
 	attacks:[
 	{
 		name:"Удар",
@@ -2214,14 +2273,14 @@
 },
 {
 	name:"Рино",
-	category:2,
+	category:7,
 	mobility:56,
 	clip:1,
 	ammo:2,
 	reload_cost:45,
 	lvlreq:12,
 	talentreq:21,
-	imageid:549,
+	id:549,
 	attacks:[
 	{
 		name:"Удар",
@@ -2245,14 +2304,14 @@
 /*Пулемет*/
 {
 	name:"M60",
-	category:2,
+	category:8,
 	mobility:57,
 	clip:75,
 	ammo:150,
 	reload_cost:50,
 	lvlreq:5,
 	talentreq:11,
-	imageid:432,
+	id:432,
 	attacks:[
 	{
 		name:"Удар",
@@ -2283,14 +2342,14 @@
 },
 {
 	name:"ПКМ",
-	category:2,
+	category:8,
 	mobility:60,
 	clip:100,
 	ammo:200,
 	reload_cost:50,
 	lvlreq:6,
 	talentreq:11,
-	imageid:536,
+	id:536,
 	attacks:[
 	{
 		name:"Удар",
@@ -2321,14 +2380,14 @@
 },
 {
 	name:"M249 SAW",
-	category:2,
+	category:8,
 	mobility:62,
 	clip:75,
 	ammo:150,
 	reload_cost:45,
 	lvlreq:7,
 	talentreq:23,
-	imageid:463,
+	id:463,
 	attacks:[
 	{
 		name:"Удар",
@@ -2359,14 +2418,14 @@
 },
 {
 	name:"РПД",
-	category:2,
+	category:8,
 	mobility:59,
 	clip:75,
 	ammo:150,
 	reload_cost:50,
 	lvlreq:8,
 	talentreq:23,
-	imageid:460,
+	id:460,
 	attacks:[
 	{
 		name:"Удар",
@@ -2397,14 +2456,14 @@
 },
 {
 	name:"RPK-74",
-	category:2,
+	category:8,
 	mobility:62,
 	clip:75,
 	ammo:150,
 	reload_cost:40,
 	lvlreq:9,
 	talentreq:23,
-	imageid:560,
+	id:560,
 	attacks:[
 	{
 		name:"Удар",
@@ -2435,14 +2494,14 @@
 },
 {
 	name:"MG-36",
-	category:2,
+	category:8,
 	mobility:64,
 	clip:100,
 	ammo:200,
 	reload_cost:30,
 	lvlreq:10,
 	talentreq:23,
-	imageid:497,
+	id:497,
 	attacks:[
 	{
 		name:"Удар",
@@ -2473,14 +2532,14 @@
 },
 {
 	name:"MG4",
-	category:2,
+	category:8,
 	mobility:63,
 	clip:75,
 	ammo:150,
 	reload_cost:40,
 	lvlreq:10,
 	talentreq:23,
-	imageid:526,
+	id:562,
 	attacks:[
 	{
 		name:"Удар",
@@ -2512,19 +2571,24 @@
 /*Щит*/
 {
 	name:"Щит",
-	category:2,
+	category:9,
 	mobility:72,
 	protection:82,
 	lvlreq:5,
 	talentreq:9,
-	imageid:408,
+	id:408
 },
 {
 	name:"Полицейский щит",
-	category:2,
+	category:9,
 	mobility:80,
 	protection:73,
 	lvlreq:7,
 	talentreq:9,
+	id:411
+},
+/*Броня*/
+{
+	
 }
 ]

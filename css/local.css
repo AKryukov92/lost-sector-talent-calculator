@@ -24,6 +24,7 @@
 	background-color:black;
 	margin: 2px 2px 2px 0px;
 	padding:5px;
+	overflow:auto;
 }
 .level-content{
 	background-color:#1f1f1f;
@@ -140,7 +141,11 @@ width: 1px;
 	width:60px;
 	height:60px;
 	float:left;
+}
+.draggable-landing{
 	margin-right:5px;
+	overflow:auto;
+	float:left;
 }
 
 input[type=radio   ]:not(old){

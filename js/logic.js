@@ -1,6 +1,6 @@
 ﻿function talentclick(event){
 	var talent = event.data;
-	var ranks = model.layout_model[model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
+	var ranks = talent_grid_model.layout_model[talent_grid_model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
 	var i;
 	for (i = 0; i < ranks.length; i++) {
 		if (!player_model.talent_learned(ranks[i]))
@@ -9,7 +9,7 @@
 	if (i < ranks.length) {
 		if (player_model.can_learn_talent(ranks[i])){
 			player_model.learn_talent(ranks[i]);
-			model.update_layout_options();
+			talent_grid_model.update_layout_options();
 		}
 	}
 }
@@ -17,7 +17,7 @@ function talentrightclick(event){
 	if (typeof last_visited_element == 'undefined')
 		return;
 	var talent = last_visited_element;
-	var ranks = model.layout_model[model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
+	var ranks = talent_grid_model.layout_model[talent_grid_model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
 	var i;
 	for (i = ranks.length; i > 0; i--) {
 		if (player_model.talent_learned(ranks[i-1]))
@@ -26,7 +26,7 @@ function talentrightclick(event){
 	if (i > 0) {
 		if (player_model.can_unlearn_talent(ranks[i-1])) {
 			player_model.unlearn_talent(ranks[i-1]);
-			model.update_layout_options();
+			talent_grid_model.update_layout_options();
 		}
 	}
 }
@@ -63,16 +63,16 @@ $(document).ready(function(){
 		e.preventDefault();
 	});
 	$("#assault-link").click(function(){
-		model.select_data("as");
+		talent_grid_model.select_data("as");
 	});
 	$("#juggernaut-link").click(function(){
-		model.select_data("ju");
+		talent_grid_model.select_data("ju");
 	});
 	$("#scout-link").click(function(){
-		model.select_data("sc");
+		talent_grid_model.select_data("sc");
 	});
 	$("#support-link").click(function(){
-		model.select_data("su");
+		talent_grid_model.select_data("su");
 	});
 	$("#link-to-build").click(function(){window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());});
 	var result,
@@ -89,7 +89,7 @@ $(document).ready(function(){
 		var game_version = result.split("_")[0];
 		var talent_input = result.split("_")[1];
 		var class_prefix = game_version.substr(game_version.length - 2, 2);
-		model.select_data(class_prefix);
+		talent_grid_model.select_data(class_prefix);
 		var index = $('#tabs a[href="#tabs-'+ class_prefix + '"]').parent().index();
 		$("#tabs").tabs("option", "active", index);
 		var data_version = game_version.substr(game_version.length - 3, 1);
@@ -97,7 +97,7 @@ $(document).ready(function(){
 			player_model.learn_encoded_talents(talent_input);
 		}
 	} else {
-		model.select_data("as");
+		talent_grid_model.select_data("as");
 	}
 
     $( "#armor-slider" ).slider({
@@ -130,13 +130,14 @@ $(document).ready(function(){
       }
     });
     $( "#secondary-value" ).html( "" );
+	fill_available_items();
 	// return result;
 });
 
 var last_visited_element = {};
 var handled_recently = false;
 
-var model = {
+var talent_grid_model = {
 	//load data
 	maxrow: 0,
 	maxcol: 0,
@@ -160,7 +161,7 @@ var model = {
 		this.assign_power_to_talents();
 		this.create_layout_model();
 		this.prepare_layout_model();
-		//Раскомментируй следующие две строчки, чтобы сетка построилась динамически.
+		//Раскомментируй следующие две строчки, чтобы сетка талантов построилась динамически.
 		// this.prepare_grid();
 		// this.fill_grid_rows();
 		this.assign_click_routines();
@@ -364,24 +365,24 @@ var model = {
 				tooltip_content += "</div>";
 			}
 			$(function(){
-				$("#" + model.current_class_data.prefix + "-talent-container" + model.get_base_for_rank(current).id).tooltip({
+				$("#" + talent_grid_model.current_class_data.prefix + "-talent-container" + talent_grid_model.get_base_for_rank(current).id).tooltip({
 					track:true,
 					content:(tooltip_header + tooltip_content)
 				})
 			});
 		} else {
 			$(function(){
-				$("#" + model.current_class_data.prefix + "-talent-container" + current.id).tooltip({
+				$("#" + talent_grid_model.current_class_data.prefix + "-talent-container" + current.id).tooltip({
 					track:true,
-					content:model.build_tooltip_header(current)
+					content:talent_grid_model.build_tooltip_header(current)
 				})
 			});
 		}
 	},
 	prepare_tooltips:function(){
 		var i;
-		for(i = 0; i < model.current_class_data.talents.length; i++) {
-			this.update_tooltip(model.current_class_data.talents[i]);
+		for(i = 0; i < talent_grid_model.current_class_data.talents.length; i++) {
+			this.update_tooltip(talent_grid_model.current_class_data.talents[i]);
 		}
 	},
 	draw_talent_forks:function(){
@@ -444,22 +445,6 @@ var model = {
 		}
 		return _ret;
 	},
-	update_layout_options1: function (){
-		var i;
-		for (i = 0; i < this.current_class_data.talents.length; i++) {
-			var current = this.current_class_data.talents[i];
-			if (player_model.talent_learned(current)) {
-				$("#" + this.current_class_data.prefix + "-bright-img" + current.id).show();
-				$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).hide();
-			} else {
-				$("#" + this.current_class_data.prefix + "-bright-img" + current.id).hide();
-				if (player_model.can_learn_talent(current))
-					$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).hide();
-				else
-					$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).show();
-			}
-		}
-	},
 	update_layout_options:function(){
 		var rowindex, colindex;
 		for (rowindex = 0; rowindex < this.maxrow; rowindex++) {
@@ -479,7 +464,7 @@ var model = {
 				}
 				if (this.layout_model[rowindex].columns[colindex].items.length > 1){
 					var basic = this.get_base_for_rank(current);
-					var ranks = this.layout_model[model.get_row_for_level(current.lvlreq)].columns[current.column].items;
+					var ranks = this.layout_model[talent_grid_model.get_row_for_level(current.lvlreq)].columns[current.column].items;
 					var i;
 					var learned_count = 0;
 					for (i = 0; i < ranks.length; i++) {
@@ -503,7 +488,7 @@ var player_model = {
 	talents: [],
 	clear:function(){
 		this.talents = [];
-		model.update_requiremens_layout(1,1);
+		talent_grid_model.update_requiremens_layout(1,1);
 	},
 	get_spent_talents_points: function (){
 		var i;
@@ -559,19 +544,19 @@ var player_model = {
 	learn_encoded_talents:function(input){
 		var powersum = this.convert_string_to_powersum(input);
 		var i;
-		if (powersum >= model.current_class_data.talents[model.current_class_data.talents.length - 1].power*2) {
+		if (powersum >= talent_grid_model.current_class_data.talents[talent_grid_model.current_class_data.talents.length - 1].power*2) {
 			powersum = 0;
 		}
-		for (i = model.current_class_data.talents.length - 1; i >= 0; i--) {
-			var talent = model.current_class_data.talents[i];
+		for (i = talent_grid_model.current_class_data.talents.length - 1; i >= 0; i--) {
+			var talent = talent_grid_model.current_class_data.talents[i];
 			if (talent.power <= powersum) {
 				this.add_talent(talent);
 				powersum -= talent.power;
 			}
 		}
 		var spent_points = this.get_spent_talents_points();
-		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
-		model.update_layout_options();
+		talent_grid_model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
+		talent_grid_model.update_layout_options();
 	},
 	get_required_level: function (spent_points) {
 		var max_level_to_invest;
@@ -640,12 +625,12 @@ var player_model = {
 			return;
 		this.add_talent(talent);
 		var spent_points = this.get_spent_talents_points();
-		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
+		talent_grid_model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
 	},
 	add_talent:function(talent){
 		console.log("learning " + talent.name);
 		this.talents.push(talent);
-		model.update_tooltip(talent);
+		talent_grid_model.update_tooltip(talent);
 		this.update_link();
 	},
 	can_unlearn_talent: function (talent) {
@@ -664,16 +649,94 @@ var player_model = {
 			return;
 		this.remove_talent(talent);
 		var spent_points = this.get_spent_talents_points();
-		model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
+		talent_grid_model.update_requiremens_layout(this.get_required_level(spent_points), this.get_available_talent_points(spent_points));
 	},
 	remove_talent:function(talent){
 		console.log("unlearning " + talent.name);
 		this.talents.splice(this.talents.indexOf(talent),1);
-		model.update_tooltip(talent);
+		talent_grid_model.update_tooltip(talent);
 		this.update_link();
 	},
 	update_link:function(){
-		var link = "http://lstc.wc.lt?talent=" + patchdata.game_version + patchdata.data_version + model.current_class_data.prefix + "_" + this.convert_powersum_to_string();
+		var link = "http://lstc.wc.lt?talent=" + patchdata.game_version + patchdata.data_version + talent_grid_model.current_class_data.prefix + "_" + this.convert_powersum_to_string();
 		$("#link-to-build").val(link);
 	}
 };
+function fill_available_items(){
+	var i;
+	var list_possible_primary = "", list_possible_secondary="", list_armor = "", list_consumables ="";
+	for (i = 0; i < patchdata.item_data.length; i++) {
+		var current = patchdata.item_data[i];
+		if (typeof(current) == 'undefined') {
+			continue;
+		}
+		if (typeof(current.id) == 'undefined') {
+			continue;
+		}
+		if (typeof(current.category) == 'undefined') {
+			continue;
+		}
+		var j, current_category_index;
+		for (j = 0; j < patchdata.weapontype_map.length; j++){
+			if (patchdata.weapontype_map[j].category_id === current.category){
+				$("#" + patchdata.weapontype_map[j].category_name + "-layout")
+					.append("<img id=\"item" + current.id + "\" src=\"itemspng/item" + current.id + "00.png\"/>");
+				current_category_index = j;
+				$("#item" + current.id).draggable({
+					containment:"document",
+					helper: "clone",
+					appendTo: "body"
+				});
+			}
+		}
+		if (typeof(current_category_index) == 'undefined'){
+			continue;
+		}
+		if ($.inArray("primary", patchdata.weapontype_map[current_category_index].slots) != -1){
+			if (list_possible_primary === ""){
+				list_possible_primary += "#item" + current.id;
+			} else {
+				list_possible_primary += ", #item" + current.id;
+			}
+		}
+		if ($.inArray("secondary", patchdata.weapontype_map[current_category_index].slots) != -1){
+			if (list_possible_secondary === ""){
+				list_possible_secondary += "#item" + current.id;
+			} else {
+				list_possible_secondary += ", #item" + current.id;
+			}
+		}
+		if ($.inArray("armor", patchdata.weapontype_map[current_category_index].slots) != -1){
+			if (list_armor === ""){
+				list_armor += "#item" + current.id;
+			} else {
+				list_armor += ", #item" + current.id;
+			}
+		}
+		if ($.inArray("consumable", patchdata.weapontype_map[current_category_index].slots) != -1){
+			if (list_consumables === ""){
+				list_consumables += "#item" + current.id;
+			} else {
+				list_consumables += ", #item" + current.id;
+			}
+		}
+	}
+	$("#secondary-container").droppable({
+		accept:list_possible_secondary,
+		activeClass: "ui-state-hover",
+		hoverClass: "ui-state-active",
+		drop:function(event, ui){
+			$(this).empty();
+			$(this).append(ui.draggable);
+		}
+	});
+	$("#primary-container").droppable({
+		accept:list_possible_primary,
+		activeClass:"ui-state-hover",
+		hoverClass: "ui-state-active",
+		drop:function(event, ui){
+			$(this).empty();
+			$(this).append(ui.draggable);
+		}
+	})
+}
