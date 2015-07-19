@@ -486,6 +486,16 @@ var talent_grid_model = {
 var player_model = {
 	required_level:0,
 	talents: [],
+	slots:[
+		{ name:"primary", item:{} },
+		{ name:"secondary", item:{} },
+		{ name:"armor", item:{} },
+		{ name:"hat", item:{} },
+		{ name:"consumable_1", item:{} },
+		{ name:"consumable_2", item:{} },
+		{ name:"consumable_3", item:{} },
+		{ name:"consumable_4", item:{} },
+		{ name:"consumable_5", item:{} },],
 	clear:function(){
 		this.talents = [];
 		talent_grid_model.update_requiremens_layout(1,1);
@@ -660,12 +670,62 @@ var player_model = {
 	update_link:function(){
 		var link = "http://lstc.wc.lt?talent=" + patchdata.game_version + patchdata.data_version + talent_grid_model.current_class_data.prefix + "_" + this.convert_powersum_to_string();
 		$("#link-to-build").val(link);
+	},
+	add_item:function(slot_name, item){
+		var slot = this.get_slot(slot_name);
+		if (typeof(slot) == 'undefined')
+			return;
+		slot.item = item;
+	},
+	remove_item:function(item){
+		for(var i=0; i<this.slots.length; i++){
+			if (this.slots[i].item.id === item.id){
+				this.slots[i].item = null;
+				break;
+			}
+		}
+	},
+	get_slot:function(slot_name){
+		for(var i=0; i<this.slots.length; i++){
+			if (this.slots[i].name === slot_name){
+				return this.slots[i];
+			}
+		}
 	}
 };
-function fill_available_items(){
-	var i;
-	var list_possible_primary = "", list_possible_secondary="", list_armor = "", list_consumables ="";
-	for (i = 0; i < patchdata.item_data.length; i++) {
+function drop_item_to_inventory(event, ui){
+	var item_id = ui.draggable.context.id.split("_")[1];
+	var item = get_item_by_id(item_id);
+	var target = $(this).context.id.split("-")[0];
+	player_model.add_item(target, item);
+	$("#" + target + "-container").empty();
+	$("#" + target + "-container").append(ui.draggable);
+}
+function drop_item_to_pool(event, ui){
+	var item_id = ui.draggable.context.id.split("_")[1];
+	var item = get_item_by_id(item_id);
+	var target = $(this).context.id.split("-")[0];
+	var category = get_category_by_id(item.category);
+	var slot;
+	for(var i=0; i<player_model.slots.length; i++){
+		if (player_model.slots[i].item.id == item.id) {
+			slot = player_model.slots[i];
+		}
+	}
+	player_model.remove_item(item);
+	$("#" + slot.name + "-container").append("<img src=\"itemspng/item44000.png\"/>");
+	$("#" + category.category_name + "-pool").append(ui.draggable);
+}
+function get_category_by_id(category_id) {
+	for (var j = 0; j < patchdata.weapontype_map.length; j++){
+		if (patchdata.weapontype_map[j].category_id === category_id){
+			return patchdata.weapontype_map[j];
+		}
+	}
+	return;
+}
+function get_item_by_id(query_id){
+	for (var i = 0; i < patchdata.item_data.length; i++) {
 		var current = patchdata.item_data[i];
 		if (typeof(current) == 'undefined') {
 			continue;
@@ -676,67 +736,83 @@ function fill_available_items(){
 		if (typeof(current.category) == 'undefined') {
 			continue;
 		}
-		var j, current_category_index;
-		for (j = 0; j < patchdata.weapontype_map.length; j++){
-			if (patchdata.weapontype_map[j].category_id === current.category){
-				$("#" + patchdata.weapontype_map[j].category_name + "-layout")
-					.append("<img id=\"item" + current.id + "\" src=\"itemspng/item" + current.id + "00.png\"/>");
-				current_category_index = j;
-				$("#item" + current.id).draggable({
-					containment:"document",
-					helper: "clone",
-					appendTo: "body"
-				});
-			}
+		if (current.id == query_id){
+			return current;
 		}
-		if (typeof(current_category_index) == 'undefined'){
+	}
+	return;
+}
+function add_item_to_pool(item){
+	for (var j = 0; j < patchdata.weapontype_map.length; j++){
+		if (patchdata.weapontype_map[j].category_id === item.category){
+			$("#" + patchdata.weapontype_map[j].category_name + "-pool")
+				.append("<img id=\"item_" + item.id + "\" src=\"itemspng/item" + item.id + "00.png\"/>");
+			$("#item_" + item.id).draggable({
+				containment:"document",
+				helper:"clone",
+				appendTo: "body"
+			});
+			return j;
+		}
+	}
+	return -1;
+}
+function fill_available_items(){
+	var current_category_index = -1;
+	var possible_slots = [
+		{name:"primary", allowed_items:""},
+		{name:"secondary", allowed_items:""},
+		{name:"armor", allowed_items:""},
+		{name:"consumables", allowed_items:""},
+		{name:"hat", allowed_items:""}
+	];
+	for (var j = 0; j < patchdata.weapontype_map.length; j++){
+		patchdata.weapontype_map[j].allowed_items = "";
+	}
+	for (var i = 0; i < patchdata.item_data.length; i++) {
+		var current = patchdata.item_data[i];
+		if (typeof(current) == 'undefined') {
 			continue;
 		}
-		if ($.inArray("primary", patchdata.weapontype_map[current_category_index].slots) != -1){
-			if (list_possible_primary === ""){
-				list_possible_primary += "#item" + current.id;
-			} else {
-				list_possible_primary += ", #item" + current.id;
-			}
+		if (typeof(current.id) == 'undefined') {
+			continue;
 		}
-		if ($.inArray("secondary", patchdata.weapontype_map[current_category_index].slots) != -1){
-			if (list_possible_secondary === ""){
-				list_possible_secondary += "#item" + current.id;
-			} else {
-				list_possible_secondary += ", #item" + current.id;
-			}
+		if (typeof(current.category) == 'undefined') {
+			continue;
 		}
-		if ($.inArray("armor", patchdata.weapontype_map[current_category_index].slots) != -1){
-			if (list_armor === ""){
-				list_armor += "#item" + current.id;
-			} else {
-				list_armor += ", #item" + current.id;
-			}
+		console.log("adding " + current.name + " to pool");
+		current_category_index = add_item_to_pool(current);
+		var category = get_category_by_id(current.category);
+		if (category.allowed_items === ""){
+			category.allowed_items += "#item_" + current.id;
+		} else {
+			category.allowed_items += ", #item_" + current.id;
 		}
-		if ($.inArray("consumable", patchdata.weapontype_map[current_category_index].slots) != -1){
-			if (list_consumables === ""){
-				list_consumables += "#item" + current.id;
-			} else {
-				list_consumables += ", #item" + current.id;
+		if (current_category_index < 0){
+			continue;
+		}
+		console.log("category index: " + current_category_index)
+		for (var j = 0; j < possible_slots.length; j++) {
+			if ($.inArray(possible_slots[j].name, patchdata.weapontype_map[current_category_index].slots) != -1){
+				if (possible_slots[j].allowed_items === ""){
+					possible_slots[j].allowed_items += "#item_" + current.id;
+				} else {
+					possible_slots[j].allowed_items += ", #item_" + current.id;
+				}
 			}
 		}
 	}
-	$("#secondary-container").droppable({
-		accept:list_possible_secondary,
+	$("#items-pool").droppable({
 		activeClass: "ui-state-hover",
 		hoverClass: "ui-state-active",
-		drop:function(event, ui){
-			$(this).empty();
-			$(this).append(ui.draggable);
-		}
+		drop:drop_item_to_pool
 	});
-	$("#primary-container").droppable({
-		accept:list_possible_primary,
-		activeClass:"ui-state-hover",
-		hoverClass: "ui-state-active",
-		drop:function(event, ui){
-			$(this).empty();
-			$(this).append(ui.draggable);
-		}
-	})
+	for (var j = 0; j < possible_slots.length; j++) {
+		$("#" + possible_slots[j].name + "-container").droppable({
+			accept:possible_slots[j].allowed_items,
+			activeClass: "ui-state-hover",
+			hoverClass: "ui-state-active",
+			drop:drop_item_to_inventory
+		});
+	}
 }

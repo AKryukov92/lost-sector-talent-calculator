@@ -1,0 +1,19 @@
+{
+	"name":"Лом",
+	"category":1,
+	"mobility":85,
+	"lvlreq":3,
+	"id":414,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":100,
+		"cost":50,
+		"min_dist":0,
+		"max_dist":2,
+		"min_damage":48,
+		"max_damage":86
+	}
+	]
+}

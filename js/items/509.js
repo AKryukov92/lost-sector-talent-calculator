@@ -1,0 +1,23 @@
+{
+	"name":"Автоген",
+	"category":1,
+	"mobility":96,
+	"lvlreq":4,
+	"id":509,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":7,
+		"accuracy":100,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":22,
+		"max_damage":,44
+		"specials":[
+		{
+			"duration":3,
+			"effects":["Наносит 14 ед. повреждения каждый раунд. Уменьшает эффективность лечения на 30%"]
+		}]
+	}]
+}

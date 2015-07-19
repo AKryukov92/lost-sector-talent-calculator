@@ -7,7 +7,7 @@
 	<script src="js/jquery-ui.js"></script>
 </head>
 <body>
-<div id="tabs" style="display:inline-block;">
+<div style="display:inline-block;background-color:#757575;">
 	<div id="general-info" class="general-info">
 		<div style="float:left;width:30%"><a style="color:#e7a516" href="http://lsonline.ru/"><img src="http://lsonline.ru/data/images/logo.png"/></a></div>
 		<div style="float:left;">
@@ -71,10 +71,9 @@
 	</div>
 	<div id="equipped-items" style="float:left;">
 		<div id="armor" class="tunable-item">
-			<div style="color:#4870fd;">Тяжелая 'Прайм' броня джаггернаута&nbsp;<span id="armor-value"></span></div>
-			<div style="overflow:auto;padding:5px;">
+			<div id="armor-name"><span id="armor-value"></span></div>
+			<div style="overflow:auto;">
 				<div id="armor-container" class="draggable-landing">
-					<img src="itemspng/item33300.png"/>
 				</div>
 				<div style="float:left;">
 					<input type="radio" name="armor-quality" value="gray" id="armor-quality-gray" class="quality">
@@ -93,11 +92,11 @@
 				</div>
 			</div>
 		</div>
-		<div id="primary-weapon" class="tunable-item">
-			<div style="color:#20dd20;">Дробовик Ремингтон M870&nbsp;<span id="primary-value"></span></div>
+		<div id="primary" class="tunable-item">
+			<div id="primary-name"><span id="primary-value"></span></div>
 			<div style="overflow:auto;">
 				<div id="primary-container" class="draggable-landing">
-					<img src="itemspng/item41000.png"/>
+					<img src="itemspng/item44000.png"/>
 				</div>
 				<div style="float:left;padding:5px;">
 					<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">
@@ -116,11 +115,11 @@
 				</div>
 			</div>
 		</div>
-		<div id="secondary-weapon" class="tunable-item">
-			<div>АК-47&nbsp;<span id="secondary-value"></span></div>
+		<div id="secondary" class="tunable-item">
+			<div id="secondary-name"><span id="secondary-value"></span></div>
 			<div style="overflow:auto;">
 				<div id="secondary-container" class="draggable-landing">
-					<img src="itemspng/item45000.png"/>
+					<img src="itemspng/item44000.png"/>
 				</div>
 				<div style="float:left;padding:5px;">
 					<input type="radio" name="secondary-quality" value="gray" id="secondary-quality-gray" class="quality">
@@ -140,27 +139,27 @@
 			</div>
 		</div>
 		<div id="special-items" class="special-items">
-			<div id="head">
+			<div id="hat">
 				<img src="allitemspng/item22100.png"/>
 			</div>
-			<div id="item1">
+			<div id="consumable_1">
 				<img src="itemspng/item2400.png"/>
 			</div>
-			<div id="item2">
+			<div id="consumable_2">
 				<img src="itemspng/item42200.png"/>
 			</div>
-			<div id="item3" style="clear:both;">
+			<div id="consumable_3" style="clear:both;">
 				<img src="itemspng/item7300.png"/>
 			</div>
-			<div id="item4">
+			<div id="consumable_4">
 				<img src="itemspng/item60100.png"/>
 			</div>
-			<div id="item6">
+			<div id="consumable_5">
 				<img src="itemspng/item2600.png"/>
 			</div>
 		</div>
 	</div>
-	<div id="all-items" style="clear:both;overflow:auto;">
+	<div id="items-pool" style="clear:both;overflow:auto;">
 		<ul>
 			<li><a href="#all-armor">Броня</a></li>
 			<li><a href="#all-melee">Ближний бой</a></li>
@@ -168,7 +167,7 @@
 			<li><a href="#all-smgs">ПП</a></li>
 			<li><a href="#all-shotguns">Дробовики</a></li>
 			<li><a href="#all-assault-rifles">Автоматы</a></li>
-			<li><a href="#all-sniper-rifles">Снайперские винтовки</a></li>
+			<li><a href="#all-sniper-rifles">Снайперское</a></li>
 			<li><a href="#all-machineguns">Пулеметы</a></li>
 			<li><a href="#all-launchers">Взрывное</a></li>
 			<li><a href="#all-shields">Щиты</a></li>
@@ -176,46 +175,47 @@
 			<li><a href="#all-consumables">Активки</a></li>
 		</ul>
 		<div id="all-armor">
-			<div id="armor-layout" class="talents-background"></div>
+			<div id="armor-pool" class="talents-background"></div>
 		</div>
 		<div id="all-melee">
-			<div id="melee-layout" class="talents-background"></div>
+			<div id="melee-pool" class="talents-background"></div>
 		</div>
 		<div id="all-pistols">
-			<div id="pistols-layout" class="talents-background"></div>
+			<div id="pistols-pool" class="talents-background"></div>
 		</div>
 		<div id="all-smgs">
-			<div id="smgs-layout" class="talents-background"></div>
+			<div id="smgs-pool" class="talents-background"></div>
 		</div>
 		<div id="all-shotguns">
-			<div id="shotguns-layout" class="talents-background"></div>
+			<div id="shotguns-pool" class="talents-background"></div>
 		</div>
 		<div id="all-assault-rifles">
-			<div id="assault-rifles-layout" class="talents-background"></div>
+			<div id="assault_rifles-pool" class="talents-background"></div>
 		</div>
 		<div id="all-sniper-rifles">
-			<div id="sniper-rifles-layout" class="talents-background"></div>
+			<div id="sniper_rifles-pool" class="talents-background"></div>
 		</div>
 		<div id="all-machineguns">
-			<div id="machineguns-layout" class="talents-background"></div>
+			<div id="machineguns-pool" class="talents-background"></div>
 		</div>
 		<div id="all-launchers">
-			<div id="launchers-layout" class="talents-background"></div>
+			<div id="launchers-pool" class="talents-background"></div>
 		</div>
 		<div id="all-shields">
-			<div id="shields-layout" class="talents-background"></div>
+			<div id="shields-pool" class="talents-background"></div>
 		</div>
 		<div id="all-hats">
-			<div id="hats-layout" class="talents-background"></div>
+			<div id="hats-pool" class="talents-background"></div>
 		</div>
 		<div id="all-consumables">
-			<div id="consumables-layout" class="talents-background"></div>
+			<div id="consumables-pool" class="talents-background"></div>
 		</div>
 	</div>
 </div>
 <script>
+$("#items-pool").tabs();
 $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
-$("#all-items").tabs();
+$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 </script>
 
 <script src="js/data.js"></script>

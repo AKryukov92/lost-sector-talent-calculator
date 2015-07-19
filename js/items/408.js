@@ -1,0 +1,9 @@
+{
+	"name":"Шит",
+	"category":9,
+	"mobility":72,
+	"protection":60,
+	"lvlreq":5,
+	"talentreq":9,
+	"id":408
+}

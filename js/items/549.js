@@ -1,0 +1,34 @@
+{
+	"name":"Рино",
+	"category":7,
+	"mobility":56,
+	"clip":1,
+	"ammo":2,
+	"reload_cost":45,
+	"lvlreq":12,
+	"talentreq":21,
+	"id":549,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.8,
+		"min_damage":25,
+		"max_damage":39.8
+	},
+	{
+		"name":"Запуск",
+		"type":6,
+		"accuracy":47,
+		"radius":6,
+		"cost":60,
+		"min_dist":20,
+		"max_dist":70,
+		"bullets":1,
+		"min_damage":183.5,
+		"max_damage":260
+	}]
+}

@@ -1,0 +1,34 @@
+{
+	"name":"Арбалет",
+	"category":7,
+	"mobility":75,
+	"clip":1,
+	"ammo":5,
+	"reload_cost":30,
+	"lvlreq":8,
+	"talentreq":12,
+	"id":500,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":35
+	},
+	{
+		"name":"«апуск",
+		"type":6,
+		"accuracy":52,
+		"radius":2,
+		"cost":60,
+		"min_dist":10,
+		"max_dist":55,
+		"bullets":1,
+		"min_damage":110,
+		"max_damage":140
+	}]
+}
