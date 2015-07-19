@@ -1,0 +1,44 @@
+{
+	"name":"АК 47",
+	"category":5,
+	"mobility":77,
+	"clip":30,
+	"ammo":60,
+	"reload_cost":25,
+	"lvlreq":8,
+	"talentreq":22,
+	"id":450,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":30
+	},
+	{
+		"name":"Очередь",
+		"type":3,
+		"accuracy":54,
+		"cost":40,
+		"min_dist":11,
+		"max_dist":24,
+		"bullets":8,
+		"min_damage":52,
+		"max_damage":87
+	},
+	{
+		"name":"Прицельно",
+		"type":3,
+		"accuracy":62,
+		"cost":60,
+		"min_dist":13,
+		"max_dist":28,
+		"bullets":6,
+		"min_damage":58,
+		"max_damage":88
+	}]
+}

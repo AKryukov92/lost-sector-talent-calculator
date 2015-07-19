@@ -1,0 +1,21 @@
+{
+	"name":"Топор",
+	"category":1,
+	"type":1,
+	"mobility":80,
+	"lvlreq":7,
+	"talentreq":7,
+	"id":418,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":100,
+		"cost":50,
+		"min_dist":0,
+		"max_dist":2.1,
+		"min_damage":60,
+		"max_damage":105
+	}
+	]
+}

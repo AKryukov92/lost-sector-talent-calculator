@@ -20,11 +20,33 @@
 	stroke:#c77405;
 }
 
+  .ui-tabs-vertical .ui-tabs-nav {
+  float: left;
+  }
+  .ui-tabs-vertical .ui-tabs-nav li  {
+  clear: left;
+  width: 100%;
+  border-bottom-width: 1px !important;
+  border-right-width: 0 !important;
+  margin: 5px 0 2px 2px;
+  border-right-width: 0;
+  }
+  .ui-tabs-vertical .ui-tabs-nav li a {
+  display:block;
+  }
+  .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+  margin-right:1px;
+  }
+  .ui-tabs-vertical .ui-tabs-panel {
+  float: left;
+  }
+  
 .talents-background{
 	background-color:black;
 	margin: 2px 2px 2px 0px;
 	padding:5px;
 	overflow:auto;
+	min-height:60px;
 }
 .level-content{
 	background-color:#1f1f1f;
@@ -144,6 +166,8 @@ width: 1px;
 }
 .draggable-landing{
 	margin-right:5px;
+	width:60px;
+	height:60px;
 	overflow:auto;
 	float:left;
 }
@@ -199,4 +223,28 @@ input[type=radio]:not(old):checked +  label > span > span{
 	background-color: rgba(55,55,55,0.9);
 	width:50px;
 	height:50px;
+}
+
+.specials {
+	color:#bac887;
+	margin:5px;
+}
+.specials ul li:before {
+	content:"-";
+	position:relative;
+	left:-5px;
+}
+.specials ul li {
+	font-size:9pt;
+}
+.specials ul {
+	list-style-type: none;
+	padding:0px;
+	margin:0px;
+	margin-left:15px;
+	color:#bac887
+}
+
+.attack h3 {
+	color:#e7a516;
 }

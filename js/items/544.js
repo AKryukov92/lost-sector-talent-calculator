@@ -1,0 +1,33 @@
+{
+	"name":"Protecta",
+	"category":4,
+	"mobility":77,
+	"clip":12,
+	"ammo":24,
+	"reload_cost":60,
+	"lvlreq":7,
+	"talentreq":14,
+	"id":544,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":30
+	},
+	{
+		"name":"Навскидку",
+		"type":4,
+		"accuracy":38,
+		"cost":28,
+		"min_dist":4,
+		"max_dist":12,
+		"bullets":1,
+		"min_damage":50,
+		"max_damage":68
+	}]
+}

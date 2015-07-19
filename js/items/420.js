@@ -1,0 +1,20 @@
+{
+	"id":420,
+	"name":"Осколочная граната",
+	"category":11,
+	"consumable_type":4,
+	"lvlreq":3,
+	"skillreq":4,
+	"attacks":[
+	{
+		"name":"Бросок",
+		"type":6,
+		"accuracy":50,
+		"radius":4,
+		"cost":50,
+		"min_dist":0,
+		"max_dist":15,
+		"min_damage":45,
+		"max_damage":70
+	}]
+}

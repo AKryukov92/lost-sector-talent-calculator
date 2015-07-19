@@ -1,0 +1,44 @@
+{
+	"name":"Steyr AUG A1",
+	"category":5,
+	"mobility":78,
+	"clip":30,
+	"ammo":60,
+	"reload_cost":25,
+	"lvlreq":10,
+	"talentreq":22,
+	"id":429,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":30
+	},
+	{
+		"name":"Очередь",
+		"type":3,
+		"accuracy":58,
+		"cost":40,
+		"min_dist":12,
+		"max_dist":24,
+		"bullets":8,
+		"min_damage":53,
+		"max_damage":79
+	},
+	{
+		"name":"Прицельно",
+		"type":3,
+		"accuracy":65,
+		"cost":60,
+		"min_dist":14,
+		"max_dist":28,
+		"bullets":6,
+		"min_damage":58,
+		"max_damage":84
+	}]
+}

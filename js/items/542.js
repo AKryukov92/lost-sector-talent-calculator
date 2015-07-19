@@ -1,0 +1,44 @@
+{
+	"name":"USAS 12",
+	"category":4,
+	"mobility":78,
+	"clip":15,
+	"ammo":24,
+	"reload_cost":40,
+	"lvlreq":12,
+	"talentreq":20,
+	"id":542,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":30
+	},
+	{
+		"name":"Навскидку",
+		"type":4,
+		"accuracy":41,
+		"cost":30,
+		"min_dist":4,
+		"max_dist":12,
+		"bullets":1,
+		"min_damage":55.5,
+		"max_damage":76
+	},
+	{
+		"name":"Очередь",
+		"type":4,
+		"accuracy":28,
+		"cost":50,
+		"min_dist":4,
+		"max_dist":12,
+		"bullets":3,
+		"min_damage":92,
+		"max_damage":136
+	}]
+}

@@ -1,0 +1,44 @@
+{
+	"name":"KRISS Vector",
+	"category":3,
+	"mobility":90,
+	"clip":50,
+	"ammo":100,
+	"reload_cost":20,
+	"lvlreq":10,
+	"talentreq":26,
+	"id":461,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":40,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":10,
+		"max_damage":25
+	},
+	{
+		"name":"Очередь",
+		"type":3,
+		"accuracy":52,
+		"cost":33,
+		"min_dist":8,
+		"max_dist":22,
+		"bullets":8,
+		"min_damage":38,
+		"max_damage":51
+	},
+	{
+		"name":"Прицельно",
+		"type":3,
+		"accuracy":69,
+		"cost":45,
+		"min_dist":12,
+		"max_dist":26,
+		"bullets":6,
+		"min_damage":36,
+		"max_damage":49
+	}]
+}

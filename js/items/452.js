@@ -1,0 +1,34 @@
+{
+	"name":"Pancor Jackhammer",
+	"short_name":"Панкор",
+	"category":4,
+	"mobility":80,
+	"clip":10,
+	"ammo":24,
+	"reload_cost":40,
+	"lvlreq":8,
+	"talentreq":20,
+	"id":452,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":30
+	},
+	{
+		"name":"Навскидку",
+		"type":4,
+		"accuracy":38,
+		"cost":30,
+		"min_dist":4,
+		"max_dist":12,
+		"bullets":1,
+		"min_damage":55,
+		"max_damage":74
+	}]
+}

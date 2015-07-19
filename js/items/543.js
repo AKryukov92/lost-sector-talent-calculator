@@ -1,0 +1,44 @@
+{
+	"name":"Walther WA2000",
+	"category":6,
+	"mobility":63,
+	"clip":4,
+	"ammo":8,
+	"reload_cost":25,
+	"lvlreq":12,
+	"talentreq":24,
+	"id":543,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":2,
+		"min_damage":20,
+		"max_damage":50
+	},
+	{
+		"name":"Навскидку",
+		"type":5,
+		"accuracy":61,
+		"cost":50,
+		"min_dist":17,
+		"max_dist":42,
+		"bullets":1,
+		"min_damage":71,
+		"max_damage":115
+	},
+	{
+		"name":"Прицельно",
+		"type":5,
+		"accuracy":77,
+		"cost":60,
+		"min_dist":22,
+		"max_dist":48,
+		"bullets":1,
+		"min_damage":107,
+		"max_damage":151
+	}]
+}

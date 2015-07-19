@@ -1,0 +1,25 @@
+{
+	"name":"Дубинка-шокер",
+	"category":1,
+	"mobility":95,
+	"lvlreq":6,
+	"talentreq":7,
+	"id":409,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":100,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":35,
+		"specials":[
+		{
+			"duration":1,
+			"effects":["Делит мобильность на 2"]
+		}]
+	}
+	]
+}
