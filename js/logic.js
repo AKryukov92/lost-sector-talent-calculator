@@ -36,13 +36,16 @@ function talenthover(event) {
 	last_visited_element = event.data;
 	handled_recently = true;
 }
-function setgrade(element, value){
+
+function setgrade(slot_name, value){
+  var element = $("#" + slot_name + "-value");
   if (value === 0) {
 	element.html( "" );
   } else {
-	element.html( "+" + value );
+	element.html( " +" + value );
   }
 }
+
 $(document).ready(function(){ 
   document.oncontextmenu = function() {return false;};
   
@@ -105,33 +108,61 @@ $(document).ready(function(){
       min: 0,
       max: 15,
       step: 1,
-      slide: function( event, ui ) {
-		  setgrade($( "#armor-value" ),ui.value );
-      }
+      change: function( event, ui ) {
+		player_model.update_slot_tooltip("armor");
+      },
+	  slide: function( event, ui ) {
+		setgrade("armor", ui.value);
+	  }
     });
-    $( "#armor-value" ).html( "" );
+	$( "#armor-value" ).html( "" );
+	$("[name=\"armor-quality\"]").change(
+		function(){
+			player_model.update_slot_tooltip("armor");
+		}
+	);
+	$("#armor-container").tooltip({content:""});
+	
     $( "#primary-slider" ).slider({
       value:0,
       min: 0,
       max: 15,
       step: 1,
-      slide: function( event, ui ) {
-		  setgrade($( "#primary-value" ),ui.value );
-      }
+      change: function( event, ui ) {
+		player_model.update_slot_tooltip("primary");
+      },
+	  slide: function(event, ui) {
+		setgrade("primary", ui.value);
+	  }
     });
     $( "#primary-value" ).html( "" );
+	$("[name=\"primary-quality\"]").change(
+		function(){
+			player_model.update_slot_tooltip("primary");
+		}
+	);
+	$("#primary-container").tooltip({content:""});
+	
     $( "#secondary-slider" ).slider({
       value:0,
       min: 0,
       max: 15,
       step: 1,
-      slide: function( event, ui ) {
-		  setgrade($( "#secondary-value" ),ui.value );
-      }
+      change: function( event, ui ) {
+		player_model.update_slot_tooltip("secondary");
+      },
+	  slide: function(event, ui) {
+		setgrade("secondary", ui.value);
+	  }
     });
     $( "#secondary-value" ).html( "" );
+	$("[name=\"secondary-quality\"]").change(
+		function(){
+			player_model.update_slot_tooltip("secondary");
+		}
+	);
+	$("#secondary-container").tooltip({content:""});
 	fill_available_items();
-	// return result;
 });
 
 var last_visited_element = {};
@@ -303,7 +334,15 @@ var talent_grid_model = {
 			tooltip_content += "<div><span>Описание:</span> " + current.description + "</div>";
 		return tooltip_content;
 	},
-	update_tooltip:function(current){
+	update_tooltip:function(current) {
+		$(function(){
+			$("#" + talent_grid_model.current_class_data.prefix + "-talent-container" + current.id).tooltip({
+				track:true,
+				content:"<iframe scrolling=\"no\" src=\"/talent.php?id=" + current.id + "\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>"
+			})
+		});
+	},
+	old_update_tooltip:function(current){
 		var tooltip_content = "";
 		var tooltip_header = "";
 		if (typeof current.effect != 'undefined') {
@@ -365,18 +404,21 @@ var talent_grid_model = {
 				tooltip_content += "</div>";
 			}
 			$(function(){
-				$("#" + talent_grid_model.current_class_data.prefix + "-talent-container" + talent_grid_model.get_base_for_rank(current).id).tooltip({
+				var class_prefix = talent_grid_model.current_class_data.prefix;
+				var talent_id = talent_grid_model.get_base_for_rank(current).id;
+				$("#" + class_prefix + "-talent-container" + talent_id).tooltip({
 					track:true,
-					content:(tooltip_header + tooltip_content)
+					content:"<iframe  scrolling=\"no\" src=\"/talent.php?id=" + current.id + "\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>"
 				})
 			});
 		} else {
 			$(function(){
 				$("#" + talent_grid_model.current_class_data.prefix + "-talent-container" + current.id).tooltip({
 					track:true,
-					content:talent_grid_model.build_tooltip_header(current)
+					content:"<iframe  scrolling=\"no\" src=\"/talent.php?id=" + current.id + "\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>"
 				})
 			});
+
 		}
 	},
 	prepare_tooltips:function(){
@@ -437,7 +479,7 @@ var talent_grid_model = {
 		}
 	},
 	get_submissive_talents: function (talent){
-		var _ret = new Array();
+		var _ret = [];
 		var i;
 		for(i = 0; i < this.current_class_data.talents.length;i++){
 			if (this.current_class_data.talents[i].talentreq == talent.id)
@@ -533,6 +575,9 @@ var player_model = {
 		return code;
 	},
 	convert_string_to_powersum:function(input){
+		if (input == 'undefined') {
+			return;
+		}
 		var powersum = 0;
 		var power = 1;
 		var chr;
@@ -677,6 +722,30 @@ var player_model = {
 			return;
 		slot.item = item;
 	},
+	get_item:function(slot_name){
+		var slot = this.get_slot(slot_name);
+		if (typeof(slot) == 'undefined')
+			return;
+		return slot.item;
+	},
+	update_slot_tooltip:function(slot_name){
+		var selected_color = $("input[name=" + slot_name +"-quality]:checked", "#" + slot_name).val();
+		if (selected_color == 'undefined') {
+			selected_color = white;
+		}
+		var selected_quality = $("#" + slot_name + "-slider").slider("option", "value");
+		var item = this.get_item(slot_name);
+		$("#" + slot_name + "-name").text(item.name);
+		if (typeof item != 'undefined' && typeof item.id != 'undefined'){
+			var link = "/item.php?id=" + item.id + "&color=" + selected_color + "&quality=" + selected_quality;
+			$("#" + slot_name + "-link").attr("href", link);
+			$("#" + slot_name + "-link").removeClass("grey-link white-link green-link blue-link").addClass(selected_color + "-link");
+			$("#" + slot_name + "-container").tooltip("option", "content", "<iframe scrolling=\"no\"" +
+				" src=\"" +link + "\" frameBorder=\"0\"" +
+				" onload=\"javascript:resizeIframe(this);\"></iframe>");
+		}
+	},
+
 	remove_item:function(item){
 		for(var i=0; i<this.slots.length; i++){
 			if (this.slots[i].item.id === item.id){
@@ -696,10 +765,11 @@ var player_model = {
 function drop_item_to_inventory(event, ui){
 	var item_id = ui.draggable.context.id.split("_")[1];
 	var item = get_item_by_id(item_id);
-	var target = $(this).context.id.split("-")[0];
-	player_model.add_item(target, item);
-	$("#" + target + "-container").empty();
-	$("#" + target + "-container").append(ui.draggable);
+	var slot_name = $(this).context.id.split("-")[0];
+	player_model.add_item(slot_name, item);
+	$("#" + slot_name + "-container").empty();
+	$("#" + slot_name + "-container").append(ui.draggable);
+	player_model.update_slot_tooltip(slot_name);
 }
 function drop_item_to_pool(event, ui){
 	var item_id = ui.draggable.context.id.split("_")[1];

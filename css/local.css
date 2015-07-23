@@ -67,7 +67,7 @@
 	height:40px;
 	width:40px;
 }
-.level-content  .talent-green{
+.level-content .talent-green{
 	border: 1px solid green;
 	bottom:-2px;
 	position:absolute;
@@ -112,7 +112,7 @@
 	float:left;
 	margin:5px;
 }
-.ui-tooltip {
+.tooltip-content {
 	position: absolute;
 	border:1px solid #e7a516;
 	background-color: rgba(55,55,55,0.9);
@@ -120,17 +120,31 @@
 	padding:10px;
 	font-family:'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
 }
-.ui-tooltip  h3 {
+.tooltip-content  h3 {
 	color:#00ff00;
 	margin:0px;
+	font-size:16px;
 }
-.ui-tooltip div {
+.tooltip-content .entry {
 	color:white;
 	font-size:10pt;
 }
-.ui-tooltip div span {
+.tooltip-content .entry .key {
 	color:#e7a516;
 }
+
+.ui-tooltip {
+	padding: 0px;
+}
+.ui-tooltip-content{
+	height:0px;
+	background-color:transparent;
+}
+.ui-tooltip-content iframe {
+	border: 0px;
+	width:440px;
+}
+
 .ui-helper-hidden-accessible {
 border: 0;
 clip: rect(0 0 0 0);
@@ -248,3 +262,30 @@ input[type=radio]:not(old):checked +  label > span > span{
 .attack h3 {
 	color:#e7a516;
 }
+
+.weapon-property {
+    color:white;
+    font-size: 14px;
+}
+.weapon-name {
+    font-size:20px;
+}
+.attack-name{
+    color:#e78f08;
+    font-size:18px;
+    font-weight:bold;
+}
+.attack-type{
+    color:#e78f08;
+    font-size:14px;
+    font-weight: bold;
+}
+.attack-properties div {
+    color:white;
+    font-size:16px;
+}
+
+.gray-link { color:gray; }
+.white-link { color:white; }
+.green-link { color:#20dd20; }
+.blue-link { color:#4870fd; }

@@ -13,7 +13,7 @@
 		"min_dist":0,
 		"max_dist":1.5,
 		"min_damage":22,
-		"max_damage":,44
+		"max_damage":44,
 		"specials":[
 		{
 			"duration":3,
