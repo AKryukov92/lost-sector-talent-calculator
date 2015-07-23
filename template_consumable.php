@@ -38,10 +38,9 @@ $base_grade = 100;
 <html>
 <head>
 <link href="css/local.css" rel="stylesheet">
-<link href="css/jquery-ui.css" rel="stylesheet">
 </head>
 <body>
-<div class="ui-tooltip" style="overflow:auto;">
+<div class="tooltip-content" style="overflow:auto;">
 	<img src="itemspng/item<?php print $data["id"]; ?>00.png" style="float:right"/>
 	<div style="font-size:14pt;"><?php print $data["name"]; ?></div>
 	<?php if (!IsNullOrEmptyString($consumable_type_name)) { ?>

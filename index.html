@@ -5,6 +5,13 @@
 	<link href="css/local.css" rel="stylesheet">
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
+    <script language="javascript" type="text/javascript">
+        function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+        }
+    </script>
+	<script src="js/data.js"></script>
+	<script src="item_data.php"></script>
 </head>
 <body>
 <div style="display:inline-block;background-color:#757575;">
@@ -71,15 +78,15 @@
 	</div>
 	<div id="equipped-items" style="float:left;">
 		<div id="armor" class="tunable-item">
-			<div id="armor-name"><span id="armor-value"></span></div>
+			<div><a target="_blank" id="armor-link"><span id="armor-name"></span><span id="armor-value"></span></a></div>
 			<div style="overflow:auto;">
-				<div id="armor-container" class="draggable-landing">
+				<div id="armor-container" class="draggable-landing" title>
 				</div>
 				<div style="float:left;">
 					<input type="radio" name="armor-quality" value="gray" id="armor-quality-gray" class="quality">
 						<label for="armor-quality-gray"><span class="gray"><span class="gray"></span></span></label>
 					</input>
-					<input type="radio" name="armor-quality" value="white" id="armor-quality-white" class="quality">
+					<input type="radio" name="armor-quality" value="white" id="armor-quality-white" class="quality" checked>
 						<label for="armor-quality-white"><span class="white"><span class="white"></span></span></label>
 					</input>
 					<input type="radio" name="armor-quality" value="green" id="armor-quality-green" class="quality">
@@ -93,16 +100,16 @@
 			</div>
 		</div>
 		<div id="primary" class="tunable-item">
-			<div id="primary-name"><span id="primary-value"></span></div>
+			<div><a target="_blank" id="primary-link"><span id="primary-name"></span><span id="primary-value"></span></a></div>
 			<div style="overflow:auto;">
-				<div id="primary-container" class="draggable-landing">
+				<div id="primary-container" class="draggable-landing" title>
 					<img src="itemspng/item44000.png"/>
 				</div>
 				<div style="float:left;padding:5px;">
 					<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">
 						<label for="primary-quality-gray"><span class="gray"><span class="gray"></span></span></label>
 					</input>
-					<input type="radio" name="primary-quality" value="white" id="primary-quality-white" class="quality">
+					<input type="radio" name="primary-quality" value="white" id="primary-quality-white" class="quality" checked>
 						<label for="primary-quality-white"><span class="white"><span class="white"></span></span></label>
 					</input>
 					<input type="radio" name="primary-quality" value="green" id="primary-quality-green" class="quality">
@@ -116,16 +123,16 @@
 			</div>
 		</div>
 		<div id="secondary" class="tunable-item">
-			<div id="secondary-name"><span id="secondary-value"></span></div>
+			<div><a target="_blank" id="secondary-link"><span id="secondary-name"></span><span id="secondary-value"></span></a></div>
 			<div style="overflow:auto;">
-				<div id="secondary-container" class="draggable-landing">
+				<div id="secondary-container" class="draggable-landing" title>
 					<img src="itemspng/item44000.png"/>
 				</div>
 				<div style="float:left;padding:5px;">
 					<input type="radio" name="secondary-quality" value="gray" id="secondary-quality-gray" class="quality">
 						<label for="secondary-quality-gray"><span class="gray"><span class="gray"></span></span></label>
 					</input>
-					<input type="radio" name="secondary-quality" value="white" id="secondary-quality-white" class="quality">
+					<input type="radio" name="secondary-quality" value="white" id="secondary-quality-white" class="quality" checked>
 						<label for="secondary-quality-white"><span class="white"><span class="white"></span></span></label>
 					</input>
 					<input type="radio" name="secondary-quality" value="green" id="secondary-quality-green" class="quality">
@@ -218,8 +225,6 @@ $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
 $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 </script>
 
-<script src="js/data.js"></script>
-<script src="js/item_data.js"></script>
 <script src="js/logic.js"></script>
 <!-- <script src="js/analytics.js"></script> -->
 </body>

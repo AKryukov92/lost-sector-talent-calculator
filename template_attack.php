@@ -42,25 +42,25 @@ if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {
 <div class="attack">
 <h3><?php print $attack["name"]; ?></h3>
 <?php if (!IsNullOrEmptyString($typename)) { ?>
-	<div>Урон <?php print $typename; ?></div>
+	<div class="entry">Урон <?php print $typename; ?></div>
 <?php } ?>
 <?php if (isset($attack["radius"])) { ?>
-	<div>Радиус: <?php print $attack["radius"]; ?></div>
+	<div class="entry">Радиус: <?php print $attack["radius"]; ?></div>
 <?php } ?>
 <?php if (isset($attack["accuracy"])) { ?>
-	<div>Точность: <?php print $attack["accuracy"]; ?></div>
+	<div class="entry">Точность: <?php print $attack["accuracy"]; ?></div>
 <?php } ?>
 <?php if (isset($attack["bullets"])) { ?>
-	<div>Патронов на атаку: <?php print $attack["bullets"]; ?></div>
+	<div class="entry">Патронов на атаку: <?php print $attack["bullets"]; ?></div>
 <?php } ?>
 <?php if (isset($attack["cost"])) { ?>
-	<div>ОД на выстрел: <?php print $attack["cost"]; ?></div>
+	<div class="entry">ОД на выстрел: <?php print $attack["cost"]; ?></div>
 <?php } ?>
 <?php if (isset($attack["min_dist"]) && isset($attack["max_dist"])) { ?>
-	<div>Оптимальная дистанция: <?php print $attack["min_dist"]. "-". $attack["max_dist"]; ?></div>
+	<div class="entry">Оптимальная дистанция: <?php print $attack["min_dist"]. "-". $attack["max_dist"]; ?> м</div>
 <?php } ?>
 <?php if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {?>
-	<div>Разброс урона: <?php print $real_min_damage . " - " . $real_max_damage; ?></div>
+	<div class="entry">Разброс урона: <?php print $real_min_damage . " - " . $real_max_damage; ?></div>
 <?php } ?>
 <?php if (isset($data["specials"])) {
 	$specials = $data["specials"];

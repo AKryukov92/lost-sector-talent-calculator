@@ -40,6 +40,5 @@ if ($data["category"] == 11) {
 	include 'template_consumable.php';
 	return;
 }
-print $data["category"];
 include 'template_weapon.php';
 ?>

@@ -2,10 +2,9 @@
 <html>
 <head>
 <link href="css/local.css" rel="stylesheet">
-<link href="css/jquery-ui.css" rel="stylesheet">
 <head>
-<body>
-<div class="ui-tooltip" style="overflow:auto;">
+<body style="margin:0px;">
+<div class="tooltip-content" style="overflow:auto;">
 	<img src="itemspng/item<?php print $id; ?>00.png" style="float:right;"/>
 	<div style="color:#ff7700;font-size:16pt;"><?php print $data["name"]; ?></div>
 	<div>Аватар</div>
