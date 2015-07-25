@@ -46,7 +46,7 @@ if (isset($data["talentreq"])) {
 	<div style="color:<?php print $colorname; ?>;font-size:16pt;">
 		<?php print $data["name"]; 
 			if ($quality != 0)
-			{ print "+".$quality; } ?>
+			{ print " +".$quality; } ?>
 	</div>
 	<?php if ($category == 1) {?>
 		<div class="entry">Легкое оружие</div>
