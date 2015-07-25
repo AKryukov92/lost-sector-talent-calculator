@@ -52,12 +52,12 @@ patchdata.weapontype_map =
 	},
 	{
 		category_id:10,
-		category_name:"hats",
-		slots:["hats"]
+		category_name:"hat",
+		slots:["hat"]
 	},
 	{
 		category_id:11,
 		category_name:"consumables",
-		slots:["consumables"]
+		slots:["consumable_1", "consumable_2", "consumable_3", "consumable_4", "consumable_5"]
 	},
 ]

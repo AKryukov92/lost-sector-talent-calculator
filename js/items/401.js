@@ -20,7 +20,7 @@
 	},
 	{
 		"name":"Навскидку",
-		"type":2,
+		"type":4,
 		"accuracy":34,
 		"cost":40,
 		"min_dist":4,

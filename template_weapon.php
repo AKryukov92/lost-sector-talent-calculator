@@ -42,7 +42,9 @@ if (isset($data["talentreq"])) {
 </head>
 <body style="margin:0px;">
 <div class="tooltip-content" style="overflow:auto;">
-	<img src="itemspng/item<?php print $id; ?>00.png" style="float:right;"/>
+	<?php if (!$iframe) {?>
+		<img src="itemspng/item<?php print $id; ?>00.png" style="float:right;background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));"/>
+	<?php } ?>
 	<div style="color:<?php print $colorname; ?>;font-size:16pt;">
 		<?php print $data["name"]; 
 			if ($quality != 0)
