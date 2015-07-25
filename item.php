@@ -26,6 +26,11 @@ if (isset($_GET["quality"])) {
 } else {
 	$quality = 0;
 }
+if (isset($_GET["iframe"])) {
+	$iframe = true;
+} else {
+	$iframe = false;
+}
 $filecontent = file_get_contents($filename);
 $data = json_decode($filecontent, true);
 if (json_last_error() != 0) {

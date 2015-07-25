@@ -5,31 +5,15 @@
 <head>
 <body style="margin:0px;">
 <div class="tooltip-content" style="overflow:auto;">
-	<img src="itemspng/item<?php print $id; ?>00.png" style="float:right;"/>
+	<?php if (!$iframe) {?>
+		<img src="itemspng/item<?php print $id; ?>00.png" style="float:right;"/>
+	<?php } ?>
 	<div style="color:#ff7700;font-size:16pt;"><?php print $data["name"]; ?></div>
-	<div>Аватар</div>
-	<div>Защита: 5</div>
+	<div class="entry">Аватар</div>
+	<div class="entry">Защита: 5</div>
 	<?php if (isset($data["description"])) { ?>
 		<div style="color:gray;"><?php print $data["description"]; ?></div>
 	<?php } ?>
 </div>
-<?php
-$previd = $id - 1;
-$filename = "js/items/" . $previd . ".js";
-while (!file_exists($filename) && $previd >= 0) {
-	$previd --;
-	$filename = "js/items/" . $previd . ".js";
-}
-?>
-<a href="?id=<?php print $previd;?>" style="float:right"> предыдущий - <?php print $previd;?> </a>
-<?php
-$nextid = $id + 1;
-$filename = "js/items/" . $nextid . ".js";
-while (!file_exists($filename) && $nextid <= 1000) {
-	$nextid ++;
-	$filename = "js/items/" . $nextid . ".js";
-}
-?>
-<a href="?id=<?php print $nextid;?>" style="clear:right;float:right"> следующий - <?php print $nextid;?> </a>
-	</body>
+</body>
 <html>

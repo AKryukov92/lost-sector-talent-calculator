@@ -41,26 +41,28 @@ $base_grade = 100;
 </head>
 <body>
 <div class="tooltip-content" style="overflow:auto;">
-	<img src="itemspng/item<?php print $data["id"]; ?>00.png" style="float:right"/>
-	<div style="font-size:14pt;"><?php print $data["name"]; ?></div>
+	<?php if (!$iframe) {?>
+		<img src="itemspng/item<?php print $id; ?>00.png" style="float:right;background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));"/>
+	<?php } ?>
+	<div style="color:white;font-size:16pt;"><?php print $data["name"]; ?></div>
 	<?php if (!IsNullOrEmptyString($consumable_type_name)) { ?>
-		<div>Активная вещь (<?php print $consumable_type_name; ?>)</div>
+		<div class="entry">Активная вещь (<?php print $consumable_type_name; ?>)</div>
 	<?php } ?>
 	<?php if(isset($data["lvlreq"])) { ?>
-		<div>Необходимый уровень: <?php print $data["lvlreq"];?></div>
+		<div class="entry">Необходимый уровень: <?php print $data["lvlreq"];?></div>
 	<?php } ?>
 	<?php if (!IsNullOrEmptyString($skillreq_name)) { ?>
-		<div>Требуемый навык: <?php print $skillreq_name; ?></div>
+		<div class="entry">Требуемый навык: <?php print $skillreq_name; ?></div>
 	<?php } ?>
 	<?php if (isset($data["description"])) {?>
-		<div><?php print $data["description"] ?></div>
+		<div class="entry"><?php print $data["description"] ?></div>
 	<?php } ?>
 	<?php if (isset($data["specials"])) {
 		$specials = $data["specials"];
 		include "template_specials.php";
 	} ?>
 	<?php if (isset($data["AP_cost"])) {?>
-		<div>Необходимо <?php print $data["AP_cost"];?> ОД</div>
+		<div class="entry">Необходимо <?php print $data["AP_cost"];?> ОД</div>
 	<?php } ?>
 	<?php if (isset($data["attacks"])) {
 		for($i = 0; $i < count($data["attacks"]); $i++) {
@@ -69,23 +71,5 @@ $base_grade = 100;
 		}
 	} ?>
 </div>
-<?php
-$previd = $id - 1;
-$filename = "js/items/" . $previd . ".js";
-while (!file_exists($filename) && $previd >= 0) {
-	$previd --;
-	$filename = "js/items/" . $previd . ".js";
-}
-?>
-<a href="?id=<?php print $previd;?>" style="float:right"> предыдущий - <?php print $previd;?> </a>
-<?php
-$nextid = $id + 1;
-$filename = "js/items/" . $nextid . ".js";
-while (!file_exists($filename) && $nextid <= 1000) {
-	$nextid ++;
-	$filename = "js/items/" . $nextid . ".js";
-}
-?>
-<a href="?id=<?php print $nextid;?>" style="clear:right;float:right"> следующий - <?php print $nextid;?> </a>
 </body>
 </html>

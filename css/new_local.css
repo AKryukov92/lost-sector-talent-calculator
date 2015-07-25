@@ -116,7 +116,7 @@
 	position: absolute;
 	border:1px solid #e7a516;
 	background-color: rgba(55,55,55,0.9);
-	width:auto;
+	width:400px;
 	padding:10px;
 	font-family:'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
 }
@@ -142,8 +142,7 @@
 }
 .ui-tooltip-content iframe {
 	border: 0px;
-	width:auto;
-	max-width:440px;
+	width:440px;
 }
 
 .ui-helper-hidden-accessible {
@@ -228,15 +227,18 @@ input[type=radio]:not(old):checked +  label > span > span{
   border-radius    : 3px;
 }
 
-.special-item {
-	    background-color: rgba(55,55,55,0.9);
+.special-items{
+	display:block;
+	overflow:auto;
+}
+.special-items div {
 	float:left;
 	display:block;
 	margin:2px;
-	border:1px solid #e7a516;
 }
-.special-item img{
+.special-items div img{
 	background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));
+	border:1px solid #e7a516;
 	padding:1px;
 	background-color: rgba(55,55,55,0.9);
 	width:50px;

@@ -162,6 +162,13 @@ $(document).ready(function(){
 		}
 	);
 	$("#secondary-container").tooltip({content:""});
+	
+	$("#hat-container").tooltip({content:""});
+	$("#consumable_1-container").tooltip({content:""});
+	$("#consumable_2-container").tooltip({content:""});
+	$("#consumable_3-container").tooltip({content:""});
+	$("#consumable_4-container").tooltip({content:""});
+	$("#consumable_5-container").tooltip({content:""});
 	fill_available_items();
 });
 
@@ -755,17 +762,18 @@ var player_model = {
 			$("#" + slot_name + "-link").attr("href", link);
 			$("#" + slot_name + "-link").removeClass("grey-link white-link green-link blue-link").addClass(selected_color + "-link");
 			$("#" + slot_name + "-container").tooltip("option", "content", "<iframe scrolling=\"no\"" +
-				" src=\"" +link + "\" frameBorder=\"0\"" +
+				" src=\"" +link + "&iframe=true\" frameBorder=\"0\"" +
 				" onload=\"javascript:resizeIframe(this);\"></iframe>");
 		}
 	},
 	reset_inventory_slot:function(slot_name) {
+		player_model.add_item(slot_name, {});
 		$("#" + slot_name + "-link").attr("href", "");
-		$("#" + slot_name + "-container").empty();
-		$("#" + slot_name + "-container").tooltip("option", "content", "");
+		$("#" + slot_name + "-slider").slider('value', 0);
+		$("#" + slot_name + "-container").html("<img src=\"itemspng/slot-" + slot_name + ".png\">");
+		$("#" + slot_name + "-container").tooltip("close");
 		$("#" + slot_name + "-name").text("");
 		$("#" + slot_name + "-value").text("");
-		$("#" + slot_name + "-slider").slider('value', 0);
 	},
 	remove_item:function(item){
 		for(var i=0; i<this.slots.length; i++){
@@ -789,31 +797,12 @@ function drop_item_to_inventory(event, ui){
 	var slot_name = $(this).context.id.split("-")[0];
 	var old_item = player_model.get_item(slot_name);
 	if (!$.isEmptyObject(old_item)) {
-		add_item_to_pool(old_item);
 		player_model.reset_inventory_slot(slot_name);
 	}
 	player_model.add_item(slot_name, item);
 	$("#" + slot_name + "-container").empty();
-	$("#" + slot_name + "-container").append(ui.draggable);
+	$("#" + slot_name + "-container").append($(ui.draggable).clone());
 	player_model.update_slot_tooltip(slot_name);
-}
-function drop_item_to_pool(event, ui){
-	var item_id = ui.draggable.context.id.split("_")[1];
-	var item = get_item_by_id(item_id);
-	var target = $(this).context.id.split("-")[0];
-	var category = get_category_by_id(item.category);
-	var slot;
-	for(var i=0; i<player_model.slots.length; i++){
-		if (player_model.slots[i].item.id == item.id) {
-			slot = player_model.slots[i];
-		}
-	}
-	if (typeof slot != 'undefined') {
-		player_model.remove_item(item);
-		player_model.reset_inventory_slot(slot.name);
-		$("#" + slot.name + "-container").html("<img src=\"itemspng/item44000.png\">");
-		$("#" + category.category_name + "-pool").append(ui.draggable);
-	}
 }
 function get_category_by_id(category_id) {
 	for (var j = 0; j < patchdata.weapontype_map.length; j++){
@@ -862,7 +851,11 @@ function fill_available_items(){
 		{name:"primary", allowed_items:""},
 		{name:"secondary", allowed_items:""},
 		{name:"armor", allowed_items:""},
-		{name:"consumables", allowed_items:""},
+		{name:"consumable_1", allowed_items:""},
+		{name:"consumable_2", allowed_items:""},
+		{name:"consumable_3", allowed_items:""},
+		{name:"consumable_4", allowed_items:""},
+		{name:"consumable_5", allowed_items:""},
 		{name:"hat", allowed_items:""}
 	];
 	for (var j = 0; j < patchdata.weapontype_map.length; j++){
@@ -901,11 +894,6 @@ function fill_available_items(){
 			}
 		}
 	}
-	$("#items-pool").droppable({
-		activeClass: "ui-state-hover",
-		hoverClass: "ui-state-active",
-		drop:drop_item_to_pool
-	});
 	for (var j = 0; j < possible_slots.length; j++) {
 		$("#" + possible_slots[j].name + "-container").droppable({
 			accept:possible_slots[j].allowed_items,
