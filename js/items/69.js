@@ -1,7 +1,7 @@
 {
 	"id":69,
 	"name":"Жидкая броня М2",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Герметики",
 	"lvlreq":7,

@@ -1,6 +1,6 @@
 {
 	"name":"AA-12",
-	"category":4,
+	"category":"shotgun",
 	"mobility":78,
 	"clip":12,
 	"ammo":24,

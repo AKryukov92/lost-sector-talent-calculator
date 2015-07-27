@@ -1,6 +1,6 @@
 {
 	"name":"AWP",
-	"category":6,
+	"category":"sniper_rifle",
 	"mobility":63,
 	"clip":4,
 	"ammo":8,

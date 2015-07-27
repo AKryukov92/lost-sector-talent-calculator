@@ -1,7 +1,7 @@
 {
 	"id":512,
 	"name":"Ребис граната А (Активный Ребис)",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":5,
 	"skillreq":3,

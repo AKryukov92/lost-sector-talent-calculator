@@ -1,6 +1,6 @@
 {
 	"name":"Шит",
-	"category":9,
+	"category":"shield",
 	"mobility":72,
 	"protection":60,
 	"lvlreq":5,

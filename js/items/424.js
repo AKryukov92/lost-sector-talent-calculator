@@ -1,6 +1,6 @@
 {
 	"name":"M4A1",
-	"category":5,
+	"category":"assault_rifle",
 	"mobility":78,
 	"clip":24,
 	"ammo":48,

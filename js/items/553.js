@@ -1,6 +1,6 @@
 {
 	"name":"Calico M950",
-	"category":3,
+	"category":"smg",
 	"mobility":93,
 	"clip":60,
 	"ammo":120,

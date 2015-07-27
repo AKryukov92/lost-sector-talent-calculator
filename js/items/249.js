@@ -1,6 +1,6 @@
 {
 	"name":"Шлем 'Диверсант'",
-	"category":10,
+	"category":"hat",
 	"description":"Покупается отдельно за 100 голд",
 	"protection":5,
 	"lvlreq":5,

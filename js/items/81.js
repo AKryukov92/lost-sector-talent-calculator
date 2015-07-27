@@ -1,7 +1,7 @@
 {
 	"id":81,
 	"name":"Слабые таблетки 'Титан'",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Стероидные",
 	"lvlreq":4,

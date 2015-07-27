@@ -1,7 +1,7 @@
 {
 	"id":79,
 	"name":"Слабые таблетки 'Каллисто'",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Стероидные",
 	"lvlreq":4,

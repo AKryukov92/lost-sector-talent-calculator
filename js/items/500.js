@@ -1,6 +1,6 @@
 {
 	"name":"Арбалет",
-	"category":7,
+	"category":"launcher",
 	"mobility":75,
 	"clip":1,
 	"ammo":5,

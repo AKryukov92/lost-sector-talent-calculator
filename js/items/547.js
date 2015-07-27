@@ -1,6 +1,6 @@
 {
 	"name":"XM26LSS",
-	"category":4,
+	"category":"shotgun",
 	"mobility":85,
 	"clip":3,
 	"ammo":12,

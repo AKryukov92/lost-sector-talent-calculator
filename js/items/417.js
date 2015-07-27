@@ -1,6 +1,6 @@
 {
 	"name":"Боевой нож",
-	"category":1,
+	"category":"melee",
 	"mobility":100,
 	"lvlreq":5,
 	"id":417,

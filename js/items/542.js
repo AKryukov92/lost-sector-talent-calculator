@@ -1,6 +1,6 @@
 {
 	"name":"USAS 12",
-	"category":4,
+	"category":"shotgun",
 	"mobility":78,
 	"clip":15,
 	"ammo":24,

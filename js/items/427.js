@@ -1,6 +1,6 @@
 {
 	"name":"P90",
-	"category":3,
+	"category":"smg",
 	"mobility":90,
 	"clip":50,
 	"ammo":100,

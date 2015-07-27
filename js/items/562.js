@@ -1,6 +1,6 @@
 {
 	"name":"MG4",
-	"category":8,
+	"category":"machinegun",
 	"mobility":63,
 	"clip":75,
 	"ammo":150,

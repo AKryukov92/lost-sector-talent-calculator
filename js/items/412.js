@@ -1,6 +1,6 @@
 {
 	"name":"Полицейская дубинка",
-	"category":1,
+	"category":"melee",
 	"mobility":100,
 	"lvlreq":7,
 	"id":412,

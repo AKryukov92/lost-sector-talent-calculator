@@ -1,6 +1,6 @@
 {
 	"name":"M60",
-	"category":8,
+	"category":"machinegun",
 	"mobility":57,
 	"clip":75,
 	"ammo":150,

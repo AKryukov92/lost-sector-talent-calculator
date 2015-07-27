@@ -1,7 +1,7 @@
 {
 	"id":91,
 	"name":"Средние ребис таблетки",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Ребисовые",
 	"lvlreq":3,

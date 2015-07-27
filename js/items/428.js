@@ -1,6 +1,6 @@
 {
 	"name":"Scar",
-	"category":5,
+	"category":"assault_rifle",
 	"mobility":78,
 	"clip":30,
 	"ammo":60,

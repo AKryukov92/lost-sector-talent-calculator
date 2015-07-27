@@ -1,6 +1,6 @@
 {
 	"name":"M24",
-	"category":6,
+	"category":"sniper_rifle",
 	"mobility":63,
 	"clip":1,
 	"ammo":5,

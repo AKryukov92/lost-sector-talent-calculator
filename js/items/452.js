@@ -1,7 +1,7 @@
 {
 	"name":"Pancor Jackhammer",
 	"short_name":"Панкор",
-	"category":4,
+	"category":"shotgun",
 	"mobility":80,
 	"clip":10,
 	"ammo":24,

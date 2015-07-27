@@ -1,6 +1,6 @@
 {
 	"name":"FN F2000",
-	"category":5,
+	"category":"assault_rifle",
 	"mobility":80,
 	"clip":30,
 	"ammo":60,

@@ -1,6 +1,6 @@
 {
 	"name":"АК 74М",
-	"category":5,
+	"category":"assault_rifle",
 	"mobility":82,
 	"clip":30,
 	"ammo":60,

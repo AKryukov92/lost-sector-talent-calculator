@@ -1,6 +1,6 @@
 {
 	"name":"Magnum",
-	"category":2,
+	"category":"pistol",
 	"mobility":95,
 	"clip":6,
 	"ammo":14,

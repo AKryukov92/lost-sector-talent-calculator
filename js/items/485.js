@@ -1,6 +1,6 @@
 {
 	"name":"Glock 17",
-	"category":2,
+	"category":"pistol",
 	"mobility":100,
 	"clip":17,
 	"ammo":34,

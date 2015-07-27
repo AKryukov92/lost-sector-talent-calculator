@@ -1,6 +1,6 @@
 {
 	"name":"СВД",
-	"category":6,
+	"category":"sniper_rifle",
 	"mobility":66,
 	"clip":5,
 	"ammo":10,

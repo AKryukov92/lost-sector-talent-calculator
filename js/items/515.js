@@ -1,7 +1,7 @@
 {
 	"id":515,
 	"name":"Граната Ф-1",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":8,
 	"skillreq":25,

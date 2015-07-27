@@ -1,6 +1,6 @@
 {
 	"name":"M1911",
-	"category":2,
+	"category":"pistol",
 	"mobility":100,
 	"clip":7,
 	"ammo":14,

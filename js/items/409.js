@@ -1,6 +1,6 @@
 {
 	"name":"Дубинка-шокер",
-	"category":1,
+	"category":"melee",
 	"mobility":95,
 	"lvlreq":6,
 	"talentreq":7,

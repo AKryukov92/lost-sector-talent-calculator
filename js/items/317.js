@@ -1,6 +1,6 @@
 {
 	"name":"Шлем поддержки",
-	"category":10,
+	"category":"hat",
 	"description":"Входит в состав наборов брони для поддержки за голд или платину",
 	"protection":5,
 	"lvlreq":5,

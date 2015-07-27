@@ -1,6 +1,6 @@
 {
 	"name":"PP-2000",
-	"category":3,
+	"category":"smg",
 	"mobility":97,
 	"clip":45,
 	"ammo":135,

@@ -1,6 +1,6 @@
 {
 	"name":"MG-36",
-	"category":8,
+	"category":"machinegun",
 	"mobility":64,
 	"clip":100,
 	"ammo":200,

@@ -1,6 +1,6 @@
 {
 	"name":"Полицейский щит",
-	"category":9,
+	"category":"shield",
 	"mobility":80,
 	"protection":73,
 	"lvlreq":7,

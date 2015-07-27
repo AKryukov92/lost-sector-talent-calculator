@@ -1,6 +1,6 @@
 {
 	"name":"SPAS 12",
-	"category":4,
+	"category":"shotgun",
 	"mobility":78,
 	"clip":6,
 	"ammo":24,

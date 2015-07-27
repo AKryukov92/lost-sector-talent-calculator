@@ -1,6 +1,6 @@
 {
 	"name":"Шлем 'Урук-хай'",
-	"category":10,
+	"category":"hat",
 	"description":"Продавалась на новый год 2014-2015",
 	"protection":5,
 	"lvlreq":5,

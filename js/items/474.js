@@ -1,7 +1,7 @@
 {
 	"id":474,
 	"name":"Коктейль Молотова",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":4,
 	"description":"Воспламеняет область поражения, при вхождении в пламя персонаж получает эффект:",
 	"lvlreq":8,

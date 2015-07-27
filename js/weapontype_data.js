@@ -1,63 +1,14 @@
-patchdata.weapontype_map =
-[
-	{
-		category_id:0,
-		category_name: "armor",
-		slots:["armor"]
-	},
-	{
-		category_id:1,
-		category_name:"melee",
-		slots:["primary","secondary"]
-	},
-	{
-		category_id:2,
-		category_name:"pistols",
-		slots:["primary","secondary"]
-	},
-	{
-		category_id:3,
-		category_name:"smgs",
-		slots:["primary","secondary"]
-	},
-	{
-		category_id:4,
-		category_name:"shotguns",
-		slots:["primary"]
-	},
-	{
-		category_id:5,
-		category_name:"assault_rifles",
-		slots:["primary"]
-	},
-	{
-		category_id:6,
-		category_name:"sniper_rifles",
-		slots:["primary"]
-	},
-	{
-		category_id:7,
-		category_name:"launchers",
-		slots:["primary"]
-	},
-	{
-		category_id:8,
-		category_name:"machineguns",
-		slots:["primary"]
-	},
-	{
-		category_id:9,
-		category_name:"shields",
-		slots:["primary"]
-	},
-	{
-		category_id:10,
-		category_name:"hat",
-		slots:["hat"]
-	},
-	{
-		category_id:11,
-		category_name:"consumables",
-		slots:["consumable_1", "consumable_2", "consumable_3", "consumable_4", "consumable_5"]
-	},
-]
+patchdata.weapontype_map = {
+	armor: { slots:["armor"] },
+	melee: { slots:["primary","secondary"] },
+	pistol: { slots:["primary","secondary"] },
+	smg: { slots:["primary","secondary"] },
+	shotgun: { slots:["primary"] },
+	assault_rifle: { slots:["primary"] },
+	sniper_rifle: { slots:["primary"] },
+	launcher: { slots:["primary"] },
+	machinegun: { slots:["primary"] },
+	shield: { slots:["primary"] },
+	hat: { slots:["hat"] },
+	consumable: { slots:["consumable_1", "consumable_2", "consumable_3", "consumable_4", "consumable_5"] }
+}

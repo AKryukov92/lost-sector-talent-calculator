@@ -1,7 +1,7 @@
 {
 	"id":61,
 	"name":"Панковская 'Джига'",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Стероидные",
 	"lvlreq":2,

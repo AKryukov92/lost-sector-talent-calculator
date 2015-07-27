@@ -1,6 +1,6 @@
 {
 	"name":"Norinco 77b",
-	"category":2,
+	"category":"pistol",
 	"mobility":100,
 	"clip":10,
 	"ammo":20,

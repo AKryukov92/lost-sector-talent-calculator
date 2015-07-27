@@ -1,7 +1,7 @@
 {
 	"id":472,
 	"name":"Кислотная граната",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":8,
 	"skillreq":17,

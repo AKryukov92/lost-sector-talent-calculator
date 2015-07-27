@@ -1,6 +1,6 @@
 {
 	"name":"Топор",
-	"category":1,
+	"category":"melee",
 	"type":1,
 	"mobility":80,
 	"lvlreq":7,

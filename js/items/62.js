@@ -1,7 +1,7 @@
 {
 	"id":62,
 	"name":"Панковская 'Ярость'",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Стероидные",
 	"lvlreq":2,

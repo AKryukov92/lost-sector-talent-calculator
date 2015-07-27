@@ -1,6 +1,6 @@
 {
 	"name":"Бейсбольная бита",
-	"category":1,
+	"category":"melee",
 	"mobility":90,
 	"lvlreq":2,
 	"id":413,

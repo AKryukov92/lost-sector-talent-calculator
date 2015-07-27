@@ -1,6 +1,6 @@
 {
 	"name":"TMP",
-	"category":3,
+	"category":"smg",
 	"mobility":96,
 	"clip":45,
 	"ammo":90,

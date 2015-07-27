@@ -1,6 +1,6 @@
 {
 	"name":"Мачете",
-	"category":1,
+	"category":"melee",
 	"mobility":90,
 	"lvlreq":6,
 	"talentreq":7,

@@ -1,6 +1,6 @@
 {
 	"name":"Galil",
-	"category":5,
+	"category":"assault_rifle",
 	"mobility":80,
 	"clip":28,
 	"ammo":56,

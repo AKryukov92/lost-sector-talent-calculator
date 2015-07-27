@@ -1,6 +1,6 @@
 {
 	"name":"MAC-11",
-	"category":3,
+	"category":"smg",
 	"mobility":94,
 	"clip":45,
 	"ammo":135,

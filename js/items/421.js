@@ -1,7 +1,7 @@
 {
 	"id":421,
 	"name":"Световая граната",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":3,
 	"skillreq":4,

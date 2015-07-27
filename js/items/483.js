@@ -1,7 +1,7 @@
 {
 	"id":483,
 	"name":"Улучшенная кислотная граната",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":12,
 	"skillreq":17,

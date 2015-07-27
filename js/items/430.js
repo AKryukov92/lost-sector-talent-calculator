@@ -1,6 +1,6 @@
 {
 	"name":"Steyr AUG A3",
-	"category":5,
+	"category":"assault_rifle",
 	"mobility":80,
 	"clip":30,
 	"ammo":60,
