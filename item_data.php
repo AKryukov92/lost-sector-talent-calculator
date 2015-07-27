@@ -6,7 +6,7 @@ if (!file_exists($WEAPONTYPE_DATA_FILENAME)) {
 	return;
 }
 $weapontype_data = file_get_contents($WEAPONTYPE_DATA_FILENAME);
-$weapontype_data = preg_replace('/[\r\t\n]+/','',$weapontype_data);
+$weapontype_data = preg_replace('/[\r\t\n]+|( {4})+/','',$weapontype_data);
 print($weapontype_data);
 
 $files = scandir("./" . $ITEM_DATA_DIRECTORY);
@@ -25,7 +25,7 @@ for ($i = 0; $i < count($files); $i++) {
 		} else {
 			print(",");
 		}
-		$item_data = preg_replace('/[\r\t\n]+/','',$item_data);
+		$item_data = preg_replace('/[\r\t\n]+|( {4})+/','',$item_data);
 		print($item_data);
 	}
 }
