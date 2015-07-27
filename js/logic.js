@@ -213,12 +213,12 @@ var talent_grid_model = {
 		this.assign_power_to_talents();
 		this.create_layout_model();
 		this.prepare_layout_model();
-		//Раскомментируй следующие две строчки, чтобы сетка талантов построилась динамически.
+		//Раскомментируй следующие три строчки, чтобы сетка талантов построилась динамически.
 		// this.prepare_grid();
-		// this.fill_grid_rows();
+		//this.fill_grid_rows();
+		//this.draw_talent_forks();
 		this.assign_click_routines();
 		this.prepare_tooltips();
-		//this.draw_talent_forks();
 		this.update_layout_options();
 	},
 	assign_power_to_talents:function(){
@@ -286,11 +286,11 @@ var talent_grid_model = {
 				console.log("Talent " + current.name + " is out of bounds");
 			}
 			if (typeof current.rankof != 'undefined'){
+				console.log("last pushed:" + current.name + "variant 1. row " + target_row + " level " + current.lvlreq + " column " + current.column);
 				target_row = this.get_row_for_level(this.get_base_for_rank(current).lvlreq);
-				//console.log("last pushed:" + current.name + "variant 1. row " + target_row + " level " + current.lvlreq + " column " + current.column);
 			} else {
+				console.log("last pushed:" + current.name + " variant 2. row " + target_row + " level " + current.lvlreq + " column " + current.column);
 				target_row = this.get_row_for_level(current.lvlreq);
-				//console.log("last pushed:" + current.name + " variant 2. row " + target_row + " level " + current.lvlreq + " column " + current.column);
 			}
 			this.layout_model[target_row].columns[current.column].items.push(current);
 		}
@@ -331,116 +331,14 @@ var talent_grid_model = {
 			}
 		}
 	},
-	build_tooltip_header:function(current){
-		var tooltip_content = "<h3>" + current.name + "</h3>";
-		if (typeof current.cost != 'undefined')
-			tooltip_content += "<div><span>Стоимость:</span> " + current.cost + " очков навыков</div>";
-		if (typeof current.lvlreq != 'undefined') {
-			tooltip_content += "<div><span>Требуется:</span> Боец уровня " + current.lvlreq;
-			if (typeof current.talentreq != 'undefined'){
-				var j;
-				for (j = 0; j < this.current_class_data.talents.length; j++){
-					if (this.current_class_data.talents[j].id == current.talentreq) {
-						tooltip_content += ", " + this.current_class_data.talents[j].name;
-					}
-				}
-			}
-			tooltip_content += "</div>";
-		}
-		if (typeof current.number_of_uses != 'undefined')
-			tooltip_content += "<div><span>Число использований:</span> " + current.number_of_uses + "</div>";";";
-		if (typeof current.AP_cost != 'undefined')
-			tooltip_content += "<div><span>Затраты ОД:</span> " + current.AP_cost + "</div>";
-		if (typeof current.description != 'undefined')
-			tooltip_content += "<div><span>Описание:</span> " + current.description + "</div>";
-		return tooltip_content;
-	},
 	update_tooltip:function(current) {
+		var class_prefix = talent_grid_model.current_class_data.prefix;
 		$(function(){
 			$("#" + talent_grid_model.current_class_data.prefix + "-talent-container" + current.id).tooltip({
 				track:true,
-				content:"<iframe scrolling=\"no\" src=\"/talent.php?id=" + current.id + "\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>"
+				content:"<iframe scrolling=\"no\" src=\"/talent.php?id=" + current.id + "&prefix=" + class_prefix +"&iframe=true\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>"
 			})
 		});
-	},
-	old_update_tooltip:function(current){
-		var tooltip_content = "";
-		var tooltip_header = "";
-		if (typeof current.effect != 'undefined') {
-			var ranks = this.layout_model[this.get_row_for_level(this.get_base_for_rank(current).lvlreq)].columns[current.column].items;
-			if (ranks.length == 0)
-				console.log("No ranks found for " + current.name);
-			var j;
-			var max_learned;
-			var max_learned_index;
-			for (j = 0; j < ranks.length; j++) {
-				if (player_model.talent_learned(ranks[j])) {
-					if (typeof max_learned == 'undefined') {
-						max_learned = ranks[j];
-						max_learned_index = j;
-					} else if (ranks[j].lvlreq > max_learned.lvlreq) {
-						max_learned = ranks[j];
-						max_learned_index = j;
-					}
-				}
-			}
-			max_learned_index++;
-			if (typeof max_learned != 'undefined') {
-				if (typeof max_learned.effect == 'undefined') {
-					console.log("effect not found for " + max_learned.name);
-				}
-				tooltip_header = this.build_tooltip_header(max_learned);
-				tooltip_content += "<div><span>Текущий ранг:" + max_learned_index + "/" + ranks.length + "<br/>Эффект:</span>";
-				tooltip_content += max_learned.effect;
-				tooltip_content += "</div>";
-			}
-			var min_unlearned;
-			var min_unlearned_index;
-			for (j = 0; j < ranks.length; j++) {
-				if (!player_model.talent_learned(ranks[j])) {
-					if (typeof min_unlearned == 'undefined') {
-						min_unlearned = ranks[j];
-						min_unlearned_index = j;
-					} else if (ranks[j].lvlreq < min_unlearned.lvlreq) {
-						min_unlearned = ranks[j];
-						min_unlearned_index = j;
-					}
-				}
-			}
-			min_unlearned_index++;
-			if (typeof min_unlearned == 'undefined') {
-				if (typeof max_learned == 'undefined') {
-					tooltip_header = this.build_tooltip_header(ranks[0]);
-					tooltip_content += "<div><span>Следующий ранг:1/" + ranks.length + "<br/>Эффект:</span>";
-					tooltip_content += ranks[0].effect;
-					tooltip_content += "</div>";
-				}
-			} else {
-				if (typeof min_unlearned.effect == 'undefined') {
-					console.log("effect not found for " + min_unlearned.name);
-				}
-				tooltip_header = this.build_tooltip_header(min_unlearned);
-				tooltip_content += "<div><span>Следующий ранг:" + min_unlearned_index + "/" + ranks.length + "<br/>Эффект:</span>";
-				tooltip_content += min_unlearned.effect;
-				tooltip_content += "</div>";
-			}
-			$(function(){
-				var class_prefix = talent_grid_model.current_class_data.prefix;
-				var talent_id = talent_grid_model.get_base_for_rank(current).id;
-				$("#" + class_prefix + "-talent-container" + talent_id).tooltip({
-					track:true,
-					content:"<iframe  scrolling=\"no\" src=\"/talent.php?id=" + current.id + "\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>"
-				})
-			});
-		} else {
-			$(function(){
-				$("#" + talent_grid_model.current_class_data.prefix + "-talent-container" + current.id).tooltip({
-					track:true,
-					content:"<iframe  scrolling=\"no\" src=\"/talent.php?id=" + current.id + "\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>"
-				})
-			});
-
-		}
 	},
 	prepare_tooltips:function(){
 		var i;
@@ -765,7 +663,6 @@ var player_model = {
 		player_model.add_item(slot_name, {});
 		$("#" + slot_name + "-link").attr("href", "");
 		$("#" + slot_name + "-container").html("<img src=\"itemspng/slot-" + slot_name + ".png\">");
-		$("#" + slot_name + "-container").tooltip("close");
 		$("#" + slot_name + "-name").text("");
 		$("#" + slot_name + "-value").text("");
 	},

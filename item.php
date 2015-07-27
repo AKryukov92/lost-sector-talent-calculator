@@ -3,15 +3,14 @@
 function IsNullOrEmptyString($question){
     return (!isset($question) || trim($question)==='');
 }
-
 if (!isset($_GET["id"]) && IsNullOrEmptyString($id)) {
-	print "item not specified";
+	print "item is not specified";
 	return;
 }
 $id = $_GET["id"];
 $filename = "js/items/" . $id . ".js";
 if (!file_exists($filename)) {
-	print "item data not found";
+	print "item data is not found";
 	return;
 }
 
