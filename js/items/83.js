@@ -1,7 +1,7 @@
 {
 	"id":83,
 	"name":"Малая инъекция 'Атлант'",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Стероидные",
 	"lvlreq":4,

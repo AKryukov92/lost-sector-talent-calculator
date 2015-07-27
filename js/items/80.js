@@ -1,7 +1,7 @@
 {
 	"id":80,
 	"name":"Малая инъекция 'Марс'",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Стероидные",
 	"lvlreq":4,

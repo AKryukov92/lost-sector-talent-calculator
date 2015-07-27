@@ -1,7 +1,7 @@
 {
 	"id":82,
 	"name":"Малая инъекция 'Бахус'",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Стероидные",
 	"lvlreq":4,

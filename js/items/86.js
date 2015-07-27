@@ -1,7 +1,7 @@
 {
 	"id":86,
 	"name":"Слабые таблетки 'Веста'",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Стероидные",
 	"lvlreq":5,

@@ -1,6 +1,6 @@
 {
 	"name":"G36",
-	"category":5,
+	"category":"assault_rifle",
 	"mobility":82,
 	"clip":28,
 	"ammo":56,

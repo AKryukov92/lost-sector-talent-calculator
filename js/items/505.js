@@ -1,6 +1,6 @@
 {
 	"name":"Barrett M82",
-	"category":6,
+	"category":"sniper_rifle",
 	"mobility":62,
 	"clip":4,
 	"ammo":8,

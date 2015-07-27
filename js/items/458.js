@@ -1,6 +1,6 @@
 {
 	"name":"Barrett M99-1",
-	"category":6,
+	"category":"sniper_rifle",
 	"mobility":60,
 	"clip":1,
 	"ammo":5,

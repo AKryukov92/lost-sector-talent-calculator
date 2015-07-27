@@ -1,7 +1,7 @@
 {
 	"id":481,
 	"name":"Радар",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":3,
 	"description":"Легкий радар для обнаружения активности противника, скрытых объектов в радиусе 10м",
 	"lvlreq":6,

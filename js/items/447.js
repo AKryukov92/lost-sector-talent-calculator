@@ -1,6 +1,6 @@
 {
 	"name":"Desert Eagle",
-	"category":2,
+	"category":"pistol",
 	"mobility":95,
 	"clip":7,
 	"ammo":14,

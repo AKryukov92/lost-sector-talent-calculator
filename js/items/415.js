@@ -1,6 +1,6 @@
 {
 	"name":"Разводной ключ",
-	"category":1,
+	"category":"melee",
 	"mobility":95,
 	"id":415,
 	"attacks":[

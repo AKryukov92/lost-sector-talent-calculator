@@ -1,7 +1,7 @@
 {
 	"id":73,
 	"name":"Жидкая броня коллекторов",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Герметики",
 	"lvlreq":7,

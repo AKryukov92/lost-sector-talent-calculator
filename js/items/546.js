@@ -1,6 +1,6 @@
 {
 	"name":"Glock 18",
-	"category":2,
+	"category":"pistol",
 	"mobility":97,
 	"clip":16,
 	"ammo":48,

@@ -1,6 +1,6 @@
 {
 	"name":"RPK-74",
-	"category":8,
+	"category":"machinegun",
 	"mobility":62,
 	"clip":75,
 	"ammo":150,

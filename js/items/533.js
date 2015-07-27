@@ -1,6 +1,6 @@
 {
 	"name":"M16A2",
-	"category":5,
+	"category":"assault_rifle",
 	"mobility":77,
 	"clip":24,
 	"ammo":48,

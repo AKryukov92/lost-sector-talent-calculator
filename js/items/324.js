@@ -1,6 +1,6 @@
 {
 	"name":"Шлем скаута",
-	"category":10,
+	"category":"hat",
 	"description":"Входит в состав наборов брони для скаута за голд или платину",
 	"protection":5,
 	"lvlreq":5,

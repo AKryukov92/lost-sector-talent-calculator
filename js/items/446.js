@@ -1,6 +1,6 @@
 {
 	"name":"USP45",
-	"category":2,
+	"category":"pistol",
 	"mobility":100,
 	"clip":12,
 	"ammo":24,

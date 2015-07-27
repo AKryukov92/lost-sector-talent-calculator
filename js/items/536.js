@@ -1,6 +1,6 @@
 {
 	"name":"ПКМ",
-	"category":8,
+	"category":"machinegun",
 	"mobility":60,
 	"clip":100,
 	"ammo":200,

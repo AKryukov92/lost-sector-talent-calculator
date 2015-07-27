@@ -1,6 +1,6 @@
 {
 	"name":"UMP45",
-	"category":3,
+	"category":"smg",
 	"mobility":92,
 	"clip":60,
 	"ammo":120,

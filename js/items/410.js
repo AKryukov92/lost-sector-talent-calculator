@@ -1,6 +1,6 @@
 {
 	"name":"Многозарядный Гранатомет Милкор",
-	"category":7,
+	"category":"launcher",
 	"mobility":66,
 	"clip":6,
 	"ammo":6,

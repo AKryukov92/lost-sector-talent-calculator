@@ -1,6 +1,6 @@
 {
 	"name":"Гранатомет М79",
-	"category":7,
+	"category":"launcher",
 	"mobility":69,
 	"clip":1,
 	"ammo":8,

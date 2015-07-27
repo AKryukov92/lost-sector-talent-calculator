@@ -1,6 +1,6 @@
 {
 	"name":"Беретта 93P",
-	"category":2,
+	"category":"pistol",
 	"mobility":100,
 	"clip":16,
 	"ammo":32,

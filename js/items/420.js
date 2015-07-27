@@ -1,7 +1,7 @@
 {
 	"id":420,
 	"name":"Осколочная граната",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":3,
 	"skillreq":4,

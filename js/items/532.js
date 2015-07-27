@@ -1,6 +1,6 @@
 {
 	"name":"SR25",
-	"category":6,
+	"category":"sniper_rifle",
 	"mobility":67,
 	"clip":10,
 	"ammo":10,

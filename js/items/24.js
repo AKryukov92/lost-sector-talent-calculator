@@ -1,7 +1,7 @@
 {
 	"id":24,
 	"name":"Инъекция 'Церера'",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Адреналиновые",
 	"lvlreq":4,

@@ -1,6 +1,6 @@
 {
 	"name":"Автоген",
-	"category":1,
+	"category":"melee",
 	"mobility":96,
 	"lvlreq":4,
 	"id":509,

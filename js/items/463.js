@@ -1,6 +1,6 @@
 {
 	"name":"M249 SAW",
-	"category":8,
+	"category":"machinegun",
 	"mobility":62,
 	"clip":75,
 	"ammo":150,

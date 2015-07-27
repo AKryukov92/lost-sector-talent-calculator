@@ -1,6 +1,6 @@
 {
 	"name":"Protecta",
-	"category":4,
+	"category":"shotgun",
 	"mobility":77,
 	"clip":12,
 	"ammo":24,

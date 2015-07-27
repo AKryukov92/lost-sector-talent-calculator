@@ -1,6 +1,6 @@
 {
 	"name":"FN TPS",
-	"category":4,
+	"category":"shotgun",
 	"mobility":79,
 	"clip":7,
 	"ammo":21,

@@ -1,6 +1,6 @@
 {
 	"name":"Лом",
-	"category":1,
+	"category":"melee",
 	"mobility":85,
 	"lvlreq":3,
 	"id":414,

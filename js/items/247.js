@@ -1,6 +1,6 @@
 {
 	"name":"Шлем 'Алтын'",
-	"category":10,
+	"category":"hat",
 	"description":"Продавалась на 23 февраля в 2015 году",
 	"protection":5,
 	"lvlreq":5,

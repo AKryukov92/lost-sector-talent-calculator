@@ -1,7 +1,7 @@
 {
 	"id":26,
 	"name":"Амуниция",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":3,
 	"description":"Восстанавливает запас патронов в бою",
 	"lvlreq":1,

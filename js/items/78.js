@@ -1,7 +1,7 @@
 {
 	"id":78,
 	"name":"Слабые таблетки 'Гиперион'",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Стероидные",
 	"lvlreq":4,

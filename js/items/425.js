@@ -1,6 +1,6 @@
 {
 	"name":"РПГ-7",
-	"category":7,
+	"category":"launcher",
 	"mobility":54,
 	"clip":1,
 	"ammo":2,

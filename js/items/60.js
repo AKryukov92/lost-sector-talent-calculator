@@ -1,7 +1,7 @@
 {
 	"id":60,
 	"name":"Панковская 'Мята'",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Адреналиновые",
 	"lvlreq":2,

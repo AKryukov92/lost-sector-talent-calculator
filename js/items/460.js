@@ -1,6 +1,6 @@
 {
 	"name":"РПД",
-	"category":8,
+	"category":"machinegun",
 	"mobility":59,
 	"clip":75,
 	"ammo":150,

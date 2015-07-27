@@ -1,7 +1,7 @@
 {
 	"id":92,
 	"name":"Усиленные ребис таблетки",
-	"category":11,
+	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Ребисовые",
 	"skillreq":2,

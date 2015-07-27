@@ -1,6 +1,6 @@
 {
 	"name":"Рино",
-	"category":7,
+	"category":"launcher",
 	"mobility":56,
 	"clip":1,
 	"ammo":2,
