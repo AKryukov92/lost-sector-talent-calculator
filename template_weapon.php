@@ -17,10 +17,10 @@ switch($color) {
 		$base_grade = 100;
 		break;
 }
-if($data["category"] == 1 || $data["category"] == 2 || $data["category"] == 3) {
-	$category = 1;
+if($data["category"] == "pistol" || $data["category"] == "melee" || $data["category"] == "smg") {
+	$category = "light";
 } else {
-	$category = 2;
+	$category = "middle";
 }
 $talentreq_name = "";
 if (isset($data["talentreq"])) {
@@ -50,7 +50,7 @@ if (isset($data["talentreq"])) {
 			if ($quality != 0)
 			{ print " +".$quality; } ?>
 	</div>
-	<?php if ($category == 1) {?>
+	<?php if ($category == "light") {?>
 		<div class="entry">Легкое оружие</div>
 	<?php } else { ?>
 		<div class="entry">Среднее оружие</div>
@@ -87,6 +87,5 @@ if (isset($data["talentreq"])) {
 		}
 	} ?>
 </div>
-
 </body>
 </html>

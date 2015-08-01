@@ -1,7 +1,7 @@
 {
 	"name":"Steyr AUG A1",
 	"category":"assault_rifle",
-	"mobility":78,
+	"mobility":79,
 	"clip":30,
 	"ammo":60,
 	"reload_cost":25,

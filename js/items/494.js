@@ -1,7 +1,7 @@
 {
 	"name":"TMP",
 	"category":"smg",
-	"mobility":96,
+	"mobility":99,
 	"clip":45,
 	"ammo":90,
 	"reload_cost":20,

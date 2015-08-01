@@ -1,7 +1,7 @@
 {
 	"name":"MAC-11",
 	"category":"smg",
-	"mobility":94,
+	"mobility":97,
 	"clip":45,
 	"ammo":135,
 	"reload_cost":25,

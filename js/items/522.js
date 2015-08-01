@@ -1,13 +1,14 @@
 {
-	"name":"Scar",
+	"name":"АК 47 золотой",
 	"category":"assault_rifle",
-	"mobility":79,
+	"mobility":77,
 	"clip":30,
 	"ammo":60,
 	"reload_cost":25,
-	"lvlreq":6,
-	"talentreq":10,
-	"id":428,
+	"lvlreq":8,
+	"talentreq":22,
+	"description":"Лучше чем у Саддама",
+	"id":522,
 	"attacks":[
 	{
 		"name":"Удар",
@@ -22,23 +23,23 @@
 	{
 		"name":"Очередь",
 		"type":3,
-		"accuracy":58,
+		"accuracy":54,
 		"cost":40,
-		"min_dist":12,
+		"min_dist":11,
 		"max_dist":24,
 		"bullets":8,
-		"min_damage":47,
-		"max_damage":70
+		"min_damage":54,
+		"max_damage":85
 	},
 	{
 		"name":"Прицельно",
 		"type":3,
-		"accuracy":65,
+		"accuracy":62,
 		"cost":60,
-		"min_dist":14,
+		"min_dist":13,
 		"max_dist":28,
 		"bullets":6,
-		"min_damage":51,
-		"max_damage":74
+		"min_damage":60,
+		"max_damage":86
 	}]
 }

@@ -44,5 +44,13 @@ if ($data["category"] == "consumable") {
 	include 'template_consumable.php';
 	return;
 }
+if ($data["category"] == "armor") {
+	include 'template_armor.php';
+	return;
+}
+if ($data["category"] == "shield") {
+	include 'template_armor.php';
+	return;
+}
 include 'template_weapon.php';
 ?>
