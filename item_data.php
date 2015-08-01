@@ -25,7 +25,7 @@ for ($i = 0; $i < count($files); $i++) {
 		} else {
 			print(",");
 		}
-		$item_data = preg_replace('/[\r\t\n]+|( {4})+/','',$item_data);
+		//$item_data = preg_replace('/[\r\t\n]+|( {4})+/','',$item_data);
 		print($item_data);
 	}
 }

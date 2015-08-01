@@ -5,7 +5,8 @@
 	"consumable_type":4,
 	"description":"Воспламеняет область поражения, при вхождении в пламя персонаж получает эффект:",
 	"lvlreq":8,
-	"skillreq":17,
+	"talentreq":17,
+	"classreq":["as","sc","su"],
 	"attacks":[
 	{
 		"name":"Бросок",

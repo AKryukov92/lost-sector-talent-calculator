@@ -5,5 +5,6 @@
 	"protection":73,
 	"lvlreq":7,
 	"talentreq":9,
+	"classreq":["ju"],
 	"id":411
 }

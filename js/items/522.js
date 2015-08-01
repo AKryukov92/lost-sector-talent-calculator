@@ -8,6 +8,7 @@
 	"lvlreq":8,
 	"talentreq":22,
 	"description":"Лучше чем у Саддама",
+	"classreq":["as"],
 	"id":522,
 	"attacks":[
 	{

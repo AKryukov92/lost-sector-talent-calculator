@@ -5,7 +5,8 @@
 	"description":"Концентрированные отходы производтсва лекарственного ребиса, имеющие прямо противоположное действие",
 	"consumable_type":4,
 	"lvlreq":10,
-	"skillreq":17,
+	"talentreq":17,
+	"classreq":["as","sc","su"],
 	"attacks":[
 	{
 		"name":"Бросок",

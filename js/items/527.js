@@ -8,6 +8,7 @@
 	"lvlreq":10,
 	"talentreq":999,
 	"description":"Поджигает землю в месте взрыва",
+	"classreq":["su"],
 	"id":527,
 	"imageid":549,
 	"attacks":[

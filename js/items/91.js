@@ -5,7 +5,7 @@
 	"consumable_type":2,
 	"description":"Тип: Ребисовые",
 	"lvlreq":3,
-	"skillreq":2,
+	"talentreq":2,
 	"AP_cost":30,
 	"specials":[
 	{

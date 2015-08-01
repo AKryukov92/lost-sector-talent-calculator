@@ -4,7 +4,8 @@
 	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":5,
-	"skillreq":3,
+	"talentreq":3,
+	"classreq":["sc","su"],
 	"attacks":[
 	{
 		"name":"Бросок",
