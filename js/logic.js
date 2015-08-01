@@ -39,6 +39,7 @@ function talenthover(event) {
 
 function set_grade(slot_name, value){
   var element = $("#" + slot_name + "-value");
+  player_model.slots[slot_name].grade = value;
   if (value === 0) {
 	element.html( "" );
   } else {
@@ -77,31 +78,6 @@ $(document).ready(function(){
 	$("#support-link").click(function(){
 		talent_grid_model.select_data("su");
 	});
-	$("#link-to-build").click(function(){window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());});
-	var result,
-		tmp = [];
-	location.search
-		.replace ( "?", "" )
-		.split("&")
-		.forEach(function (item) {
-			tmp = item.split("=");
-			if (tmp[0] === "talent")
-				result = decodeURIComponent(tmp[1]);
-		});
-	if (typeof result != 'undefined') {
-		var game_version = result.split("_")[0];
-		var talent_input = result.split("_")[1];
-		var class_prefix = game_version.substr(game_version.length - 2, 2);
-		talent_grid_model.select_data(class_prefix);
-		var index = $('#tabs a[href="#tabs-'+ class_prefix + '"]').parent().index();
-		$("#tabs").tabs("option", "active", index);
-		var data_version = game_version.substr(game_version.length - 3, 1);
-		if (data_version == patchdata.data_version) {
-			player_model.learn_encoded_talents(talent_input);
-		}
-	} else {
-		talent_grid_model.select_data("as");
-	}
 
     $( "#armor-slider" ).slider({
       value:0,
@@ -109,7 +85,7 @@ $(document).ready(function(){
       max: 15,
       step: 1,
       change: function( event, ui ) {
-		change_handler("armor");
+		quality_change_handler("armor");
       },
 	  slide: function( event, ui ) {
 		slider_slide_handler("armor", event, ui);
@@ -118,10 +94,13 @@ $(document).ready(function(){
 	$( "#armor-value" ).html( "" );
 	$("[name=\"armor-quality\"]").change(
 		function(){
-			change_handler("armor");
+			quality_change_handler("armor");
 		}
 	);
-	$("#armor-container").tooltip({content:""});
+	$("#armor-container").tooltip({
+		show:{delay:300},
+		content:""
+	});
 	
     $( "#primary-slider" ).slider({
       value:0,
@@ -129,7 +108,7 @@ $(document).ready(function(){
       max: 15,
       step: 1,
       change: function( event, ui ) {
-		  change_handler("primary");
+		  quality_change_handler("primary");
       },
 	  slide: function(event, ui) {
 		slider_slide_handler("primary", event, ui);
@@ -138,10 +117,13 @@ $(document).ready(function(){
     $( "#primary-value" ).html( "" );
 	$("[name=\"primary-quality\"]").change(
 		function(){
-			change_handler("primary");
+			quality_change_handler("primary");
 		}
 	);
-	$("#primary-container").tooltip({content:""});
+	$("#primary-container").tooltip({
+		show:{delay:300},
+		content:""
+	});
 	
     $( "#secondary-slider" ).slider({
       value:0,
@@ -149,7 +131,7 @@ $(document).ready(function(){
       max: 15,
       step: 1,
       change: function( event, ui ) {
-		  change_handler("secondary");
+		  quality_change_handler("secondary");
       },
 	  slide: function(event, ui) {
 		slider_slide_handler("secondary", event, ui);
@@ -158,25 +140,126 @@ $(document).ready(function(){
     $( "#secondary-value" ).html( "" );
 	$("[name=\"secondary-quality\"]").change(
 		function(){
-			change_handler("secondary");
+			quality_change_handler("secondary");
 		}
 	);
-	$("#secondary-container").tooltip({content:""});
+	$("#secondary-container").tooltip({
+		show:{delay:300},
+		content:""
+	});
 	
 	$("#hat-container").tooltip({content:""});
-	$("#consumable_1-container").tooltip({content:""});
-	$("#consumable_2-container").tooltip({content:""});
-	$("#consumable_3-container").tooltip({content:""});
-	$("#consumable_4-container").tooltip({content:""});
-	$("#consumable_5-container").tooltip({content:""});
+	$("#consumable_1-container").tooltip({
+		show:{delay:300},
+		content:""
+	});
+	$("#consumable_2-container").tooltip({
+		show:{delay:300},
+		content:""
+	});
+	$("#consumable_3-container").tooltip({
+		show:{delay:300},
+		content:""
+	});
+	$("#consumable_4-container").tooltip({
+		show:{delay:300},
+		content:""
+	});
+	$("#consumable_5-container").tooltip({
+		show:{delay:300},
+		content:""
+	});	
 	fill_available_items();
+	$("#link-to-build").click(function(){window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());});
+	var talent,
+		tmp = [];
+	location.search
+		.replace ( "?", "" )
+		.split("&")
+		.forEach(function (item) {
+			tmp = item.split("=");
+			if (tmp[0] === "talent") {
+				talent = decodeURIComponent(tmp[1]);
+				var game_version = talent.split("_")[0];
+				var talent_input = talent.split("_")[1];
+				var class_prefix = game_version.substr(game_version.length - 2, 2);
+				talent_grid_model.select_data(class_prefix);
+				var index = $('#tabs a[href="#tabs-'+ class_prefix + '"]').parent().index();
+				$("#tabs").tabs("option", "active", index);
+				var data_version = game_version.substr(game_version.length - 3, 1);
+				if (data_version == patchdata.data_version) {
+					player_model.learn_encoded_talents(talent_input);
+				}
+			}
+			if (tmp[0] === "primary") {
+				itemstring = decodeURIComponent(tmp[1]);
+				var item = get_item_by_id(itemstring.split("_")[0]);
+				player_model.slots["primary"].color = itemstring.split("_")[1];
+				player_model.slots["primary"].quality = itemstring.split("_")[2];
+				$("#primary-slider").slider("value", player_model.slots["primary"].quality);
+				$("#primary-quality-" + player_model.slots["primary"].color).prop('checked', true);
+				equip_item(item, "primary");
+			}
+			if (tmp[0] === "secondary") {
+				itemstring = decodeURIComponent(tmp[1]);
+				var item = get_item_by_id(itemstring.split("_")[0]);
+				player_model.slots["secondary"].color = itemstring.split("_")[1];
+				player_model.slots["secondary"].quality = itemstring.split("_")[2];
+				$("#secondary-slider").slider("value", player_model.slots["secondary"].quality);
+				$("#secondary-quality-" + player_model.slots["secondary"].color).prop('checked', true);
+				equip_item(item, "secondary");
+			}
+			if (tmp[0] === "armor") {
+				itemstring = decodeURIComponent(tmp[1]);
+				var item = get_item_by_id(itemstring.split("_")[0]);
+				player_model.slots["armor"].color = itemstring.split("_")[1];
+				player_model.slots["armor"].quality = itemstring.split("_")[2];
+				$("#armor-slider").slider("value", player_model.slots["armor"].quality);
+				$("#armor-quality-" + player_model.slots["armor"].color).prop('checked', true);
+				equip_item(item, "armor");
+			}
+			if (tmp[0] === "hat") {
+				itemstring = decodeURIComponent(tmp[1]);
+				var item = get_item_by_id(itemstring.split("_")[0]);
+				equip_item(item, "hat");
+			}
+			if (tmp[0] === "consumable1") {
+				itemstring = decodeURIComponent(tmp[1]);
+				var item = get_item_by_id(itemstring.split("_")[0]);
+				equip_item(item, "consumable_1");
+			}
+			if (tmp[0] === "consumable2") {
+				itemstring = decodeURIComponent(tmp[1]);
+				var item = get_item_by_id(itemstring.split("_")[0]);
+				equip_item(item, "consumable_2");
+			}
+			if (tmp[0] === "consumable3") {
+				itemstring = decodeURIComponent(tmp[1]);
+				var item = get_item_by_id(itemstring.split("_")[0]);
+				equip_item(item, "consumable_3");
+			}
+			if (tmp[0] === "consumable4") {
+				itemstring = decodeURIComponent(tmp[1]);
+				var item = get_item_by_id(itemstring.split("_")[0]);
+				equip_item(item, "consumable_4");
+			}
+			if (tmp[0] === "consumable5") {
+				itemstring = decodeURIComponent(tmp[1]);
+				var item = get_item_by_id(itemstring.split("_")[0]);
+				equip_item(item, "consumable_5");
+			}
+		});
+	if (typeof talent == 'undefined') {
+		talent_grid_model.select_data("as");
+	}
 });
 
-function change_handler(slot_name) {
+function quality_change_handler(slot_name) {
 	if ($.isEmptyObject(player_model.slots[slot_name].item)) {
 		return;
 	}
 	player_model.update_slot_tooltip(slot_name);
+	player_model.update_link();
 }
 
 function slider_slide_handler(slot_name, event, ui) {
@@ -184,6 +267,7 @@ function slider_slide_handler(slot_name, event, ui) {
 		return;
 	}
 	set_grade(slot_name, ui.value);	
+	player_model.update_link();
 }
 
 var last_visited_element = {};
@@ -214,7 +298,7 @@ var talent_grid_model = {
 		this.create_layout_model();
 		this.prepare_layout_model();
 		//Раскомментируй следующие три строчки, чтобы сетка талантов построилась динамически.
-		// this.prepare_grid();
+		//this.prepare_grid();
 		//this.fill_grid_rows();
 		//this.draw_talent_forks();
 		this.assign_click_routines();
@@ -225,7 +309,7 @@ var talent_grid_model = {
 		this.maxrow = this.current_class_data.grid_height;
 		var i;
 		var power = 1;
-		this.maxcol = 0
+		this.maxcol = 0;
 		for(i = 0; i < this.current_class_data.talents.length;i++){
 			if (this.current_class_data.talents[i].column > this.maxcol)
 				this.maxcol = this.current_class_data.talents[i].column;
@@ -307,7 +391,7 @@ var talent_grid_model = {
 					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<img id=\"" + this.current_class_data.prefix + "-bright-img" + current.id + "\" class=\"bright-img\" src=\"skillspng/" + current.imageid + "00.png\"/>");
 					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div id=\"" + this.current_class_data.prefix + "-lock-rect" + current.id + "\" class=\"lock-rect\"></div>");
 					if (typeof current.AP_cost != 'undefined'){
-						$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div " + current.id + " class=\"talent-green\"></div>");
+						$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div class=\"talent-green\"></div>");
 					}
 					
 					//$("#talent-container" + current.id).append("<div class=\"lock-rect\"></div>");
@@ -325,6 +409,9 @@ var talent_grid_model = {
 			for	(colindex = 0; colindex < this.maxcol; colindex++) {
 				if (this.layout_model[rowindex].columns[colindex].items.length > 0) {
 					var current = this.layout_model[rowindex].columns[colindex].items[0];
+					if (current.id > 100) {
+						var temptemp = 0;
+					}
 					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).click(current, talentclick);
 					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).mouseover(current, talenthover);
 				}
@@ -336,6 +423,7 @@ var talent_grid_model = {
 		$(function(){
 			$("#" + talent_grid_model.current_class_data.prefix + "-talent-container" + current.id).tooltip({
 				track:true,
+				show:{delay:300},
 				content:"<iframe scrolling=\"no\" src=\"/talent.php?id=" + current.id + "&prefix=" + class_prefix +"&iframe=true\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>"
 			})
 		});
@@ -633,6 +721,42 @@ var player_model = {
 	},
 	update_link:function(){
 		var link = "http://lstc.wc.lt?talent=" + patchdata.game_version + patchdata.data_version + talent_grid_model.current_class_data.prefix + "_" + this.convert_powersum_to_string();
+		var slot = player_model.slots["primary"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&primary=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
+		}
+		slot = player_model.slots["secondary"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&secondary=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
+		}
+		slot = player_model.slots["armor"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&armor=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
+		}
+		slot = player_model.slots["hat"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&hat=" + slot.item.id;
+		}
+		slot = player_model.slots["consumable_1"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&consumable1=" + slot.item.id;
+		}
+		slot = player_model.slots["consumable_2"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&consumable2=" + slot.item.id;
+		}
+		slot = player_model.slots["consumable_3"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&consumable3=" + slot.item.id;
+		}
+		slot = player_model.slots["consumable_4"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&consumable4=" + slot.item.id;
+		}
+		slot = player_model.slots["consumable_5"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&consumable_5=" + slot.item.id;
+		}
 		$("#link-to-build").val(link);
 	},
 	add_item:function(slot_name, item){
@@ -646,6 +770,7 @@ var player_model = {
 		if (selected_color == 'undefined') {
 			selected_color = white;
 		}
+		this.slots[slot_name].color = selected_color;
 		var selected_quality = $("#" + slot_name + "-slider").slider("option", "value");
 		var item = player_model.slots[slot_name].item;
 		if (!$.isEmptyObject(item) && typeof item.id != 'undefined'){
@@ -684,6 +809,7 @@ function equip_item(item, slot_name) {
 	$("#" + slot_name + "-container").prop("title");
 	$("#" + slot_name + "-container").html("<img id='item_" + item.id + "' src='itemspng/item" + item.id + "00.png'/>");
 	player_model.update_slot_tooltip(slot_name);
+	player_model.update_link();
 }
 function get_item_by_id(query_id){
 	for (var i = 0; i < patchdata.item_data.length; i++) {

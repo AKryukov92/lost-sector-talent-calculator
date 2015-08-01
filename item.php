@@ -36,11 +36,11 @@ if (json_last_error() != 0) {
 	print 'error parsing item data';
 	return;
 }
-if ($data["category"] == 10) {
+if ($data["category"] == "hat") {
 	include 'template_hat.php';
 	return;
 }
-if ($data["category"] == 11) {
+if ($data["category"] == "consumable") {
 	include 'template_consumable.php';
 	return;
 }

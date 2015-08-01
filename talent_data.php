@@ -38,8 +38,8 @@ if (!$files) {
 	return;
 }
 print("var patchdata={");
-print("\"gameversion\":98,");
-print("\"dataversion\":1,");
+print("\"game_version\":98,");
+print("\"data_version\":1,");
 print("\"assault_data\":{\n");
 print_class_data("as", $TALENTS_DATA_DIRECTORY);
 print("},");
