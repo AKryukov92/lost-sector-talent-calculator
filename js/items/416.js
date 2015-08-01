@@ -4,6 +4,7 @@
 	"mobility":90,
 	"lvlreq":6,
 	"talentreq":7,
+	"classreq":["ju","sc"],
 	"id":416,
 	"attacks":[
 	{

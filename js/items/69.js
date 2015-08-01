@@ -5,7 +5,7 @@
 	"consumable_type":2,
 	"description":"Тип: Герметики",
 	"lvlreq":7,
-	"skillreq":36,
+	"talentreq":36,
 	"AP_cost":40,
 	"specials":[
 	{

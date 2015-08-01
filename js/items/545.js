@@ -7,6 +7,8 @@
 	"reload_cost":30,
 	"description":"Снайперская винтовка вангардов. С этого начинался Lost sector.",
 	"lvlreq":12,
+	"talentreq":24,
+	"classreq":["sc"],
 	"id":545,
 	"attacks":[
 	{

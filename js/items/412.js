@@ -3,6 +3,7 @@
 	"category":"melee",
 	"mobility":100,
 	"lvlreq":7,
+	"classreq":["ju","sc"],
 	"id":412,
 	"attacks":[
 	{

@@ -4,7 +4,7 @@
 	"category":"consumable",
 	"consumable_type":2,
 	"description":"Тип: Ребисовые",
-	"skillreq":2,
+	"talentreq":2,
 	"AP_cost":20,
 	"specials":[
 	{

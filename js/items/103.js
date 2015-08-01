@@ -5,6 +5,6 @@
 	"category":"consumable",
 	"description":"Восстанавливает 55 очков здоровья",
 	"lvlreq":10,
-	"skillreq":2,
+	"talentreq":2,
 	"AP_cost":20
 }

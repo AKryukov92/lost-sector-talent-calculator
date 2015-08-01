@@ -5,7 +5,7 @@
 	"consumable_type":2,
 	"description":"Тип: Стероидные",
 	"lvlreq":4,
-	"skillreq":35,
+	"talentreq":35,
 	"AP_cost":40,
 	"specials":[
 	{

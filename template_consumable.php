@@ -20,15 +20,19 @@ if (isset($data["consumable_type"])) {
 } else {
 	$consumable_type_name = "";
 }
-$skillreq_name = "";
-if (isset($data["skillreq"])) {
-	$skillreq = $data["skillreq"];
-	$filename = "js/talents/" . $skillreq . ".js";
+$talentreq_name = "";
+if (isset($data["talentreq"])) {
+	if (isset($data["classreq"])) {
+		$talentreq = $data["classreq"][0] . "/" . $data["talentreq"];
+	} else {
+		$talentreq = "as/" . $data["talentreq"];
+	}
+	$filename = "js/talents/" . $talentreq . ".js";
 	if (file_exists($filename)) {
 		$filecontent = file_get_contents($filename);
 		$talent = json_decode($filecontent, true);
 		if (json_last_error() == 0 && isset($talent["name"])) {
-			$skillreq_name = $talent["name"];
+			$talentreq_name = $talent["name"];
 		}
 	}
 }
@@ -51,8 +55,8 @@ $base_grade = 100;
 	<?php if(isset($data["lvlreq"])) { ?>
 		<div class="entry">Необходимый уровень: <?php print $data["lvlreq"];?></div>
 	<?php } ?>
-	<?php if (!IsNullOrEmptyString($skillreq_name)) { ?>
-		<div class="entry">Требуемый навык: <?php print $skillreq_name; ?></div>
+	<?php if (!IsNullOrEmptyString($talentreq_name)) { ?>
+		<div class="entry">Требуемый навык: <?php print $talentreq_name; ?></div>
 	<?php } ?>
 	<?php if (isset($data["description"])) {?>
 		<div class="entry"><?php print $data["description"] ?></div>

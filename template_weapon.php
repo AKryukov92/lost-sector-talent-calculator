@@ -24,7 +24,11 @@ if($data["category"] == "pistol" || $data["category"] == "melee" || $data["categ
 }
 $talentreq_name = "";
 if (isset($data["talentreq"])) {
-	$talentreq = $data["talentreq"];
+	if (isset($data["classreq"])) {
+		$talentreq = $data["classreq"][0] . "/" . $data["talentreq"];
+	} else {
+		$talentreq = "as/" . $data["talentreq"];
+	}
 	$filename = "js/talents/" . $talentreq . ".js";
 	if (file_exists($filename)) {
 		$filecontent = file_get_contents($filename);
@@ -76,6 +80,31 @@ if (isset($data["talentreq"])) {
 		} else {
 			print $data["lvlreq"];
 		}?></div>
+	<?php } ?>
+	<?php if (isset($data["classreq"])) { ?>
+		<div class="entry">Требуемый класс:
+			<?php for ($i = 0; $i < count($data["classreq"]); $i++) { 
+				if ($i > 0) {
+					print ",";
+				}
+				if ($data["classreq"][$i] == "as") {
+					print "Штурмовик";
+					break;
+				}
+				if ($data["classreq"][$i] == "sc"){
+					print "Скаут";
+					break;
+				}
+				if ($data["classreq"][$i] == "ju") {
+					print "Джаггернаут";
+					break;
+				}
+				if ($data["classreq"][$i] == "su"){
+					print "Поддержка";
+					break;
+				}
+			} ?>
+		</div>
 	<?php } ?>
 	<?php if (isset($data["talentreq"])) {?>
 		<div class="entry">Требуемый навык: <?php print $talentreq_name; ?></div>

@@ -8,6 +8,7 @@
 	"reload_cost":25,
 	"lvlreq":12,
 	"talentreq":20,
+	"classreq":["as","ju","su"],
 	"id":491,
 	"attacks":[
 	{

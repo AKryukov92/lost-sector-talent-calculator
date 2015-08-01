@@ -4,6 +4,6 @@
 	"description":"Входит в состав наборов брони для джаггернаута за голд или платину",
 	"protection":5,
 	"lvlreq":5,
-	"classreq":"ju",
+	"classreq":["ju"],
 	"id":331
 }

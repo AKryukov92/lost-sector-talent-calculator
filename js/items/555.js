@@ -9,6 +9,7 @@
 	"id":405,
 	"lvlreq":12,
 	"talentreq":6,
+	"classreq":["as","sc"],
 	"attacks":[
 	{
 		"name":"Удар",

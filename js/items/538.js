@@ -5,6 +5,7 @@
 	"lvlreq":8,
 	"talentreq":7,
 	"description":"Stop! Hammertime!",
+	"classreq":["ju","sc"],
 	"id":538,
 	"attacks":[
 	{
