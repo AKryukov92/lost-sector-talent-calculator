@@ -98,7 +98,7 @@ $(document).ready(function(){
 		}
 	);
 	$("#armor-container").tooltip({
-		show:{delay:300},
+		show:{delay:200},
 		content:""
 	});
 	
@@ -121,7 +121,7 @@ $(document).ready(function(){
 		}
 	);
 	$("#primary-container").tooltip({
-		show:{delay:300},
+		show:{delay:200},
 		content:""
 	});
 	
@@ -144,29 +144,29 @@ $(document).ready(function(){
 		}
 	);
 	$("#secondary-container").tooltip({
-		show:{delay:300},
+		show:{delay:200},
 		content:""
 	});
 	
 	$("#hat-container").tooltip({content:""});
 	$("#consumable_1-container").tooltip({
-		show:{delay:300},
+		show:{delay:200},
 		content:""
 	});
 	$("#consumable_2-container").tooltip({
-		show:{delay:300},
+		show:{delay:200},
 		content:""
 	});
 	$("#consumable_3-container").tooltip({
-		show:{delay:300},
+		show:{delay:200},
 		content:""
 	});
 	$("#consumable_4-container").tooltip({
-		show:{delay:300},
+		show:{delay:200},
 		content:""
 	});
 	$("#consumable_5-container").tooltip({
-		show:{delay:300},
+		show:{delay:200},
 		content:""
 	});	
 	fill_available_items();
@@ -423,7 +423,7 @@ var talent_grid_model = {
 		$(function(){
 			$("#" + talent_grid_model.current_class_data.prefix + "-talent-container" + current.id).tooltip({
 				track:true,
-				show:{delay:300},
+				show:{delay:200},
 				content:"<iframe scrolling=\"no\" src=\"/talent.php?id=" + current.id + "&prefix=" + class_prefix +"&iframe=true\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>"
 			})
 		});
@@ -842,12 +842,16 @@ function add_item_to_pool(item){
 		var item_image_id = item.id;
 	}
 	$("#" + item.category + "-pool")
-		.append("<img id=\"item_" + item.id + "\" src=\"itemspng/item" + item_image_id + "00.png\"/>");
+		.append("<img id=\"item_" + item.id + "\" src=\"itemspng/item" + item_image_id + "00.png\" title/>");
 	$("#item_" + item.id).draggable({
 		containment:"document",
 		helper:"clone",
 		appendTo: "body"
 	});
+	$("#item_" + item.id).tooltip({
+		content:"<div class=\"tooltip-content\"><div class=\"entry\">" +item.name + "</div></div>",
+		show:{delay:200}
+	})
 }
 function fill_available_items(){
 	var possible_slots = {
