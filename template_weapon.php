@@ -58,7 +58,9 @@ if (isset($data["talentreq"])) {
 	<?php if (isset($data["protection"])) {?>
 		<div class="entry">Защита: <?php print $data["protection"];?></div>
 	<?php } ?>
+	<?php if (isset($data["mobility"])) {?>
 		<div class="entry">Мобильность: <?php print $data["mobility"]; ?></div>
+	<?php } ?>
 	<?php if (isset($data["clip"])) {?>
 		<div class="entry">Размер магазина: <?php print $data["clip"]; ?></div>
 	<?php } ?>
