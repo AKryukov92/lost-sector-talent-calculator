@@ -1,0 +1,45 @@
+{
+	"name":"VG дробовик",
+	"category":"shotgun",
+	"mobility":82,
+	"description":"Дробовик вангардов. С этого начинался Lost sector.",
+	"clip":6,
+	"ammo":24,
+	"reload_cost":25,
+	"lvlreq":12,
+	"talentreq":20,
+	"id":491,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":30
+	},
+	{
+		"name":"Навскидку",
+		"type":4,
+		"accuracy":45,
+		"cost":40,
+		"min_dist":4,
+		"max_dist":11,
+		"bullets":2,
+		"min_damage":77,
+		"max_damage":87
+	},
+	{
+		"name":"Прицельно",
+		"type":4,
+		"accuracy":55,
+		"cost":30,
+		"min_dist":4,
+		"max_dist":11,
+		"bullets":1,
+		"min_damage":42,
+		"max_damage":47
+	}]
+}

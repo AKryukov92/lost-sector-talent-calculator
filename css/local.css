@@ -128,6 +128,7 @@
 .tooltip-content .entry {
 	color:white;
 	font-size:10pt;
+	max-width:300px;
 }
 .tooltip-content .entry .key {
 	color:#e7a516;

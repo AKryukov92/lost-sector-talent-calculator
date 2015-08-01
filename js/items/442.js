@@ -22,10 +22,10 @@
 	{
 		"name":"Навскидку",
 		"type":5,
-		"accuracy":56,
+		"accuracy":64,
 		"cost":50,
-		"min_dist":15,
-		"max_dist":35,
+		"min_dist":14,
+		"max_dist":33,
 		"bullets":1,
 		"min_damage":68,
 		"max_damage":103
@@ -33,9 +33,9 @@
 	{
 		"name":"Прицельно",
 		"type":5,
-		"accuracy":73,
+		"accuracy":74,
 		"cost":70,
-		"min_dist":25,
+		"min_dist":20,
 		"max_dist":40,
 		"bullets":1,
 		"min_damage":97,

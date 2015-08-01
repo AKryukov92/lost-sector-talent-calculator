@@ -1,0 +1,44 @@
+{
+	"name":"VG снайперская винтовка",
+	"category":"sniper_rifle",
+	"mobility":61,
+	"clip":2,
+	"ammo":8,
+	"reload_cost":30,
+	"description":"Снайперская винтовка вангардов. С этого начинался Lost sector.",
+	"lvlreq":12,
+	"id":545,
+	"attacks":[
+	{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":2,
+		"min_damage":20,
+		"max_damage":35
+	},
+	{
+		"name":"Навскидку",
+		"type":5,
+		"accuracy":60,
+		"cost":45,
+		"min_dist":17,
+		"max_dist":48,
+		"bullets":1,
+		"min_damage":77,
+		"max_damage":115
+	},
+	{
+		"name":"Прицельно",
+		"type":5,
+		"accuracy":78,
+		"cost":60,
+		"min_dist":26,
+		"max_dist":54,
+		"bullets":1,
+		"min_damage":111,
+		"max_damage":155
+	}]
+}

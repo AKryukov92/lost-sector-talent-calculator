@@ -807,7 +807,13 @@ function equip_item(item, slot_name) {
 	player_model.add_item(slot_name, item);
 	$("#" + slot_name + "-container").empty();
 	$("#" + slot_name + "-container").prop("title");
-	$("#" + slot_name + "-container").html("<img id='item_" + item.id + "' src='itemspng/item" + item.id + "00.png'/>");
+	var image_id;
+	if (typeof item.imageid != 'undefined') {
+		image_id = item.imageid;
+	} else {
+		image_id = item.id;
+	}
+	$("#" + slot_name + "-container").html("<img id='item_" + item.id + "' src='itemspng/item" + image_id + "00.png'/>");
 	player_model.update_slot_tooltip(slot_name);
 	player_model.update_link();
 }
@@ -830,8 +836,13 @@ function get_item_by_id(query_id){
 	return;
 }
 function add_item_to_pool(item){
+	if (typeof item.imageid != 'undefined') {
+		var item_image_id = item.imageid;
+	} else {
+		var item_image_id = item.id;
+	}
 	$("#" + item.category + "-pool")
-		.append("<img id=\"item_" + item.id + "\" src=\"itemspng/item" + item.id + "00.png\"/>");
+		.append("<img id=\"item_" + item.id + "\" src=\"itemspng/item" + item_image_id + "00.png\"/>");
 	$("#item_" + item.id).draggable({
 		containment:"document",
 		helper:"clone",

@@ -21,13 +21,13 @@
 	},
 	{
 		"name":"Очередь",
-		"type":3,
+		"type":2,
 		"accuracy":43,
 		"cost":30,
 		"min_dist":6,
 		"max_dist":15,
 		"bullets":15,
-		"min_damage":37,
+		"min_damage":38,
 		"max_damage":48
 	}]
 }

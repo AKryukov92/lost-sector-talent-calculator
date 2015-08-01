@@ -1,13 +1,14 @@
 {
-	"name":"Desert Eagle",
+	"name":"VG пистолет",
 	"category":"pistol",
-	"mobility":94,
-	"clip":7,
-	"ammo":14,
+	"description":"тяжёлый пистолет вангардов. С этого начинался Lost sector.",
+	"mobility":92,
+	"clip":5,
+	"ammo":15,
 	"reload_cost":20,
-	"lvlreq":10,
-	"talentreq":19,
-	"id":447,
+	"id":405,
+	"lvlreq":12,
+	"talentreq":6,
 	"attacks":[
 	{
 		"name":"Удар",
@@ -22,23 +23,23 @@
 	{
 		"name":"Навскидку",
 		"type":3,
-		"accuracy":42,
+		"accuracy":43,
 		"cost":32,
 		"min_dist":4,
-		"max_dist":16,
+		"max_dist":17,
 		"bullets":1,
-		"min_damage":36,
-		"max_damage":59
+		"min_damage":40,
+		"max_damage":63
 	},
 	{
 		"name":"Прицельно",
 		"type":3,
-		"accuracy":62,
-		"cost":40,
+		"accuracy":67,
+		"cost":50,
 		"min_dist":6,
-		"max_dist":18,
+		"max_dist":20,
 		"bullets":1,
-		"min_damage":36,
-		"max_damage":59
+		"min_damage":40,
+		"max_damage":63
 	}]
 }

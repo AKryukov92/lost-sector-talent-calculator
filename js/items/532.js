@@ -22,10 +22,10 @@
 	{
 		"name":"Навскидку",
 		"type":5,
-		"accuracy":56,
+		"accuracy":64,
 		"cost":50,
-		"min_dist":15,
-		"max_dist":35,
+		"min_dist":14,
+		"max_dist":33,
 		"bullets":1,
 		"min_damage":76,
 		"max_damage":115
@@ -35,8 +35,8 @@
 		"type":5,
 		"accuracy":75,
 		"cost":70,
-		"min_dist":20,
-		"max_dist":44,
+		"min_dist":18,
+		"max_dist":42,
 		"bullets":1,
 		"min_damage":108,
 		"max_damage":145

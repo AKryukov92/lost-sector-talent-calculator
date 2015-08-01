@@ -1,13 +1,13 @@
 {
-	"name":"Scar",
+	"name":"VG штурмовая винтовка",
 	"category":"assault_rifle",
-	"mobility":79,
-	"clip":30,
-	"ammo":60,
-	"reload_cost":25,
-	"lvlreq":6,
-	"talentreq":10,
-	"id":428,
+	"mobility":78,
+	"clip":24,
+	"ammo":48,
+	"reload_cost":20,
+	"lvlreq":12,
+	"talentreq":22,
+	"id":518,
 	"attacks":[
 	{
 		"name":"Удар",
@@ -22,23 +22,23 @@
 	{
 		"name":"Очередь",
 		"type":3,
-		"accuracy":58,
+		"accuracy":54,
 		"cost":40,
-		"min_dist":12,
+		"min_dist":11,
 		"max_dist":24,
 		"bullets":8,
-		"min_damage":47,
-		"max_damage":70
+		"min_damage":62,
+		"max_damage":82
 	},
 	{
 		"name":"Прицельно",
 		"type":3,
-		"accuracy":65,
+		"accuracy":62,
 		"cost":60,
-		"min_dist":14,
+		"min_dist":13,
 		"max_dist":28,
 		"bullets":6,
-		"min_damage":51,
-		"max_damage":74
+		"min_damage":56,
+		"max_damage":76
 	}]
 }
