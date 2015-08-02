@@ -167,6 +167,7 @@ width: 1px;
 	color:white;
 	font-size:13pt;
 	padding:8px;
+	max-width:350px;
 }
 .gray { background-color:gray;}
 .white { background-color:white;}
