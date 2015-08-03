@@ -6,11 +6,10 @@
 	"ammo":4,
 	"reload_cost":65,
 	"lvlreq":10,
-	"talentreq":999,
+	"talentreq":21,
 	"description":"Поджигает землю в месте взрыва",
 	"classreq":["su"],
 	"id":527,
-	"imageid":549,
 	"attacks":[
 	{
 		"name":"Удар",

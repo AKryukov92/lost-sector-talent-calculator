@@ -62,8 +62,8 @@ if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {
 <?php if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {?>
 	<div class="entry">Разброс урона: <?php print $real_min_damage . " - " . $real_max_damage; ?></div>
 <?php } ?>
-<?php if (isset($data["specials"])) {
-	$specials = $data["specials"];
+<?php if (isset($attack["specials"])) {
+	$specials = $attack["specials"];
 	include "template_specials.php";
 } ?>
 </div>
