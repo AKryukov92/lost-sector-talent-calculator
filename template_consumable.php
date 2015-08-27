@@ -42,6 +42,9 @@ $base_grade = 100;
 <html>
 <head>
 <link href="css/local.css" rel="stylesheet">
+<?php if (isset($data["name"])) { ?>
+	<title><?php print $data["name"];?></title>
+<?php } ?>
 </head>
 <body>
 <div class="tooltip-content" style="overflow:auto;">

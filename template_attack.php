@@ -42,26 +42,57 @@ if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {
 <div class="attack">
 <h3><?php print $attack["name"]; ?></h3>
 <?php if (!IsNullOrEmptyString($typename)) { ?>
-	<div class="entry">Урон <?php print $typename; ?></div>
+	<div class="entry"> Урон <?php print $typename; ?></div>
+<?php } ?>
+<div class="entry">
+<?php if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {?>
+	<div class="attack_property">
+		<?php print $real_min_damage . " - " . $real_max_damage; ?>
+	</div>
+	<div class="clipped_property_container">
+		<img src="weapon_stats_icons.png"/>
+	</div>
 <?php } ?>
 <?php if (isset($attack["radius"])) { ?>
-	<div class="entry">Радиус: <?php print $attack["radius"]; ?></div>
+	<div class="attack_property">
+		<?php print $attack["radius"]; ?>
+	</div>
+	<div class="clipped_property_container">
+		<img src="weapon_stats_icons.png" style="margin-left:-16px;"/>
+	</div>
 <?php } ?>
 <?php if (isset($attack["accuracy"])) { ?>
-	<div class="entry">Точность: <?php print $attack["accuracy"]; ?></div>
+	<div class="attack_property">
+		<?php print $attack["accuracy"]; ?>
+	</div>
+	<div class="clipped_property_container">
+		<img src="weapon_stats_icons.png" style="margin-left:-32px;"/>
+	</div>
 <?php } ?>
 <?php if (isset($attack["bullets"])) { ?>
-	<div class="entry">Патронов на атаку: <?php print $attack["bullets"]; ?></div>
+	<div class="attack_property">
+		<?php print $attack["bullets"]; ?>
+	</div>
+	<div class="clipped_property_container">
+		<img src="weapon_stats_icons.png" style="margin-left:-48px;"/>
+	</div>
 <?php } ?>
 <?php if (isset($attack["cost"])) { ?>
-	<div class="entry">ОД на выстрел: <?php print $attack["cost"]; ?></div>
+	<div class="attack_property">
+	<?php print $attack["cost"]; ?>
+	</div>
+	<div class="attack_property" style="color:#80bb80;font-size:8pt;margin:4px;"> ОД
+	</div>
 <?php } ?>
 <?php if (isset($attack["min_dist"]) && isset($attack["max_dist"])) { ?>
-	<div class="entry">Оптимальная дистанция: <?php print $attack["min_dist"]. "-". $attack["max_dist"]; ?> м</div>
+	<div class="attack_property">
+		<?php print $attack["min_dist"]. "-". $attack["max_dist"]; ?>
+	</div>
+	<div class="clipped_property_container">
+		<img src="weapon_stats_icons.png" style="margin-left:-64px;"/>
+	</div>
 <?php } ?>
-<?php if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {?>
-	<div class="entry">Разброс урона: <?php print $real_min_damage . " - " . $real_max_damage; ?></div>
-<?php } ?>
+</div>
 <?php if (isset($attack["specials"])) {
 	$specials = $attack["specials"];
 	include "template_specials.php";

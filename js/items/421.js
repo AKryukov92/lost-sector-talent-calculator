@@ -12,6 +12,11 @@
 		"radius":5,
 		"cost":40,
 		"min_dist":0,
-		"max_dist":15
+		"max_dist":15,
+		"specials":[
+		{
+			"duration":1,
+			"effects":["Устанавливает дальность зрения равным 5"]
+		}]
 	}]
 }

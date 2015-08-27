@@ -3,8 +3,8 @@
 	"category":"shotgun",
 	"mobility":82,
 	"description":"Дробовик вангардов. С этого начинался Lost sector.",
-	"clip":6,
-	"ammo":24,
+	"clip":7,
+	"ammo":28,
 	"reload_cost":25,
 	"lvlreq":12,
 	"talentreq":20,
@@ -30,7 +30,7 @@
 		"max_dist":11,
 		"bullets":2,
 		"min_damage":77,
-		"max_damage":87
+		"max_damage":91
 	},
 	{
 		"name":"Прицельно",
@@ -41,6 +41,6 @@
 		"max_dist":11,
 		"bullets":1,
 		"min_damage":42,
-		"max_damage":47
+		"max_damage":50
 	}]
 }

@@ -17,12 +17,12 @@
 		"max_dist":15,
 		"specials":[
 		{
-			"duration":1,
-			"description":"Увеличивает текущее здоровье на 40"
+			"duration":0,
+			"effects":["Дает иммунитет к: Горение"]
 		},
 		{
-			"duration":0,
-			"description":"Дает иммунитет к: Горение"
+			"duration":1,
+			"effects":["Увеличивает текущее здоровье на 40"]
 		}]
 	}]
 }
