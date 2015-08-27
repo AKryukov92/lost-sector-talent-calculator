@@ -43,6 +43,9 @@ if (isset($data["talentreq"])) {
 <html>
 <head>
 <link href="css/local.css" rel="stylesheet">
+<?php if (isset($data["name"])) { ?>
+	<title><?php print $data["name"];?></title>
+<?php } ?>
 </head>
 <body style="margin:0px;">
 <div class="tooltip-content" style="overflow:auto;">
@@ -115,6 +118,9 @@ if (isset($data["talentreq"])) {
 			include 'template_attack.php';
 		}
 	} ?>
+	<?php if (isset($data["description"])) {?>
+		<div class="entry"><?php print $data["description"]; ?></div>
+	<?php } ?>
 </div>
 </body>
 </html>

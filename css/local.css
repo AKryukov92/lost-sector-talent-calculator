@@ -264,7 +264,9 @@ input[type=radio]:not(old):checked +  label > span > span{
 	margin-left:15px;
 	color:#bac887
 }
-
+.attack {
+	clear:both;
+}
 .attack h3 {
 	color:#e7a516;
 }
@@ -295,3 +297,15 @@ input[type=radio]:not(old):checked +  label > span > span{
 .white-link { color:white; }
 .green-link { color:#20dd20; }
 .blue-link { color:#4870fd; }
+
+.attack_property {
+	float:left;
+	margin:2px;
+}
+.clipped_property_container {
+	overflow:hidden;
+	width:16px;
+	height:16px;
+	float:left;
+	margin:2px;
+}

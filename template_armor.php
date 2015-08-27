@@ -32,6 +32,9 @@ if (isset($data["protection"])) {
 <html>
 <head>
 <link href="css/local.css" rel="stylesheet">
+<?php if (isset($data["name"])) { ?>
+	<title><?php print $data["name"];?></title>
+<?php } ?>
 </head>
 <body style="margin:0px;">
 <div class="tooltip-content" style="overflow:auto;">

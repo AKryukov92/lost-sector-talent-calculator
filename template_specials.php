@@ -5,7 +5,7 @@ function PrintEffects($element) {
 	}
 } ?>
 
-<div class="specials" style="color:#bac887">
+<div class="specials" style="color:#bac887;clear:both;">
 <?php
 for($i = 0; $i < count($specials); $i++) {
 	$element = $specials[$i];

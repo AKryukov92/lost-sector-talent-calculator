@@ -1,12 +1,12 @@
 {
 	"name":"VG пистолет",
 	"category":"pistol",
-	"description":"тяжёлый пистолет вангардов. С этого начинался Lost sector.",
+	"description":"Тяжёлый пистолет вангардов. С этого начинался Lost sector.",
 	"mobility":92,
 	"clip":5,
 	"ammo":15,
 	"reload_cost":20,
-	"id":405,
+	"id":555,
 	"lvlreq":12,
 	"talentreq":6,
 	"classreq":["as","sc"],
@@ -29,8 +29,8 @@
 		"min_dist":4,
 		"max_dist":17,
 		"bullets":1,
-		"min_damage":40,
-		"max_damage":63
+		"min_damage":37,
+		"max_damage":58
 	},
 	{
 		"name":"Прицельно",
@@ -40,7 +40,7 @@
 		"min_dist":6,
 		"max_dist":20,
 		"bullets":1,
-		"min_damage":40,
-		"max_damage":63
+		"min_damage":37,
+		"max_damage":58
 	}]
 }

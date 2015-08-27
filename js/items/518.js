@@ -4,6 +4,7 @@
 	"mobility":78,
 	"clip":24,
 	"ammo":48,
+	"description":"Штурмовая винтовка вангардов. С этого начинался Lost Sector.",
 	"reload_cost":20,
 	"lvlreq":12,
 	"talentreq":22,
