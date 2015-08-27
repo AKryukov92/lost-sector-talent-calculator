@@ -28,8 +28,8 @@
 		"min_dist":4,
 		"max_dist":16,
 		"bullets":1,
-		"min_damage":36,
-		"max_damage":59
+		"min_damage":33,
+		"max_damage":54
 	},
 	{
 		"name":"Прицельно",
@@ -39,7 +39,7 @@
 		"min_dist":6,
 		"max_dist":18,
 		"bullets":1,
-		"min_damage":36,
-		"max_damage":59
+		"min_damage":33,
+		"max_damage":54
 	}]
 }
