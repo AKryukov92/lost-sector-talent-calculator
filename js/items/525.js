@@ -21,7 +21,7 @@
 		"name":"Навскидку",
 		"type":2,
 		"accuracy":52,
-		"cost":32,
+		"cost":50,
 		"min_dist":8,
 		"max_dist":30,
 		"bullets":1,

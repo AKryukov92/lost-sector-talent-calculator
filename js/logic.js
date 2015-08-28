@@ -755,7 +755,7 @@ var player_model = {
 		}
 		slot = player_model.slots["consumable_5"];
 		if (!$.isEmptyObject(slot.item)) {
-			link += "&consumable_5=" + slot.item.id;
+			link += "&consumable5=" + slot.item.id;
 		}
 		$("#link-to-build").val(link);
 	},
