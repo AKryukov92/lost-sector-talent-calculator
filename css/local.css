@@ -336,7 +336,6 @@ input[type=radio]:not(old):checked +  label > span > span{
 	position:relative;
 }
 .swimmer img {
-	float:left;
 	border: 1px solid black;
 }
 .swimmer .fake-tooltip {
