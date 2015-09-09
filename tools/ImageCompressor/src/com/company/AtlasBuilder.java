@@ -1,49 +1,28 @@
 package com.company;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AtlasBuilder {
-    private File dataFolder;
-    private File imageFolder;
-    private String imagePrefix;
-    private String imagePostfix;
-    private File[] dataFiles;
+    public static int ILLEGAL_ID = -1;
+    private Pattern regex;
     private File[] imageFiles;
-    private static ObjectMapper mapper;
     private BufferedImage atlas;
     private Graphics2D graphics;
 
     public static int FRAGMENT_SIZE = 48;
     public static int ATLAS_WIDTH = 20;
 
-    public AtlasBuilder(String dataFolderPath, String imageFolderPath, String imagePrefix, String imagePostfix) throws Exception {
-        if (dataFolderPath == null || dataFolderPath.isEmpty()) {
-            throw new Exception("Data folder was not specified");
-        }
-        if (imageFolderPath == null || imageFolderPath.isEmpty()) {
+    public AtlasBuilder(File imageFolder, String filenameExpression) throws Exception {
+        if (imageFolder == null) {
             throw new Exception("Image folder was not specified");
         }
-
-        dataFolder = new File(dataFolderPath);
-        if (!dataFolder.exists()) {
-            throw new Exception("Folder with data do not exist");
-        }
-        if (!dataFolder.isDirectory()) {
-            throw new Exception("Path to data is not a folder");
-        }
-        dataFiles = dataFolder.listFiles();
-        if (dataFiles == null) {
-            throw new Exception("Folder with data is empty");
-        }
-
-        imageFolder = new File(imageFolderPath);
         if (!imageFolder.exists()) {
             throw new Exception("Folder with images do not exist");
         }
@@ -55,30 +34,30 @@ public class AtlasBuilder {
             throw new Exception("Folder with images is empty");
         }
 
-        this.imagePrefix = imagePrefix;
-        this.imagePostfix = imagePostfix;
+        if (filenameExpression == null) {
+            throw new Exception("Regexp should not be empty");
+        }
+        if (filenameExpression.isEmpty()) {
+            throw new Exception("Regexp should not be empty");
+        }
+        regex = Pattern.compile(filenameExpression);
     }
 
     public int calculateAtlasHeight() {
-        int maxImageId = ImageIdContainer.ILLEGAL_ID;
+        int maxImageId = ILLEGAL_ID;
 
-        for (File file : dataFiles) {
+        for (File file : imageFiles) {
             if (file.isDirectory()){
                 continue;
             }
-            ImageIdContainer container;
-            try {
-                String fileContent = getDataFileContents(file);
-                container = parseImageContainer(fileContent);
-            } catch (IOException e) {
-                System.out.println("Error processing file " + file.getName());
-                continue;
-            }
-            if (container.getImageId() > maxImageId) {
-                maxImageId = container.getImageId();
+            int tempId = getIdFromFilename(file.getAbsolutePath());
+            if (tempId != ILLEGAL_ID) {
+                if (maxImageId < tempId) {
+                    maxImageId = tempId;
+                }
             }
         }
-        return maxImageId;
+        return maxImageId / 20 + 1;
     }
 
     public void createBaseImage(int atlasWidth, int atlasHeight) {
@@ -90,24 +69,23 @@ public class AtlasBuilder {
         if (graphics == null) {
             return;
         }
-        for (File file : dataFiles) {
-            if (file.isDirectory()){
-                continue;
-            }
-            ImageIdContainer container;
+        for (File file : imageFiles) {
             try {
-                String fileContent = getDataFileContents(file);
-                container = parseImageContainer(fileContent);
-            } catch (IOException e) {
-                System.out.println("Error processing file " + file.getName());
-                continue;
-            }
-            try {
-                BufferedImage image = loadImage(imageFolder.getPath() + "\\" + imagePrefix + container.getImageId() + imagePostfix);
-                blitImageToAtlas(image, container.getImageId()/20, container.getImageId()%20);
+                BufferedImage image = loadImage(file.getAbsolutePath());
+                int tempId = getIdFromFilename(file.getAbsolutePath());
+                blitImageToAtlas(image, tempId%20, tempId/20);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    public int getIdFromFilename(String imageFilename) {
+        Matcher matcher = regex.matcher(imageFilename);
+        if (matcher.matches()) {
+            return Integer.parseInt(matcher.group(1));
+        } else {
+            return ILLEGAL_ID;
         }
     }
 
@@ -146,15 +124,5 @@ public class AtlasBuilder {
         fis.read(data);
         fis.close();
         return new String(data, "UTF-8");
-    }
-
-    public static ImageIdContainer parseImageContainer(String text) throws IOException {
-        if (text == null) {
-            return null;
-        }
-        if (mapper == null) {
-            mapper = new ObjectMapper();
-        }
-        return mapper.readValue(text, ImageIdContainer.class);
     }
 }
