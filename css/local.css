@@ -335,13 +335,18 @@ input[type=radio]:not(old):checked +  label > span > span{
 	float:left;
 	position:relative;
 }
-.swimmer img {
+.swimmer-image-container {
+	width:48px;
+	height:48px;
+	overflow:hidden;
+}
+.swimmer-image-container {
 	border: 1px solid black;
 }
 .swimmer .fake-tooltip {
 	display:none;
 }
-.swimmer:hover img{
+.swimmer:hover .swimmer-image-container {
 	border: 1px solid #e7a516;
 }
 .swimmer:hover .fake-tooltip {

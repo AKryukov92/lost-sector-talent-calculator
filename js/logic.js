@@ -833,7 +833,6 @@ function get_item_by_id(query_id){
 			return current;
 		}
 	}
-	return;
 }
 function add_item_to_pool(item){
 	if (typeof item.imageid != 'undefined') {
@@ -841,12 +840,15 @@ function add_item_to_pool(item){
 	} else {
 		var item_image_id = item.id;
 	}
+	var diffy = (~~(item_image_id / 20)) * 48;
+	var diffx = item_image_id % 20 * 48;
 	$("#" + item.category + "-pool")
 		.append("<div class=\"swimmer\">" +
-		"<img id=\"item_" + item.id + "\" src=\"itemspng/item" + item_image_id + "00.png\"/>" +
-		"<span class=\"fake-tooltip\">" + item.name + "</span>" +
+			"<div class=\"swimmer-image-container\">" +
+				"<img id=\"item_" + item.id + "\" src=\"items.png\" style=\"margin-left:-" + diffx + "px;margin-top:-" + diffy + "px;\"/>" +
+			"</div>" +
+			"<span class=\"fake-tooltip\">" + item.name + "</span>" +
 		"</div>");
-		
 	$("#item_" + item.id).draggable({
 		containment:"document",
 		helper:"clone",
