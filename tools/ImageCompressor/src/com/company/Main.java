@@ -5,19 +5,19 @@ import java.io.File;
 public class Main {
     /*
     Valid usage:
-    ImageCompressor c:\temp\js c:\temp\images image 00.png
+    ImageCompressor c:\temp\talents .*\\(\d*)g00\.png
+    ImageCompressor c:\temp\talents .*\\(\d*)00\.png
+    ImageCompressor c:\temp\items .*\\item(\d*)00\.png
     */
     public static void main(String[] args) {
-        if (args.length < 4) {
+        if (args.length < 2) {
             System.out.println("Specify arguments:\n" +
-            "\tpath to folder with data\n" +
-            "\tpath to folder with associated images\n" +
-            "\timage filename prefix\n" +
-            "\timage filename postfix");
+            "\tpath to folder with images\n" +
+            "\tregexp to extract image id from name");
             return;
         }
         try {
-            AtlasBuilder builder = new AtlasBuilder(args[0], args[1], args[2], args[3]);
+            AtlasBuilder builder = new AtlasBuilder(new File(args[0]), args[1]);
             int atlasHeight = builder.calculateAtlasHeight();
             builder.createBaseImage(AtlasBuilder.ATLAS_WIDTH, atlasHeight);
             builder.fillAtlas();
