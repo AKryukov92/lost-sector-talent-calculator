@@ -779,7 +779,7 @@ var player_model = {
 			var link = "/item.php?id=" + item.id + "&color=" + selected_color + "&quality=" + selected_quality;
 			$("#" + slot_name + "-link").attr("href", link);
 			$("#" + slot_name + "-link").removeClass("grey-link white-link green-link blue-link").addClass(selected_color + "-link");
-			$("#" + slot_name + "-container").tooltip("option", "content", "<iframe scrolling=\"no\"" +
+			$("#" + slot_name + "-fake-tooltip").html("<iframe scrolling=\"no\"" +
 				" src=\"" +link + "&iframe=true\" frameBorder=\"0\"" +
 				" onload=\"javascript:resizeIframe(this);\"></iframe>");
 		}
@@ -842,16 +842,16 @@ function add_item_to_pool(item){
 		var item_image_id = item.id;
 	}
 	$("#" + item.category + "-pool")
-		.append("<img id=\"item_" + item.id + "\" src=\"itemspng/item" + item_image_id + "00.png\" title/>");
+		.append("<div class=\"swimmer\">" +
+		"<img id=\"item_" + item.id + "\" src=\"itemspng/item" + item_image_id + "00.png\"/>" +
+		"<span class=\"fake-tooltip\">" + item.name + "</span>" +
+		"</div>");
+		
 	$("#item_" + item.id).draggable({
 		containment:"document",
 		helper:"clone",
 		appendTo: "body"
 	});
-	$("#item_" + item.id).tooltip({
-		content:"<div class=\"tooltip-content\"><div class=\"entry\">" +item.name + "</div></div>",
-		show:{delay:200}
-	})
 }
 function fill_available_items(){
 	var possible_slots = {

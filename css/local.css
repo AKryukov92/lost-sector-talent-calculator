@@ -162,17 +162,33 @@ width: 1px;
 	border:1px solid #e7a516;
 	background-color: rgba(55,55,55,0.9);
 	font-family:'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
-	overflow:auto;
 	margin:2px;
 	color:white;
 	font-size:13pt;
 	padding:8px;
-	max-width:350px;
+	width:200px;
+	float:left;
 }
 .gray { background-color:gray;}
 .white { background-color:white;}
 .green { background-color:#20dd20;}
 .blue { background-color:#4870fd;}
+
+.tunable-item .fake-tooltip, .special-item .fake-tooltip {
+	display:none;
+}
+
+.fake-tooltip-container {
+	position:relative;
+	margin-left:-10px;
+}
+
+.tunable-item:hover  .fake-tooltip,.special-item:hover   .fake-tooltip {
+	display:block;
+	position:absolute;
+	z-index:2;
+	bottom:0px;
+}
 
 .tunable-item img{
 	background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));
@@ -228,6 +244,11 @@ input[type=radio]:not(old):checked +  label > span > span{
   height           : 18px;
   border           : 1px solid red;
   border-radius    : 3px;
+}
+.special-item-container {
+	clear:both;
+	display:block;
+	float:left;
 }
 
 .special-item {
@@ -308,4 +329,25 @@ input[type=radio]:not(old):checked +  label > span > span{
 	height:16px;
 	float:left;
 	margin:2px;
+}
+
+.swimmer {
+	float:left;
+	position:relative;
+}
+.swimmer img {
+	float:left;
+	border: 1px solid black;
+}
+.swimmer .fake-tooltip {
+	display:none;
+}
+.swimmer:hover img{
+	border: 1px solid #e7a516;
+}
+.swimmer:hover .fake-tooltip {
+	padding:3px;
+	display:block;
+	color:white;
+	width:100px;
 }
