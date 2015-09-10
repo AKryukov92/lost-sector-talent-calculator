@@ -115,12 +115,12 @@
 	margin:5px;
 }
 .tooltip-content {
-	position: absolute;
 	border:1px solid #e7a516;
 	background-color: rgba(55,55,55,0.9);
 	width:auto;
 	padding:10px;
 	font-family:'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
+	float:left;
 }
 .tooltip-content  h3 {
 	color:#00ff00;
