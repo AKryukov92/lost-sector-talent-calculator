@@ -1,37 +1,4 @@
-﻿function talentclick(event){
-	var talent = event.data;
-	var ranks = talent_grid_model.layout_model[talent_grid_model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
-	var i;
-	for (i = 0; i < ranks.length; i++) {
-		if (!player_model.talent_learned(ranks[i]))
-			break;
-	}
-	if (i < ranks.length) {
-		if (player_model.can_learn_talent(ranks[i])){
-			player_model.learn_talent(ranks[i]);
-			talent_grid_model.update_layout_options();
-		}
-	}
-}
-function talentrightclick(event){
-	if (typeof last_visited_element == 'undefined')
-		return;
-	var talent = last_visited_element;
-	var ranks = talent_grid_model.layout_model[talent_grid_model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
-	var i;
-	for (i = ranks.length; i > 0; i--) {
-		if (player_model.talent_learned(ranks[i-1]))
-			break;
-	}
-	if (i > 0) {
-		if (player_model.can_unlearn_talent(ranks[i-1])) {
-			player_model.unlearn_talent(ranks[i-1]);
-			talent_grid_model.update_layout_options();
-		}
-	}
-}
-
-//Эта группа функций отвечает за то, чтобы событие правой кнопки мыши корректно вызывало соответствующую функцию для талантов
+﻿//Эта группа функций отвечает за то, чтобы событие правой кнопки мыши корректно вызывало соответствующую функцию для талантов
 function talenthover(event) {
 	last_visited_element = event.data;
 	handled_recently = true;
@@ -179,8 +146,8 @@ var talent_grid_model = {
 		} else {
 			var talent_image_id = talent.id;
 		}
-		var diffy = (~~(talent_image_id / 20)) * 40;
-		var diffx = talent_image_id % 20 * 40;
+		var diffy = (~~(talent_image_id / 20)) * 35;
+		var diffx = talent_image_id % 20 * 35;
 		$("#" + this.current_class_data.prefix + "-talent-container" + talent.id).css("background","url(" + imageName +") -" + diffx + "px -" + diffy + "px");
 	},
 	fill_grid_rows: function(){
