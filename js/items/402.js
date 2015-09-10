@@ -39,5 +39,10 @@
 		"bullets":6,
 		"min_damage":46,
 		"max_damage":55
-	}]
+	}],
+	"ingredients":{
+		"light_metals":7,
+		"heavy_metals":10,
+		"mech_parts":5
+	}
 }

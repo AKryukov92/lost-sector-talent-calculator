@@ -5,8 +5,7 @@
 	"consumable_type":4,
 	"lvlreq":3,
 	"talentreq":4,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Бросок",
 		"type":6,
 		"accuracy":50,
@@ -16,5 +15,10 @@
 		"max_dist":15,
 		"min_damage":45,
 		"max_damage":70
-	}]
+	}],
+	"ingredients":{
+		"light_metals":4,
+		"mech_parts":2,
+		"chemicals":2
+	}
 }

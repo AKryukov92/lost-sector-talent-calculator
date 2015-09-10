@@ -9,8 +9,7 @@
 	"talentreq":26,
 	"classreq":["as","ju","su"],
 	"id":449,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -19,8 +18,7 @@
 		"max_dist":1.5,
 		"min_damage":10,
 		"max_damage":25
-	},
-	{
+	},{
 		"name":"Очередь",
 		"type":2,
 		"accuracy":43,
@@ -30,5 +28,10 @@
 		"bullets":15,
 		"min_damage":38,
 		"max_damage":48
-	}]
+	}],
+	"ingredients":{
+		"light_metals":26,
+		"heavy_metals":39,
+		"mech_parts":25
+	}
 }

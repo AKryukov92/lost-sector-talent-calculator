@@ -7,8 +7,7 @@
 	"lvlreq":10,
 	"talentreq":17,
 	"classreq":["as","sc","su"],
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Бросок",
 		"type":8,
 		"accuracy":50,
@@ -18,8 +17,7 @@
 		"max_dist":15,
 		"min_damage":2,
 		"max_damage":6,
-		"specials":[
-		{
+		"specials":[{
 			"duration":2,
 			"effects":[
 			"Уменьшает текущее здоровье на 5",
@@ -27,5 +25,11 @@
 			"Уменьшает эффективность лечения на 50%"
 			]
 		}]
-	}]
+	}],
+	"ingredients":{
+		"light_metals":2,
+		"mech_parts":2,
+		"chemicals":1,
+		"rebis":2
+	}
 }

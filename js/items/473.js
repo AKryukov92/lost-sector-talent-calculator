@@ -7,8 +7,7 @@
 	"lvlreq":6,
 	"talentreq":3,
 	"classreq":["sc","su"],
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Бросок",
 		"type":7,
 		"accuracy":50,
@@ -16,10 +15,14 @@
 		"cost":40,
 		"min_dist":0,
 		"max_dist":30,
-		"specials":[
-		{
+		"specials":[{
 			"duration":2,
 			"effects":["Уменьшает мобильность на 10%"]
 		}]
-	}]
+	}],
+	"ingredients":{
+		"light_metals":2,
+		"electronics":2,
+		"mech_parts":3
+	}
 }

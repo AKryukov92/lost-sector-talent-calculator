@@ -7,12 +7,12 @@
 	"lvlreq":7,
 	"talentreq":5,
 	"classreq":["sc","su"],
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Указать",
 		"accuracy":100,
 		"cost":65,
 		"min_dist":0,
 		"max_dist":1000
-	}]
+	}],
+	"ingredients":0
 }

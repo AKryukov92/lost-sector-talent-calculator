@@ -5,8 +5,7 @@
 	"consumable_type":4,
 	"lvlreq":3,
 	"talentreq":4,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Бросок",
 		"accuracy":50,
 		"radius":5,
@@ -18,5 +17,10 @@
 			"duration":1,
 			"effects":["Устанавливает дальность зрения равным 5"]
 		}]
-	}]
+	}],
+	"ingredients":{
+		"light_metals":4,
+		"mech_parts":2,
+		"chemicals":2
+	}
 }

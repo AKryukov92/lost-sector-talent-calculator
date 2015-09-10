@@ -13,5 +13,11 @@
 		"cost":50,
 		"min_dist":0,
 		"max_dist":15
-	}]
+	}],
+	"ingredients":{
+		"light_metals":2,
+		"heavy_metals":3,
+		"electronics":4,
+		"mech_parts":3
+	}
 }

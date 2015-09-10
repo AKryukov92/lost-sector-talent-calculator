@@ -6,8 +6,7 @@
 	"lvlreq":5,
 	"talentreq":3,
 	"classreq":["sc","su"],
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Бросок",
 		"type":6,
 		"accuracy":50,
@@ -15,14 +14,17 @@
 		"cost":40,
 		"min_dist":0,
 		"max_dist":15,
-		"specials":[
-		{
+		"specials":[{
 			"duration":0,
 			"effects":["Увеличивает текущее здоровье на 25"]
-		},
-		{
+		},{
 			"duration":1,
 			"effects":["Увеличивает текущее здоровье на 25"]
 		}]
-	}]
+	}],
+	"ingredients":{
+		"light_metals":2,
+		"mech_parts":1,
+		"rebis":1
+	}
 }

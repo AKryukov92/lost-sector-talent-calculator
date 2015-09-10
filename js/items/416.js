@@ -6,8 +6,7 @@
 	"talentreq":7,
 	"classreq":["ju","sc"],
 	"id":416,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":100,
@@ -16,6 +15,9 @@
 		"max_dist":1.8,
 		"min_damage":40,
 		"max_damage":60
+	}],
+	"ingredients":{
+		"light_metals":13,
+		"heavy_metals":28
 	}
-	]
 }

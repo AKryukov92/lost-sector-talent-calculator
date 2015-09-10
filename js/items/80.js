@@ -11,5 +11,9 @@
 	{
 		"duration":5,
 		"effects":["Увеличивает урон в ближнем бою на 20%"]
-	}]
+	}],
+	"ingredients":{
+		"bio":2,
+		"chemicals":4
+	}
 }

@@ -6,8 +6,7 @@
 	"ammo":135,
 	"reload_cost":25,
 	"id":493,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -16,8 +15,7 @@
 		"max_dist":1.5,
 		"min_damage":10,
 		"max_damage":25
-	},
-	{
+	},{
 		"name":"Очередь",
 		"type":2,
 		"accuracy":41,
@@ -27,5 +25,15 @@
 		"bullets":15,
 		"min_damage":28,
 		"max_damage":37
-	}]
+	}],
+	"ingredients":{
+		"light_metals":,
+		"heavy_metals":,
+		"electronics":,
+		"mech_parts":,
+		"bio":,
+		"chemicals":,
+		"rebis":,
+		"gold":
+	}
 }

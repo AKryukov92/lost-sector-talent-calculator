@@ -8,8 +8,7 @@
 	"description":"Наградное оружие за победу в турнире.",
 	"lvlreq":12,
 	"id":552,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -18,8 +17,7 @@
 		"max_dist":1.5,
 		"min_damage":8,
 		"max_damage":35
-	},
-	{
+	},{
 		"name":"Навскидку",
 		"type":3,
 		"accuracy":47,
@@ -29,8 +27,7 @@
 		"max_dist":16,
 		"min_damage":35,
 		"max_damage":60
-	},
-	{
+	},{
 		"name":"Прицельно",
 		"type":3,
 		"accuracy":67,
@@ -40,5 +37,6 @@
 		"max_dist":18,
 		"min_damage":35,
 		"max_damage":60
-	}]
+	}],
+	"ingredients":0
 }

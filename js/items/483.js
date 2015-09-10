@@ -6,8 +6,7 @@
 	"lvlreq":12,
 	"talentreq":17,
 	"classreq":["as","sc","su"],
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Бросок",
 		"type":8,
 		"accuracy":50,
@@ -17,10 +16,10 @@
 		"max_dist":15,
 		"min_damage":30,
 		"max_damage":50,
-		"specials":[
-		{
+		"specials":[{
 			"duration":3,
 			"effects":["Наносит 15 ед. повреждения каждый раунд."]
 		}]
-	}]
+	}],
+	"ingredients":0
 }

@@ -9,8 +9,7 @@
 	"talentreq":19,
 	"classreq":["ju","sc"],
 	"id":546,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -19,8 +18,7 @@
 		"max_dist":1.5,
 		"min_damage":10,
 		"max_damage":25
-	},
-	{
+	},{
 		"name":"Очередь",
 		"type":2,
 		"accuracy":31,
@@ -30,8 +28,7 @@
 		"bullets":8,
 		"min_damage":52,
 		"max_damage":72
-	},
-	{
+	},{
 		"name":"Прицельно",
 		"type":2,
 		"accuracy":57,
@@ -41,5 +38,11 @@
 		"bullets":1,
 		"min_damage":15,
 		"max_damage":27
-	}]
+	}],
+	"ingredients":{
+		"light_metals":40,
+		"heavy_metals":35,
+		"mech_parts":45,
+		"gold":45
+	}
 }

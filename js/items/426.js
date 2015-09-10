@@ -7,8 +7,7 @@
 	"reload_cost":20,
 	"lvlreq":2,
 	"id":426,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -17,8 +16,7 @@
 		"max_dist":1.5,
 		"min_damage":10,
 		"max_damage":25
-	},
-	{
+	},{
 		"name":"Очередь",
 		"type":2,
 		"accuracy":51,
@@ -28,8 +26,7 @@
 		"bullets":10,
 		"min_damage":36,
 		"max_damage":44
-	},
-	{
+	},{
 		"name":"Прицельно",
 		"type":2,
 		"accuracy":61,
@@ -39,5 +36,6 @@
 		"bullets":5,
 		"min_damage":36,
 		"max_damage":44
-	}]
+	}],
+	"ingredients":0
 }

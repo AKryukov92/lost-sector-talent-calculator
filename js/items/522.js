@@ -10,8 +10,7 @@
 	"description":"Лучше чем у Саддама",
 	"classreq":["as"],
 	"id":522,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -20,8 +19,7 @@
 		"max_dist":1.5,
 		"min_damage":20,
 		"max_damage":30
-	},
-	{
+	},{
 		"name":"Очередь",
 		"type":3,
 		"accuracy":54,
@@ -31,8 +29,7 @@
 		"bullets":8,
 		"min_damage":54,
 		"max_damage":85
-	},
-	{
+	},{
 		"name":"Прицельно",
 		"type":3,
 		"accuracy":62,
@@ -42,5 +39,6 @@
 		"bullets":6,
 		"min_damage":60,
 		"max_damage":86
-	}]
+	}],
+	"ingredients":0
 }

@@ -7,5 +7,11 @@
 	"lvlreq":6,
 	"talentreq":5,
 	"classreq":["sc","su"],
-	"AP_cost":75
+	"AP_cost":75,
+	"ingredients":{
+		"light_metals":1,
+		"heavy_metals":3,
+		"electronics":8,
+		"mech_parts":1
+	}
 }
