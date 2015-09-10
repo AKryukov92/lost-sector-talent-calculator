@@ -298,9 +298,9 @@ var talent_grid_model = {
 		this.create_layout_model();
 		this.prepare_layout_model();
 		//Раскомментируй следующие три строчки, чтобы сетка талантов построилась динамически.
-		//this.prepare_grid();
-		//this.fill_grid_rows();
-		//this.draw_talent_forks();
+		// this.prepare_grid();
+		// this.fill_grid_rows();
+		// this.draw_talent_forks();
 		this.assign_click_routines();
 		this.prepare_tooltips();
 		this.update_layout_options();
@@ -379,6 +379,16 @@ var talent_grid_model = {
 			this.layout_model[target_row].columns[current.column].items.push(current);
 		}
 	},
+	setTalentImageBackground: function(imageName, talent) {
+		if (typeof talent.imageid != 'undefined') {
+			var talent_image_id = talent.imageid;
+		} else {
+			var talent_image_id = talent.id;
+		}
+		var diffy = (~~(talent_image_id / 20)) * 40;
+		var diffx = talent_image_id % 20 * 40;
+		$("#" + this.current_class_data.prefix + "-talent-container" + talent.id).css("background","url(" + imageName +") -" + diffx + "px -" + diffy + "px");
+	},
 	fill_grid_rows: function(){
 		// Проецируем модель таблицы в html
 		for (rowindex = 0; rowindex < this.maxrow; rowindex++) {
@@ -386,9 +396,7 @@ var talent_grid_model = {
 				if (this.layout_model[rowindex].columns[colindex].items.length > 0) {
 					var current = this.layout_model[rowindex].columns[colindex].items[0];
 					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div id=\"" + this.current_class_data.prefix + "-talent-container" + current.id + "\" class=\"talent-container\" title=\"\"></div>");
-					
-					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<img src=\"skillspng/" + current.imageid + "g00.png\"/>");
-					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<img id=\"" + this.current_class_data.prefix + "-bright-img" + current.id + "\" class=\"bright-img\" src=\"skillspng/" + current.imageid + "00.png\"/>");
+					this.setTalentImageBackground("/inactiveSkills.png", current);
 					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div id=\"" + this.current_class_data.prefix + "-lock-rect" + current.id + "\" class=\"lock-rect\"></div>");
 					if (typeof current.AP_cost != 'undefined'){
 						$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div class=\"talent-green\"></div>");
@@ -502,10 +510,9 @@ var talent_grid_model = {
 					continue;
 				var current = this.layout_model[rowindex].columns[colindex].items[0];
 				if (player_model.talent_learned(current)) {
-					$("#" + this.current_class_data.prefix + "-bright-img" + current.id).show();
-					$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).hide();
+					this.setTalentImageBackground("/Skills.png", current);
 				} else {
-					$("#" + this.current_class_data.prefix + "-bright-img" + current.id).hide();
+					this.setTalentImageBackground("/inactiveSkills.png", current);
 					if (player_model.can_learn_talent(current))
 						$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).hide();
 					else
@@ -844,8 +851,8 @@ function add_item_to_pool(item){
 	var diffx = item_image_id % 20 * 64;
 	$("#" + item.category + "-pool")
 		.append("<div class=\"swimmer\">" +
-			"<div class=\"swimmer-image-container\">" +
-				"<img id=\"item_" + item.id + "\" src=\"items.png\" style=\"margin-left:-" + diffx + "px;margin-top:-" + diffy + "px;\"/>" +
+			"<div id=\"item_" + item.id + "\" class=\"swimmer-image-container\">" +
+				"<img src=\"items.png\" style=\"margin-left:-" + diffx + "px;margin-top:-" + diffy + "px;\"/>" +
 			"</div>" +
 			"<span class=\"fake-tooltip\">" + item.name + "</span>" +
 		"</div>");
