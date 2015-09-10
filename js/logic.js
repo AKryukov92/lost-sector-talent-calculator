@@ -774,8 +774,8 @@ var player_model = {
 	},
 	update_slot_tooltip:function(slot_name){
 		var selected_color = $("input[name=" + slot_name +"-quality]:checked", "#" + slot_name).val();
-		if (selected_color == 'undefined') {
-			selected_color = white;
+		if (typeof selected_color == 'undefined') {
+			selected_color = "white";
 		}
 		this.slots[slot_name].color = selected_color;
 		var selected_quality = $("#" + slot_name + "-slider").slider("option", "value");
