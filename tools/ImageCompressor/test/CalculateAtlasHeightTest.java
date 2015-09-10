@@ -16,7 +16,7 @@ public class CalculateAtlasHeightTest {
         when(imageFolder.listFiles()).thenReturn(new File[] {
                 new File("C:\\temp\\1700.png")
         });
-        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\(\\d*)00\\.png");
+        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\(\\d*)00\\.png", 1);
 
         int height = builder.calculateAtlasHeight();
         assertEquals(1, height);
@@ -34,7 +34,7 @@ public class CalculateAtlasHeightTest {
                 new File("C:\\temp\\3000.png"),
                 new File("C:\\temp\\2000.png")
         });
-        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\(\\d*)00\\.png");
+        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\(\\d*)00\\.png", 1);
 
         int height = builder.calculateAtlasHeight();
         assertEquals(4, height);

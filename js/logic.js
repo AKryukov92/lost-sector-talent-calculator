@@ -840,8 +840,8 @@ function add_item_to_pool(item){
 	} else {
 		var item_image_id = item.id;
 	}
-	var diffy = (~~(item_image_id / 20)) * 48;
-	var diffx = item_image_id % 20 * 48;
+	var diffy = (~~(item_image_id / 20)) * 64;
+	var diffx = item_image_id % 20 * 64;
 	$("#" + item.category + "-pool")
 		.append("<div class=\"swimmer\">" +
 			"<div class=\"swimmer-image-container\">" +

@@ -16,10 +16,10 @@ public class AtlasBuilder {
     private BufferedImage atlas;
     private Graphics2D graphics;
 
-    public static int FRAGMENT_SIZE = 48;
+    public int fragmentSize = 48;
     public static int ATLAS_WIDTH = 20;
 
-    public AtlasBuilder(File imageFolder, String filenameExpression) throws Exception {
+    public AtlasBuilder(File imageFolder, String filenameExpression, int fragmentSize) throws Exception {
         if (imageFolder == null) {
             throw new Exception("Image folder was not specified");
         }
@@ -41,6 +41,11 @@ public class AtlasBuilder {
             throw new Exception("Regexp should not be empty");
         }
         regex = Pattern.compile(filenameExpression);
+
+        if (fragmentSize <= 0) {
+            throw new Exception("Fragment size should be positive integer");
+        }
+        this.fragmentSize = fragmentSize;
     }
 
     public int calculateAtlasHeight() {
@@ -61,7 +66,7 @@ public class AtlasBuilder {
     }
 
     public void createBaseImage(int atlasWidth, int atlasHeight) {
-        atlas = new BufferedImage(atlasWidth * FRAGMENT_SIZE, atlasHeight * FRAGMENT_SIZE, BufferedImage.TYPE_INT_ARGB);
+        atlas = new BufferedImage(atlasWidth * fragmentSize, atlasHeight * fragmentSize, BufferedImage.TYPE_INT_ARGB);
         graphics = atlas.createGraphics();
     }
 
@@ -105,7 +110,7 @@ public class AtlasBuilder {
         if (graphics == null) {
             return;
         }
-        graphics.drawImage(image, x*FRAGMENT_SIZE, y*FRAGMENT_SIZE, FRAGMENT_SIZE, FRAGMENT_SIZE, null);
+        graphics.drawImage(image, x* fragmentSize, y* fragmentSize, fragmentSize, fragmentSize, null);
     }
 
     public void saveImageToFile(File destination) throws IOException {
