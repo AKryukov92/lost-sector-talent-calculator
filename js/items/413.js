@@ -4,8 +4,7 @@
 	"mobility":90,
 	"lvlreq":2,
 	"id":413,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":100,
@@ -14,5 +13,9 @@
 		"max_dist":1.9,
 		"min_damage":43,
 		"max_damage":78
-	}]
+	}],
+	"ingredients":{
+		"light_metals":7,
+		"heavy_metals":1
+	}
 }

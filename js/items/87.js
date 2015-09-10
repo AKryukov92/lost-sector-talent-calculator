@@ -6,5 +6,10 @@
 	"description":"Восстанавливает 40 очков здоровья",
 	"lvlreq":4,
 	"talentreq":2,
-	"AP_cost":15
+	"AP_cost":15,
+	"ingredients":{
+		"bio":1,
+		"chemicals":1,
+		"rebis":1
+	}
 }

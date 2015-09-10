@@ -10,8 +10,7 @@
 	"description":"Поджигает землю в месте взрыва",
 	"classreq":["su"],
 	"id":527,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -20,8 +19,7 @@
 		"max_dist":1.8,
 		"min_damage":25,
 		"max_damage":40
-	},
-	{
+	},{
 		"name":"Навскидку",
 		"type":9,
 		"accuracy":55,
@@ -32,5 +30,6 @@
 		"bullets":1,
 		"min_damage":18,
 		"max_damage":36
-	}]
+	}],
+	"ingredients":0
 }

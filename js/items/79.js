@@ -11,5 +11,9 @@
 	{
 		"duration":10,
 		"effects":["Увеличивает мобильность на 8%"]
-	}]
+	}],
+	"ingredients":{
+		"bio":2,
+		"chemicals":2
+	}
 }

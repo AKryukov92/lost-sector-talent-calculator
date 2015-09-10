@@ -39,5 +39,6 @@
 		"bullets":6,
 		"min_damage":50,
 		"max_damage":60
-	}]
+	}],
+	"ingredients":0
 }

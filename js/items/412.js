@@ -5,8 +5,7 @@
 	"lvlreq":7,
 	"classreq":["ju","sc"],
 	"id":412,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":100,
@@ -20,6 +19,6 @@
 			"duration":1,
 			"effects":["Делит мобильность на 2"]
 		}]
-	}
-	]
+	}],
+	"ingredients":0
 }

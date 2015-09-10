@@ -6,5 +6,6 @@
 	"lvlreq":7,
 	"talentreq":9,
 	"classreq":["ju"],
-	"id":411
+	"id":411,
+	"ingredients":0
 }

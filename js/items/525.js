@@ -6,8 +6,7 @@
 	"ammo":3,
 	"reload_cost":45,
 	"id":525,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -16,8 +15,7 @@
 		"max_dist":1.5,
 		"min_damage":10,
 		"max_damage":25
-	},
-	{
+	},{
 		"name":"Навскидку",
 		"type":2,
 		"accuracy":52,
@@ -34,5 +32,6 @@
 				"Уменьшает эффективность лечения на 30%"
 			]
 		}]
-	}]
+	}],
+	"ingredients":0
 }

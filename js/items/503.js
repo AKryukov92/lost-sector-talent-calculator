@@ -9,8 +9,7 @@
 	"talentreq":13,
 	"classreq":["sc"],
 	"id":503,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -19,8 +18,7 @@
 		"max_dist":2,
 		"min_damage":20,
 		"max_damage":35
-	},
-	{
+	},{
 		"name":"Навскидку",
 		"type":5,
 		"accuracy":59,
@@ -30,8 +28,7 @@
 		"bullets":1,
 		"min_damage":64,
 		"max_damage":104
-	},
-	{
+	},{
 		"name":"Прицельно",
 		"type":5,
 		"accuracy":76,
@@ -41,5 +38,10 @@
 		"bullets":1,
 		"min_damage":96,
 		"max_damage":136
-	}]
+	}],
+	"ingredients":{
+		"light_metals":18,
+		"heavy_metals":22,
+		"mech_parts":19
+	}
 }

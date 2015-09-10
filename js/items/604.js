@@ -7,13 +7,19 @@
 	"lvlreq":9,
 	"talentreq":16,
 	"classreq":["sc","su","as"],
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Бросок",
 		"accuracy":60,
 		"radius":1,
 		"cost":40,
 		"min_dist":0,
 		"max_dist":15
-	}]
+	}],
+	"ingredients":{
+		"light_metals":2,
+		"heavy_metals":3,
+		"electronics":1,
+		"mech_parts":5,
+		"chemicals":1
+	}
 }

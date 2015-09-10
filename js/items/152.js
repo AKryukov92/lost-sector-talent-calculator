@@ -14,5 +14,6 @@
 		"max_dist":15,
 		"min_damage":150,
 		"max_damage":250
-	}]
+	}],
+	"ingredients":0
 }

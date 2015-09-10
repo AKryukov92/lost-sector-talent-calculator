@@ -6,8 +6,7 @@
 	"talentreq":7,
 	"classreq":["ju","sc"],
 	"id":409,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":100,
@@ -21,6 +20,11 @@
 			"duration":1,
 			"effects":["Делит мобильность на 2"]
 		}]
+	}],
+	"ingredients":{
+		"light_metals":11,
+		"heavy_metals":9,
+		"electronics":6,
+		"mech_parts":2
 	}
-	]
 }

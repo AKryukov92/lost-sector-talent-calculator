@@ -9,8 +9,7 @@
 	"talentreq":23,
 	"classreq":["ju"],
 	"id":497,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -19,8 +18,7 @@
 		"max_dist":1.8,
 		"min_damage":30,
 		"max_damage":40
-	},
-	{
+	},{
 		"name":"Навскидку",
 		"type":5,
 		"accuracy":64,
@@ -30,8 +28,7 @@
 		"bullets":12,
 		"min_damage":95,
 		"max_damage":108
-	},
-	{
+	},{
 		"name":"Очередь",
 		"type":5,
 		"accuracy":39,
@@ -41,5 +38,10 @@
 		"bullets":30,
 		"min_damage":195,
 		"max_damage":216
-	}]
+	}],
+	"ingredients":{
+		"light_metals":52,
+		"heavy_metals":72,
+		"mech_parts":43
+	}
 }

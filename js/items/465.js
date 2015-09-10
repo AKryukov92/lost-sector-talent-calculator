@@ -9,8 +9,7 @@
 	"talentreq":12,
 	"classreq":["su"],
 	"id":465,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -19,8 +18,7 @@
 		"max_dist":1.8,
 		"min_damage":20,
 		"max_damage":30
-	},
-	{
+	},{
 		"name":"Запуск",
 		"type":6,
 		"accuracy":28,
@@ -31,5 +29,10 @@
 		"bullets":1,
 		"min_damage":59,
 		"max_damage":78
-	}]
+	}],
+	"ingredients":{
+		"light_metals":23,
+		"heavy_metals":34,
+		"mech_parts":12
+	}
 }

@@ -11,5 +11,9 @@
 	{
 		"duration":5,
 		"effects":["Увеличивает сопротивление взрывам на 50%"]
-	}]
+	}],
+	"ingredients":{
+		"chemicals":1,
+		"rebis":1
+	}
 }

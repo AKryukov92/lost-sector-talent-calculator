@@ -7,8 +7,7 @@
 	"description":"Stop! Hammertime!",
 	"classreq":["ju","sc"],
 	"id":538,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":100,
@@ -17,11 +16,10 @@
 		"max_dist":1.5,
 		"min_damage":70,
 		"max_damage":120,
-		"specials":[
-		{
+		"specials":[{
 			"duration":1,
 			"effects":["Уменьшает максимум очков действия на 40"]
 		}]
-	}
-	]
+	}],
+	"ingredients":0
 }

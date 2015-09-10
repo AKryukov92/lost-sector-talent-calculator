@@ -10,8 +10,7 @@
 	"talentreq":20,
 	"classreq":["as","ju","su"],
 	"id":491,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -20,8 +19,7 @@
 		"max_dist":1.5,
 		"min_damage":20,
 		"max_damage":30
-	},
-	{
+	},{
 		"name":"Навскидку",
 		"type":4,
 		"accuracy":45,
@@ -31,8 +29,7 @@
 		"bullets":2,
 		"min_damage":77,
 		"max_damage":91
-	},
-	{
+	},{
 		"name":"Прицельно",
 		"type":4,
 		"accuracy":55,
@@ -42,5 +39,6 @@
 		"bullets":1,
 		"min_damage":42,
 		"max_damage":50
-	}]
+	}],
+	"ingredients":0
 }

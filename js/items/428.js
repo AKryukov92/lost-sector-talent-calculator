@@ -9,8 +9,7 @@
 	"talentreq":10,
 	"classreq":["as"],
 	"id":428,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Удар",
 		"type":1,
 		"accuracy":90,
@@ -19,8 +18,7 @@
 		"max_dist":1.5,
 		"min_damage":20,
 		"max_damage":30
-	},
-	{
+	},{
 		"name":"Очередь",
 		"type":3,
 		"accuracy":58,
@@ -30,8 +28,7 @@
 		"bullets":8,
 		"min_damage":47,
 		"max_damage":70
-	},
-	{
+	},{
 		"name":"Прицельно",
 		"type":3,
 		"accuracy":65,
@@ -41,5 +38,10 @@
 		"bullets":6,
 		"min_damage":51,
 		"max_damage":74
-	}]
+	}],
+	"ingredients":{
+		"light_metals":22,
+		"heavy_metals":35,
+		"mech_parts":17
+	}
 }

@@ -5,5 +5,11 @@
 	"protection":115,
 	"lvlreq":13,
 	"description":"Специализированный костюм джаггернаута. Укрепленная броня даёт большую защиту, но снижает мобильность на 8%.",
-	"classreq":["ju"]
+	"classreq":["ju"],
+	"ingredients":{
+		"light_metals":60,
+		"heavy_metals":85,
+		"electronics":50,
+		"mech_parts":60
+	}
 }

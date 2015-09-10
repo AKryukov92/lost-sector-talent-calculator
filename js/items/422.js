@@ -5,8 +5,7 @@
 	"consumable_type":4,
 	"lvlreq":3,
 	"talentreq":4,
-	"attacks":[
-	{
+	"attacks":[{
 		"name":"Бросок",
 		"type":6,
 		"accuracy":50,
@@ -21,5 +20,10 @@
 			"duration":1,
 			"effects":["Уменьшает максимум очков действия на 40"]
 		}]
-	}]
+	}],
+	"ingredients":{
+		"light_metals":4,
+		"mech_parts":2,
+		"chemicals":2
+	}
 }

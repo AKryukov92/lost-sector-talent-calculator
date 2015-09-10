@@ -4,5 +4,6 @@
 	"id":215,
 	"protection":96,
 	"lvlreq":11,
-	"description":"Поглощает 50% химического урона."
+	"description":"Поглощает 50% химического урона.",
+	"ingredients":0
 }
