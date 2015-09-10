@@ -43,5 +43,8 @@
 		<div style="color:gray;"><?php print $data["description"]; ?></div>
 	<?php } ?>
 </div>
+<?php if (!$iframe) { ?>
+<script src="js/analytics.js"></script>
+<?php } ?>
 </body>
 <html>

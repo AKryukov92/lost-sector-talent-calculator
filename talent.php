@@ -101,5 +101,8 @@ if ($id > 100) {
 	</div>
 <?php } ?>
 </div>
+<?php if (!$iframe) { ?>
+<script src="js/analytics.js"></script>
+<?php } ?>
 </body>
 </html>
