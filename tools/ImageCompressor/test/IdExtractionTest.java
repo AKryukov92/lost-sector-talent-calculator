@@ -22,7 +22,7 @@ public class IdExtractionTest {
     @Test
     public void parseExampleItem() throws Exception {
         String input = "C:\\temp\\item1200.png";
-        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\item(\\d*)00\\.png");
+        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\item(\\d*)00\\.png", 1);
         int id = builder.getIdFromFilename(input);
         assertEquals(12, id);
     }
@@ -30,7 +30,7 @@ public class IdExtractionTest {
     @Test
     public void parseExampleTalent() throws Exception {
         String input = "C:\\temp\\1700.png";
-        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\(\\d*)00\\.png");
+        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\(\\d*)00\\.png", 1);
         int id = builder.getIdFromFilename(input);
         assertEquals(17, id);
     }
@@ -38,7 +38,7 @@ public class IdExtractionTest {
     @Test
     public void parseExampleInactiveTalent() throws Exception {
         String input = "C:\\temp\\19g00.png";
-        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\(\\d*)g00\\.png");
+        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\(\\d*)g00\\.png", 1);
         int id = builder.getIdFromFilename(input);
         assertEquals(19, id);
     }
@@ -46,7 +46,7 @@ public class IdExtractionTest {
     @Test
     public void parseFilename() throws Exception {
         String input = "C:\\temp\\4000.png";
-        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\(\\d*)00\\.png");
+        AtlasBuilder builder = new AtlasBuilder(imageFolder, ".*\\\\(\\d*)00\\.png", 1);
         int id = builder.getIdFromFilename(input);
         assertEquals(40, id);
     }
