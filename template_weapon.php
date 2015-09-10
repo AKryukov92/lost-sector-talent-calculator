@@ -162,9 +162,9 @@ if (isset($data["talentreq"])) {
 			</div>
 		</div>
 	</div>
-		<div class="fake-tooltip-container">
-			<div class="fake-tooltip" id="primary-fake-tooltip"></div>
-		</div>
+	<div class="fake-tooltip-container" style="margin:2px;">
+		<div class="fake-tooltip" id="primary-fake-tooltip"></div>
+	</div>
 	<div id="items-pool" style="clear:both;overflow:auto;">
 		<ul>
 			<li><a href="#all-melee">Ближний бой</a></li>
