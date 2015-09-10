@@ -92,9 +92,9 @@ var talent_grid_model = {
 		this.create_layout_model();
 		this.prepare_layout_model();
 		//Раскомментируй следующие три строчки, чтобы сетка талантов построилась динамически.
-		// this.prepare_grid();
-		// this.fill_grid_rows();
-		// this.draw_talent_forks();
+		 // this.prepare_grid();
+		 // this.fill_grid_rows();
+		 // this.draw_talent_forks();
 		this.assign_click_routines();
 		this.prepare_tooltips();
 		this.update_layout_options();
@@ -144,7 +144,7 @@ var talent_grid_model = {
 			}
 			var div_content;
 			div_content = "<div id=\"" + this.current_class_data.prefix + "-lvl" + rowindex + "\" class=\"level-content\">";
-			div_content += "<div class=\"level-header\">Уровень " + this.current_class_data.rows[rowindex].level + "</div></div>";
+			div_content += "<div class=\"level-header\"> Ур. " + this.current_class_data.rows[rowindex].level + "</div></div>";
 			$("#" + this.current_class_data.prefix + "-layout").append(div_content);
 		}
 	},
@@ -191,12 +191,12 @@ var talent_grid_model = {
 					var current = this.layout_model[rowindex].columns[colindex].items[0];
 					$("#" + this.current_class_data.prefix + "-lvl" + rowindex).append("<div id=\"" + this.current_class_data.prefix + "-talent-container" + current.id + "\" class=\"talent-container\" title=\"\"></div>");
 					this.setTalentImageBackground("/inactiveSkills.png", current);
-					$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div id=\"" + this.current_class_data.prefix + "-lock-rect" + current.id + "\" class=\"lock-rect\"></div>");
-					if (typeof current.AP_cost != 'undefined'){
-						$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div class=\"talent-green\"></div>");
+					if (typeof current.talentreq != 'undefined') {
+						$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div id=\"" + this.current_class_data.prefix + "-lock-rect" + current.id + "\" class=\"lock-rect\"></div>");
 					}
-					
-					//$("#talent-container" + current.id).append("<div class=\"lock-rect\"></div>");
+					if (typeof current.AP_cost != 'undefined'){
+						$("#" + this.current_class_data.prefix + "-talent-container" + current.id).css("border", "1px solid green");
+					}
 					if (this.layout_model[rowindex].columns[colindex].items.length > 1) {
 						$("#" + this.current_class_data.prefix + "-talent-container" + current.id).append("<div id=\"talent-container-rank\" class=\"talent-rank\">0/" + this.layout_model[rowindex].columns[colindex].items.length + "</div>");
 					}
