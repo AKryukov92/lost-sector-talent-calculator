@@ -35,6 +35,19 @@ if (isset($data["protection"])) {
 <?php if (isset($data["name"])) { ?>
 	<title><?php print $data["name"];?></title>
 <?php } ?>
+<?php if (!$iframe) { ?>
+	<link href="css/jquery-ui.css" rel="stylesheet">
+	<link href="css/local.css" rel="stylesheet">
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script>
+		var patchdata={"game_version":98,"data_version":1};
+        function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+        }
+	</script>
+	<script src="item_data.php"></script>
+<?php } ?>
 </head>
 <body style="margin:0px;">
 <div class="tooltip-content" style="overflow:auto;">
@@ -89,5 +102,45 @@ if (isset($data["protection"])) {
 		<div class="entry"><?php print $data["description"]; ?></div>
 	<?php } ?>
 </div>
+<?php if (!$iframe) { ?>
+	<div id="armor" class="tunable-item">
+		<div><a target="_blank" id="armor-link"><span id="armor-name"></span><span id="armor-value"></span></a></div>
+		<div style="overflow:auto;">
+			<div class="draggable-landing">
+				<div id="armor-container" style="overflow:auto;">
+					<img src="itemspng/slot-armor.png"/>
+				</div>
+				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('armor');">очистить</a>
+			</div>
+			<div style="float:left;">
+				<input type="radio" name="armor-quality" value="gray" id="armor-quality-gray" class="quality">
+					<label for="armor-quality-gray"><span class="gray"><span class="gray"></span></span></label>
+				</input>
+				<input type="radio" name="armor-quality" value="white" id="armor-quality-white" class="quality" checked>
+					<label for="armor-quality-white"><span class="white"><span class="white"></span></span></label>
+				</input>
+				<input type="radio" name="armor-quality" value="green" id="armor-quality-green" class="quality">
+					<label for="armor-quality-green"><span class="green"><span class="green"></span></span></label>
+				</input>
+				<input type="radio" name="armor-quality" value="blue" id="armor-quality-blue" class="quality">
+					<label for="armor-quality-blue"><span class="blue"><span class="blue"></span></span></label>
+				</input>
+				<div id="armor-slider" style="clear:both;"></div>
+			</div>
+		</div>
+	</div>
+	<div class="fake-tooltip-container" style="margin:2px;">
+		<div class="fake-tooltip" id="armor-fake-tooltip"></div>
+	</div>
+	<div id="items-pool" style="clear:both;overflow:auto;">
+			<div id="armor-pool" class="pool"></div>
+	</div>
+<script>
+$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+</script>
+<script src="js/item_detail.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/analytics.js"></script>
+<?php } ?>
 </body>
 </html>

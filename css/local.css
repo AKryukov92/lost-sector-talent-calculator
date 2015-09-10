@@ -183,6 +183,7 @@ width: 1px;
 .fake-tooltip-container {
 	position:relative;
 	margin-left:-10px;
+	float:left;
 }
 
 .tunable-item:hover  .fake-tooltip,.special-item:hover   .fake-tooltip {
