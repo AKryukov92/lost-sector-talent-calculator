@@ -46,6 +46,19 @@ if (isset($data["talentreq"])) {
 <?php if (isset($data["name"])) { ?>
 	<title><?php print $data["name"];?></title>
 <?php } ?>
+<?php if (!$iframe) { ?>
+	<link href="css/jquery-ui.css" rel="stylesheet">
+	<link href="css/local.css" rel="stylesheet">
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script>
+		var patchdata={"game_version":98,"data_version":1};
+        function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+        }
+	</script>
+	<script src="item_data.php"></script>
+<?php } ?>
 </head>
 <body style="margin:0px;">
 <div class="tooltip-content" style="overflow:auto;">
@@ -122,5 +135,83 @@ if (isset($data["talentreq"])) {
 		<div class="entry"><?php print $data["description"]; ?></div>
 	<?php } ?>
 </div>
+<?php if (!$iframe) { ?>
+	<div id="primary" class="tunable-item">
+		<div><a target="_blank" id="primary-link"><span id="primary-name"></span><span id="primary-value"></span></a></div>
+		<div style="overflow:auto;">
+			<div class="draggable-landing">
+				<div id="primary-container" style="overflow:auto;">
+					<img src="itemspng/slot-primary.png"/>
+				</div>
+				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('primary');">очистить</a>
+			</div>
+			<div style="float:left;">
+				<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">
+					<label for="primary-quality-gray"><span class="gray"><span class="gray"></span></span></label>
+				</input>
+				<input type="radio" name="primary-quality" value="white" id="primary-quality-white" class="quality" checked>
+					<label for="primary-quality-white"><span class="white"><span class="white"></span></span></label>
+				</input>
+				<input type="radio" name="primary-quality" value="green" id="primary-quality-green" class="quality">
+					<label for="primary-quality-green"><span class="green"><span class="green"></span></span></label>
+				</input>
+				<input type="radio" name="primary-quality" value="blue" id="primary-quality-blue" class="quality">
+					<label for="primary-quality-blue"><span class="blue"><span class="blue"></span></span></label>
+				</input>
+				<div id="primary-slider" style="clear:both;"></div>
+			</div>
+		</div>
+	</div>
+		<div class="fake-tooltip-container">
+			<div class="fake-tooltip" id="primary-fake-tooltip"></div>
+		</div>
+	<div id="items-pool" style="clear:both;overflow:auto;">
+		<ul>
+			<li><a href="#all-melee">Ближний бой</a></li>
+			<li><a href="#all-pistol">Пистолеты</a></li>
+			<li><a href="#all-smg">ПП</a></li>
+			<li><a href="#all-shotgun">Дробовики</a></li>
+			<li><a href="#all-assault-rifle">Автоматы</a></li>
+			<li><a href="#all-sniper-rifle">Снайперское</a></li>
+			<li><a href="#all-machinegun">Пулеметы</a></li>
+			<li><a href="#all-launcher">Взрывное</a></li>
+			<li><a href="#all-shield">Щиты</a></li>
+		</ul>
+		<div id="all-melee">
+			<div id="melee-pool" class="pool"></div>
+		</div>
+		<div id="all-pistol">
+			<div id="pistol-pool" class="pool"></div>
+		</div>
+		<div id="all-smg">
+			<div id="smg-pool" class="pool"></div>
+		</div>
+		<div id="all-shotgun">
+			<div id="shotgun-pool" class="pool"></div>
+		</div>
+		<div id="all-assault-rifle">
+			<div id="assault_rifle-pool" class="pool"></div>
+		</div>
+		<div id="all-sniper-rifle">
+			<div id="sniper_rifle-pool" class="pool"></div>
+		</div>
+		<div id="all-machinegun">
+			<div id="machinegun-pool" class="pool"></div>
+		</div>
+		<div id="all-launcher">
+			<div id="launcher-pool" class="pool"></div>
+		</div>
+		<div id="all-shield">
+			<div id="shield-pool" class="pool"></div>
+		</div>
+	</div>
+<script>
+$("#items-pool").tabs();
+$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+</script>
+<script src="js/item_detail.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/analytics.js"></script>
+<?php } ?>
 </body>
 </html>
