@@ -1,4 +1,35 @@
-
+function talentclick(event){
+	var talent = event.data;
+	var ranks = talent_grid_model.layout_model[talent_grid_model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
+	var i;
+	for (i = 0; i < ranks.length; i++) {
+		if (!player_model.talent_learned(ranks[i]))
+			break;
+	}
+	if (i < ranks.length) {
+		if (player_model.can_learn_talent(ranks[i])){
+			player_model.learn_talent(ranks[i]);
+			talent_grid_model.update_layout_options();
+		}
+	}
+}
+function talentrightclick(event){
+	if (typeof last_visited_element == 'undefined')
+		return;
+	var talent = last_visited_element;
+	var ranks = talent_grid_model.layout_model[talent_grid_model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
+	var i;
+	for (i = ranks.length; i > 0; i--) {
+		if (player_model.talent_learned(ranks[i-1]))
+			break;
+	}
+	if (i > 0) {
+		if (player_model.can_unlearn_talent(ranks[i-1])) {
+			player_model.unlearn_talent(ranks[i-1]);
+			talent_grid_model.update_layout_options();
+		}
+	}
+}
 $(document).ready(function(){ 
   document.oncontextmenu = function() {return false;};
   
