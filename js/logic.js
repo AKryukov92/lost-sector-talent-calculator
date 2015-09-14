@@ -1,21 +1,4 @@
-﻿//Эта группа функций отвечает за то, чтобы событие правой кнопки мыши корректно вызывало соответствующую функцию для талантов
-function talenthover(event) {
-	last_visited_element = event.data;
-	handled_recently = true;
-}
-
-function set_grade(slot_name, value){
-  var element = $("#" + slot_name + "-value");
-  player_model.slots[slot_name].grade = value;
-  if (value === 0) {
-	element.html( "" );
-  } else {
-	element.html( " +" + value );
-  }
-}
-
-
-function quality_change_handler(slot_name) {
+﻿function quality_change_handler(slot_name) {
 	if ($.isEmptyObject(player_model.slots[slot_name].item)) {
 		return;
 	}
@@ -59,9 +42,9 @@ var talent_grid_model = {
 		this.create_layout_model();
 		this.prepare_layout_model();
 		//Раскомментируй следующие три строчки, чтобы сетка талантов построилась динамически.
-		 // this.prepare_grid();
-		 // this.fill_grid_rows();
-		 // this.draw_talent_forks();
+		  this.prepare_grid();
+		  this.fill_grid_rows();
+		  this.draw_talent_forks();
 		this.assign_click_routines();
 		this.prepare_tooltips();
 		this.update_layout_options();
@@ -148,7 +131,9 @@ var talent_grid_model = {
 		}
 		var diffy = (~~(talent_image_id / 20)) * 35;
 		var diffx = talent_image_id % 20 * 35;
-		$("#" + this.current_class_data.prefix + "-talent-container" + talent.id).css("background","url(" + imageName +") -" + diffx + "px -" + diffy + "px");
+		$("#imageid" + talent_image_id).remove();
+		$("#" + this.current_class_data.prefix + "-talent-container" + talent.id).append(
+			"<img id=\"imageid" + talent_image_id + "\" src=\"" + imageName + "\" style=\"margin-left:-" + diffx + "px;margin-top:-" + diffy + "px;\"/>");
 	},
 	fill_grid_rows: function(){
 		// Проецируем модель таблицы в html
