@@ -26,14 +26,5 @@
 		"min_damage":28,
 		"max_damage":37
 	}],
-	"ingredients":{
-		"light_metals":,
-		"heavy_metals":,
-		"electronics":,
-		"mech_parts":,
-		"bio":,
-		"chemicals":,
-		"rebis":,
-		"gold":
-	}
+	"ingredients":0
 }
