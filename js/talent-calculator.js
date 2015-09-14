@@ -30,6 +30,23 @@ function talentrightclick(event){
 		}
 	}
 }
+
+//Эта группа функций отвечает за то, чтобы событие правой кнопки мыши корректно вызывало соответствующую функцию для талантов
+function talenthover(event) {
+	last_visited_element = event.data;
+	handled_recently = true;
+}
+
+function set_grade(slot_name, value){
+  var element = $("#" + slot_name + "-value");
+  player_model.slots[slot_name].grade = value;
+  if (value === 0) {
+	element.html( "" );
+  } else {
+	element.html( " +" + value );
+  }
+}
+
 $(document).ready(function(){ 
   document.oncontextmenu = function() {return false;};
   

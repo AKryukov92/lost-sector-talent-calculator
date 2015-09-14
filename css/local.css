@@ -64,6 +64,7 @@
 }
 .talent-container {
 	color:red;
+	overflow:hidden;
 }
 .talent-container  .talent-rank{
 	height:20px;

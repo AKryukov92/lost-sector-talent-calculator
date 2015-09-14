@@ -1,7 +1,6 @@
 $(document).ready(function(){ 
   document.oncontextmenu = function() {return false;};
   
-
     $( "#armor-slider" ).slider({
       value:0,
       min: 0,
