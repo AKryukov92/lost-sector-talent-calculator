@@ -307,6 +307,11 @@ $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 
 <script src="js/talent-calculator.js"></script>
 <script src="js/logic.js"></script>
+<script src="js/calculator.js"></script>
+<script>
+var assaultCalculator = new Calculator(patchdata.assault_data);
+var assaultRenderer = new Controller("tabs-as", assaultCalculator);
+</script>
 <script src="js/analytics.js"></script>
 </body>
 </html>

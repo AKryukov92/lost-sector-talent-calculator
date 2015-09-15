@@ -155,6 +155,42 @@ describe('testing Calculator class', function() {
 		var calculator = new Calculator(assault_data);
 		calculator.fillHeightMap();
 		expect(calculator.heightmap[0]).toEqual(1);
+		expect(calculator.heightmap.length).toEqual(1);
+	});
+	
+	it('should fill heightmap if talents are on same line', function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1,talent2]
+		}
+		var calculator = new Calculator(assault_data);
+		calculator.fillHeightMap();
+		expect(calculator.heightmap[0]).toEqual(1);
+		expect(calculator.heightmap.length).toEqual(1);
+	});
+	
+	it('should fill heightmap if talents are on different lines', function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1,talent2, talent4]
+		}
+		var calculator = new Calculator(assault_data);
+		calculator.fillHeightMap();
+		expect(calculator.heightmap[0]).toEqual(1);
+		expect(calculator.heightmap[1]).toEqual(4);
+		expect(calculator.heightmap.length).toEqual(2);
+	});
+	
+	it('should fill heightmap if talents are on different lines and in mixed order', function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent4, talent2]
+		}
+		var calculator = new Calculator(assault_data);
+		calculator.fillHeightMap();
+		expect(calculator.heightmap[0]).toEqual(1);
+		expect(calculator.heightmap[1]).toEqual(4);
+		expect(calculator.heightmap.length).toEqual(2);
 	});
 	
 	it('should throw error on filling height map', function() {
@@ -260,5 +296,16 @@ describe('testing Calculator class', function() {
 	
 	it("should produce TalentString", function() {
 		
+	});
+	
+	it("should create rows for items", function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2, talent4]
+		}
+		var calculator = new Calculator(assault_data);
+		calculator.fillHeightMap();
+		calculator.arrangeRows();
+		expect(calculator.rows.length).toEqual(2);
 	});
 });

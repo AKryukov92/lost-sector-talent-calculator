@@ -153,25 +153,31 @@ function Calculator (input) {
 		this.width = max_column;
 	}
 	this.fillHeightMap = function() {
+		var IMPOSSIBLE_LEVEL = 99;
 		var threshold = 0;
 		if (this.items.length == 0) {
 			throw new Error("Talent data is empty");
 		}
-		for (var j = 0; j < this.items.length; j++) {
-			var min_level_req = 99;
+		var found = true;
+		while(found) {
+			found = false;
+			var min_level_req = IMPOSSIBLE_LEVEL;
 			for (var i = 0; i < this.items.length; i++) {
 				if (typeof this.items[i].base().lvlreq == 'undefined') {
 					continue;
 				}
-				if (this.items[i].base().lvlreq < threshold) {
-					continue;
-				}
-				if (min_level_req > this.items[i].base().lvlreq) {
-					min_level_req = this.items[i].base().lvlreq;
+				var currentLvlReq = this.items[i].base().lvlreq;
+				if (currentLvlReq > threshold) {
+					if (min_level_req > this.items[i].base().lvlreq) {
+						min_level_req = this.items[i].base().lvlreq;
+						found = true;
+					}
 				}
 			}
-			threshold = min_level_req;
-			this.heightmap.push(min_level_req);
+			if (found) {
+				threshold = min_level_req;
+				this.heightmap.push(min_level_req);
+			}
 		}
 	}
 	this.mapRefsReqs = function() {
@@ -212,15 +218,17 @@ function Calculator (input) {
 		}
 	}
 	this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth) {
-		var totalHeight = (margin + padding + itemSize + padding) * this.heightmap.length + margin;
+		this.totalHeight = (margin + padding + itemSize + padding) * this.heightmap.length + margin;
+		this.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * this.width + margin;
 		
 		for (var i = 0; i < this.heightmap.length; i++) {
 			var row = {
 				x: margin,
-				y: (margin + padding + itemSize + padding) * i + margin
+				y: (margin + padding + itemSize + padding) * i + margin,
+				items: []
 			};
 			for (var j = 0; j < this.items.length; j++) {
-				if (this.items[j].talent.lvlreq == this.heightmap[i]) {
+				if (this.items[j].base().lvlreq == this.heightmap[i]) {
 					this.items[j].calculatePaintPosition(margin, padding, row.y, rowHeaderWidth);
 					row.items.push(this.items[j]);
 				}
@@ -332,3 +340,15 @@ function Calculator (input) {
 		return totalTalentPoints - this.getSpentTalentPoints();
 	}
 };
+
+function Controller(nodeName, calculator) {
+	assaultCalculator.calculateWidth();
+	assaultCalculator.fillHeightMap();
+	assaultCalculator.mapRefsReqs();
+	assaultCalculator.mapRanks();
+	assaultCalculator.arrangeRows(5,3,35,100);
+	$("#" + nodeName).append("<canvas width='" + calculator.totalWidth + "' height='" + calculator.totalHeight  + "' id='" + nodeName + "-layout'>Your browser do not support this application</canvas>");
+	var ctx = document.getElementById(nodeName + "-layout").getContext('2d');
+	ctx.fillRect(0, 0, calculator.totalWidth, calculator.totalHeight);
+	
+}
