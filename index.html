@@ -18,10 +18,10 @@
 	<div id="general-info" class="general-info">
 		<div style="float:left;width:250px"><a style="color:#e7a516" href="http://lsonline.ru/"><img src="http://lsonline.ru/data/images/logo.png"/></a></div>
 		<div style="float:left;">
-			<div style="float:none;"><span>Ссылка на билд:</span><input id="link-to-build"></input></div>
+			<div style="float:none;"><span>Ссылка на билд:</span><input id="link-to-build" style="width:100%"></input></div>
 			<div>Очки навыков <span id="points-left">0</span></div>
 			<div>Уровень наемника <span id="merc-level">1</span></div>
-			<label><input type="checkbox" onclick="toggleTalentTooltip();">Спрятать тултипы талантов</label>
+			<div><label><input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked>Спрятать тултипы талантов</label></div>
 		</div>
 	</div>
 	<div class="talent-manager">
@@ -331,8 +331,10 @@ function updateTooltip(controller, prefix) {
 	}
 }
 function toggleTalentTooltip() {
-	$("#talent-tooltip").toggle();
+	var display = $("#talent-visibility-checkbox").is(":checked");
+	$("#talent-tooltip").toggle(display);
 }
+toggleTalentTooltip();
 var recentId;
 loadImages(sources, function(images) {
 	var asCalculator = new Calculator(patchdata.assault_data);
