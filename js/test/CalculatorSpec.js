@@ -1,119 +1,121 @@
 describe('testing Calculator class', function() {
-	var talent1 = {
-		id:1,
-		imageid:1,
-		name:"Пассивная регенерация",
-		description:"Медленно восстанавливает здоровье наемника на мирных локациях (Фабрика и другие).",
-		effect:"Умножает регенерацию здоровья на 3",
-		cost:1,
-		lvlreq:1,
-		column:0
-	};
-	var talent2 = {
-		id:2,
-		imageid:2,
-		name:"Первая помощь",
-		description:"Позволяет использовать таблетки и инъекции ребиса.",
-		cost:1,
-		lvlreq:1,
-		column:1
-	};
-	var talent4 = {
-			id:35,
-			imageid:35,
-			name:"Стимуляторы",
-			description:"Позволяет использовать стероидные и адреналиновые препараты.",
+	var talent1, talent2, talent4, talent48, talent86, talent39, talent392, talent45, talent452, talent453, talent454;
+	beforeEach(function() {
+		talent1 = {
+			id:1,
+			imageid:1,
+			name:"Пассивная регенерация",
+			description:"Медленно восстанавливает здоровье наемника на мирных локациях (Фабрика и другие).",
+			effect:"Умножает регенерацию здоровья на 3",
 			cost:1,
-			lvlreq:4,
-			talentreq:2,
+			lvlreq:1,
+			column:0
+		};
+		talent2 = {
+			id:2,
+			imageid:2,
+			name:"Первая помощь",
+			description:"Позволяет использовать таблетки и инъекции ребиса.",
+			cost:1,
+			lvlreq:1,
 			column:1
 		};
-	var talent48 = {
-			id:48,
-			imageid:48,
-			name:"Крепкий",
-			description:"Увеличивает базовое количество здоровья.",
-			effect:"Увеличивает запас здоровья на 15.",
-			cost:1,
-			lvlreq:8,
-			column:11
-		};
-	var talent86 = {
-			id:86,
-			imageid:86,
-			name:"Стрелять до конца",
-			description:"Следующая атака после активации потратит все ваши ОД, но будет иметь повышенный на 50% шанс критического попадания. Шанс считается для каждой пули отдельно. Для активации можно использовать очки движения.",
-			cost:1,
-			lvlreq:12,
-			talentreq:48,
-			AP_cost:1,
-			column:12
-		};
-	var talent39 = {
-			id:39,
-			imageid:39,
-			name:"Стойкий",
-			description:"Добавляет базовое сопротивление любому урону.",
-			effect:"Увеличивает общую стойкость к урону на 5%",
-			cost:1,
-			lvlreq:5,
-			column:7
-		};
-	var talent392 ={
-			id:392,
-			imageid:39,
-			name:"Стойкий",
-			description:"Добавляет базовое сопротивление любому урону.",
-			effect:"Увеличивает общую стойкость к урону на 7%",
-			cost:3,
-			lvlreq:6,
-			column:7,
-			rankof:39
-		};
-	var talent45 = {
-			id:45,
-			imageid:45,
-			name:"Стрельба наверняка",
-			description:"Увеличивает шанс нанести цели критический урон.",
-			effect:"Увеличивает шанс крит.попадания на 2%",
-			cost:1,
-			lvlreq:6,
-			column:8
-		};
-	var talent452 = {
-			id:452,
-			imageid:45,
-			name:"Стрельба наверняка",
-			description:"Увеличивает шанс нанести цели критический урон.",
-			effect:"Увеличивает шанс крит.попадания на 5%",
-			cost:2,
-			lvlreq:7,
-			rankof:45,
-			column:8
-		};
-	var talent453 = {
-			id:453,
-			imageid:45,
-			name:"Стрельба наверняка",
-			description:"Увеличивает шанс нанести цели критический урон.",
-			effect:"Увеличивает шанс крит.попадания на 10%",
-			cost:2,
-			lvlreq:10,
-			rankof:45,
-			column:8
-		};
-	var talent454 = {
-			id:454,
-			imageid:45,
-			name:"Стрельба наверняка",
-			description:"Увеличивает шанс нанести цели критический урон.",
-			effect:"Увеличивает шанс крит.попадания на 15%",
-			cost:3,
-			lvlreq:13,
-			rankof:45,
-			column:8
-		};
-		
+		talent4 = {
+				id:35,
+				imageid:35,
+				name:"Стимуляторы",
+				description:"Позволяет использовать стероидные и адреналиновые препараты.",
+				cost:1,
+				lvlreq:4,
+				talentreq:2,
+				column:1
+			};
+		talent48 = {
+				id:48,
+				imageid:48,
+				name:"Крепкий",
+				description:"Увеличивает базовое количество здоровья.",
+				effect:"Увеличивает запас здоровья на 15.",
+				cost:1,
+				lvlreq:8,
+				column:11
+			};
+		talent86 = {
+				id:86,
+				imageid:86,
+				name:"Стрелять до конца",
+				description:"Следующая атака после активации потратит все ваши ОД, но будет иметь повышенный на 50% шанс критического попадания. Шанс считается для каждой пули отдельно. Для активации можно использовать очки движения.",
+				cost:1,
+				lvlreq:12,
+				talentreq:48,
+				AP_cost:1,
+				column:12
+			};
+		talent39 = {
+				id:39,
+				imageid:39,
+				name:"Стойкий",
+				description:"Добавляет базовое сопротивление любому урону.",
+				effect:"Увеличивает общую стойкость к урону на 5%",
+				cost:1,
+				lvlreq:5,
+				column:7
+			};
+		talent392 ={
+				id:392,
+				imageid:39,
+				name:"Стойкий",
+				description:"Добавляет базовое сопротивление любому урону.",
+				effect:"Увеличивает общую стойкость к урону на 7%",
+				cost:3,
+				lvlreq:6,
+				column:7,
+				rankof:39
+			};
+		talent45 = {
+				id:45,
+				imageid:45,
+				name:"Стрельба наверняка",
+				description:"Увеличивает шанс нанести цели критический урон.",
+				effect:"Увеличивает шанс крит.попадания на 2%",
+				cost:1,
+				lvlreq:6,
+				column:8
+			};
+		talent452 = {
+				id:452,
+				imageid:45,
+				name:"Стрельба наверняка",
+				description:"Увеличивает шанс нанести цели критический урон.",
+				effect:"Увеличивает шанс крит.попадания на 5%",
+				cost:2,
+				lvlreq:7,
+				rankof:45,
+				column:8
+			};
+		talent453 = {
+				id:453,
+				imageid:45,
+				name:"Стрельба наверняка",
+				description:"Увеличивает шанс нанести цели критический урон.",
+				effect:"Увеличивает шанс крит.попадания на 10%",
+				cost:2,
+				lvlreq:10,
+				rankof:45,
+				column:8
+			};
+		talent454 = {
+				id:454,
+				imageid:45,
+				name:"Стрельба наверняка",
+				description:"Увеличивает шанс нанести цели критический урон.",
+				effect:"Увеличивает шанс крит.попадания на 15%",
+				cost:3,
+				lvlreq:13,
+				rankof:45,
+				column:8
+			};
+	});
 	it('should create Calculator object', function() {
 		var assault_data = {
 			prefix:"as",
@@ -294,10 +296,6 @@ describe('testing Calculator class', function() {
 		expect(calculator.getPowerSum()).toEqual(17);
 	});
 	
-	it("should produce TalentString", function() {
-		
-	});
-	
 	it("should create rows for items", function() {
 		var assault_data = {
 			prefix:"as",
@@ -307,5 +305,58 @@ describe('testing Calculator class', function() {
 		calculator.fillHeightMap();
 		calculator.arrangeRows();
 		expect(calculator.rows.length).toEqual(2);
+	});
+	
+	it("calculates spent points", function() {
+		var assault_data = {
+			prefix: "as",
+			talents:[talent1]
+		}
+		var calculator = new Calculator(assault_data);
+		expect(calculator.getSpentTalentPoints()).toEqual(0);
+		calculator.items[0].learn();
+		expect(calculator.getSpentTalentPoints()).toEqual(1);
+	});
+	
+	it("considers that no learned talents require level 1", function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2]
+		}
+		var calculator = new Calculator(assault_data);
+		expect(calculator.getRequiredLevel()).toEqual(1);
+	});
+	
+	it("calculates level based on learned talents", function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2, talent4]
+		}
+		var calculator = new Calculator(assault_data);
+		calculator.items[0].learn();
+		expect(calculator.getRequiredLevel()).toEqual(1);
+		calculator.items[1].learn();
+		expect(calculator.getRequiredLevel()).toEqual(2);
+		calculator.items[2].learn();
+		expect(calculator.getRequiredLevel()).toEqual(4);
+	});
+	
+	it("produces empty talentstring if nothing learned", function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2, talent4]
+		}
+		var calculator = new Calculator(assault_data);
+		calculator.assignPowerToTalents();
+		expect(calculator.getTalentString()).toEqual("0");
+	});
+	
+	it("throws error on getPowerSum if assignPowerToTalents was not called", function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2, talent4]
+		}
+		var calculator = new Calculator(assault_data);
+		expect(function() { calculator.getPowerSum(); }).toThrow(new Error("Assign power to talents first"));
 	});
 });

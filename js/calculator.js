@@ -155,6 +155,10 @@ function CalculatorItem(talent) {
 		}
 		return ret;
 	}
+	this.isInBox = function(x, y) {
+		return x > this.x && x < this.x + ITEM_BOX_SIZE &&
+				y > this.y && y < this.y + ITEM_BOX_SIZE;
+	}
 	this.addRank(talent);
 }
 
@@ -255,6 +259,7 @@ function Calculator (input) {
 		}
 	}
 	this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth) {
+		this.padding = padding;
 		this.rowHeaderWidth = rowHeaderWidth;
 		this.totalHeight = (margin + padding + itemSize + padding) * this.heightmap.length + margin;
 		this.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * (this.width + 1) + margin;
@@ -286,6 +291,9 @@ function Calculator (input) {
 	}
 	
 	this.getPowerSum = function() {
+		if (typeof this.talents_data[0].power == 'undefined') {
+			throw new Error("Assign power to talents first");
+		}
 		var powersum = 0;
 		for (var i = 0; i < this.talents_data.length; i++) {
 			if (this.talents_data[i].status == TALENT_LEARNED) {
@@ -344,9 +352,11 @@ function Calculator (input) {
 	}
 	this.getSpentTalentPoints = function() {
 		var count = 0;
-		for (var i = 0; i < this.talents_data; i++) {
+		for (var i = 0; i < this.talents_data.length; i++) {
 			if (typeof this.talents_data[i].cost != 'undefined') {
-				count += this.talents[i].cost;
+				if (this.talents_data[i].status == TALENT_LEARNED) {
+					count += this.talents_data[i].cost;
+				}
 			}
 		}
 		return count;
@@ -356,8 +366,7 @@ function Calculator (input) {
 		var spentPoints = this.getSpentTalentPoints();
 		if (spentPoints == 0) {
 			maxLevel = 1;
-		}
-		if (spentPoints <= 4) {
+		} else if (spentPoints <= 4) {
 			maxLevel = spentPoints;
 		} else {
 			maxLevel = Math.ceil((spentPoints - 4) / 3) + 4;
@@ -365,7 +374,9 @@ function Calculator (input) {
 		var i;
 		for(var i = 0; i < this.talents_data.length; i++) {
 			if (this.talents_data[i].lvlreq > maxLevel) {
-				maxLevel = this.talents_data[i].lvlreq;
+				if (this.talents_data[i].status == TALENT_LEARNED) {
+					maxLevel = this.talents_data[i].lvlreq;
+				}
 			}
 		}
 		return maxLevel;
@@ -384,6 +395,7 @@ function Calculator (input) {
 
 function Controller(calculator, ctx, atlasActive, atlasInactive) {
 	this.ctx = ctx;
+	this.recentItem;
 	
 	this.drawBackground = function() {
 		ctx.fillStyle = "black";
@@ -421,16 +433,24 @@ function Controller(calculator, ctx, atlasActive, atlasInactive) {
 				ctx.moveTo(links[j].x1,links[j].y1);
 				ctx.lineTo(links[j].x2,links[j].y2);
 				ctx.stroke();
+				ctx.closePath();
 			}
 		}
 	}
 	this.drawTalents = function() {
 		for (var i = 0; i < calculator.items.length; i ++) {
-			this.blitItem(calculator.items[i]);
+			this.blitItem(calculator.items[i], false);
 		}
 	}
-	this.blitItem = function(item) {
-		ctx.fillStyle="red";
+	this.blitItem = function(item, hover) {
+		if (hover) {
+			ctx.fillStyle = "#e7a516";
+		} else if (item.base().AP_cost > 0) {
+			ctx.fillStyle = "green";
+		} else {
+			ctx.fillStyle = "black";
+		}
+		ctx.fillRect(item.x - 1, item.y - 1, ITEM_BOX_SIZE + 2, ITEM_BOX_SIZE + 2);
 		if (item.base().status == TALENT_LEARNED) {
 			ctx.drawImage(atlasActive, item.imageBoundsX, item.imageBoundsY, ITEM_BOX_SIZE, ITEM_BOX_SIZE,
 			item.x, item.y, ITEM_BOX_SIZE, ITEM_BOX_SIZE);
@@ -438,20 +458,21 @@ function Controller(calculator, ctx, atlasActive, atlasInactive) {
 			ctx.drawImage(atlasInactive, item.imageBoundsX, item.imageBoundsY, ITEM_BOX_SIZE, ITEM_BOX_SIZE,
 			item.x, item.y, ITEM_BOX_SIZE, ITEM_BOX_SIZE);
 			if (!item.canLearn()) {
+				ctx.fillStyle = "red";
 				ctx.globalAlpha = 0.3;
 				ctx.fillRect(item.x, item.y, ITEM_BOX_SIZE, ITEM_BOX_SIZE);
 				ctx.globalAlpha = 1;
 			}
 		}
 		if (item.ranks.length > 1) {
+			ctx.fillStyle = "red";
 			ctx.fillText(item.getLearnedCount() + "/" + item.ranks.length, item.x, item.y + ITEM_BOX_SIZE);
 		}
 	}
 	this.getItem = function(x, y) {
 		for (var i = 0; i < calculator.items.length; i++) {
 			var item = calculator.items[i];
-			if (x > item.x && x < item.x + ITEM_BOX_SIZE &&
-				y > item.y && y < item.y + ITEM_BOX_SIZE) {
+			if (item.isInBox(x, y)) {
 				return item;
 			}
 		}
@@ -468,17 +489,29 @@ function Controller(calculator, ctx, atlasActive, atlasInactive) {
 				}
 			}
 			for (var i = 0; i < item.refs.length; i++) {
-				this.blitItem(item.refs[i]);
+				this.blitItem(item.refs[i], false);
 			}
 			if (item.reqs.length > 0) {
 				for (var i = 0; i < item.reqs[0].refs.length; i++) {
-					this.blitItem(item.reqs[0].refs[i]);
+					this.blitItem(item.reqs[0].refs[i], false);
 				}
 			}
-			this.blitItem(item);
+			this.blitItem(item, false);
 		}
 	}
 	this.handleMouseMove = function(x, y) {
+		for (var i = 0; i < calculator.items.length; i++) {
+			var item = calculator.items[i];
+			if (item.isInBox(x,y)) {
+				if (item != this.recentItem) {
+					if (typeof this.recentItem != 'undefined') {
+						this.blitItem(this.recentItem, false);
+					}
+					this.blitItem(item, true);
+					this.recentItem = item;
+				}
+			}
+		}
 		for (var i = 0; i < calculator.rows.length; i++) {
 			var row = calculator.rows[i];
 			if (x > row.x && x < row.x + row.width &&
