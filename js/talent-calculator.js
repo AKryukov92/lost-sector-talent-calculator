@@ -1,42 +1,3 @@
-function talentclick(event){
-	var talent = event.data;
-	var ranks = talent_grid_model.layout_model[talent_grid_model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
-	var i;
-	for (i = 0; i < ranks.length; i++) {
-		if (!player_model.talent_learned(ranks[i]))
-			break;
-	}
-	if (i < ranks.length) {
-		if (player_model.can_learn_talent(ranks[i])){
-			player_model.learn_talent(ranks[i]);
-			talent_grid_model.update_layout_options();
-		}
-	}
-}
-function talentrightclick(event){
-	if (typeof last_visited_element == 'undefined')
-		return;
-	var talent = last_visited_element;
-	var ranks = talent_grid_model.layout_model[talent_grid_model.get_row_for_level(talent.lvlreq)].columns[talent.column].items;
-	var i;
-	for (i = ranks.length; i > 0; i--) {
-		if (player_model.talent_learned(ranks[i-1]))
-			break;
-	}
-	if (i > 0) {
-		if (player_model.can_unlearn_talent(ranks[i-1])) {
-			player_model.unlearn_talent(ranks[i-1]);
-			talent_grid_model.update_layout_options();
-		}
-	}
-}
-
-//Эта группа функций отвечает за то, чтобы событие правой кнопки мыши корректно вызывало соответствующую функцию для талантов
-function talenthover(event) {
-	last_visited_element = event.data;
-	handled_recently = true;
-}
-
 function set_grade(slot_name, value){
   var element = $("#" + slot_name + "-value");
   player_model.slots[slot_name].grade = value;
@@ -49,35 +10,6 @@ function set_grade(slot_name, value){
 
 $(document).ready(function(){ 
   document.oncontextmenu = function() {return false;};
-  
-	$("#tabs").mouseover(function(){
-		if (!handled_recently)
-			last_visited_element = undefined;
-		handled_recently = false;
-	});
-
-	$("#tabs").mousedown(function(e){ 
-		if( e.button == 2 ) { 
-			talentrightclick(e);
-			return false; 
-		}
-		return true; 
-	});
-	$('#tabs').on('mousedown', function(e) {
-		e.preventDefault();
-	});
-	$("#assault-link").click(function(){
-		talent_grid_model.select_data("as");
-	});
-	$("#juggernaut-link").click(function(){
-		talent_grid_model.select_data("ju");
-	});
-	$("#scout-link").click(function(){
-		talent_grid_model.select_data("sc");
-	});
-	$("#support-link").click(function(){
-		talent_grid_model.select_data("su");
-	});
 
     $( "#armor-slider" ).slider({
       value:0,
@@ -170,7 +102,7 @@ $(document).ready(function(){
 		content:""
 	});	
 	fill_available_items();
-	$("#link-to-build").click(function(){window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());});
+	$("#link-to-build").click(function(){window.prompt("Р”Р»СЏ РєРѕРїРёСЂРѕРІР°РЅРёСЏ РЅР°Р¶РјРёС‚Рµ: Ctrl+C, Enter", $("#link-to-build").val());});
 	var talent,
 		tmp = [];
 	location.search
@@ -249,7 +181,4 @@ $(document).ready(function(){
 				equip_item(item, "consumable_5");
 			}
 		});
-	if (typeof talent == 'undefined') {
-		talent_grid_model.select_data("as");
-	}
 });

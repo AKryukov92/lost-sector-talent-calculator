@@ -18,13 +18,14 @@
 	<div id="general-info" class="general-info">
 		<div style="float:left;width:250px"><a style="color:#e7a516" href="http://lsonline.ru/"><img src="http://lsonline.ru/data/images/logo.png"/></a></div>
 		<div style="float:left;">
-		<div style="float:none;"><span>Ссылка на билд:</span><input id="link-to-build"></input></div>
-		<div>Очки навыков <span id="points-left">0</span></div>
-		<div>Уровень наемника <span id="merc-level">1</span></div>
+			<div style="float:none;"><span>Ссылка на билд:</span><input id="link-to-build"></input></div>
+			<div>Очки навыков <span id="points-left">0</span></div>
+			<div>Уровень наемника <span id="merc-level">1</span></div>
+			<label><input type="checkbox" onclick="toggleTalentTooltip();">Спрятать тултипы талантов</label>
 		</div>
 	</div>
 	<div class="talent-manager">
-	<div id="tabs" style="float:left">
+	<div id="tabs" style="display:table-cell;">
 		<ul>
 			<li><a id="assault-link" href="#tabs-as">
 			Штурмовик<br/>
@@ -83,6 +84,8 @@
 			<canvas id='calculator-su-layout'>Your browser do not support this application</canvas>
 			</div>
 		</div>
+	</div>
+	<div class="talent-tooltip-container" id="talent-tooltip">
 	</div>
 	</div>
 	<div class="item-manager">
@@ -305,6 +308,7 @@ var sources = {
 };
 function prepareCalculator(calculator) {
 	calculator.calculateWidth();
+	calculator.assignPowerToTalents();
 	calculator.fillHeightMap();
 	calculator.mapRefsReqs();
 	calculator.mapRanks();
@@ -318,6 +322,18 @@ function prepareController(controller) {
 	controller.drawReqToRefLinks();
 	controller.drawTalents();
 }
+function updateTooltip(controller, prefix) {
+	if (typeof controller.recentItem != 'undefined') {
+		if (controller.recentItem.base().id != recentId) {
+			recentId = controller.recentItem.base().id;
+			$("#talent-tooltip").html("<iframe scrolling=\"no\" src=\"/talent.php?id=" + controller.recentItem.base().id + "&prefix=" + prefix + "&iframe=true\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>");
+		}
+	}
+}
+function toggleTalentTooltip() {
+	$("#talent-tooltip").toggle();
+}
+var recentId;
 loadImages(sources, function(images) {
 	var asCalculator = new Calculator(patchdata.assault_data);
 	prepareCalculator(asCalculator);
@@ -327,12 +343,15 @@ loadImages(sources, function(images) {
 	prepareController(asController);
 	$("#calculator-as-layout").click(function(e) {
 		asController.handleClick(e.offsetX, e.offsetY);
-		player_model.update_link(asCalculator.getTalentString());
-		talent_grid_model.update_requirements_layout(asCalculator.getRequiredLevel(), asCalculator.getAvailableTalentPoints());
+		player_model.update_link(asCalculator.getTalentString(), "as");
+		$("#merc-level").html(asCalculator.getRequiredLevel());
+		$("#points-left").html(asCalculator.getAvailableTalentPoints());
+		updateTooltip(asController, "as");
 	});
 	$("#calculator-as-layout").mousemove(function(e) {
 		var offset = $(this).offset();
 		asController.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
+		updateTooltip(asController, "as");
 	});
 	
 	var juCalculator = new Calculator(patchdata.juggernaut_data);
@@ -343,12 +362,15 @@ loadImages(sources, function(images) {
 	prepareController(juController);
 	$("#calculator-ju-layout").click(function(e) {
 		juController.handleClick(e.offsetX, e.offsetY);
-		player_model.update_link(juCalculator.getTalentString());
-		talent_grid_model.update_requirements_layout(juCalculator.getRequiredLevel(), juCalculator.getAvailableTalentPoints());
+		player_model.update_link(juCalculator.getTalentString(), "ju");
+		$("#merc-level").html(juCalculator.getRequiredLevel());
+		$("#points-left").html(juCalculator.getAvailableTalentPoints());
+		updateTooltip(scController, "sc");
 	});
 	$("#calculator-ju-layout").mousemove(function(e) {
 		var offset = $(this).offset();
 		juController.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
+		updateTooltip(asController, "as");
 	});
 	
 	var scCalculator = new Calculator(patchdata.scout_data);
@@ -359,12 +381,15 @@ loadImages(sources, function(images) {
 	prepareController(scController);
 	$("#calculator-sc-layout").click(function(e) {
 		scController.handleClick(e.offsetX, e.offsetY);
-		player_model.update_link(scCalculator.getTalentString());
-		talent_grid_model.update_requirements_layout(scCalculator.getRequiredLevel(), scCalculator.getAvailableTalentPoints());
+		player_model.update_link(scCalculator.getTalentString(), "sc");
+		$("#merc-level").html(scCalculator.getRequiredLevel());
+		$("#points-left").html(scCalculator.getAvailableTalentPoints());
+		updateTooltip(scController, "sc");
 	});
 	$("#calculator-sc-layout").mousemove(function(e) {
 		var offset = $(this).offset();
 		scController.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
+		updateTooltip(asController, "as");
 	});
 	
 	var suCalculator = new Calculator(patchdata.support_data);
@@ -375,12 +400,36 @@ loadImages(sources, function(images) {
 	prepareController(suController);
 	$("#calculator-su-layout").click(function(e) {
 		suController.handleClick(e.offsetX, e.offsetY);
-		player_model.update_link(suCalculator.getTalentString());
-		talent_grid_model.update_requirements_layout(suCalculator.getRequiredLevel(), suCalculator.getAvailableTalentPoints());
+		player_model.update_link(suCalculator.getTalentString(), "su");
+		$("#merc-level").html(suCalculator.getRequiredLevel());
+		$("#points-left").html(suCalculator.getAvailableTalentPoints());
+		updateTooltip(asController, "as");
 	});
 	$("#calculator-su-layout").mousemove(function(e) {
 		var offset = $(this).offset();
 		suController.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
+		updateTooltip(asController, "as");
+	});
+	
+	$("#assault-link").click(function(){
+		player_model.update_link(asCalculator.getTalentString(), "as");
+		$("#merc-level").html(asCalculator.getRequiredLevel());
+		$("#points-left").html(asCalculator.getAvailableTalentPoints());
+	});
+	$("#juggernaut-link").click(function(){
+		player_model.update_link(juCalculator.getTalentString(), "ju");
+		$("#merc-level").html(juCalculator.getRequiredLevel());
+		$("#points-left").html(juCalculator.getAvailableTalentPoints());
+	});
+	$("#scout-link").click(function(){
+		player_model.update_link(scCalculator.getTalentString(), "sc");
+		$("#merc-level").html(scCalculator.getRequiredLevel());
+		$("#points-left").html(scCalculator.getAvailableTalentPoints());
+	});
+	$("#support-link").click(function(){
+		player_model.update_link(suCalculator.getTalentString(), "su");
+		$("#merc-level").html(suCalculator.getRequiredLevel());
+		$("#points-left").html(suCalculator.getAvailableTalentPoints());
 	});
 });
 

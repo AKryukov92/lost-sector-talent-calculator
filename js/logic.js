@@ -14,76 +14,6 @@ function slider_slide_handler(slot_name, event, ui) {
 	player_model.update_link();
 }
 
-var last_visited_element = {};
-var handled_recently = false;
-
-var talent_grid_model = {
-	//load data
-	maxrow: 0,
-	maxcol: 0,
-	layout_model: [],
-	current_class_data: {},
-	select_data: function(class_name){
-		switch(class_name){
-			case "ju":
-			this.current_class_data = patchdata.juggernaut_data;
-			break;
-			case "sc":
-			this.current_class_data = patchdata.scout_data;
-			break;
-			case "su":
-			this.current_class_data = patchdata.support_data;
-			break;
-			default: //"assault":
-			this.current_class_data = patchdata.assault_data;
-		}
-	},
-	update_tooltip:function(current) {
-		var class_prefix = talent_grid_model.current_class_data.prefix;
-		$(function(){
-			$("#" + talent_grid_model.current_class_data.prefix + "-talent-container" + current.id).tooltip({
-				track:true,
-				show:{delay:200},
-				content:"<iframe scrolling=\"no\" src=\"/talent.php?id=" + current.id + "&prefix=" + class_prefix +"&iframe=true\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>"
-			})
-		});
-	},
-	update_layout_options:function(){
-		var rowindex, colindex;
-		for (rowindex = 0; rowindex < this.maxrow; rowindex++) {
-			for	(colindex = 0; colindex < this.maxcol; colindex++) {
-				if (this.layout_model[rowindex].columns[colindex].items.length == 0)
-					continue;
-				var current = this.layout_model[rowindex].columns[colindex].items[0];
-				if (player_model.talent_learned(current)) {
-					this.setTalentImageBackground("/Skills.png", current);
-				} else {
-					this.setTalentImageBackground("/inactiveSkills.png", current);
-					if (player_model.can_learn_talent(current))
-						$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).hide();
-					else
-						$("#" + this.current_class_data.prefix + "-lock-rect" + current.id).show();
-				}
-				if (this.layout_model[rowindex].columns[colindex].items.length > 1){
-					var basic = this.get_base_for_rank(current);
-					var ranks = this.layout_model[talent_grid_model.get_row_for_level(current.lvlreq)].columns[current.column].items;
-					var i;
-					var learned_count = 0;
-					for (i = 0; i < ranks.length; i++) {
-						if (player_model.talent_learned(ranks[i])){
-							learned_count++;
-						}
-					}
-					$("#" + this.current_class_data.prefix + "-talent-container" + basic.id + " #talent-container-rank").html(learned_count + "/" + this.layout_model[rowindex].columns[colindex].items.length);
-				}
-			}
-		}
-	},
-	update_requirements_layout:function(lvlreq, ptsleft){
-		$("#merc-level").html(lvlreq);
-		$("#points-left").html(ptsleft);
-	}
-}
 //Количество доступных очков навыка вычисляется по формуле: (уровень - 4)*3+4
 var player_model = {
 	required_level:0,
@@ -98,8 +28,8 @@ var player_model = {
 		consumable_3: { short_name :"c3", item:{} },
 		consumable_4: { short_name :"c4", item:{} },
 		consumable_5: { short_name :"c5", item:{} },},
-	update_link:function(talentString){
-		var link = "http://lstc.wc.lt?talent=" + patchdata.game_version + patchdata.data_version + talent_grid_model.current_class_data.prefix + "_" + talentString;
+	update_link:function(talentString, classPrefix){
+		var link = "http://lstc.wc.lt?talent=" + patchdata.game_version + patchdata.data_version + classPrefix + "_" + talentString;
 		var slot = player_model.slots["primary"];
 		if (!$.isEmptyObject(slot.item)) {
 			link += "&primary=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
