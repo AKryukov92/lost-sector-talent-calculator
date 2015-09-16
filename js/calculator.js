@@ -52,19 +52,56 @@ function CalculatorItem(talent) {
 	}
 	this.canLearn = function() {
 		for(var i = 0; i < this.reqs.length; i++) {
-			if (this.reqs[i].ranks[0].status == TALENT_NOT_LEARNED) {
+			if (this.reqs[i].base().status == TALENT_NOT_LEARNED) {
+				return false;
+			}
+		}
+		if (this.reqs.length > 0) {
+			for (var i = 0; i < this.reqs[0].refs.length; i++) {
+				if (this.reqs[0].refs[i].base().status == TALENT_LEARNED) {
+					return false;
+				}
+			}
+		}
+		var i = 0;
+		while(i < this.ranks.length) {
+			if (this.ranks[i].status == TALENT_NOT_LEARNED) {
+				return true;
+			}
+			i++;
+		}
+		return false;
+	}
+	this.canUnlearn = function() {
+		if (this.ranks.length > 1) {
+			var i = this.ranks.length - 1;
+			while (i >= 1) {
+				if (this.ranks[i].status == TALENT_LEARNED) {
+					return true;
+				}
+				i--;
+			}
+		}
+		if (this.ranks[0].status == TALENT_NOT_LEARNED) {
+			return false;
+		}
+		for(var i = 0; i < this.refs.length; i++) {
+			if (this.refs[i].base().status == TALENT_LEARNED) {
 				return false;
 			}
 		}
 		return true;
 	}
-	this.canUnlearn = function() {
-		for(var i = 0; i < this.refs.length; i++) {
-			if (this.refs[i].ranks[0].status == TALENT_LEARNED) {
-				return false;
+	this.getLearnedCount = function() {
+		var i = 0;
+		while (i < this.ranks.length) {
+			if (this.ranks[i].status == TALENT_LEARNED) {
+				i++;
+			} else {
+				break;
 			}
 		}
-		return true;
+		return i;
 	}
 	this.learn = function() {
 		if (this.canLearn()) {
@@ -97,7 +134,7 @@ function CalculatorItem(talent) {
 		}
 	}
 	this.calculatePaintPosition = function(margin, padding, rowY, rowHeaderWidth)  {
-		this.x = margin + padding + rowHeaderWidth + (padding + ITEM_BOX_SIZE) * (this.base().column - 1) + padding;
+		this.x = margin + padding + rowHeaderWidth + (padding + ITEM_BOX_SIZE) * (this.base().column) + padding;
 		this.y = rowY + padding;
 	};
 	this.isUsable = function() {
@@ -218,13 +255,17 @@ function Calculator (input) {
 		}
 	}
 	this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth) {
+		this.rowHeaderWidth = rowHeaderWidth;
 		this.totalHeight = (margin + padding + itemSize + padding) * this.heightmap.length + margin;
-		this.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * this.width + margin;
+		this.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * (this.width + 1) + margin;
 		
 		for (var i = 0; i < this.heightmap.length; i++) {
 			var row = {
 				x: margin,
 				y: (margin + padding + itemSize + padding) * i + margin,
+				width: this.totalWidth - margin * 2,
+				height: ITEM_BOX_SIZE + padding * 2,
+				level: this.heightmap[i],
 				items: []
 			};
 			for (var j = 0; j < this.items.length; j++) {
@@ -322,7 +363,7 @@ function Calculator (input) {
 			maxLevel = Math.ceil((spentPoints - 4) / 3) + 4;
 		}
 		var i;
-		for(var i = 0; i < this.talents.length; i++) {
+		for(var i = 0; i < this.talents_data.length; i++) {
 			if (this.talents_data[i].lvlreq > maxLevel) {
 				maxLevel = this.talents_data[i].lvlreq;
 			}
@@ -341,14 +382,152 @@ function Calculator (input) {
 	}
 };
 
-function Controller(nodeName, calculator) {
-	assaultCalculator.calculateWidth();
-	assaultCalculator.fillHeightMap();
-	assaultCalculator.mapRefsReqs();
-	assaultCalculator.mapRanks();
-	assaultCalculator.arrangeRows(5,3,35,100);
-	$("#" + nodeName).append("<canvas width='" + calculator.totalWidth + "' height='" + calculator.totalHeight  + "' id='" + nodeName + "-layout'>Your browser do not support this application</canvas>");
-	var ctx = document.getElementById(nodeName + "-layout").getContext('2d');
-	ctx.fillRect(0, 0, calculator.totalWidth, calculator.totalHeight);
+function Controller(calculator, ctx, atlasActive, atlasInactive) {
+	this.ctx = ctx;
 	
+	this.drawBackground = function() {
+		ctx.fillStyle = "black";
+		ctx.fillRect(0, 0, calculator.totalWidth, calculator.totalHeight);
+		ctx.fillStyle = "#1f1f1f";
+		for (var i = 0; i < calculator.rows.length; i++) {
+			var row = calculator.rows[i];
+			ctx.fillRect(row.x, row.y, row.width, row.height);
+		}
+	}
+	this.drawRowHeader = function(row, bright) {
+		ctx.fillStyle = "#1f1f1f";
+		ctx.fillRect(row.x, row.y, calculator.rowHeaderWidth, row.height);
+		ctx.font = "1.1em Trebuchet MS,Tahoma,Verdana,Arial,sans-serif";
+		if (bright) {
+			ctx.fillStyle = "#e7a516";
+			ctx.fillText("Ур." + row.level, row.x, row.y + ITEM_BOX_SIZE);
+		} else {
+			ctx.fillStyle = "#939393";
+			ctx.fillText("Ур." + row.level, row.x, row.y + ITEM_BOX_SIZE);
+		}
+	}
+	this.markRows = function() {
+		for (var i = 0; i < calculator.rows.length; i ++) {
+			this.drawRowHeader(calculator.rows[i], false);
+		}
+	}
+	this.drawReqToRefLinks = function() {
+		for (var i = 0; i < calculator.items.length; i++) {
+			var item = calculator.items[i];
+			var links = item.getReqToRefLinks();
+			ctx.strokeStyle = "white";
+			for (var j = 0; j < links.length; j++) {
+				ctx.beginPath();
+				ctx.moveTo(links[j].x1,links[j].y1);
+				ctx.lineTo(links[j].x2,links[j].y2);
+				ctx.stroke();
+			}
+		}
+	}
+	this.drawTalents = function() {
+		for (var i = 0; i < calculator.items.length; i ++) {
+			this.blitItem(calculator.items[i]);
+		}
+	}
+	this.blitItem = function(item) {
+		ctx.fillStyle="red";
+		if (item.base().status == TALENT_LEARNED) {
+			ctx.drawImage(atlasActive, item.imageBoundsX, item.imageBoundsY, ITEM_BOX_SIZE, ITEM_BOX_SIZE,
+			item.x, item.y, ITEM_BOX_SIZE, ITEM_BOX_SIZE);
+		} else {
+			ctx.drawImage(atlasInactive, item.imageBoundsX, item.imageBoundsY, ITEM_BOX_SIZE, ITEM_BOX_SIZE,
+			item.x, item.y, ITEM_BOX_SIZE, ITEM_BOX_SIZE);
+			if (!item.canLearn()) {
+				ctx.globalAlpha = 0.3;
+				ctx.fillRect(item.x, item.y, ITEM_BOX_SIZE, ITEM_BOX_SIZE);
+				ctx.globalAlpha = 1;
+			}
+		}
+		if (item.ranks.length > 1) {
+			ctx.fillText(item.getLearnedCount() + "/" + item.ranks.length, item.x, item.y + ITEM_BOX_SIZE);
+		}
+	}
+	this.getItem = function(x, y) {
+		for (var i = 0; i < calculator.items.length; i++) {
+			var item = calculator.items[i];
+			if (x > item.x && x < item.x + ITEM_BOX_SIZE &&
+				y > item.y && y < item.y + ITEM_BOX_SIZE) {
+				return item;
+			}
+		}
+		return {};
+	}
+	this.handleClick = function(x, y) {
+		var item = this.getItem(x,y);
+		if (!isEmpty(item)) {
+			if (item.canLearn()){
+				item.learn();
+			} else {
+				while (item.canUnlearn()) {
+					item.unlearn();
+				}
+			}
+			for (var i = 0; i < item.refs.length; i++) {
+				this.blitItem(item.refs[i]);
+			}
+			if (item.reqs.length > 0) {
+				for (var i = 0; i < item.reqs[0].refs.length; i++) {
+					this.blitItem(item.reqs[0].refs[i]);
+				}
+			}
+			this.blitItem(item);
+		}
+	}
+	this.handleMouseMove = function(x, y) {
+		for (var i = 0; i < calculator.rows.length; i++) {
+			var row = calculator.rows[i];
+			if (x > row.x && x < row.x + row.width &&
+				y > row.y && y < row.y + row.height) {
+				this.drawRowHeader(row, true);
+			} else {
+				this.drawRowHeader(row, false);
+			}
+		}
+	}
+}
+
+function loadImages(sources, callback) {
+	var images = {};
+	var loadedImages = 0;
+	var numImages = 0;
+	// get num of sources
+	for(var src in sources) {
+		numImages++;
+	}
+	for(var src in sources) {
+		images[src] = new Image();
+		images[src].onload = function() {
+			if(++loadedImages >= numImages) {
+				callback(images);
+			}
+		};
+		images[src].src = sources[src];
+	}
+}
+// Speed up calls to hasOwnProperty
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+function isEmpty(obj) {
+
+    // null and undefined are "empty"
+    if (obj == null) return true;
+
+    // Assume if it has a length property with a non-zero value
+    // that that property is correct.
+    if (obj.length > 0)    return false;
+    if (obj.length === 0)  return true;
+
+    // Otherwise, does it have any properties of its own?
+    // Note that this doesn't handle
+    // toString and valueOf enumeration bugs in IE < 9
+    for (var key in obj) {
+        if (hasOwnProperty.call(obj, key)) return false;
+    }
+
+    return true;
 }

@@ -93,6 +93,27 @@
 			rankof:45,
 			column:8
 		};
+	var talent70 = {
+			id:70,
+			imageid:70,
+			name:"Упор",
+			description:"Увеличивает точность наемника на 7 в сидячем положении.",
+			cost:1,
+			lvlreq:8,
+			talentreq:45,
+			column:8
+		};
+	var talent73 = {
+			id:73,
+			imageid:73,
+			name:"Подавляющая высота",
+			description:"Увеличивает шанс критической атаки на 30% по цели, находящейся на 2 или более метров ниже наемника. Шанс считается для каждой пули отдельно.",
+			cost:1,
+			lvlreq:8,
+			talentreq:45,
+			radius:2,
+			column:9
+		}
 		
 	it("throws exception on construction if 'id' not defined", function() {
 		var talent = {
@@ -150,7 +171,7 @@
 		expect(item.imageBoundsY).toEqual(ITEM_BOX_SIZE);
 	});
 	
-	it('return false on learn if required talent is not learned', function() {
+	it('return false on learn check if required talent is not learned', function() {
 		var item48 = new CalculatorItem(talent48);
 		var item86 = new CalculatorItem(talent86);
 		item86.addReq(item48);
@@ -158,7 +179,71 @@
 		expect(item86.canLearn()).toEqual(false);
 	});
 	
-	it('returns false on unlearn if references are learned', function() {
+	it('return false on learn check if talent already learned', function() {
+		var item48 = new CalculatorItem(talent48);
+		item48.learn();
+		expect(item48.canLearn()).toEqual(false);
+	});
+	
+	it('return false on unlearn check if talent with no ranks is not learned', function() {
+		var item48 = new CalculatorItem(talent48);
+		expect(item48.canUnlearn()).toEqual(false);
+	});
+	
+	it('return true on learn check if not all ranks of talent are learned', function() {
+		var item45 = new CalculatorItem(talent45);
+		item45.addRank(talent452);
+		item45.addRank(talent453);
+		item45.addRank(talent454);
+		expect(item45.canLearn()).toEqual(true);
+		item45.learn();
+		expect(item45.canLearn()).toEqual(true);
+		item45.learn();
+		expect(item45.canLearn()).toEqual(true);
+		item45.learn();
+		expect(item45.canLearn()).toEqual(true);
+		item45.learn();
+		expect(item45.canLearn()).toEqual(false);
+	});
+	
+	it('returns true on unlearn check if base talent can not be unlearned but multiple ranks are learned', function() {
+		var item45 = new CalculatorItem(talent45);
+		item45.addRank(talent452);
+		item45.addRank(talent453);
+		item45.addRank(talent454);
+		var item70 = new CalculatorItem(talent70);
+		item70.addReq(item45);
+		item45.addRef(item70);
+		
+		item45.learn();
+		item70.learn();
+		expect(item45.canUnlearn()).toEqual(false);
+		item45.learn();
+		expect(item45.canUnlearn()).toEqual(true);
+		item45.learn();
+		expect(item45.canUnlearn()).toEqual(true);
+		item45.learn();
+		expect(item45.canUnlearn()).toEqual(true);
+	});
+	
+	it('returns valid count of learned ranks', function() {
+		var item45 = new CalculatorItem(talent45);
+		item45.addRank(talent452);
+		item45.addRank(talent453);
+		item45.addRank(talent454);
+		
+		expect(item45.getLearnedCount()).toEqual(0);
+		item45.learn();
+		expect(item45.getLearnedCount()).toEqual(1);
+		item45.learn();
+		expect(item45.getLearnedCount()).toEqual(2);
+		item45.learn();
+		expect(item45.getLearnedCount()).toEqual(3);
+		item45.learn();
+		expect(item45.getLearnedCount()).toEqual(4);
+	});
+	
+	it('returns false on unlearn check if references are learned', function() {
 		var item48 = new CalculatorItem(talent48);
 		var item86 = new CalculatorItem(talent86);
 		item86.addReq(item48);
@@ -166,6 +251,29 @@
 		item48.learn();
 		item86.learn();
 		expect(item48.canUnlearn()).toEqual(false);
+	});
+	
+	it('returns false on learn check if talent is one of refs and other ref is learned', function() {
+		var item45 = new CalculatorItem(talent45);
+		var item70 = new CalculatorItem(talent70);
+		var item73 = new CalculatorItem(talent73);
+		item45.addRef(item70);
+		item45.addRef(item73);
+		item70.addReq(item45);
+		item73.addReq(item45);
+		
+		item45.learn();
+		expect(item70.canLearn()).toEqual(true);
+		expect(item73.canLearn()).toEqual(true);
+		item70.learn();
+		expect(item73.canLearn()).toEqual(false);
+	});
+	
+	it('unlearns talent with no ranks on unlearn', function() {
+		var item48 = new CalculatorItem(talent48);
+		item48.learn();
+		item48.unlearn();
+		expect(item48.base().status).toEqual(TALENT_NOT_LEARNED);
 	});
 	
 	it('puts initial talent to rank array on construction', function() {
@@ -231,7 +339,7 @@
 	it('should calculate position of talent in grid', function() {
 		var item39 = new CalculatorItem(talent39);
 		item39.calculatePaintPosition(5,3,47,47);
-		expect(item39.x).toEqual(286);
+		expect(item39.x).toEqual(324);
 		expect(item39.y).toEqual(50);
 	});
 	
@@ -250,7 +358,7 @@
 		item48.calculatePaintPosition(5,3,47,53);
 		item86.calculatePaintPosition(5,3,47,53);
 		var lines = item48.getReqToRefLinks();
-		expect(lines[0]).toEqual({ x1: 461, y1: 85, x2: 499, y2: 50 });
+		expect(lines[0]).toEqual({ x1: 499, y1: 85, x2: 537, y2: 50 });
 	});
 	
 	it("should throw exception 'coordinates was not calculated'", function() {
