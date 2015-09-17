@@ -122,7 +122,9 @@ loadImages(sources, function(images) {
 		$("#calculator-" + index + "-layout").mousemove(function(e) {
 			var offset = $(this).offset();
 			value.controller.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
-			updateTooltip(value.controller, index);
+			if (!$("#talent-visibility-checkbox").is(":checked")) {
+				updateTooltip(value.controller, index);
+			}
 		});
 		$("#" + index + "-link").click(function(){
 			app.activeClass = app.classes[index];
