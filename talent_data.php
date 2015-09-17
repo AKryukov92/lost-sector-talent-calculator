@@ -7,7 +7,7 @@ function print_class_data($class_short_name, $directory){
 		$class_header = preg_replace('/[\r\t\n]+|( {4})+/','',$class_header);
 		print($class_header);
 	}
-	print(",talents:[");
+	print(",\"talents\":[");
 	$files = scandir("./" . $directory . "/" . $class_short_name);
 	if (!$files) {
 		print ("data was not found");

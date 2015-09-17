@@ -41,9 +41,6 @@
   float: left;
   }
   
-  .talent-tooltip-container {
-	  display:table-cell;
-  }
 .talents-background{
 	background-color:black;
 	margin: 2px 2px 2px 0px;
@@ -376,8 +373,11 @@ input[type=radio]:not(old):checked +  label > span > span{
 	border: 1px solid #e7a516;
 }
 
+.talent-tooltip-container {
+	display:inline-block;
+	vertical-align:top;
+}
 .talent-manager {
-	display:table-row;
 	float:left;
 	clear:both;
 }

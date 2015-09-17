@@ -5,11 +5,6 @@
 	<link href="css/local.css" rel="stylesheet">
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
-    <script language="javascript" type="text/javascript">
-        function resizeIframe(obj) {
-            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-        }
-    </script>
 	<script src="talent_data.php"></script>
 	<script src="item_data.php"></script>
 </head>
@@ -24,24 +19,24 @@
 			<div><label><input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked>Спрятать тултипы талантов</label></div>
 		</div>
 	</div>
-	<div class="talent-manager">
-	<div id="tabs" style="display:table-cell;">
+<div class="talent-manager">
+	<div id="tabs" style="display:inline-block;">
 		<ul>
-			<li><a id="assault-link" href="#tabs-as">
+			<li><a id="as-link" href="#tabs-as">
 			Штурмовик<br/>
 			<svg viewbox="0 0 128 128">
 			<path id="path_assault" 
 				style="fill-opacity:0.25098039;stroke-width:3;stroke-opacity:1"
 				d="m 63,2 -18,36 -41,6 29,30 -6,41 37,-19 36,18 -6,-41 28,-28 -40,-6 z"/>
 			</svg></a></li>
-			<li><a id="juggernaut-link" href="#tabs-ju">Джаггернаут</br>
+			<li><a id="ju-link" href="#tabs-ju">Джаггернаут</br>
 			<svg viewbox="0 0 128 128">
 			<path id="path_juggernaut"
 				style="fill-opacity:0.25098039;stroke-width:3;stroke-opacity:1"
 				d="m 64,4 -44,9 c 0,0 -0,41 11,68 13,28 33,45 33,45 0,0 19,-15 33,-46 12,-27 10,-67 10,-67 z"/>
 			</svg>
 			</a></li>
-			<li><a id="scout-link" href="#tabs-sc">Скаут</br>
+			<li><a id="sc-link" href="#tabs-sc">Скаут</br>
 			<svg viewbox="0 0 128 128">
 			<path id="scout_path_circle"
 				style="fill:none;fill-opacity:0.25098039;stroke-width:7;stroke-opacity:1"
@@ -53,7 +48,7 @@
 				style="fill:none;stroke-width:4;stroke-opacity:1"
 				d="m 0,63 125,0"/>
 			</svg></a></li>
-			<li><a id="support-link" href="#tabs-su">Поддержка</br>
+			<li><a id="su-link" href="#tabs-su">Поддержка</br>
 			<svg viewbox="0 0 128 128">
 			<path id="path_support_cross"
 				style="fill-opacity:0.25098039;stroke-width:4;stroke-opacity:1"
@@ -64,31 +59,32 @@
 				d="m 33,95 -15,-3 -11,12 -3,-0 C 2,80 23,80 34,79 L 79,33 C 79,21 80,2 103,0 l 0,4 -11,11 2,15 16,4 11,-12 4,0 c -2,22 -19,22 -32,23 L 49,94 c -1,15 -1,30 -24,33 l -0,-4 12,-12 z"/>
 			</svg></a></li>
 		</ul>
-		<div id="tabs-as" aria-labelledby="assault-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="">
+		<div id="tabs-as" aria-labelledby="as-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="">
 			<div id="as-layout" class="talents-background">
 			<canvas id='calculator-as-layout'>Your browser do not support this application</canvas>
 			</div>
 		</div>
-		<div id="tabs-ju" aria-labelledby="juggernaut-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+		<div id="tabs-ju" aria-labelledby="ju-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
 			<div id="ju-layout" class="talents-background">
 			<canvas id='calculator-ju-layout'>Your browser do not support this application</canvas>
 			</div>
 		</div>
-		<div id="tabs-sc" aria-labelledby="scout-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+		<div id="tabs-sc" aria-labelledby="sc-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
 			<div id="sc-layout" class="talents-background">
 			<canvas id='calculator-sc-layout'>Your browser do not support this application</canvas>
 			</div>
 		</div>
-		<div id="tabs-su" aria-labelledby="support-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+		<div id="tabs-su" aria-labelledby="su-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
 			<div id="su-layout" class="talents-background">
 			<canvas id='calculator-su-layout'>Your browser do not support this application</canvas>
 			</div>
 		</div>
 	</div>
 	<div class="talent-tooltip-container" id="talent-tooltip">
+		<iframe id="talent-iframe" scrolling="no"  frameBorder="0" style="height:100vh" ></iframe>
 	</div>
-	</div>
-	<div class="item-manager">
+</div>
+<div class="item-manager">
 	<div id="armor" class="tunable-item">
 		<div class="tunable-item-name"><a target="_blank" id="armor-link"><span id="armor-name"></span><span id="armor-value"></span></a></div>
 		<div style="overflow:auto;">
@@ -115,7 +111,9 @@
 			</div>
 		</div>
 		<div class="fake-tooltip-container">
-			<div class="fake-tooltip" id="armor-fake-tooltip"></div>
+			<div class="fake-tooltip" id="armor-fake-tooltip">
+				<iframe id="armor-iframe" scrolling="no" frameBorder="0" style="height:100vh"></iframe>
+			</div>
 		</div>
 	</div>
 	<div id="primary" class="tunable-item">
@@ -144,7 +142,9 @@
 			</div>
 		</div>
 		<div class="fake-tooltip-container">
-			<div class="fake-tooltip" id="primary-fake-tooltip"></div>
+			<div class="fake-tooltip" id="primary-fake-tooltip">
+				<iframe id="primary-iframe" scrolling="no" frameBorder="0" style="height:100vh"></iframe>
+			</div>
 		</div>
 	</div>
 	<div id="secondary" class="tunable-item">
@@ -173,7 +173,9 @@
 			</div>
 		</div>
 		<div class="fake-tooltip-container">
-			<div class="fake-tooltip" id="secondary-fake-tooltip"></div>
+			<div class="fake-tooltip" id="secondary-fake-tooltip">
+				<iframe id="secondary-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+			</div>
 		</div>
 	</div>
 	<div id="special-items" class="special-item-container">
@@ -184,7 +186,9 @@
 			</div>
 			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('hat');">очистить</a>
 			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="hat-fake-tooltip"></div>
+				<div class="fake-tooltip" id="hat-fake-tooltip">
+					<iframe id="hat-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+				</div>
 			</div>
 		</div>
 		<div class="special-item">
@@ -194,7 +198,9 @@
 			</div>
 			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('consumable_1');">очистить</a>
 			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="consumable_1-fake-tooltip"></div>
+				<div class="fake-tooltip" id="consumable_1-fake-tooltip">
+					<iframe id="consumable_1-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+				</div>
 			</div>
 		</div>
 		<div class="special-item">
@@ -204,7 +210,9 @@
 			</div>
 			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('consumable_2');">очистить</a>
 			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="consumable_2-fake-tooltip"></div>
+				<div class="fake-tooltip" id="consumable_2-fake-tooltip">
+					<iframe id="consumable_2-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+				</div>
 			</div>
 		</div>
 		<div class="special-item">
@@ -214,7 +222,9 @@
 			</div>
 			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('consumable_3');">очистить</a>
 			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="consumable_3-fake-tooltip"></div>
+				<div class="fake-tooltip" id="consumable_3-fake-tooltip">
+					<iframe id="consumable_3-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+				</div>
 			</div>
 		</div>
 		<div class="special-item">
@@ -224,7 +234,9 @@
 			</div>
 			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('consumable_4');">очистить</a>
 			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="consumable_4-fake-tooltip"></div>
+				<div class="fake-tooltip" id="consumable_4-fake-tooltip">
+					<iframe id="consumable_4-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+				</div>
 			</div>
 		</div>
 		<div class="special-item">
@@ -234,7 +246,9 @@
 			</div>
 			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('consumable_5');">очистить</a>
 			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="consumable_5-fake-tooltip"></div>
+				<div class="fake-tooltip" id="consumable_5-fake-tooltip">
+					<iframe id="consumable_5-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -297,145 +311,10 @@ $("#items-pool").tabs();
 $( "#tabs" ).tabs();
 $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 </script>
-
+<script src="js/utils.js"></script>
 <script src="js/talent-calculator.js"></script>
-<script src="js/logic.js"></script>
+<script src="js/item_detail.js"></script>
 <script src="js/calculator.js"></script>
-<script>
-var sources = {
-	atlasActive: "Skills.png",
-	atlasInactive: "inactiveSkills.png"
-};
-function prepareCalculator(calculator) {
-	calculator.calculateWidth();
-	calculator.assignPowerToTalents();
-	calculator.fillHeightMap();
-	calculator.mapRefsReqs();
-	calculator.mapRanks();
-	calculator.arrangeRows(5,3,35,50);
-	$("#calculator-" + calculator.prefix + "-layout").prop("width", calculator.totalWidth);
-	$("#calculator-" + calculator.prefix + "-layout").prop("height", calculator.totalHeight);
-}
-function prepareController(controller) {
-	controller.drawBackground();
-	controller.markRows();
-	controller.drawReqToRefLinks();
-	controller.drawTalents();
-}
-function updateTooltip(controller, prefix) {
-	if (typeof controller.recentItem != 'undefined') {
-		if (controller.recentItem.base().id != recentId) {
-			recentId = controller.recentItem.base().id;
-			$("#talent-tooltip").html("<iframe scrolling=\"no\" src=\"/talent.php?id=" + controller.recentItem.base().id + "&prefix=" + prefix + "&iframe=true\" frameBorder=\"0\" onload=\"javascript:resizeIframe(this);\"></iframe>");
-		}
-	}
-}
-function toggleTalentTooltip() {
-	var display = $("#talent-visibility-checkbox").is(":checked");
-	$("#talent-tooltip").toggle(display);
-}
-toggleTalentTooltip();
-var recentId;
-loadImages(sources, function(images) {
-	var asCalculator = new Calculator(patchdata.assault_data);
-	prepareCalculator(asCalculator);
-	var element = document.getElementById("calculator-as-layout");
-	var ctx = element.getContext('2d');
-	var asController = new Controller(asCalculator, ctx, images.atlasActive, images.atlasInactive);
-	prepareController(asController);
-	$("#calculator-as-layout").click(function(e) {
-		asController.handleClick(e.offsetX, e.offsetY);
-		player_model.update_link(asCalculator.getTalentString(), "as");
-		$("#merc-level").html(asCalculator.getRequiredLevel());
-		$("#points-left").html(asCalculator.getAvailableTalentPoints());
-		updateTooltip(asController, "as");
-	});
-	$("#calculator-as-layout").mousemove(function(e) {
-		var offset = $(this).offset();
-		asController.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
-		updateTooltip(asController, "as");
-	});
-	
-	var juCalculator = new Calculator(patchdata.juggernaut_data);
-	prepareCalculator(juCalculator);
-	element = document.getElementById("calculator-ju-layout");
-	ctx = element.getContext('2d');
-	var juController = new Controller(juCalculator, ctx, images.atlasActive, images.atlasInactive);
-	prepareController(juController);
-	$("#calculator-ju-layout").click(function(e) {
-		juController.handleClick(e.offsetX, e.offsetY);
-		player_model.update_link(juCalculator.getTalentString(), "ju");
-		$("#merc-level").html(juCalculator.getRequiredLevel());
-		$("#points-left").html(juCalculator.getAvailableTalentPoints());
-		updateTooltip(scController, "sc");
-	});
-	$("#calculator-ju-layout").mousemove(function(e) {
-		var offset = $(this).offset();
-		juController.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
-		updateTooltip(asController, "as");
-	});
-	
-	var scCalculator = new Calculator(patchdata.scout_data);
-	prepareCalculator(scCalculator);
-	element = document.getElementById("calculator-sc-layout");
-	ctx = element.getContext('2d');
-	var scController = new Controller(scCalculator, ctx, images.atlasActive, images.atlasInactive);
-	prepareController(scController);
-	$("#calculator-sc-layout").click(function(e) {
-		scController.handleClick(e.offsetX, e.offsetY);
-		player_model.update_link(scCalculator.getTalentString(), "sc");
-		$("#merc-level").html(scCalculator.getRequiredLevel());
-		$("#points-left").html(scCalculator.getAvailableTalentPoints());
-		updateTooltip(scController, "sc");
-	});
-	$("#calculator-sc-layout").mousemove(function(e) {
-		var offset = $(this).offset();
-		scController.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
-		updateTooltip(asController, "as");
-	});
-	
-	var suCalculator = new Calculator(patchdata.support_data);
-	prepareCalculator(suCalculator);
-	element = document.getElementById("calculator-su-layout");
-	ctx = element.getContext('2d');
-	var suController = new Controller(suCalculator, ctx, images.atlasActive, images.atlasInactive);
-	prepareController(suController);
-	$("#calculator-su-layout").click(function(e) {
-		suController.handleClick(e.offsetX, e.offsetY);
-		player_model.update_link(suCalculator.getTalentString(), "su");
-		$("#merc-level").html(suCalculator.getRequiredLevel());
-		$("#points-left").html(suCalculator.getAvailableTalentPoints());
-		updateTooltip(asController, "as");
-	});
-	$("#calculator-su-layout").mousemove(function(e) {
-		var offset = $(this).offset();
-		suController.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
-		updateTooltip(asController, "as");
-	});
-	
-	$("#assault-link").click(function(){
-		player_model.update_link(asCalculator.getTalentString(), "as");
-		$("#merc-level").html(asCalculator.getRequiredLevel());
-		$("#points-left").html(asCalculator.getAvailableTalentPoints());
-	});
-	$("#juggernaut-link").click(function(){
-		player_model.update_link(juCalculator.getTalentString(), "ju");
-		$("#merc-level").html(juCalculator.getRequiredLevel());
-		$("#points-left").html(juCalculator.getAvailableTalentPoints());
-	});
-	$("#scout-link").click(function(){
-		player_model.update_link(scCalculator.getTalentString(), "sc");
-		$("#merc-level").html(scCalculator.getRequiredLevel());
-		$("#points-left").html(scCalculator.getAvailableTalentPoints());
-	});
-	$("#support-link").click(function(){
-		player_model.update_link(suCalculator.getTalentString(), "su");
-		$("#merc-level").html(suCalculator.getRequiredLevel());
-		$("#points-left").html(suCalculator.getAvailableTalentPoints());
-	});
-});
-
-</script>
 <script src="js/analytics.js"></script>
 </body>
 </html>

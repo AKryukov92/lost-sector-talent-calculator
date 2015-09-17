@@ -38,6 +38,9 @@ if (isset($data["talentreq"])) {
 		}
 	}
 }
+
+header("Content-Type: text/html; charset=utf-8");
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -163,7 +166,9 @@ if (isset($data["talentreq"])) {
 		</div>
 	</div>
 	<div class="fake-tooltip-container" style="margin:2px;">
-		<div class="fake-tooltip" id="primary-fake-tooltip"></div>
+		<div class="fake-tooltip" id="primary-fake-tooltip">
+			<iframe id="primary-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+		</div>
 	</div>
 	<div id="items-pool" style="clear:both;overflow:auto;">
 		<ul>
@@ -210,7 +215,6 @@ $("#items-pool").tabs();
 $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 </script>
 <script src="js/item_detail.js"></script>
-<script src="js/logic.js"></script>
 <script src="js/analytics.js"></script>
 <?php } ?>
 </body>

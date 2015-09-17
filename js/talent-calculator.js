@@ -1,184 +1,140 @@
-function set_grade(slot_name, value){
-  var element = $("#" + slot_name + "-value");
-  player_model.slots[slot_name].grade = value;
-  if (value === 0) {
-	element.html( "" );
-  } else {
-	element.html( " +" + value );
-  }
+var sources = {
+	atlasActive: "Skills.png",
+	atlasInactive: "inactiveSkills.png"
+};
+
+function updateTooltip(controller, prefix) {
+	if (typeof controller.recentItem != 'undefined') {
+		if (controller.recentItem.base().id != recentId) {
+			recentId = controller.recentItem.base().id;
+			// if ($("#talent-iframe").length != 0) {
+				// $("#talent-iframe")[0].contentWindow.location.reload();
+				// $("#talent-iframe").remove();
+			// }
+			$("#talent-iframe").attr("src", "/talent.php?id=" + controller.recentItem.base().id + "&prefix=" + prefix + "&iframe=true");
+			console.log($("#talent-iframe").length);
+		}
+	}
 }
 
-$(document).ready(function(){ 
-  document.oncontextmenu = function() {return false;};
+function talentUriHandler(key, value, target) {
+	talent = decodeURIComponent(value);
+	var game_version = talent.split("_")[0];
+	var talent_input = talent.split("_")[1];
+	var class_prefix = game_version.substr(game_version.length - 2, 2);
+	update_link();
+	var index = $('#tabs a[href="#tabs-'+ class_prefix + '"]').parent().index();
+	$("#tabs").tabs("option", "active", index);
+	var data_version = game_version.substr(game_version.length - 3, 1);
+	if (data_version == patchdata.data_version) {
+		app.classes[class_prefix].calculator.learnTalentsFromString(talent_input);
+		app.classes[class_prefix].controller.drawTalents();
+		$("#merc-level").html(app.classes[class_prefix].calculator.getRequiredLevel());
+		$("#points-left").html(app.classes[class_prefix].calculator.getAvailableTalentPoints());
+	}
+}
 
-    $( "#armor-slider" ).slider({
-      value:0,
-      min: 0,
-      max: 15,
-      step: 1,
-      change: function( event, ui ) {
-		quality_change_handler("armor");
-      },
-	  slide: function( event, ui ) {
-		slider_slide_handler("armor", event, ui);
-	  }
-    });
-	$( "#armor-value" ).html( "" );
-	$("[name=\"armor-quality\"]").change(
-		function(){
-			quality_change_handler("armor");
-		}
-	);
-	$("#armor-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	
-    $( "#primary-slider" ).slider({
-      value:0,
-      min: 0,
-      max: 15,
-      step: 1,
-      change: function( event, ui ) {
-		  quality_change_handler("primary");
-      },
-	  slide: function(event, ui) {
-		slider_slide_handler("primary", event, ui);
-	  }
-    });
-    $( "#primary-value" ).html( "" );
-	$("[name=\"primary-quality\"]").change(
-		function(){
-			quality_change_handler("primary");
-		}
-	);
-	$("#primary-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	
-    $( "#secondary-slider" ).slider({
-      value:0,
-      min: 0,
-      max: 15,
-      step: 1,
-      change: function( event, ui ) {
-		  quality_change_handler("secondary");
-      },
-	  slide: function(event, ui) {
-		slider_slide_handler("secondary", event, ui);
-	  }
-    });
-    $( "#secondary-value" ).html( "" );
-	$("[name=\"secondary-quality\"]").change(
-		function(){
-			quality_change_handler("secondary");
-		}
-	);
-	$("#secondary-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	
-	$("#hat-container").tooltip({content:""});
-	$("#consumable_1-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	$("#consumable_2-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	$("#consumable_3-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	$("#consumable_4-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	$("#consumable_5-container").tooltip({
-		show:{delay:200},
-		content:""
-	});	
-	fill_available_items();
+function tunableItemUriHandler(key, value, target) {
+	itemstring = decodeURIComponent(tmp[1]);
+	var item = get_item_by_id(itemstring.split("_")[0]);
+	player_model.slots[target].color = itemstring.split("_")[1];
+	player_model.slots[target].quality = itemstring.split("_")[2];
+	$("#" + target + "-slider").slider("value", player_model.slots[target].quality);
+	$("#" + target + "-quality-" + player_model.slots[target].color).prop('checked', true);
+	equip_item(item, target);
+}
+
+function specialItemUriHandler(key, value, target) {
+	itemstring = decodeURIComponent(value);
+	var item = get_item_by_id(itemstring.split("_")[0]);
+	equip_item(item, target);
+}
+
+loadImages(sources, function(images) {
 	$("#link-to-build").click(function(){window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());});
-	var talent,
-		tmp = [];
-	location.search
-		.replace ( "?", "" )
-		.split("&")
-		.forEach(function (item) {
-			tmp = item.split("=");
-			if (tmp[0] === "talent") {
-				talent = decodeURIComponent(tmp[1]);
-				var game_version = talent.split("_")[0];
-				var talent_input = talent.split("_")[1];
-				var class_prefix = game_version.substr(game_version.length - 2, 2);
-				talent_grid_model.select_data(class_prefix);
-				var index = $('#tabs a[href="#tabs-'+ class_prefix + '"]').parent().index();
-				$("#tabs").tabs("option", "active", index);
-				var data_version = game_version.substr(game_version.length - 3, 1);
-				if (data_version == patchdata.data_version) {
-					player_model.learn_encoded_talents(talent_input);
-				}
+	app = {
+		classes: {
+			"as": {
+				calculator: new Calculator(patchdata.assault_data)
+			},
+			"ju": {
+				calculator: new Calculator(patchdata.juggernaut_data)
+			},
+			"sc": {
+				calculator: new Calculator(patchdata.scout_data)
+			},
+			"su": {
+				calculator: new Calculator(patchdata.support_data)
 			}
-			if (tmp[0] === "primary") {
-				itemstring = decodeURIComponent(tmp[1]);
-				var item = get_item_by_id(itemstring.split("_")[0]);
-				player_model.slots["primary"].color = itemstring.split("_")[1];
-				player_model.slots["primary"].quality = itemstring.split("_")[2];
-				$("#primary-slider").slider("value", player_model.slots["primary"].quality);
-				$("#primary-quality-" + player_model.slots["primary"].color).prop('checked', true);
-				equip_item(item, "primary");
-			}
-			if (tmp[0] === "secondary") {
-				itemstring = decodeURIComponent(tmp[1]);
-				var item = get_item_by_id(itemstring.split("_")[0]);
-				player_model.slots["secondary"].color = itemstring.split("_")[1];
-				player_model.slots["secondary"].quality = itemstring.split("_")[2];
-				$("#secondary-slider").slider("value", player_model.slots["secondary"].quality);
-				$("#secondary-quality-" + player_model.slots["secondary"].color).prop('checked', true);
-				equip_item(item, "secondary");
-			}
-			if (tmp[0] === "armor") {
-				itemstring = decodeURIComponent(tmp[1]);
-				var item = get_item_by_id(itemstring.split("_")[0]);
-				player_model.slots["armor"].color = itemstring.split("_")[1];
-				player_model.slots["armor"].quality = itemstring.split("_")[2];
-				$("#armor-slider").slider("value", player_model.slots["armor"].quality);
-				$("#armor-quality-" + player_model.slots["armor"].color).prop('checked', true);
-				equip_item(item, "armor");
-			}
-			if (tmp[0] === "hat") {
-				itemstring = decodeURIComponent(tmp[1]);
-				var item = get_item_by_id(itemstring.split("_")[0]);
-				equip_item(item, "hat");
-			}
-			if (tmp[0] === "consumable1") {
-				itemstring = decodeURIComponent(tmp[1]);
-				var item = get_item_by_id(itemstring.split("_")[0]);
-				equip_item(item, "consumable_1");
-			}
-			if (tmp[0] === "consumable2") {
-				itemstring = decodeURIComponent(tmp[1]);
-				var item = get_item_by_id(itemstring.split("_")[0]);
-				equip_item(item, "consumable_2");
-			}
-			if (tmp[0] === "consumable3") {
-				itemstring = decodeURIComponent(tmp[1]);
-				var item = get_item_by_id(itemstring.split("_")[0]);
-				equip_item(item, "consumable_3");
-			}
-			if (tmp[0] === "consumable4") {
-				itemstring = decodeURIComponent(tmp[1]);
-				var item = get_item_by_id(itemstring.split("_")[0]);
-				equip_item(item, "consumable_4");
-			}
-			if (tmp[0] === "consumable5") {
-				itemstring = decodeURIComponent(tmp[1]);
-				var item = get_item_by_id(itemstring.split("_")[0]);
-				equip_item(item, "consumable_5");
-			}
+		},
+		UriHandlers: {
+			"t": {fn: talentUriHandler },
+			"p": {fn: tunableItemUriHandler, target: "primary" },
+			"s": { fn: tunableItemUriHandler, target: "secondary" },
+			"a": { fn: tunableItemUriHandler, target: "armor" },
+			"h": { fn: specialItemUriHandler, target: "hat" },
+			"c1": { fn: specialItemUriHandler, target: "consumable_1" },
+			"c2": { fn: specialItemUriHandler, target: "consumable_2" },
+			"c3": { fn: specialItemUriHandler, target: "consumable_3" },
+			"c4": { fn: specialItemUriHandler, target: "consumable_4" },
+			"c5": { fn: specialItemUriHandler, target: "consumable_5" },
+			/*legacy links handlers: */
+			"talent": { fn: talentUriHandler },
+			"primary": { fn: tunableItemUriHandler, target: "primary" },
+			"secondary": { fn: tunableItemUriHandler, target: "secondary" },
+			"armor": { fn: tunableItemUriHandler, target: "armor" },
+			"hat": { fn: specialItemUriHandler, target: "hat" },
+			"consumable1": { fn: specialItemUriHandler, target: "consumable_1" },
+			"consumable2": { fn: specialItemUriHandler, target: "consumable_2" },
+			"consumable3": { fn: specialItemUriHandler, target: "consumable_3" },
+			"consumable4": { fn: specialItemUriHandler, target: "consumable_4" },
+			"consumable5": { fn: specialItemUriHandler, target: "consumable_5" }
+		},
+		processData: function(UriItem) {
+			tmp = UriItem.split("=");
+			var key = tmp[0];
+			var value = tmp[1];
+			app.UriHandlers[key].fn(key, value, app.UriHandlers[key].target);
+		}
+	};
+	app.activeClass = app.classes["as"];
+	$.each(app.classes, function(index, value) {
+		value.calculator.calculateWidth();
+		value.calculator.assignPowerToTalents();
+		value.calculator.fillHeightMap();
+		value.calculator.mapRefsReqs();
+		value.calculator.mapRanks();
+		value.calculator.arrangeRows(5,3,35,50);
+		$("#calculator-" + index + "-layout").prop("width", value.calculator.totalWidth);
+		$("#calculator-" + index + "-layout").prop("height", value.calculator.totalHeight);
+		
+		var element = document.getElementById("calculator-" + index + "-layout");
+		var ctx = element.getContext('2d');
+		value.controller = new Controller(value.calculator, ctx, images.atlasActive, images.atlasInactive);
+		
+		value.controller.drawBackground();
+		value.controller.markRows();
+		value.controller.drawReqToRefLinks();
+		value.controller.drawTalents();
+		
+		$("#calculator-" + index + "-layout").click(function(e) {
+			value.controller.handleClick(e.offsetX, e.offsetY);
+			update_link();
+			$("#merc-level").html(value.calculator.getRequiredLevel());
+			$("#points-left").html(value.calculator.getAvailableTalentPoints());
+			updateTooltip(value.controller, index);
 		});
+		$("#calculator-" + index + "-layout").mousemove(function(e) {
+			var offset = $(this).offset();
+			value.controller.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
+			updateTooltip(value.controller, index);
+		});
+		$("#" + index + "-link").click(function(){
+			app.activeClass = app.classes[index];
+			update_link();
+			$("#merc-level").html(value.calculator.getRequiredLevel());
+			$("#points-left").html(value.calculator.getAvailableTalentPoints());
+		});
+	});
+	location.search.replace("?", "").split("&").forEach(app.processData);
 });

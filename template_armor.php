@@ -27,6 +27,8 @@ if (isset($data["protection"])) {
 	$protection = $data["protection"];
 	$real_protection = round($protection + ($protection / 100 * ($real_grade - 100) * 1.5));
 }
+
+header("Content-Type: text/html; charset=utf-8");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -40,11 +42,10 @@ if (isset($data["protection"])) {
 	<link href="css/local.css" rel="stylesheet">
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
+	<script src="js/utils.js"></script>
 	<script>
 		var patchdata={"game_version":98,"data_version":1};
-        function resizeIframe(obj) {
-            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-        }
+		function update_link() {}
 	</script>
 	<script src="item_data.php"></script>
 <?php } ?>
@@ -130,16 +131,17 @@ if (isset($data["protection"])) {
 		</div>
 	</div>
 	<div class="fake-tooltip-container" style="margin:2px;">
-		<div class="fake-tooltip" id="armor-fake-tooltip"></div>
+		<div class="fake-tooltip" id="armor-fake-tooltip">
+			<iframe id="armor-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+		</div>
 	</div>
 	<div id="items-pool" style="clear:both;overflow:auto;">
-			<div id="armor-pool" class="pool"></div>
+		<div id="armor-pool" class="pool"></div>
 	</div>
 <script>
 $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 </script>
 <script src="js/item_detail.js"></script>
-<script src="js/logic.js"></script>
 <script src="js/analytics.js"></script>
 <?php } ?>
 </body>
