@@ -43,8 +43,6 @@ function toggleTalentTooltip() {
 	var display = $("#talent-visibility-checkbox").is(":checked");
 	$("#talent-tooltip").toggle(!display);
 }
-
-toggleTalentTooltip();
 var recentId;
 
 function resizeIframe(obj) {

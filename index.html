@@ -82,7 +82,7 @@
 		</div>
 	</div>
 	<div class="talent-tooltip-container" id="talent-tooltip">
-		<iframe id="talent-iframe" scrolling="no"  frameBorder="0" style="height:100vh" ></iframe>
+		<iframe id="talent-iframe" scrolling="no"  frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
 	</div>
 </div>
 <div class="item-manager">
@@ -113,7 +113,7 @@
 		</div>
 		<div class="fake-tooltip-container">
 			<div class="fake-tooltip" id="armor-fake-tooltip">
-				<iframe id="armor-iframe" scrolling="no" frameBorder="0" style="height:100vh"></iframe>
+				<iframe id="armor-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
 			</div>
 		</div>
 	</div>
@@ -144,7 +144,7 @@
 		</div>
 		<div class="fake-tooltip-container">
 			<div class="fake-tooltip" id="primary-fake-tooltip">
-				<iframe id="primary-iframe" scrolling="no" frameBorder="0" style="height:100vh"></iframe>
+				<iframe id="primary-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
 			</div>
 		</div>
 	</div>
@@ -311,6 +311,7 @@
 $("#items-pool").tabs();
 $( "#tabs" ).tabs();
 $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+toggleTalentTooltip();
 </script>
 <script src="js/talent-calculator.js"></script>
 <script src="js/item_detail.js"></script>
