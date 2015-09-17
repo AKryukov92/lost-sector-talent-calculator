@@ -53,8 +53,7 @@ function resizeIframe(obj) {
 	}, 100);
 }
 function update_link() {
-	var link = "http://localhost:8080/?t=" +
-	//var link = "http://lstc.wc.lt/?t=" +
+	var link = location.origin + "/?t=" +
 	patchdata.game_version + patchdata.data_version + app.activeClass.calculator.prefix + "_" + app.activeClass.calculator.getTalentString();
 	var slot = player_model.slots["primary"];
 	if (!$.isEmptyObject(slot.item)) {

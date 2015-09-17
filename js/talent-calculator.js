@@ -133,5 +133,7 @@ loadImages(sources, function(images) {
 			$("#points-left").html(value.calculator.getAvailableTalentPoints());
 		});
 	});
-	location.search.replace("?", "").split("&").forEach(app.processData);
+	if (location.search.length != 0) {
+		location.search.replace("?", "").split("&").forEach(app.processData);
+	}
 });
