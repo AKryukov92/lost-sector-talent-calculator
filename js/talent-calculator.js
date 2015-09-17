@@ -7,12 +7,7 @@ function updateTooltip(controller, prefix) {
 	if (typeof controller.recentItem != 'undefined') {
 		if (controller.recentItem.base().id != recentId) {
 			recentId = controller.recentItem.base().id;
-			// if ($("#talent-iframe").length != 0) {
-				// $("#talent-iframe")[0].contentWindow.location.reload();
-				// $("#talent-iframe").remove();
-			// }
 			$("#talent-iframe").attr("src", "/talent.php?id=" + controller.recentItem.base().id + "&prefix=" + prefix + "&iframe=true");
-			console.log($("#talent-iframe").length);
 		}
 	}
 }
