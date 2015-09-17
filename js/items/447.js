@@ -1,0 +1,47 @@
+{
+	"name":"Desert Eagle",
+	"category":"pistol",
+	"mobility":94,
+	"clip":7,
+	"ammo":14,
+	"reload_cost":20,
+	"lvlreq":10,
+	"talentreq":19,
+	"classreq":["as","sc"],
+	"id":447,
+	"attacks":[{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":35,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":10,
+		"max_damage":40
+	},{
+		"name":"Навскидку",
+		"type":3,
+		"accuracy":42,
+		"cost":32,
+		"min_dist":4,
+		"max_dist":16,
+		"bullets":1,
+		"min_damage":33,
+		"max_damage":54
+	},{
+		"name":"Прицельно",
+		"type":3,
+		"accuracy":62,
+		"cost":40,
+		"min_dist":6,
+		"max_dist":18,
+		"bullets":1,
+		"min_damage":33,
+		"max_damage":54
+	}],
+	"ingredients":{
+		"light_metals":20,
+		"heavy_metals":31,
+		"mech_parts":16
+	}
+}

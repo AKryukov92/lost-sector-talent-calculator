@@ -1,0 +1,19 @@
+{
+	"id":80,
+	"name":"Малая инъекция 'Марс'",
+	"category":"consumable",
+	"consumable_type":2,
+	"description":"Тип: Стероидные",
+	"lvlreq":4,
+	"talentreq":35,
+	"AP_cost":40,
+	"specials":[
+	{
+		"duration":5,
+		"effects":["Увеличивает урон в ближнем бою на 20%"]
+	}],
+	"ingredients":{
+		"bio":2,
+		"chemicals":4
+	}
+}

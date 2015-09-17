@@ -1,0 +1,43 @@
+{
+	"name":"Steyr AUG A3",
+	"category":"assault_rifle",
+	"mobility":80,
+	"clip":30,
+	"ammo":60,
+	"reload_cost":25,
+	"lvlreq":12,
+	"talentreq":22,
+	"classreq":["as"],
+	"id":430,
+	"attacks":[{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":30
+	},{
+		"name":"Очередь",
+		"type":3,
+		"accuracy":61,
+		"cost":40,
+		"min_dist":12,
+		"max_dist":25,
+		"bullets":8,
+		"min_damage":55.5,
+		"max_damage":84
+	},{
+		"name":"Прицельно",
+		"type":3,
+		"accuracy":66,
+		"cost":60,
+		"min_dist":14,
+		"max_dist":30,
+		"bullets":6,
+		"min_damage":61,
+		"max_damage":89
+	}],
+	"ingredients":0
+}

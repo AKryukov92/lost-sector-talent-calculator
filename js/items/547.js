@@ -1,0 +1,37 @@
+{
+	"name":"XM26LSS",
+	"category":"shotgun",
+	"mobility":85,
+	"clip":3,
+	"ammo":12,
+	"reload_cost":30,
+	"lvlreq":8,
+	"talentreq":20,
+	"classreq":["as","ju","su"],
+	"id":547,
+	"attacks":[{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":30
+	},{
+		"name":"Навскидку",
+		"type":4,
+		"accuracy":34,
+		"cost":40,
+		"min_dist":4,
+		"max_dist":9,
+		"bullets":1,
+		"min_damage":67,
+		"max_damage":95
+	}],
+	"ingredients":{
+		"light_metals":40,
+		"heavy_metals":45,
+		"mech_parts":25
+	}
+}

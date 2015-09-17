@@ -1,0 +1,51 @@
+,
+{
+	name:,
+	category:,
+	mobility:,
+	clip:,
+	ammo:,
+	reload_cost:,
+	lvlreq:,
+	talentreq:,
+	attacks:[
+	{
+		name:"Удар",
+		type:1,/*Удар в ближнем бою*/
+		accuracy:90,
+		cost:45,
+		min_dist:0,
+		max_dist:1.5
+	},
+	{
+		name:"Запуск",
+		name:"Очередь",
+		name:"Прицельно",
+		name:"Навскидку",
+		type:2,/*Мягкие пули*/
+		type:3,/*Пули*/
+		type:4,/*Дробь*/
+		type:5,/*Крупный калибр*/
+		type:6,/*Взрыв*/
+		accuracy:,
+		radius:,
+		cost:,
+		min_dist:,
+		max_dist:,
+		bullets:
+	},
+	{
+		name:"Очередь",
+		name:"Прицельно",
+		name:"Навскидку",
+		type:2,/*Мягкие пули*/
+		type:3,/*Пули*/
+		type:4,/*Дробь*/
+		type:5,/*Крупный калибр*/
+		accuracy:,
+		cost:,
+		min_dist:,
+		max_dist:,
+		bullets:
+	}]
+},

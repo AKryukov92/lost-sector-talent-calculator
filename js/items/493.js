@@ -1,0 +1,30 @@
+{
+	"name":"MAC-11",
+	"category":"smg",
+	"mobility":97,
+	"clip":45,
+	"ammo":135,
+	"reload_cost":25,
+	"id":493,
+	"attacks":[{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":40,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":10,
+		"max_damage":25
+	},{
+		"name":"Очередь",
+		"type":2,
+		"accuracy":41,
+		"cost":30,
+		"min_dist":6,
+		"max_dist":14,
+		"bullets":15,
+		"min_damage":28,
+		"max_damage":37
+	}],
+	"ingredients":0
+}

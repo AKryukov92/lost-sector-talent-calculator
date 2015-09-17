@@ -1,0 +1,47 @@
+{
+	"name":"Barrett M82",
+	"category":"sniper_rifle",
+	"mobility":62,
+	"clip":4,
+	"ammo":8,
+	"reload_cost":30,
+	"lvlreq":11,
+	"talentreq":24,
+	"classreq":["sc"],
+	"id":505,
+	"attacks":[{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":2,
+		"min_damage":20,
+		"max_damage":50
+	},{
+		"name":"Навскидку",
+		"type":5,
+		"accuracy":60,
+		"cost":50,
+		"min_dist":17,
+		"max_dist":42,
+		"bullets":1,
+		"min_damage":72,
+		"max_damage":112
+	},{
+		"name":"Прицельно",
+		"type":5,
+		"accuracy":77,
+		"cost":60,
+		"min_dist":22,
+		"max_dist":48,
+		"bullets":1,
+		"min_damage":109,
+		"max_damage":147
+	}],
+	"ingredients":{
+		"light_metals":56,
+		"heavy_metals":76,
+		"mech_parts":47
+	}
+}

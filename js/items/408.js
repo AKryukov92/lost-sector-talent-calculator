@@ -1,0 +1,15 @@
+{
+	"name":"Шит",
+	"category":"shield",
+	"mobility":72,
+	"protection":60,
+	"lvlreq":5,
+	"talentreq":9,
+	"classreq":["ju"],
+	"id":408,
+	"ingredients":{
+		"light_metals":25,
+		"heavy_metals":50,
+		"mech_parts":2
+	}
+}

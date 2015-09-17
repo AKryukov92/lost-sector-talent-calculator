@@ -1,0 +1,45 @@
+{
+	"name":"Беретта 93P",
+	"category":"pistol",
+	"mobility":100,
+	"clip":16,
+	"ammo":32,
+	"reload_cost":20,
+	"lvlreq":5,
+	"id":448,
+	"attacks":[{
+		"name":"Удар",
+		"type":1,
+		"accuracy":90,
+		"cost":35,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":10,
+		"max_damage":25
+	},{
+		"name":"Очередь",
+		"type":2,
+		"accuracy":31,
+		"cost":40,
+		"min_dist":4,
+		"max_dist":13,
+		"bullets":8,
+		"min_damage":44,
+		"max_damage":61
+	},{
+		"name":"Прицельно",
+		"type":2,
+		"accuracy":57,
+		"cost":25,
+		"min_dist":4,
+		"max_dist":15,
+		"bullets":1,
+		"min_damage":13,
+		"max_damage":23
+	}],
+	"ingredients":{
+		"light_metals":10,
+		"heavy_metals":16,
+		"mech_parts":10
+	}
+}

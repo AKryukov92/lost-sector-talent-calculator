@@ -1,0 +1,26 @@
+{
+	"id":515,
+	"name":"Граната Ф-1",
+	"category":"consumable",
+	"consumable_type":4,
+	"lvlreq":8,
+	"talentreq":25,
+	"classreq":["as","ju"],
+	"attacks":[{
+		"name":"Бросок",
+		"type":6,
+		"accuracy":50,
+		"radius":5,
+		"cost":50,
+		"min_dist":0,
+		"max_dist":15,
+		"min_damage":55,
+		"max_damage":90
+	}],
+	"ingredients":{
+		"light_metals":2,
+		"heavy_metals":2,
+		"mech_parts":4,
+		"chemicals":2
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"id":79,
+	"name":"Слабые таблетки 'Каллисто'",
+	"category":"consumable",
+	"consumable_type":2,
+	"description":"Тип: Стероидные",
+	"lvlreq":4,
+	"talentreq":35,
+	"AP_cost":40,
+	"specials":[
+	{
+		"duration":10,
+		"effects":["Увеличивает мобильность на 8%"]
+	}],
+	"ingredients":{
+		"bio":2,
+		"chemicals":2
+	}
+}

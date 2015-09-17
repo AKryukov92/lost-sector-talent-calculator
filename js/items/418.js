@@ -1,0 +1,24 @@
+{
+	"name":"Топор",
+	"category":"melee",
+	"type":1,
+	"mobility":82,
+	"lvlreq":7,
+	"talentreq":7,
+	"classreq":["ju","sc"],
+	"id":418,
+	"attacks":[{
+		"name":"Удар",
+		"type":1,
+		"accuracy":100,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":2.1,
+		"min_damage":60,
+		"max_damage":105
+	}],
+	"ingredients":{
+		"light_metals":6,
+		"heavy_metals":6
+	}
+}
