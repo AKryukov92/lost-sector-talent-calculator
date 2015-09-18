@@ -2,7 +2,7 @@
 	"id":473,
 	"name":"ЭМ граната",
 	"category":"consumable",
-	"consumable_type":4,
+	"consumable_type":3,
 	"description":"Уничтожает оборудование, попавшее в зону поражения. ЭМ излучение игнорирует стены и препятствия.",
 	"lvlreq":6,
 	"talentreq":3,
