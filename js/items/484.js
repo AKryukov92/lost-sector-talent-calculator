@@ -3,7 +3,7 @@
 	"name":"Грязный Ребис",
 	"category":"consumable",
 	"description":"Концентрированные отходы производтсва лекарственного ребиса, имеющие прямо противоположное действие",
-	"consumable_type":4,
+	"consumable_type":3,
 	"lvlreq":10,
 	"talentreq":17,
 	"classreq":["as","sc","su"],
