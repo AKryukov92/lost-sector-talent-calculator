@@ -99,7 +99,9 @@ function quality_change_handler(slot_name) {
 		return;
 	}
 	player_model.update_slot_tooltip(slot_name);
-	update_link();
+	if (typeof update_link != 'undefined') {
+		update_link();
+	}
 }
 
 function set_grade(slot_name, value){
@@ -117,7 +119,9 @@ function slider_slide_handler(slot_name, event, ui) {
 		return;
 	}
 	set_grade(slot_name, ui.value);	
-	update_link();
+	if (typeof update_link != 'undefined') {
+		update_link();
+	}
 }
 
 var player_model = {
@@ -161,6 +165,9 @@ var player_model = {
 		$("#" + slot_name + "-container").html("<img src=\"itemspng/slot-" + slot_name + ".png\">");
 		$("#" + slot_name + "-name").text("");
 		$("#" + slot_name + "-value").text("");
+		if (typeof update_link != 'undefined') {
+			update_link();
+		}
 	},
 	remove_item:function(item){
 		for (slot in this.slots) {
@@ -186,7 +193,9 @@ function equip_item(item, slot_name) {
 	}
 	$("#" + slot_name + "-container").html("<img id='item_" + item.id + "' src='itemspng/item" + image_id + "00.png'/>");
 	player_model.update_slot_tooltip(slot_name);
-	update_link();
+	if (typeof update_link != 'undefined') {
+		update_link();
+	}
 }
 function get_item_by_id(query_id){
 	for (var i = 0; i < patchdata.item_data.length; i++) {
