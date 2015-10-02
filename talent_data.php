@@ -30,15 +30,23 @@ function print_class_data($class_short_name, $directory){
 	print("]");
 }
 
-header('Content-type: text/javascript');
+header('Content-type: application/json;charset=UTF-8');
 
+if (isset($_GET["version"])) {
+	$version = $_GET["version"];
+	$filename = $TALENTS_DATA_DIRECTORY . "/archive" . $version . ".js";
+	if (file_exists($filename)) {
+		print(file_get_contents($filename));
+		return;
+	}
+}
 $files = scandir("./" . $TALENTS_DATA_DIRECTORY);
 if (!$files) {
 	print ("data was not found");
 	return;
 }
-print("var patchdata={");
-print("\"game_version\":98,");
+print("{");
+print("\"game_version\":101,");
 print("\"data_version\":1,");
 print("\"assault_data\":{\n");
 print_class_data("as", $TALENTS_DATA_DIRECTORY);
