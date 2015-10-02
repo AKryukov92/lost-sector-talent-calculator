@@ -14,14 +14,14 @@ function updateTooltip(controller, prefix) {
 
 function talentUriHandler(key, value, target) {
 	talent = decodeURIComponent(value);
-	var game_version = talent.split("_")[0];
-	var talent_input = talent.split("_")[1];
-	var class_prefix = game_version.substr(game_version.length - 2, 2);
-	update_link();
+	var match = /(\d*)(\d)(as|sc|ju|su)_(\w*)/.exec(value);
+	var game_version = match[1];
+	var data_version = match[2];
+	var class_prefix = match[3];
+	var talent_input = match[4];
 	var index = $('#tabs a[href="#tabs-'+ class_prefix + '"]').parent().index();
 	$("#tabs").tabs("option", "active", index);
-	var data_version = game_version.substr(game_version.length - 3, 1);
-	if (data_version == patchdata.data_version) {
+	if (data_version == patchdata.data_version && game_version == patchdata.game_version) {
 		app.classes[class_prefix].calculator.learnTalentsFromString(talent_input);
 		app.classes[class_prefix].controller.drawTalents();
 		$("#merc-level").html(app.classes[class_prefix].calculator.getRequiredLevel());
@@ -45,8 +45,8 @@ function specialItemUriHandler(key, value, target) {
 	equip_item(item, target);
 }
 
-loadImages(sources, function(images) {
-	$("#link-to-build").click(function(){window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());});
+function initApplication(data) {
+	patchdata = data;
 	app = {
 		classes: {
 			"as": {
@@ -84,12 +84,6 @@ loadImages(sources, function(images) {
 			"consumable3": { fn: specialItemUriHandler, target: "consumable_3" },
 			"consumable4": { fn: specialItemUriHandler, target: "consumable_4" },
 			"consumable5": { fn: specialItemUriHandler, target: "consumable_5" }
-		},
-		processData: function(UriItem) {
-			tmp = UriItem.split("=");
-			var key = tmp[0];
-			var value = tmp[1];
-			app.UriHandlers[key].fn(key, value, app.UriHandlers[key].target);
 		}
 	};
 	app.activeClass = app.classes["as"];
@@ -133,7 +127,20 @@ loadImages(sources, function(images) {
 			$("#points-left").html(value.calculator.getAvailableTalentPoints());
 		});
 	});
-	if (location.search.length != 0) {
-		location.search.replace("?", "").split("&").forEach(app.processData);
-	}
+	initialLink.parts.forEach(function(item){
+		app.UriHandlers[item.key].fn(item.key, item.value, app.UriHandlers[item.key].target)
+	});
+}
+
+var patchdata;
+var images;
+var initialLink = new TalentLink(location.search);
+loadImages(sources, function(imgs) {
+	$("#link-to-build").click(function(){window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());});
+	images = imgs;
+	$.get("/talents_data.php?version=" + initialLink.getGameVersion(), initApplication);
+	$("#selVersion").val(patchdata.game_version);
+});
+$("#selVersion").change(function(){
+	$.get("/talents_data.php?version=" + $("#selVersion").val(), initApplication);
 });

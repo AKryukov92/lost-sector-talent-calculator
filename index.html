@@ -5,19 +5,29 @@
 	<link href="css/local.css" rel="stylesheet">
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
-	<script src="talent_data.php"></script>
 	<script src="item_data.php"></script>
 	<script src="js/utils.js"></script>
+	<script src="js/link.js"></script>
 </head>
 <body>
 <div style="display:inline-block;background-color:#757575;">
 	<div id="general-info" class="general-info">
 		<div style="float:left;width:250px"><a style="color:#e7a516" href="http://lsonline.ru/"><img src="http://lsonline.ru/data/images/logo.png"/></a></div>
 		<div style="float:left;">
-			<div style="float:none;"><span>Ссылка на билд:</span><input id="link-to-build" style="width:100%"></input></div>
-			<div>Очки навыков <span id="points-left">0</span></div>
-			<div>Уровень наемника <span id="merc-level">1</span></div>
-			<div><label><input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked>Спрятать тултипы талантов</label></div>
+			<div><label>Ссылка: <input id="link-to-build"></input></label></div>
+			<div>
+				<label>Версия игры<select id="selVersion">
+					<option value="98">98</option>
+					<option value="101" selected>101</option>
+				</select></label>
+			</div>
+<!--			<div>
+ 			<label>Язык<select id="selLang">
+				<option value="ru">русский</option>
+			</select></label></div> -->
+			<div style="clear:both;">Очки <span id="points-left">0</span></div>
+			<div>Уровень <span id="merc-level">1</span></div>
+			<div><label>Спрятать тултипы талантов<input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked></label></div>
 		</div>
 	</div>
 <div class="talent-manager">
