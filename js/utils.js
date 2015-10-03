@@ -50,40 +50,40 @@ function resizeIframe(obj) {
 function update_link() {
 	var link = location.origin + "/?t=" +
 	talentApplication.patchdata.game_version + talentApplication.patchdata.data_version + talentApplication.activeClass.calculator.prefix + "_" + talentApplication.activeClass.calculator.getTalentString();
-	if (typeof player_model != 'undefined') {
-		var slot = player_model.slots["primary"];
+	if (typeof inventoryApp != 'undefined') {
+		var slot = inventoryApp.slots["primary"];
 		if (!$.isEmptyObject(slot.item)) {
 			link += "&p=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
 		}
-		slot = player_model.slots["secondary"];
+		slot = inventoryApp.slots["secondary"];
 		if (!$.isEmptyObject(slot.item)) {
 			link += "&s=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
 		}
-		slot = player_model.slots["armor"];
+		slot = inventoryApp.slots["armor"];
 		if (!$.isEmptyObject(slot.item)) {
 			link += "&a=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
 		}
-		slot = player_model.slots["hat"];
+		slot = inventoryApp.slots["hat"];
 		if (!$.isEmptyObject(slot.item)) {
 			link += "&h=" + slot.item.id;
 		}
-		slot = player_model.slots["consumable_1"];
+		slot = inventoryApp.slots["consumable_1"];
 		if (!$.isEmptyObject(slot.item)) {
 			link += "&c1=" + slot.item.id;
 		}
-		slot = player_model.slots["consumable_2"];
+		slot = inventoryApp.slots["consumable_2"];
 		if (!$.isEmptyObject(slot.item)) {
 			link += "&c2=" + slot.item.id;
 		}
-		slot = player_model.slots["consumable_3"];
+		slot = inventoryApp.slots["consumable_3"];
 		if (!$.isEmptyObject(slot.item)) {
 			link += "&c3=" + slot.item.id;
 		}
-		slot = player_model.slots["consumable_4"];
+		slot = inventoryApp.slots["consumable_4"];
 		if (!$.isEmptyObject(slot.item)) {
 			link += "&c4=" + slot.item.id;
 		}
-		slot = player_model.slots["consumable_5"];
+		slot = inventoryApp.slots["consumable_5"];
 		if (!$.isEmptyObject(slot.item)) {
 			link += "&c5=" + slot.item.id;
 		}
