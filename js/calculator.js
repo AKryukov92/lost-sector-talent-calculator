@@ -24,13 +24,13 @@ function CalculatorItem(talent) {
 	}
 	this.addReq = function(talent) {
 		this.reqs.push(talent);
-	}
+	};
 	this.addRef = function(talent) {
 		this.refs.push(talent);
-	}
+	};
 	this.base = function() {
 		return this.ranks[0];
-	}
+	};
 	this.addRank = function(talent) {
 		if (this.ranks.length == 0) {
 			talent.status = TALENT_NOT_LEARNED;
@@ -49,7 +49,7 @@ function CalculatorItem(talent) {
 			talent.status = TALENT_NOT_LEARNED;
 			this.ranks.splice(i,0,talent);
 		}
-	}
+	};
 	this.canLearn = function() {
 		for(var i = 0; i < this.reqs.length; i++) {
 			if (this.reqs[i].base().status == TALENT_NOT_LEARNED) {
@@ -71,7 +71,7 @@ function CalculatorItem(talent) {
 			i++;
 		}
 		return false;
-	}
+	};
 	this.canUnlearn = function() {
 		if (this.ranks.length > 1) {
 			var i = this.ranks.length - 1;
@@ -91,7 +91,7 @@ function CalculatorItem(talent) {
 			}
 		}
 		return true;
-	}
+	};
 	this.getLearnedCount = function() {
 		var i = 0;
 		while (i < this.ranks.length) {
@@ -102,7 +102,7 @@ function CalculatorItem(talent) {
 			}
 		}
 		return i;
-	}
+	};
 	this.learn = function() {
 		if (this.canLearn()) {
 			var i = 0;
@@ -117,7 +117,7 @@ function CalculatorItem(talent) {
 		} else {
 			throw new Error("Talent can not be learned.");
 		}
-	}
+	};
 	this.unlearn = function() {
 		if (this.canUnlearn()) {
 			var i = 0;
@@ -132,7 +132,7 @@ function CalculatorItem(talent) {
 		} else {
 			throw new Error("Talent can not be unlearned.");
 		}
-	}
+	};
 	this.calculatePaintPosition = function(margin, padding, rowY, rowHeaderWidth)  {
 		this.x = margin + padding + rowHeaderWidth + (padding + ITEM_BOX_SIZE) * (this.base().column) + padding;
 		this.y = rowY + padding;
@@ -154,34 +154,45 @@ function CalculatorItem(talent) {
 			});
 		}
 		return ret;
-	}
+	};
 	this.isInBox = function(x, y) {
 		return x > this.x && x < this.x + ITEM_BOX_SIZE &&
 				y > this.y && y < this.y + ITEM_BOX_SIZE;
-	}
+	};
 	this.addRank(talent);
 }
 
-function Calculator (input) {
-	if (typeof input.prefix == 'undefined') {
-		throw new Error("Illegal class data. Class prefix not defined");
-	}
-	if (typeof input.talents == 'undefined') {
-		throw new Error("Illegal class data. Talents data not defined");
-	}
-	this.talents_data = input.talents;
-	this.prefix = input.prefix;
+function Calculator () {
+	this.talents_data = [];
+	this.prefix = "";
 	this.width = 0;
 	this.items = [];
 	this.rows = [];
 	this.heightmap = [];
 	
-	for (var i = 0; i < this.talents_data.length; i++) {
-		if (typeof this.talents_data[i].rankof != 'undefined') {
-			continue;
+	this.init = function(input) {
+		if (typeof input.prefix == 'undefined') {
+			throw new Error("Illegal class data. Class prefix not defined");
 		}
-		this.items.push(new CalculatorItem(this.talents_data[i]));
-	}
+		if (typeof input.talents == 'undefined') {
+			throw new Error("Illegal class data. Talents data not defined");
+		}
+		this.talents_data = input.talents;
+		this.prefix = input.prefix;
+		this.items = [];
+		for (var i = 0; i < this.talents_data.length; i++) {
+			if (typeof this.talents_data[i].rankof != 'undefined') {
+				continue;
+			}
+			this.items.push(new CalculatorItem(this.talents_data[i]));
+		}
+		this.calculateWidth();
+		this.assignPowerToTalents();
+		this.fillHeightMap();
+		this.mapRefsReqs();
+		this.mapRanks();
+		this.arrangeRows(5,3,35,50);
+	};
 	
 	this.calculateWidth = function() {
 		var max_column = 0;
@@ -192,8 +203,9 @@ function Calculator (input) {
 			}
 		}
 		this.width = max_column;
-	}
+	};
 	this.fillHeightMap = function() {
+		this.heightmap = [];
 		var IMPOSSIBLE_LEVEL = 99;
 		var threshold = 0;
 		if (this.items.length == 0) {
@@ -220,7 +232,7 @@ function Calculator (input) {
 				this.heightmap.push(min_level_req);
 			}
 		}
-	}
+	};
 	this.mapRefsReqs = function() {
 		for (var i = 0; i < this.items.length; i++) {
 			var current = this.items[i];
@@ -239,7 +251,7 @@ function Calculator (input) {
 				}
 			}
 		}
-	}
+	};
 	this.mapRanks = function() {
 		for (var i = 0; i < this.talents_data.length; i++) {
 			var current = this.talents_data[i];
@@ -257,13 +269,14 @@ function Calculator (input) {
 				}
 			}
 		}
-	}
+	};
 	this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth) {
 		this.padding = padding;
 		this.rowHeaderWidth = rowHeaderWidth;
 		this.totalHeight = (margin + padding + itemSize + padding) * this.heightmap.length + margin;
 		this.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * (this.width + 1) + margin;
 		
+		this.rows = [];
 		for (var i = 0; i < this.heightmap.length; i++) {
 			var row = {
 				x: margin,
@@ -281,15 +294,14 @@ function Calculator (input) {
 			}
 			this.rows.push(row);
 		}
-	}
+	};
 	this.assignPowerToTalents = function() {
 		var power = 1;
 		for (var i = 0; i < this.talents_data.length; i++) {
 			this.talents_data[i].power = power;
 			power *= 2;
 		}
-	}
-	
+	};
 	this.getPowerSum = function() {
 		if (typeof this.talents_data[0].power == 'undefined') {
 			throw new Error("Assign power to talents first");
@@ -301,7 +313,7 @@ function Calculator (input) {
 			}
 		}
 		return powersum;
-	}
+	};
 	this.getTalentString = function() {
 		var powersum = this.getPowerSum();
 		var modulo;
@@ -316,7 +328,7 @@ function Calculator (input) {
 			}
 		} while(powersum > 0);
 		return code;
-	}
+	};
 	this.parseTalentString = function(input) {
 		var powersum = 0;
 		var power = 1;
@@ -335,7 +347,7 @@ function Calculator (input) {
 			i ++;
 		}
 		return powersum;
-	}
+	};
 	this.learnTalentsFromString = function(input) {
 		var powersum = this.parseTalentString(input);
 		var i;
@@ -349,7 +361,7 @@ function Calculator (input) {
 				powersum -= talent.power;
 			}
 		}
-	}
+	};
 	this.getSpentTalentPoints = function() {
 		var count = 0;
 		for (var i = 0; i < this.talents_data.length; i++) {
@@ -360,7 +372,7 @@ function Calculator (input) {
 			}
 		}
 		return count;
-	}
+	};
 	this.getRequiredLevel = function() {
 		var maxLevel;
 		var spentPoints = this.getSpentTalentPoints();
@@ -380,7 +392,7 @@ function Calculator (input) {
 			}
 		}
 		return maxLevel;
-	}
+	};
 	this.getAvailableTalentPoints = function() {
 		var expectedLevel = this.getRequiredLevel();
 		var totalTalentPoints;
@@ -390,14 +402,48 @@ function Calculator (input) {
 			totalTalentPoints = (expectedLevel - 4) * 3 + 4;
 		}
 		return totalTalentPoints - this.getSpentTalentPoints();
-	}
+	};
 };
-
-function Controller(calculator, ctx, atlasActive, atlasInactive) {
-	this.ctx = ctx;
+function TalentView(atlasActive, atlasInactive) {
 	this.recentItem;
-	
+	this.patchdata = {};
+	this.activeClass = {
+		controller:{},
+		graphicContext:{}
+	};
+	this.classes = {
+		"as": new Calculator(),
+		"ju": new Calculator(),
+		"sc": new Calculator(),
+		"su": new Calculator()
+	};
+	this.init = function(data) {
+		this.patchdata = data;
+		this.classes["as"].init(this.patchdata.assault_data);
+		this.classes["ju"].init(this.patchdata.juggernaut_data);
+		this.classes["sc"].init(this.patchdata.scout_data);
+		this.classes["su"].init(this.patchdata.support_data);
+	};
+	this.UriHandlers = {
+		"t": {fn: talentUriHandler },
+		/*legacy links handler: */
+		"talent": { fn: talentUriHandler }
+	};
+	this.setActiveClass = function(ctx, classPrefix) {
+		this.activeClass = {
+			graphicContext : ctx,
+			calculator : this.classes[classPrefix]
+		}
+	};
+	this.displayLayout = function(){
+		this.drawBackground();
+		this.markRows();
+		this.drawReqToRefLinks();
+		this.drawTalents();
+	};
 	this.drawBackground = function() {
+		var ctx = this.activeClass.graphicContext;
+		var calculator = this.activeClass.calculator;
 		ctx.fillStyle = "black";
 		ctx.fillRect(0, 0, calculator.totalWidth, calculator.totalHeight);
 		ctx.fillStyle = "#1f1f1f";
@@ -405,8 +451,10 @@ function Controller(calculator, ctx, atlasActive, atlasInactive) {
 			var row = calculator.rows[i];
 			ctx.fillRect(row.x, row.y, row.width, row.height);
 		}
-	}
+	};
 	this.drawRowHeader = function(row, bright) {
+		var ctx = this.activeClass.graphicContext;
+		var calculator = this.activeClass.calculator;
 		ctx.fillStyle = "#1f1f1f";
 		ctx.fillRect(row.x, row.y, calculator.rowHeaderWidth, row.height);
 		ctx.font = "1.1em Trebuchet MS,Tahoma,Verdana,Arial,sans-serif";
@@ -417,13 +465,16 @@ function Controller(calculator, ctx, atlasActive, atlasInactive) {
 			ctx.fillStyle = "#939393";
 			ctx.fillText("Ур." + row.level, row.x, row.y + ITEM_BOX_SIZE);
 		}
-	}
+	};
 	this.markRows = function() {
+		var calculator = this.activeClass.calculator;
 		for (var i = 0; i < calculator.rows.length; i ++) {
 			this.drawRowHeader(calculator.rows[i], false);
 		}
-	}
+	};
 	this.drawReqToRefLinks = function() {
+		var ctx = this.activeClass.graphicContext;
+		var calculator = this.activeClass.calculator;
 		for (var i = 0; i < calculator.items.length; i++) {
 			var item = calculator.items[i];
 			var links = item.getReqToRefLinks();
@@ -436,13 +487,16 @@ function Controller(calculator, ctx, atlasActive, atlasInactive) {
 				ctx.closePath();
 			}
 		}
-	}
+	};
 	this.drawTalents = function() {
+		var calculator = this.activeClass.calculator;
 		for (var i = 0; i < calculator.items.length; i ++) {
 			this.blitItem(calculator.items[i], false);
 		}
-	}
+	};
 	this.blitItem = function(item, hover) {
+		var ctx = this.activeClass.graphicContext;
+		var calculator = this.activeClass.calculator;
 		if (hover) {
 			ctx.fillStyle = "#e7a516";
 		} else if (item.base().AP_cost > 0) {
@@ -468,8 +522,9 @@ function Controller(calculator, ctx, atlasActive, atlasInactive) {
 			ctx.fillStyle = "red";
 			ctx.fillText(item.getLearnedCount() + "/" + item.ranks.length, item.x, item.y + ITEM_BOX_SIZE);
 		}
-	}
+	};
 	this.getItem = function(x, y) {
+		var calculator = this.activeClass.calculator;
 		for (var i = 0; i < calculator.items.length; i++) {
 			var item = calculator.items[i];
 			if (item.isInBox(x, y)) {
@@ -477,7 +532,7 @@ function Controller(calculator, ctx, atlasActive, atlasInactive) {
 			}
 		}
 		return {};
-	}
+	};
 	this.handleClick = function(x, y) {
 		var item = this.getItem(x,y);
 		if (!isEmpty(item)) {
@@ -498,8 +553,9 @@ function Controller(calculator, ctx, atlasActive, atlasInactive) {
 			}
 			this.blitItem(item, false);
 		}
-	}
+	};
 	this.handleMouseMove = function(x, y) {
+		var calculator = this.activeClass.calculator;
 		for (var i = 0; i < calculator.items.length; i++) {
 			var item = calculator.items[i];
 			if (item.isInBox(x,y)) {
@@ -521,5 +577,5 @@ function Controller(calculator, ctx, atlasActive, atlasInactive) {
 				this.drawRowHeader(row, false);
 			}
 		}
-	}
+	};
 }
