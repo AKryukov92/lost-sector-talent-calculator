@@ -17,7 +17,7 @@
 		"max_dist":30,
 		"specials":[{
 			"duration":2,
-			"effects":["Уменьшает мобильность на 10%"]
+			"effects":["Уменьшает мобильность на 17%"]
 		}]
 	}],
 	"ingredients":{

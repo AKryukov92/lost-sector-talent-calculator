@@ -1,0 +1,43 @@
+{
+	"name":"FN FAL",
+	"category":"assault_rifle",
+	"mobility":780,
+	"clip":20,
+	"ammo":40,
+	"reload_cost":20,
+	"lvlreq":10,
+	"talentreq":22,
+	"classreq":["as"],
+	"id":455,
+	"attacks":[{
+		"name":"Удар",
+		"type":1,
+		"min_damage":20,
+		"max_damage":30,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5
+	},{
+		"name":"Очередь",
+		"type":3,
+		"min_damage":52,
+		"max_damage":73,
+		"accuracy":61,
+		"bullets":5,
+		"cost":45,
+		"min_dist":11,
+		"max_dist":26
+	},{
+		"name":"Прицельно",
+		"type":3,
+		"min_damage":47,
+		"max_damage":68,
+		"accuracy":74,
+		"bullets":3,
+		"cost":55,
+		"min_dist":13,
+		"max_dist":30
+	}],
+	"ingredients":0
+}

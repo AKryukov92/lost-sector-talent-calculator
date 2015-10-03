@@ -21,23 +21,23 @@
 	},{
 		"name":"Навскидку",
 		"type":5,
+		"min_damage":95,
+		"max_damage":108,
 		"accuracy":64,
+		"bullets":12,
 		"cost":55,
 		"min_dist":18,
-		"max_dist":45,
-		"bullets":12,
-		"min_damage":95,
-		"max_damage":108
+		"max_dist":45
 	},{
 		"name":"Очередь",
 		"type":5,
+		"min_damage":188,
+		"max_damage":209,
 		"accuracy":39,
+		"bullets":30,
 		"cost":70,
 		"min_dist":10,
-		"max_dist":25,
-		"bullets":30,
-		"min_damage":195,
-		"max_damage":216
+		"max_dist":25
 	}],
 	"ingredients":{
 		"light_metals":52,

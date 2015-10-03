@@ -21,7 +21,7 @@
 	},{
 		"name":"Навскидку",
 		"type":4,
-		"accuracy":34,
+		"accuracy":36,
 		"cost":40,
 		"min_dist":4,
 		"max_dist":9,

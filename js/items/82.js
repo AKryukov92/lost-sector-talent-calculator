@@ -3,14 +3,14 @@
 	"name":"Малая инъекция 'Бахус'",
 	"category":"consumable",
 	"consumable_type":2,
-	"description":"Тип: Стероидные",
+	"description":"Тип: Стероидные<br/>Даёт иммунитет к любому ослеплению, но ограничивает дальность зрения.",
 	"lvlreq":4,
 	"talentreq":35,
 	"AP_cost":30,
 	"specials":[
 	{
-		"duration":5,
-		"effects":["Увеличивает сопротивление ударам на 25%"]
+		"duration":10,
+		"effects":["Устанавливает дальность зрения равным 40"]
 	}],
 	"ingredients":{
 		"chemicals":2,

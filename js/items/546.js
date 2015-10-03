@@ -1,7 +1,7 @@
 {
 	"name":"Glock 18",
 	"category":"pistol",
-	"mobility":97,
+	"mobility":98,
 	"clip":16,
 	"ammo":48,
 	"reload_cost":20,
@@ -21,23 +21,23 @@
 	},{
 		"name":"Очередь",
 		"type":2,
+		"min_damage":52,
+		"max_damage":72,
 		"accuracy":31,
+		"bullets":8,
 		"cost":40,
 		"min_dist":4,
-		"max_dist":13,
-		"bullets":8,
-		"min_damage":52,
-		"max_damage":72
+		"max_dist":13
 	},{
 		"name":"Прицельно",
 		"type":2,
+		"min_damage":15,
+		"max_damage":27,
 		"accuracy":57,
+		"bullets":1,
 		"cost":25,
 		"min_dist":4,
-		"max_dist":15,
-		"bullets":1,
-		"min_damage":15,
-		"max_damage":27
+		"max_dist":15
 	}],
 	"ingredients":{
 		"light_metals":40,

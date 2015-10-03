@@ -430,9 +430,12 @@ function TalentView(atlasActive, atlasInactive) {
 		"talent": { fn: talentUriHandler }
 	};
 	this.setActiveClass = function(ctx, classPrefix) {
-		this.activeClass = {
-			graphicContext : ctx,
-			calculator : this.classes[classPrefix]
+		if (classPrefix != this.activeClass.prefix) {
+			this.activeClass = {
+				prefix : classPrefix,
+				graphicContext : ctx,
+				calculator : this.classes[classPrefix]
+			}
 		}
 	};
 	this.displayLayout = function(){

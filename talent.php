@@ -13,7 +13,13 @@ if (!isset($_GET["prefix"]) && IsNullOrEmptyString($id)) {
 $iframe = isset($_GET["iframe"]);
 $id = $_GET["id"];
 $prefix = $_GET["prefix"];
-$PATH_TO_TALENTS = "js/talents/" . $prefix;
+
+if (isset($_GET["version"])) {
+	$PATH_TO_TALENTS = "js/talents/" . $_GET["version"] . "/" . $prefix;
+} else {
+	$PATH_TO_TALENTS = "js/talents/" . $prefix;	
+}
+
 $filename = $PATH_TO_TALENTS . "/" . $id . ".js";
 if (!file_exists($filename)) {
 	print "talent data is not found";
