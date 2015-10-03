@@ -1,0 +1,43 @@
+{
+	"name":"Keltec KSG slug",
+	"category":"shotgun",
+	"mobility":79,
+	"clip":6,
+	"ammo":24,
+	"reload_cost":40,
+	"lvlreq":10,
+	"talentreq":20,
+	"classreq":["as","ju","su"],
+	"id":534,
+	"attacks":[{
+		"name":"Удар",
+		"type":1,
+		"min_damage":20,
+		"max_damage":30,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5
+	},{
+		"name":"Навскидку",
+		"type":3,
+		"min_damage":59,
+		"max_damage":71,
+		"accuracy":61,
+		"bullets":1,
+		"cost":45,
+		"min_dist":8,
+		"max_dist":22
+	},{
+		"name":"Прицельно",
+		"type":3,
+		"min_damage":64,
+		"max_damage":76,
+		"accuracy":65,
+		"bullets":1,
+		"cost":50,
+		"min_dist":9,
+		"max_dist":23
+	}],
+	"ingredients":0
+}
