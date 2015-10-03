@@ -40,6 +40,7 @@ if (isset($_GET["version"])) {
 		return;
 	}
 }
+
 $files = scandir("./" . $TALENTS_DATA_DIRECTORY);
 if (!$files) {
 	print ("data was not found");
