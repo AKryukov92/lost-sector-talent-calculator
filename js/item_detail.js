@@ -1,127 +1,4 @@
-$(document).ready(function(){ 
-  document.oncontextmenu = function() {return false;};
-  
-    $( "#armor-slider" ).slider({
-      value:0,
-      min: 0,
-      max: 15,
-      step: 1,
-      change: function( event, ui ) {
-		quality_change_handler("armor");
-      },
-	  slide: function( event, ui ) {
-		slider_slide_handler("armor", event, ui);
-	  }
-    });
-	$( "#armor-value" ).html( "" );
-	$("[name=\"armor-quality\"]").change(
-		function(){
-			quality_change_handler("armor");
-		}
-	);
-	$("#armor-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	
-    $( "#primary-slider" ).slider({
-      value:0,
-      min: 0,
-      max: 15,
-      step: 1,
-      change: function( event, ui ) {
-		  quality_change_handler("primary");
-      },
-	  slide: function(event, ui) {
-		slider_slide_handler("primary", event, ui);
-	  }
-    });
-    $( "#primary-value" ).html( "" );
-	$("[name=\"primary-quality\"]").change(
-		function(){
-			quality_change_handler("primary");
-		}
-	);
-	$("#primary-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	
-    $( "#secondary-slider" ).slider({
-      value:0,
-      min: 0,
-      max: 15,
-      step: 1,
-      change: function( event, ui ) {
-		  quality_change_handler("secondary");
-      },
-	  slide: function(event, ui) {
-		slider_slide_handler("secondary", event, ui);
-	  }
-    });
-    $( "#secondary-value" ).html( "" );
-	$("[name=\"secondary-quality\"]").change(
-		function(){
-			quality_change_handler("secondary");
-		}
-	);
-	$("#secondary-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	
-	$("#hat-container").tooltip({content:""});
-	$("#consumable_1-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	$("#consumable_2-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	$("#consumable_3-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	$("#consumable_4-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-	$("#consumable_5-container").tooltip({
-		show:{delay:200},
-		content:""
-	});
-});
 
-function quality_change_handler(slot_name) {
-	if ($.isEmptyObject(player_model.slots[slot_name].item)) {
-		return;
-	}
-	player_model.update_slot_tooltip(slot_name);
-	if (typeof update_link != 'undefined') {
-		update_link();
-	}
-}
-
-function set_grade(slot_name, value){
-  var element = $("#" + slot_name + "-value");
-  player_model.slots[slot_name].grade = value;
-  if (value === 0) {
-	element.html( "" );
-  } else {
-	element.html( " +" + value );
-  }
-}
-
-function slider_slide_handler(slot_name, event, ui) {
-	if ($.isEmptyObject(player_model.slots[slot_name].item)) {
-		return;
-	}
-	set_grade(slot_name, ui.value);	
-	if (typeof update_link != 'undefined') {
-		update_link();
-	}
-}
 function InventoryModel(data) {
 	this.slots = {
 		primary: {short_name :"p", item:{} },
@@ -160,26 +37,35 @@ function InventoryModel(data) {
 		consumable: { slots:["consumable_1", "consumable_2", "consumable_3", "consumable_4", "consumable_5"] }
 	};
 	this.UriHandlers = {
-		"p": {fn: inventoryApp.tunableItemUriHandler, target: "primary" },
-		"s": { fn: inventoryApp.tunableItemUriHandler, target: "secondary" },
-		"a": { fn: inventoryApp.tunableItemUriHandler, target: "armor" },
-		"h": { fn: inventoryApp.specialItemUriHandler, target: "hat" },
-		"c1": { fn: inventoryApp.specialItemUriHandler, target: "consumable_1" },
-		"c2": { fn: inventoryApp.specialItemUriHandler, target: "consumable_2" },
-		"c3": { fn: inventoryApp.specialItemUriHandler, target: "consumable_3" },
-		"c4": { fn: inventoryApp.specialItemUriHandler, target: "consumable_4" },
-		"c5": { fn: inventoryApp.specialItemUriHandler, target: "consumable_5" },
+		"p": {fn: tunableItemUriHandler, target: "primary" },
+		"s": { fn: tunableItemUriHandler, target: "secondary" },
+		"a": { fn: tunableItemUriHandler, target: "armor" },
+		"h": { fn: specialItemUriHandler, target: "hat" },
+		"c1": { fn: specialItemUriHandler, target: "consumable_1" },
+		"c2": { fn: specialItemUriHandler, target: "consumable_2" },
+		"c3": { fn: specialItemUriHandler, target: "consumable_3" },
+		"c4": { fn: specialItemUriHandler, target: "consumable_4" },
+		"c5": { fn: specialItemUriHandler, target: "consumable_5" },
 		/*legacy links handlers: */
-		"primary": { fn: inventoryApp.tunableItemUriHandler, target: "primary" },
-		"secondary": { fn: inventoryApp.tunableItemUriHandler, target: "secondary" },
-		"armor": { fn: inventoryApp.tunableItemUriHandler, target: "armor" },
-		"hat": { fn: inventoryApp.specialItemUriHandler, target: "hat" },
-		"consumable1": { fn: inventoryApp.specialItemUriHandler, target: "consumable_1" },
-		"consumable2": { fn: inventoryApp.specialItemUriHandler, target: "consumable_2" },
-		"consumable3": { fn: inventoryApp.specialItemUriHandler, target: "consumable_3" },
-		"consumable4": { fn: inventoryApp.specialItemUriHandler, target: "consumable_4" },
-		"consumable5": { fn: inventoryApp.specialItemUriHandler, target: "consumable_5" }
+		"primary": { fn: tunableItemUriHandler, target: "primary" },
+		"secondary": { fn: tunableItemUriHandler, target: "secondary" },
+		"armor": { fn: tunableItemUriHandler, target: "armor" },
+		"hat": { fn: specialItemUriHandler, target: "hat" },
+		"consumable1": { fn: specialItemUriHandler, target: "consumable_1" },
+		"consumable2": { fn: specialItemUriHandler, target: "consumable_2" },
+		"consumable3": { fn: specialItemUriHandler, target: "consumable_3" },
+		"consumable4": { fn: specialItemUriHandler, target: "consumable_4" },
+		"consumable5": { fn: specialItemUriHandler, target: "consumable_5" }
 	};
+	this.setGrade = function(slot_name, value){
+		var element = $("#" + slot_name + "-value");
+		this.slots[slot_name].grade = value;
+		if (value === 0) {
+			element.html( "" );
+		} else {
+			element.html( " +" + value );
+		}
+	}
 	this.addItem = function (slot_name, item){
 		var slot = this.slots[slot_name];
 		if (typeof(slot) == 'undefined')
@@ -195,7 +81,7 @@ function InventoryModel(data) {
 		var selected_quality = $("#" + slot_name + "-slider").slider("option", "value");
 		var item = this.slots[slot_name].item;
 		if (!$.isEmptyObject(item) && typeof item.id != 'undefined'){
-			set_grade(slot_name, selected_quality);
+			this.setGrade(slot_name, selected_quality);
 			$("#" + slot_name + "-name").text(item.name);
 			var link = "/item.php?id=" + item.id + "&color=" + selected_color + "&quality=" + selected_quality;
 			$("#" + slot_name + "-link").attr("href", link);
@@ -302,19 +188,5 @@ function InventoryModel(data) {
 				}
 			}
 		}
-	};
-	this.tunableItemUriHandler = function (key, value, target) {
-		itemstring = decodeURIComponent(tmp[1]);
-		var item = getItemById(itemstring.split("_")[0]);
-		this.slots[target].color = itemstring.split("_")[1];
-		this.slots[target].quality = itemstring.split("_")[2];
-		$("#" + target + "-slider").slider("value", this.slots[target].quality);
-		$("#" + target + "-quality-" + this.slots[target].color).prop('checked', true);
-		this.equipItem(item, target);
-	};
-	this.specialItemUriHandler = function (key, value, target) {
-		itemstring = decodeURIComponent(value);
-		var item = this.getItemById(itemstring.split("_")[0]);
-		this.equipItem(item, target);
 	};
 }

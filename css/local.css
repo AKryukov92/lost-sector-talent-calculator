@@ -330,6 +330,7 @@ input[type=radio]:not(old):checked +  label > span > span{
 .attack_property {
 	float:left;
 	margin:2px;
+	margin-left:10px;
 }
 .clipped_property_container {
 	overflow:hidden;

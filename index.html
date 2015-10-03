@@ -16,13 +16,7 @@
 	<div id="general-info" class="general-info">
 		<div style="float:left;width:250px"><a style="color:#e7a516" href="http://lsonline.ru/"><img src="http://lsonline.ru/data/images/logo.png"/></a></div>
 		<div style="float:left;">
-			<div><label>Ссылка: <input id="link-to-build"></input></label></div>
-			<div>
-				<label>Версия игры<select id="selVersion">
-					<option value="98">98</option>
-					<option value="101" selected>101</option>
-				</select></label>
-			</div>
+			<div style="width:100%"><label>Ссылка: <input id="link-to-build" style="width:80%"></input></label></div>
 <!--			<div>
  			<label>Язык<select id="selLang">
 				<option value="ru">русский</option>
@@ -30,6 +24,12 @@
 			<div style="clear:both;">Очки <span id="points-left">0</span></div>
 			<div>Уровень <span id="merc-level">1</span></div>
 			<div><label>Спрятать тултипы талантов<input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked></label></div>
+			<div>
+				<label>Версия игры<select id="selVersion">
+					<option value="98">98</option>
+					<option value="101" selected>101</option>
+				</select></label>
+			</div>
 		</div>
 	</div>
 <div class="talent-manager">
@@ -105,7 +105,7 @@
 				<div id="armor-container" style="overflow:auto;">
 					<img src="itemspng/slot-armor.png"/>
 				</div>
-				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('armor');">очистить</a>
+				<a class="tunable-reset" onclick="reset_slot('armor');">очистить</a>
 			</div>
 			<div style="float:left;">
 				<input type="radio" name="armor-quality" value="gray" id="armor-quality-gray" class="quality">
@@ -136,7 +136,7 @@
 				<div id="primary-container" style="overflow:auto;">
 					<img src="itemspng/slot-primary.png"/>
 				</div>
-				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('primary');">очистить</a>
+				<a class="tunable-reset" onclick="reset_slot('primary');">очистить</a>
 			</div>
 			<div style="float:left;">
 				<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">
@@ -167,7 +167,7 @@
 				<div id="secondary-container" style="overflow:auto;">
 					<img src="itemspng/slot-secondary.png"/>
 				</div>
-				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('secondary');">очистить</a>
+				<a class="tunable-reset" onclick="reset_slot('secondary');">очистить</a>
 			</div>
 			<div style="float:left;">
 				<input type="radio" name="secondary-quality" value="gray" id="secondary-quality-gray" class="quality">
@@ -197,7 +197,7 @@
 			<div id="hat-container">
 				<img src="itemspng/slot-hat.png"/>
 			</div>
-			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('hat');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('hat');">очистить</a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="hat-fake-tooltip">
 					<iframe id="hat-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -209,7 +209,7 @@
 			<div id="consumable_1-container">
 				<img src="itemspng/slot-consumable_1.png"/>
 			</div>
-			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('consumable_1');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('consumable_1');">очистить</a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="consumable_1-fake-tooltip">
 					<iframe id="consumable_1-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -221,7 +221,7 @@
 			<div id="consumable_2-container">
 				<img src="itemspng/slot-consumable_2.png"/>
 			</div>
-			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('consumable_2');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('consumable_2');">очистить</a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="consumable_2-fake-tooltip">
 					<iframe id="consumable_2-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -233,7 +233,7 @@
 			<div id="consumable_3-container">
 				<img src="itemspng/slot-consumable_3.png"/>
 			</div>
-			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('consumable_3');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('consumable_3');">очистить</a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="consumable_3-fake-tooltip">
 					<iframe id="consumable_3-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -245,7 +245,7 @@
 			<div id="consumable_4-container">
 				<img src="itemspng/slot-consumable_4.png"/>
 			</div>
-			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('consumable_4');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('consumable_4');">очистить</a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="consumable_4-fake-tooltip">
 					<iframe id="consumable_4-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -257,7 +257,7 @@
 			<div id="consumable_5-container">
 				<img src="itemspng/slot-consumable_5.png"/>
 			</div>
-			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('consumable_5');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('consumable_5');">очистить</a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="consumable_5-fake-tooltip">
 					<iframe id="consumable_5-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -323,11 +323,9 @@
 $("#items-pool").tabs();
 $( "#tabs" ).tabs();
 $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
-toggleTalentTooltip();
-
 </script>
 <script src="js/talent-controller.js"></script>
-<!-- <script src="js/inventory-controller.js"></script> -->
+<script src="js/inventory-controller.js"></script>
 <script src="js/analytics.js"></script>
 </body>
 </html>

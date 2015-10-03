@@ -38,11 +38,6 @@ function isEmpty(obj) {
 
     return true;
 }
-
-function toggleTalentTooltip() {
-	var display = $("#talent-visibility-checkbox").is(":checked");
-	$("#talent-tooltip").toggle(!display);
-}
 var recentId;
 
 function resizeIframe(obj) {

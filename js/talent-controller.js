@@ -5,6 +5,11 @@ var sources = {
 	atlasActive: "Skills.png",
 	atlasInactive: "inactiveSkills.png"
 };
+function toggleTalentTooltip() {
+	var display = $("#talent-visibility-checkbox").is(":checked");
+	$("#talent-tooltip").toggle(!display);
+}
+toggleTalentTooltip();
 function updateTooltip(controller, prefix) {
 	if (typeof controller.recentItem != 'undefined') {
 		if (controller.recentItem.base().id != recentId) {

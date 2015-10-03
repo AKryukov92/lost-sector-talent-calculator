@@ -54,8 +54,8 @@ header("Content-Type: text/html; charset=utf-8");
 	<link href="css/local.css" rel="stylesheet">
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
+<script src="js/item_detail.js"></script>
 	<script>
-		var patchdata={"game_version":98,"data_version":1};
         function resizeIframe(obj) {
             obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
         }
@@ -214,7 +214,7 @@ header("Content-Type: text/html; charset=utf-8");
 $("#items-pool").tabs();
 $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 </script>
-<script src="js/item_detail.js"></script>
+<script src="js/inventory-controller.js"></script>
 <script src="js/analytics.js"></script>
 <?php } ?>
 </body>
