@@ -4,20 +4,21 @@ title Conversion Script
 ::  Задаем надпись заголовка
 if not exist readdxt.exe goto END
 ::  Если нет readdxt.exe переходим в конец программы
-if not exist *.dds goto END2
+if not exist dds/*.dds goto END2
 ::  Проверяем на наличие исходных файлов
-for %%f in (*.dds) do (
+for %%f in (dds/*.dds) do (
 	echo "%%~nf.dds"
-	readdxt "%%~nf.dds"
+	readdxt dds/"%%~nf.dds"
 )
-for %%f in (*.tga) do (
+for %%f in (dds/*.tga) do (
 	echo %%~nf
-	mogrify -format png %%~nf.tga
+	mogrify -format png dds/%%~nf.tga
 )
-if exist "../itemspng/" goto SKIP
-mkdir "../itemspng"
+if exist "png/" goto SKIP
+mkdir "png"
 :SKIP
-copy *.png "../itemspng/"
+cd dds/
+copy *.png "../png/"
 del *.png
 del *.tga
 ::  Преобразуем все .dds файлы в формат .tga
