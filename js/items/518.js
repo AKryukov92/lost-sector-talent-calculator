@@ -24,8 +24,8 @@
 		"type":3,
 		"accuracy":54,
 		"cost":40,
-		"min_dist":11,
-		"max_dist":24,
+		"min_dist":10,
+		"max_dist":25,
 		"bullets":8,
 		"min_damage":62,
 		"max_damage":82
@@ -34,8 +34,8 @@
 		"type":3,
 		"accuracy":62,
 		"cost":60,
-		"min_dist":13,
-		"max_dist":28,
+		"min_dist":12,
+		"max_dist":29,
 		"bullets":6,
 		"min_damage":56,
 		"max_damage":76

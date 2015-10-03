@@ -7,14 +7,15 @@
 	"lvlreq":7,
 	"talentreq":36,
 	"AP_cost":35,
-	"specials":[
-	{
+	"specials":[{
 		"duration":5,
 		"effects":["Увеличивает текущую броню на 8"]
-	},
-	{
+	},{
 		"duration":20,
 		"effects":["Увеличивает запас брони на 40"]
+	},{
+		"duration":0,
+		"effects": ["Увеличивает текущую броню на 20"]
 	}],
 	"ingredients":0
 }

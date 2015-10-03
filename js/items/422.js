@@ -13,8 +13,8 @@
 		"cost":40,
 		"min_dist":0,
 		"max_dist":15,
-		"min_damage":10,
-		"max_damage":20,
+		"min_damage":5,
+		"max_damage":10,
 		"specials":[
 		{
 			"duration":1,

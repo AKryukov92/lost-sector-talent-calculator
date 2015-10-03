@@ -14,7 +14,9 @@ function updateTooltip(controller, prefix) {
 	if (typeof controller.recentItem != 'undefined') {
 		if (controller.recentItem.base().id != recentId) {
 			recentId = controller.recentItem.base().id;
-			$("#talent-iframe").attr("src", "/talent.php?id=" + controller.recentItem.base().id + "&prefix=" + prefix + "&iframe=true");
+			$("#talent-iframe").attr("src", "/talent.php?id=" + controller.recentItem.base().id +
+				"&prefix=" + prefix +
+				"&iframe=true&version=" + $("#selVersion").val());
 		}
 	}
 }
