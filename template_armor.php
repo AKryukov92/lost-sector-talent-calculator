@@ -42,9 +42,9 @@ header("Content-Type: text/html; charset=utf-8");
 	<link href="css/local.css" rel="stylesheet">
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
+	<script src="js/item_detail.js"></script>
 	<script src="js/utils.js"></script>
 	<script>
-		var patchdata={"game_version":98,"data_version":1};
 		function update_link() {}
 	</script>
 	<script src="item_data.php"></script>
@@ -141,7 +141,7 @@ header("Content-Type: text/html; charset=utf-8");
 <script>
 $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 </script>
-<script src="js/item_detail.js"></script>
+<script src="js/inventory-controller.js"></script>
 <script src="js/analytics.js"></script>
 <?php } ?>
 </body>
