@@ -6,5 +6,5 @@
 	"cost":1,
 	"lvlreq":12,
 	"talentreq":46,
-	"column":12
+	"column":11
 }

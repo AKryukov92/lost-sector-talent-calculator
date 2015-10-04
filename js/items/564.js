@@ -1,5 +1,5 @@
 {
-	"id":152,
+	"id":564,
 	"name":"Святая ручная граната",
 	"category":"consumable",
 	"consumable_type":4,

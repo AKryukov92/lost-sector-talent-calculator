@@ -7,5 +7,5 @@
 	"cost":3,
 	"lvlreq":13,
 	"rankof":451,
-	"column":8
+	"column":9
 }
