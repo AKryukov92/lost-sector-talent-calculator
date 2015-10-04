@@ -8,5 +8,5 @@
 	"talentreq":471,
 	"AP_cost":30,
 	"number_of_uses":2,
-	"column":10
+	"column":8
 }

@@ -1,10 +1,7 @@
 var images;
 var initialLink = new TalentLink(location.search);
-var talentApplication;
-var sources = {
-	atlasActive: "Skills.png",
-	atlasInactive: "inactiveSkills.png"
-};
+var talentApplication = new TalentView();
+
 function toggleTalentTooltip() {
 	var display = $("#talent-visibility-checkbox").is(":checked");
 	$("#talent-tooltip").toggle(!display);
@@ -77,13 +74,27 @@ function processTalentData(data) {
 	});
 	$("#as-link").trigger("click");
 }
+var sources = {
+	atlasActive: "Skills101.png",
+	atlasInactive: "inactiveSkills101.png"
+};
 loadImages(sources, function(imgs) {
-	talentApplication = new TalentView(imgs.atlasActive, imgs.atlasInactive);
+	talentApplication.handleImages(imgs.atlasActive, imgs.atlasInactive);
 	$("#link-to-build").click(function(){window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());});
 	images = imgs;
-	$.get("/talent_data.php?version=" + initialLink.getGameVersion(),processTalentData);
+	$.get("/talent_data.php?version=" + initialLink.getGameVersion(), processTalentData);
 });
 $("#selVersion").change(function(){
-	$.get("/talent_data.php?version=" + $("#selVersion").val(), processTalentData);
+	var version = $("#selVersion").val();
+	var sources = {
+		atlasActive: "Skills" + version + ".png",
+		atlasInactive: "inactiveSkills" + version + ".png"
+	};
+	loadImages(sources, function(imgs) {
+		talentApplication.handleImages(imgs.atlasActive, imgs.atlasInactive);
+		$("#link-to-build").click(function(){window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());});
+		images = imgs;
+		$.get("/talent_data.php?version=" + version, processTalentData);
+	});
 });
 

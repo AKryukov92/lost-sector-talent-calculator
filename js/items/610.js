@@ -1,5 +1,5 @@
 {
-	"id":150,
+	"id":610,
 	"name":"Генератор инфразвука",
 	"category":"consumable",
 	"consumable_type":4,

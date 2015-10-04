@@ -9,5 +9,5 @@
 	"AP_cost":60,
 	"number_of_uses":2,
 	"radius":100,
-	"column":9
+	"column":7
 }

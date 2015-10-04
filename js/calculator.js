@@ -404,7 +404,9 @@ function Calculator () {
 		return totalTalentPoints - this.getSpentTalentPoints();
 	};
 };
-function TalentView(atlasActive, atlasInactive) {
+function TalentView() {
+	this.atlasActive;
+	this.atlasInactive;
 	this.recentItem;
 	this.patchdata = {};
 	this.activeClass = {
@@ -417,6 +419,10 @@ function TalentView(atlasActive, atlasInactive) {
 		"sc": new Calculator(),
 		"su": new Calculator()
 	};
+	this.handleImages = function (atlasActive, atlasInactive) {
+		this.atlasActive = atlasActive;
+		this.atlasInactive = atlasInactive;
+	}
 	this.init = function(data) {
 		this.patchdata = data;
 		this.classes["as"].init(this.patchdata.assault_data);
@@ -509,10 +515,10 @@ function TalentView(atlasActive, atlasInactive) {
 		}
 		ctx.fillRect(item.x - 1, item.y - 1, ITEM_BOX_SIZE + 2, ITEM_BOX_SIZE + 2);
 		if (item.base().status == TALENT_LEARNED) {
-			ctx.drawImage(atlasActive, item.imageBoundsX, item.imageBoundsY, ITEM_BOX_SIZE, ITEM_BOX_SIZE,
+			ctx.drawImage(this.atlasActive, item.imageBoundsX, item.imageBoundsY, ITEM_BOX_SIZE, ITEM_BOX_SIZE,
 			item.x, item.y, ITEM_BOX_SIZE, ITEM_BOX_SIZE);
 		} else {
-			ctx.drawImage(atlasInactive, item.imageBoundsX, item.imageBoundsY, ITEM_BOX_SIZE, ITEM_BOX_SIZE,
+			ctx.drawImage(this.atlasInactive, item.imageBoundsX, item.imageBoundsY, ITEM_BOX_SIZE, ITEM_BOX_SIZE,
 			item.x, item.y, ITEM_BOX_SIZE, ITEM_BOX_SIZE);
 			if (!item.canLearn()) {
 				ctx.fillStyle = "red";

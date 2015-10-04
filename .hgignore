@@ -4,3 +4,4 @@ syntax: glob
 allitemspng/
 allhats/
 tools/ImageCompressor/out/
+noinclude/

@@ -16,14 +16,16 @@ $prefix = $_GET["prefix"];
 
 if (isset($_GET["version"])) {
 	$PATH_TO_TALENTS = "js/talents/" . $_GET["version"] . "/" . $prefix;
-} else {
-	$PATH_TO_TALENTS = "js/talents/" . $prefix;	
+	$filename = $PATH_TO_TALENTS . "/" . $id . ".js";
 }
 
-$filename = $PATH_TO_TALENTS . "/" . $id . ".js";
 if (!file_exists($filename)) {
-	print "talent data is not found";
-	return;
+	$PATH_TO_TALENTS = "js/talents/" . $prefix;
+	$filename = $PATH_TO_TALENTS . "/" . $id . ".js";
+	if (!file_exists($filename)) {
+		print "talent data is not found";
+		return;
+	}
 }
 $filecontent = file_get_contents($filename);
 $data = json_decode($filecontent, true);
