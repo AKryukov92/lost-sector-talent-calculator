@@ -39,10 +39,14 @@ function talentUriHandler(key, value, target) {
 }
 function processTalentData(data) {
 	talentApplication.init(data);
-	if (initialLink.linkString.length != 0) {
-		initialLink.parts.forEach(function(item){
-			talentApplication.UriHandlers[item.key].fn(item.key, item.value, talentApplication.UriHandlers[item.key].target)
-		});
+	if (typeof initialLink.linkString != 'undefined') {
+		if (initialLink.linkString.length != 0) {
+			initialLink.parts.forEach(function(item){
+				if (typeof talentApplication.UriHandlers[item.key] != 'undefined') {
+					talentApplication.UriHandlers[item.key].fn(item.key, item.value, talentApplication.UriHandlers[item.key].target)
+				}
+			});
+		}
 	}
 	$("#selVersion").val(talentApplication.patchdata.game_version);
 	$("#as-link").trigger("click");
@@ -86,6 +90,7 @@ loadImages(sources, function(imgs) {
 	$.get("/talent_data.php?version=" + initialLink.getGameVersion(), processTalentData);
 });
 $("#selVersion").change(function(){
+	initialLink = {};
 	var version = $("#selVersion").val();
 	var sources = {
 		atlasActive: "Skills" + version + ".png",
@@ -97,4 +102,3 @@ $("#selVersion").change(function(){
 		$.get("/talent_data.php?version=" + version, processTalentData);
 	});
 });
-

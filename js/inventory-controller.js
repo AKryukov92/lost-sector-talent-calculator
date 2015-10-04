@@ -24,8 +24,8 @@ function reset_slot(slot_name) {
 	inventoryApp.resetInventorySlot(slot_name);
 }
 function tunableItemUriHandler(key, value, target) {
-	itemstring = decodeURIComponent(tmp[1]);
-	var item = getItemById(itemstring.split("_")[0]);
+	itemstring = decodeURIComponent(value);
+	var item = inventoryApp.getItemById(itemstring.split("_")[0]);
 	inventoryApp.slots[target].color = itemstring.split("_")[1];
 	inventoryApp.slots[target].quality = itemstring.split("_")[2];
 	$("#" + target + "-slider").slider("value", inventoryApp.slots[target].quality);
@@ -141,6 +141,13 @@ $(document).ready(function(){
 					var item = inventoryApp.getItemById(item_id);
 					var slot_name = $(this).context.id.split("-")[0];
 					inventoryApp.equipItem(item, slot_name);
+				}
+			});
+		}
+		if (typeof initialLink.parts != 'undefined') {
+			initialLink.parts.forEach(function(item){
+				if (typeof inventoryApp.UriHandlers[item.key] != 'undefined') {
+					inventoryApp.UriHandlers[item.key].fn(item.key, item.value, inventoryApp.UriHandlers[item.key].target)
 				}
 			});
 		}
