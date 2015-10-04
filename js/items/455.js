@@ -20,7 +20,7 @@
 		"max_dist":1.5
 	},{
 		"name":"Очередь",
-		"type":3,
+		"type":5,
 		"min_damage":52,
 		"max_damage":73,
 		"accuracy":61,
@@ -30,7 +30,7 @@
 		"max_dist":26
 	},{
 		"name":"Прицельно",
-		"type":3,
+		"type":5,
 		"min_damage":47,
 		"max_damage":68,
 		"accuracy":74,
