@@ -51,7 +51,7 @@ header("Content-Type: text/html; charset=utf-8");
 <?php } ?>
 </head>
 <body style="margin:0px;">
-<div class="tooltip-content" style="overflow:auto;">
+<div class="tooltip-content" style="overflow:auto;width:300px;">
 	<?php if (!$iframe) {?>
 		<div class="tooltip-image-container" style="width:<?php print $ITEM_BOX_SIZE; ?>px;height:<?php print $ITEM_BOX_SIZE; ?>px;background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));">
 			<img src="items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
