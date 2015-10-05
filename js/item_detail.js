@@ -145,7 +145,7 @@ function InventoryModel(data) {
 		}
 		var diffy = (~~(item_image_id / 20)) * 64;
 		var diffx = item_image_id % 20 * 64;
-		return "<img src=\"items.png\" style=\"margin-left:-" + diffx + "px;margin-top:-" + diffy + "px;\"/>";
+		return "<img src=\"images/items.png\" style=\"margin-left:-" + diffx + "px;margin-top:-" + diffy + "px;\"/>";
 	};
 	this.addItemToPool = function(item){
 		$("#" + item.category + "-pool")
