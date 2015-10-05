@@ -15,8 +15,12 @@ $id = $_GET["id"];
 $prefix = $_GET["prefix"];
 
 if (isset($_GET["version"])) {
+	$version = $_GET["version"];
 	$PATH_TO_TALENTS = "js/talents/" . $_GET["version"] . "/" . $prefix;
 	$filename = $PATH_TO_TALENTS . "/" . $id . ".js";
+} else {
+	$version = 101;
+	$filename = "";
 }
 
 if (!file_exists($filename)) {
@@ -45,7 +49,7 @@ if ($id > 100) {
 	$base_id = $base_talent/10;
 	$next_id = $base_talent + $current_rank;
 	$filename = $PATH_TO_TALENTS . "/" . $next_id . ".js";
-		
+	
 	while (file_exists($filename)) {
 		$filecontent = file_get_contents($filename);
 		$ranks[$current_rank] = json_decode($filecontent, true);
@@ -56,6 +60,11 @@ if ($id > 100) {
 } else {
 	$base_id = $id;
 }
+
+$TALENT_BOX_SIZE = 48;
+
+$imagedx = ($base_id % 20) * $TALENT_BOX_SIZE;
+$imagedy = round($base_id / 20) * $TALENT_BOX_SIZE;
 
 header("Content-Type: text/html; charset=utf-8");
 
@@ -68,7 +77,9 @@ header("Content-Type: text/html; charset=utf-8");
 <body style="margin:0px;">
 <div class="tooltip-content" style="overflow:auto;">
 	<?php if (!$iframe) {?>
-		<img src="skillspng/<?php print $base_id; ?>00.png" style="float:right;background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));"/>
+		<div class="talent-image-container">
+			<img src="Skills<?php print $version; ?>.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
+		</div>
 	<?php } ?>
 <h3><?php print $data["name"] ?></h3>
 <?php if (!isset($ranks)) {?>
@@ -83,7 +94,6 @@ header("Content-Type: text/html; charset=utf-8");
 	<?php if(isset($data["cost"])){?>
 		<div class="entry"><span class="key">Стоимость:</span> <?php print $data["cost"] ?> очков навыков</div>
 	<?php } ?>
-	
 <?php } ?>
 <?php if (isset($data["radius"])){?>
 	<div class="entry"><span class="key">Радиус:</span> <?php print $data["radius"]?></div>

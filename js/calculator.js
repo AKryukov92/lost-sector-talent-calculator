@@ -1,6 +1,7 @@
 var TALENT_NOT_LEARNED = 0;
 var TALENT_LEARNED = 1;
-var ITEM_BOX_SIZE = 35;
+var DEST_BOX_SIZE = 35;
+var SOURCE_BOX_SIZE = 48;
 
 function CalculatorItem(talent) {
 	if (typeof talent.id == 'undefined') {
@@ -16,11 +17,11 @@ function CalculatorItem(talent) {
 	this.refs = [];
 	this.ranks = [];
 	if (typeof talent.imageid != 'undefined') {
-		this.imageBoundsX = (talent.imageid % 20) * ITEM_BOX_SIZE;
-		this.imageBoundsY = (~~(talent.imageid / 20)) * ITEM_BOX_SIZE; 
+		this.imageBoundsX = (talent.imageid % 20) * SOURCE_BOX_SIZE;
+		this.imageBoundsY = (~~(talent.imageid / 20)) * SOURCE_BOX_SIZE; 
 	} else {
-		this.imageBoundsX = (talent.id % 20) * ITEM_BOX_SIZE;
-		this.imageBoundsY = (~~(talent.id / 20)) * ITEM_BOX_SIZE; 
+		this.imageBoundsX = (talent.id % 20) * SOURCE_BOX_SIZE;
+		this.imageBoundsY = (~~(talent.id / 20)) * SOURCE_BOX_SIZE; 
 	}
 	this.addReq = function(talent) {
 		this.reqs.push(talent);
@@ -134,7 +135,7 @@ function CalculatorItem(talent) {
 		}
 	};
 	this.calculatePaintPosition = function(margin, padding, rowY, rowHeaderWidth)  {
-		this.x = margin + padding + rowHeaderWidth + (padding + ITEM_BOX_SIZE) * (this.base().column) + padding;
+		this.x = margin + padding + rowHeaderWidth + (padding + DEST_BOX_SIZE) * (this.base().column) + padding;
 		this.y = rowY + padding;
 	};
 	this.isUsable = function() {
@@ -147,17 +148,17 @@ function CalculatorItem(talent) {
 		var ret = [];
 		for(var i = 0; i < this.refs.length; i++) {
 			ret.push({
-				x1:this.x + ~~(ITEM_BOX_SIZE / 2),
-				y1:this.y + ITEM_BOX_SIZE,
-				x2:this.refs[i].x + ~~(ITEM_BOX_SIZE / 2),
+				x1:this.x + ~~(DEST_BOX_SIZE / 2),
+				y1:this.y + DEST_BOX_SIZE,
+				x2:this.refs[i].x + ~~(DEST_BOX_SIZE / 2),
 				y2:this.refs[i].y
 			});
 		}
 		return ret;
 	};
 	this.isInBox = function(x, y) {
-		return x > this.x && x < this.x + ITEM_BOX_SIZE &&
-				y > this.y && y < this.y + ITEM_BOX_SIZE;
+		return x > this.x && x < this.x + DEST_BOX_SIZE &&
+				y > this.y && y < this.y + DEST_BOX_SIZE;
 	};
 	this.addRank(talent);
 }
@@ -282,7 +283,7 @@ function Calculator () {
 				x: margin,
 				y: (margin + padding + itemSize + padding) * i + margin,
 				width: this.totalWidth - margin * 2,
-				height: ITEM_BOX_SIZE + padding * 2,
+				height: DEST_BOX_SIZE + padding * 2,
 				level: this.heightmap[i],
 				items: []
 			};
@@ -468,10 +469,10 @@ function TalentView() {
 		ctx.font = "1.1em Trebuchet MS,Tahoma,Verdana,Arial,sans-serif";
 		if (bright) {
 			ctx.fillStyle = "#e7a516";
-			ctx.fillText("Ур." + row.level, row.x, row.y + ITEM_BOX_SIZE);
+			ctx.fillText("Ур." + row.level, row.x, row.y + DEST_BOX_SIZE);
 		} else {
 			ctx.fillStyle = "#939393";
-			ctx.fillText("Ур." + row.level, row.x, row.y + ITEM_BOX_SIZE);
+			ctx.fillText("Ур." + row.level, row.x, row.y + DEST_BOX_SIZE);
 		}
 	};
 	this.markRows = function() {
@@ -512,23 +513,23 @@ function TalentView() {
 		} else {
 			ctx.fillStyle = "black";
 		}
-		ctx.fillRect(item.x - 1, item.y - 1, ITEM_BOX_SIZE + 2, ITEM_BOX_SIZE + 2);
+		ctx.fillRect(item.x - 1, item.y - 1, DEST_BOX_SIZE + 2, DEST_BOX_SIZE + 2);
 		if (item.base().status == TALENT_LEARNED) {
-			ctx.drawImage(this.atlasActive, item.imageBoundsX, item.imageBoundsY, ITEM_BOX_SIZE, ITEM_BOX_SIZE,
-			item.x, item.y, ITEM_BOX_SIZE, ITEM_BOX_SIZE);
+			ctx.drawImage(this.atlasActive, item.imageBoundsX, item.imageBoundsY, SOURCE_BOX_SIZE, SOURCE_BOX_SIZE,
+			item.x, item.y, DEST_BOX_SIZE, DEST_BOX_SIZE);
 		} else {
-			ctx.drawImage(this.atlasInactive, item.imageBoundsX, item.imageBoundsY, ITEM_BOX_SIZE, ITEM_BOX_SIZE,
-			item.x, item.y, ITEM_BOX_SIZE, ITEM_BOX_SIZE);
+			ctx.drawImage(this.atlasInactive, item.imageBoundsX, item.imageBoundsY, SOURCE_BOX_SIZE, SOURCE_BOX_SIZE,
+			item.x, item.y, DEST_BOX_SIZE, DEST_BOX_SIZE);
 			if (!item.canLearn()) {
 				ctx.fillStyle = "red";
 				ctx.globalAlpha = 0.3;
-				ctx.fillRect(item.x, item.y, ITEM_BOX_SIZE, ITEM_BOX_SIZE);
+				ctx.fillRect(item.x, item.y, DEST_BOX_SIZE, DEST_BOX_SIZE);
 				ctx.globalAlpha = 1;
 			}
 		}
 		if (item.ranks.length > 1) {
 			ctx.fillStyle = "red";
-			ctx.fillText(item.getLearnedCount() + "/" + item.ranks.length, item.x, item.y + ITEM_BOX_SIZE);
+			ctx.fillText(item.getLearnedCount() + "/" + item.ranks.length, item.x, item.y + DEST_BOX_SIZE);
 		}
 	};
 	this.getItem = function(x, y) {
