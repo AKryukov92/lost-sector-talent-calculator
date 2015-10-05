@@ -410,7 +410,7 @@ function TalentView() {
 	this.recentItem;
 	this.patchdata = {};
 	this.activeClass = {
-		controller:{},
+		prefix: "as",
 		graphicContext:{}
 	};
 	this.classes = {
@@ -429,6 +429,7 @@ function TalentView() {
 		this.classes["ju"].init(this.patchdata.juggernaut_data);
 		this.classes["sc"].init(this.patchdata.scout_data);
 		this.classes["su"].init(this.patchdata.support_data);
+		this.activeClass.calculator = this.classes[this.activeClass.prefix];
 	};
 	this.UriHandlers = {
 		"t": {fn: talentUriHandler },
@@ -436,12 +437,10 @@ function TalentView() {
 		"talent": { fn: talentUriHandler }
 	};
 	this.setActiveClass = function(ctx, classPrefix) {
-		if (classPrefix != this.activeClass.prefix) {
-			this.activeClass = {
-				prefix : classPrefix,
-				graphicContext : ctx,
-				calculator : this.classes[classPrefix]
-			}
+		this.activeClass = {
+			prefix : classPrefix,
+			graphicContext : ctx,
+			calculator : this.classes[classPrefix]
 		}
 	};
 	this.displayLayout = function(){
