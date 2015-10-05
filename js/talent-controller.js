@@ -84,8 +84,8 @@ $.each(talentApplication.classes, function(index, calculator) {
 	});
 });
 var sources = {
-	atlasActive: "Skills101.png",
-	atlasInactive: "inactiveSkills101.png"
+	atlasActive: "images/Skills101.png",
+	atlasInactive: "images/inactiveSkills101.png"
 };
 $("#link-to-build").click(function(){
 	window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());
@@ -99,8 +99,8 @@ $("#selVersion").change(function(){
 	initialLink = {};
 	var version = $("#selVersion").val();
 	var sources = {
-		atlasActive: "Skills" + version + ".png",
-		atlasInactive: "inactiveSkills" + version + ".png"
+		atlasActive: "images/Skills" + version + ".png",
+		atlasInactive: "images/inactiveSkills" + version + ".png"
 	};
 	loadImages(sources, function(imgs) {
 		talentApplication.handleImages(imgs.atlasActive, imgs.atlasInactive);
