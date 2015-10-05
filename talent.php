@@ -64,7 +64,7 @@ if ($id > 100) {
 $TALENT_BOX_SIZE = 48;
 
 $imagedx = ($base_id % 20) * $TALENT_BOX_SIZE;
-$imagedy = round($base_id / 20) * $TALENT_BOX_SIZE;
+$imagedy = floor($base_id / 20) * $TALENT_BOX_SIZE;
 
 header("Content-Type: text/html; charset=utf-8");
 
@@ -77,7 +77,7 @@ header("Content-Type: text/html; charset=utf-8");
 <body style="margin:0px;">
 <div class="tooltip-content" style="overflow:auto;">
 	<?php if (!$iframe) {?>
-		<div class="talent-image-container">
+		<div class="tooltip-image-container" style="width:<?php print $TALENT_BOX_SIZE; ?>px;height:<?php print $TALENT_BOX_SIZE; ?>px;">
 			<img src="Skills<?php print $version; ?>.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
 		</div>
 	<?php } ?>

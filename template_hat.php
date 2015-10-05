@@ -14,7 +14,9 @@ header("Content-Type: text/html; charset=utf-8");
 <body style="margin:0px;">
 <div class="tooltip-content" style="overflow:auto;">
 	<?php if (!$iframe) {?>
-		<img src="itemspng/item<?php print $id; ?>00.png" style="float:right;"/>
+		<div class="tooltip-image-container" style="width:<?php print $ITEM_BOX_SIZE; ?>px;height:<?php print $ITEM_BOX_SIZE; ?>px;background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));">
+			<img src="items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
+		</div>
 	<?php } ?>
 	<div style="color:#ff7700;font-size:16pt;"><?php print $data["name"]; ?></div>
 	<div class="entry">Аватар</div>

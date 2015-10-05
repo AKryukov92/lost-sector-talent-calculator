@@ -373,11 +373,9 @@ input[type=radio]:not(old):checked +  label > span > span{
 	border: 1px solid #e7a516;
 }
 
-.talent-image-container {
+.tooltip-image-container {
 	float:right;
 	overflow:hidden;
-	width:48px;
-	height:48px;
 }
 
 .talent-tooltip-container {

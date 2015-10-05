@@ -30,8 +30,20 @@ if (isset($_GET["iframe"])) {
 } else {
 	$iframe = false;
 }
+
 $filecontent = file_get_contents($filename);
 $data = json_decode($filecontent, true);
+
+if (isset($data["imageid"])) {
+	$imageId = $data["imageId"];
+} else {
+	$imageId = $id;
+}
+$ITEM_BOX_SIZE = 64;
+
+$imagedx = ($imageId % 20) * $ITEM_BOX_SIZE;
+$imagedy = floor($imageId / 20) * $ITEM_BOX_SIZE;
+
 if (json_last_error() != 0) {
 	print 'error parsing item data';
 	return;
