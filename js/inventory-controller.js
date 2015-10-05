@@ -144,12 +144,14 @@ $(document).ready(function(){
 				}
 			});
 		}
-		if (typeof initialLink.parts != 'undefined') {
-			initialLink.parts.forEach(function(item){
-				if (typeof inventoryApp.UriHandlers[item.key] != 'undefined') {
-					inventoryApp.UriHandlers[item.key].fn(item.key, item.value, inventoryApp.UriHandlers[item.key].target)
-				}
-			});
+		if (typeof initialLink != 'undefined') {
+			if (typeof initialLink.parts != 'undefined') {
+				initialLink.parts.forEach(function(item){
+					if (typeof inventoryApp.UriHandlers[item.key] != 'undefined') {
+						inventoryApp.UriHandlers[item.key].fn(item.key, item.value, inventoryApp.UriHandlers[item.key].target)
+					}
+				});
+			}
 		}
 	});
 });
