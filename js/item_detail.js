@@ -114,13 +114,7 @@ function InventoryModel(data) {
 		this.addItem(slot_name, item);
 		$("#" + slot_name + "-container").empty();
 		$("#" + slot_name + "-container").prop("title");
-		var image_id;
-		if (typeof item.imageid != 'undefined') {
-			image_id = item.imageid;
-		} else {
-			image_id = item.id;
-		}
-		$("#" + slot_name + "-container").html("<img id='item_" + item.id + "' src='itemspng/item" + image_id + "00.png'/>");
+		$("#" + slot_name + "-container").html(this.getImageForItem(item));
 		this.updateSlotTooltip(slot_name);
 		if (typeof update_link != 'undefined') {
 			update_link();
@@ -143,7 +137,7 @@ function InventoryModel(data) {
 			}
 		}
 	};
-	this.addItemToPool = function(item){
+	this.getImageForItem = function (item) {
 		if (typeof item.imageid != 'undefined') {
 			var item_image_id = item.imageid;
 		} else {
@@ -151,10 +145,13 @@ function InventoryModel(data) {
 		}
 		var diffy = (~~(item_image_id / 20)) * 64;
 		var diffx = item_image_id % 20 * 64;
+		return "<img src=\"items.png\" style=\"margin-left:-" + diffx + "px;margin-top:-" + diffy + "px;\"/>";
+	};
+	this.addItemToPool = function(item){
 		$("#" + item.category + "-pool")
 			.append("<div class=\"swimmer\">" +
 				"<div id=\"item_" + item.id + "\" class=\"swimmer-image-container\">" +
-					"<img src=\"items.png\" style=\"margin-left:-" + diffx + "px;margin-top:-" + diffy + "px;\"/>" +
+					this.getImageForItem(item) +
 				"</div>" +
 				"<span class=\"fake-tooltip\">" + item.name + "</span>" +
 			"</div>");

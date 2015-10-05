@@ -196,18 +196,17 @@ width: 1px;
 	z-index:2;
 	top:0px;
 }
-
-.tunable-item img{
-	background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));
-	width:60px;
-	height:60px;
-	float:left;
-}
 .draggable-landing{
 	margin-right:5px;
-	width:64px;
+	width:66px;
 	overflow:auto;
 	float:left;
+}
+.inventory-item-container {
+	overflow:hidden;
+	height:64px;
+	width:64px;
+	background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));
 }
 
 .tunable-reset {
@@ -267,11 +266,8 @@ input[type=radio]:not(old):checked +  label > span > span{
 	border:1px solid #e7a516;
 }
 .special-item img{
-	background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));
 	padding:1px;
 	background-color: rgba(55,55,55,0.9);
-	width:50px;
-	height:50px;
 }
 
 .specials {
@@ -356,8 +352,6 @@ input[type=radio]:not(old):checked +  label > span > span{
 	width:64px;
 	height:64px;
 	overflow:hidden;
-}
-.swimmer-image-container {
 	border: 1px solid black;
 	float:left;
 }
