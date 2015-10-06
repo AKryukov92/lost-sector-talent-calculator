@@ -50,7 +50,7 @@ if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {
 		<?php print $real_min_damage . " - " . $real_max_damage; ?>
 	</div>
 	<div class="clipped_property_container">
-		<img src="weapon_stats_icons.png"/>
+		<img src="images/weapon_stats_icons.png"/>
 	</div>
 <?php } ?>
 <?php if (isset($attack["radius"])) { ?>
@@ -58,7 +58,7 @@ if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {
 		<?php print $attack["radius"]; ?>
 	</div>
 	<div class="clipped_property_container">
-		<img src="weapon_stats_icons.png" style="margin-left:-16px;"/>
+		<img src="images/weapon_stats_icons.png" style="margin-left:-16px;"/>
 	</div>
 <?php } ?>
 <?php if (isset($attack["accuracy"])) { ?>
@@ -66,7 +66,7 @@ if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {
 		<?php print $attack["accuracy"]; ?>
 	</div>
 	<div class="clipped_property_container">
-		<img src="weapon_stats_icons.png" style="margin-left:-32px;"/>
+		<img src="images/weapon_stats_icons.png" style="margin-left:-32px;"/>
 	</div>
 <?php } ?>
 <?php if (isset($attack["bullets"])) { ?>
@@ -74,7 +74,7 @@ if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {
 		<?php print $attack["bullets"]; ?>
 	</div>
 	<div class="clipped_property_container">
-		<img src="weapon_stats_icons.png" style="margin-left:-48px;"/>
+		<img src="images/weapon_stats_icons.png" style="margin-left:-48px;"/>
 	</div>
 <?php } ?>
 <?php if (isset($attack["cost"])) { ?>
@@ -89,7 +89,7 @@ if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {
 		<?php print $attack["min_dist"]. "-". $attack["max_dist"]; ?>
 	</div>
 	<div class="clipped_property_container">
-		<img src="weapon_stats_icons.png" style="margin-left:-64px;"/>
+		<img src="images/weapon_stats_icons.png" style="margin-left:-64px;"/>
 	</div>
 <?php } ?>
 </div>

@@ -67,7 +67,7 @@ header("Content-Type: text/html; charset=utf-8");
 <div class="tooltip-content" style="overflow:auto;width:300px;">
 	<?php if (!$iframe) {?>
 		<div class="tooltip-image-container" style="width:<?php print $ITEM_BOX_SIZE; ?>px;height:<?php print $ITEM_BOX_SIZE; ?>px;background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));">
-			<img src="items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
+			<img src="images/items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
 		</div>
 	<?php } ?>
 	<div style="color:<?php print $colorname; ?>;font-size:16pt;">
@@ -145,8 +145,8 @@ header("Content-Type: text/html; charset=utf-8");
 		<div><a target="_blank" id="primary-link"><span id="primary-name"></span><span id="primary-value"></span></a></div>
 		<div style="overflow:auto;">
 			<div class="draggable-landing">
-				<div id="primary-container" style="overflow:auto;">
-					<img src="itemspng/slot-primary.png"/>
+				<div id="primary-container" class="inventory-item-container">
+					<img src="images/slot-primary.png"/>
 				</div>
 				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('primary');">очистить</a>
 			</div>
