@@ -43,11 +43,11 @@ header("Content-Type: text/html; charset=utf-8");
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	<script src="js/item_detail.js"></script>
+	<script src="js/link.js"></script>
 	<script src="js/utils.js"></script>
 	<script>
 		function update_link() {}
 	</script>
-	<script src="item_data.php"></script>
 <?php } ?>
 </head>
 <body style="margin:0px;">
@@ -110,7 +110,7 @@ header("Content-Type: text/html; charset=utf-8");
 		<div><a target="_blank" id="armor-link"><span id="armor-name"></span><span id="armor-value"></span></a></div>
 		<div style="overflow:auto;">
 			<div class="draggable-landing">
-				<div id="primary-container" class="inventory-item-container">
+				<div id="armor-container" class="inventory-item-container">
 					<img src="images/slot-armor.png"/>
 				</div>
 				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('armor');">очистить</a>
@@ -144,6 +144,19 @@ header("Content-Type: text/html; charset=utf-8");
 $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 </script>
 <script src="js/inventory-controller.js"></script>
+<script>
+var initialLink = new TalentLink(location.search);
+if (initialLink.linkString.length != 0) {
+	initialLink.parts.forEach(function(item){
+		if (typeof inventoryApp.UriHandlers[item.key] != 'undefined') {
+			inventoryApp.UriHandlers[item.key].fn(
+				item.key,
+				item.value,
+				inventoryApp.UriHandlers[item.key].target);
+		}
+	});
+}
+</script>
 <script src="js/analytics.js"></script>
 <?php } ?>
 </body>

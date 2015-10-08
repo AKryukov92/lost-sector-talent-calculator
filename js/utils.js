@@ -50,7 +50,12 @@ function resizeIframe(obj) {
 function update_link() {
 	var link = location.origin;
 	if (typeof talentApplication.activeClass.calculator != 'undefined') {
-		link += "/?t=" + talentApplication.patchdata.game_version + talentApplication.patchdata.data_version + talentApplication.activeClass.calculator.prefix + "_" + talentApplication.activeClass.calculator.getTalentString();
+		if (!isEmpty(talentApplication.patchdata)) {
+			link += "/?t=" + talentApplication.patchdata.game_version +
+				talentApplication.patchdata.data_version +
+				talentApplication.activeClass.calculator.prefix + "_" +
+				talentApplication.activeClass.calculator.getTalentString();
+		}
 	}
 	if (typeof inventoryApp != 'undefined') {
 		var slot = inventoryApp.slots["primary"];
