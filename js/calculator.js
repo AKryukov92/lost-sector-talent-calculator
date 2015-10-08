@@ -411,7 +411,6 @@ function TalentView() {
 	this.recentItem;
 	this.patchdata = {};
 	this.activeClass = {
-		prefix: "as",
 		graphicContext:{}
 	};
 	this.classes = {
