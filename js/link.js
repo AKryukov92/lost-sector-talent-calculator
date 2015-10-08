@@ -14,16 +14,6 @@ function TalentLink(linkString) {
 			});
 		}
 		this.parts = array;
-	}
-	
-	this.getGameVersion = function() {
-		for (var i = 0; i < this.parts.length; i++) {
-			if (this.parts[i].key == "t" || this.parts[i].key == "talent") {
-				return /(\d*)\das|sc|ju|su_\w*/.exec(this.parts[i].value)[1];
-			}
-		}
-		return 0;
-	}
-	
+	}	
 	this.processParts();
 }

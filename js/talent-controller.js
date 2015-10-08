@@ -1,6 +1,64 @@
 var images;
-var initialLink = new TalentLink(location.search);
 var talentApplication = new TalentView();
+var initialTalentData = {};
+
+function switchVersionClass(prefix, version) {
+	if (prefix != talentApplication.activeClass.prefix) {
+		// Изменился выбранный класс
+		// нужно выставить активный класс
+		var element = document.getElementById("calculator-" + prefix + "-layout");
+		var ctx = element.getContext('2d');
+		talentApplication.setActiveClass(ctx, prefix);
+		switchToClassLayout(prefix, talentApplication.activeClass.calculator);
+	}
+	if (talentApplication.patchdata.game_version != version) {
+		// Когда изменилась версия
+		// загрузить новые картинки и данные по талантам
+		var sources = {
+			atlasActive: "images/Skills" + version + ".png",
+			atlasInactive: "images/inactiveSkills" + version + ".png"
+		};
+		loadImages(sources, function(imgs) {
+			talentApplication.handleImages(imgs.atlasActive, imgs.atlasInactive);
+			images = imgs;
+			$.get("/talent_data.php?version=" + version, processTalentData);
+		});
+	}
+};
+function talentUriHandler(key, value, target) {
+	talent = decodeURIComponent(value);
+	var match = /(\d*)(\d)(as|sc|ju|su)_(\w*)/.exec(value);
+	if (match != null) {
+		initialTalentData = {
+			gameVersion : match[1],
+			dataVersion : match[2],
+			classPrefix : match[3],
+			talentInput : match[4]
+		};
+		var tabIndex = $('#tabs a[href="#tabs-'+ initialTalentData.classPrefix + '"]').parent().index();
+		$("#tabs").tabs("option", "active", tabIndex);
+		$("#selVersion").val(initialTalentData.gameVersion);
+		switchVersionClass(initialTalentData.classPrefix, initialTalentData.gameVersion);
+	} else {
+		switchVersionClass("as", 101);
+	}
+}
+var initialLink = new TalentLink(location.search);
+if (initialLink.linkString.length != 0) {
+	// заходим по ссылке с данными о талантах "?t=981sc=2"
+	// заходим по ссылке с данными о талантах "?talent=981sc=2" - старый формат
+	initialLink.parts.forEach(function(item){
+		if (typeof talentApplication.UriHandlers[item.key] != 'undefined') {
+			talentApplication.UriHandlers[item.key].fn(
+				item.key,
+				item.value,
+				talentApplication.UriHandlers[item.key].target);
+		}
+	});
+} else {
+	// заходим по ссылке без указания патча ""
+	switchVersionClass("as", 101);
+}
 
 function toggleTalentTooltip() {
 	var display = $("#talent-visibility-checkbox").is(":checked");
@@ -17,94 +75,49 @@ function updateTooltip(controller, prefix) {
 		}
 	}
 }
-function talentUriHandler(key, value, target) {
-	talent = decodeURIComponent(value);
-	var match = /(\d*)(\d)(as|sc|ju|su)_(\w*)/.exec(value);
-	var game_version = match[1];
-	var data_version = match[2];
-	var class_prefix = match[3];
-	var talent_input = match[4];
-	var index = $('#tabs a[href="#tabs-'+ class_prefix + '"]').parent().index();
-	$("#tabs").tabs("option", "active", index);
-	var element = document.getElementById("calculator-" + class_prefix + "-layout");
-	var ctx = element.getContext('2d');
-	talentApplication.setActiveClass(ctx, class_prefix);
-	if (data_version == talentApplication.patchdata.data_version &&
-		game_version == talentApplication.patchdata.game_version) {
-		talentApplication.classes[class_prefix].learnTalentsFromString(talent_input);
-		talentApplication.drawTalents();
-		$("#merc-level").html(talentApplication.classes[class_prefix].getRequiredLevel());
-		$("#points-left").html(talentApplication.classes[class_prefix].getAvailableTalentPoints());
-	}
-}
 function processTalentData(data) {
 	talentApplication.init(data);
-	if (typeof initialLink.linkString != 'undefined') {
-		if (initialLink.linkString.length != 0) {
-			initialLink.parts.forEach(function(item){
-				if (typeof talentApplication.UriHandlers[item.key] != 'undefined') {
-					talentApplication.UriHandlers[item.key].fn(item.key, item.value, talentApplication.UriHandlers[item.key].target)
-				}
-			});
-		}
-	}
-	$("#selVersion").val(talentApplication.patchdata.game_version);
 	switchToClassLayout(talentApplication.activeClass.prefix, talentApplication.activeClass.calculator);
+	if (initialTalentData.gameVersion == talentApplication.patchdata.game_version &&
+		initialTalentData.classPrefix == talentApplication.activeClass.prefix) {
+		talentApplication.classes[initialTalentData.classPrefix].learnTalentsFromString(initialTalentData.talentInput);
+		talentApplication.drawTalents();
+		update_link();
+	}
+	talentApplication.displayLayout();
 }
-function switchToClassLayout(index, calculator) {
-	$("#calculator-" + index + "-layout").prop("width", calculator.totalWidth);
-	$("#calculator-" + index + "-layout").prop("height", calculator.totalHeight);
-	var element = document.getElementById("calculator-" + index + "-layout");
-	var ctx = element.getContext('2d');
-	talentApplication.setActiveClass(ctx, index);
-	update_link();
+function switchToClassLayout(prefix, calculator) {
+	$("#calculator-" + prefix + "-layout").prop("width", calculator.totalWidth);
+	$("#calculator-" + prefix + "-layout").prop("height", calculator.totalHeight);
 	$("#merc-level").html(calculator.getRequiredLevel());
 	$("#points-left").html(calculator.getAvailableTalentPoints());
 	talentApplication.displayLayout();
 }
-$.each(talentApplication.classes, function(index, calculator) {
-	$("#calculator-" + index + "-layout").click(function(e) {
+$.each(talentApplication.classes, function(prefix, calculator) {
+	$("#calculator-" + prefix + "-layout").click(function(e) {
 		talentApplication.handleClick(e.offsetX, e.offsetY);
 		update_link();
 		$("#merc-level").html(calculator.getRequiredLevel());
 		$("#points-left").html(calculator.getAvailableTalentPoints());
-		updateTooltip(talentApplication, index);
+		updateTooltip(talentApplication, prefix);
 	});
-	$("#calculator-" + index + "-layout").mousemove(function(e) {
+	$("#calculator-" + prefix + "-layout").mousemove(function(e) {
 		var offset = $(this).offset();
 		talentApplication.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
 		if (!$("#talent-visibility-checkbox").is(":checked")) {
-			updateTooltip(talentApplication, index);
+			updateTooltip(talentApplication, prefix);
 		}
 	});
-	$("#" + index + "-link").click(function(){
-		if (talentApplication.activeClass != index) {
-			switchToClassLayout(index, calculator);
-		}
+	$("#" + prefix + "-link").click(function(){
+		var version = $("#selVersion").val();
+		switchVersionClass(prefix, version);
 	});
 });
-var sources = {
-	atlasActive: "images/Skills101.png",
-	atlasInactive: "images/inactiveSkills101.png"
-};
 $("#link-to-build").click(function(){
 	window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());
 });
-loadImages(sources, function(imgs) {
-	talentApplication.handleImages(imgs.atlasActive, imgs.atlasInactive);
-	images = imgs;
-	$.get("/talent_data.php?version=" + initialLink.getGameVersion(), processTalentData);
-});
 $("#selVersion").change(function(){
-	initialLink = {};
 	var version = $("#selVersion").val();
-	var sources = {
-		atlasActive: "images/Skills" + version + ".png",
-		atlasInactive: "images/inactiveSkills" + version + ".png"
-	};
-	loadImages(sources, function(imgs) {
-		talentApplication.handleImages(imgs.atlasActive, imgs.atlasInactive);
-		images = imgs;
-		$.get("/talent_data.php?version=" + version, processTalentData);
-	});
+	var prefix = talentApplication.activeClass.prefix;
+	switchVersionClass(prefix, version);
 });
