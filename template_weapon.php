@@ -54,13 +54,13 @@ header("Content-Type: text/html; charset=utf-8");
 	<link href="css/local.css" rel="stylesheet">
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
-<script src="js/item_detail.js"></script>
+	<script src="js/link.js"></script>
+	<script src="js/item_detail.js"></script>
 	<script>
         function resizeIframe(obj) {
             obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
         }
 	</script>
-	<script src="item_data.php"></script>
 <?php } ?>
 </head>
 <body style="margin:0px;">
@@ -217,6 +217,19 @@ $("#items-pool").tabs();
 $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 </script>
 <script src="js/inventory-controller.js"></script>
+<script>
+var initialLink = new TalentLink(location.search);
+if (initialLink.linkString.length != 0) {
+	initialLink.parts.forEach(function(item){
+		if (typeof inventoryApp.UriHandlers[item.key] != 'undefined') {
+			inventoryApp.UriHandlers[item.key].fn(
+				item.key,
+				item.value,
+				inventoryApp.UriHandlers[item.key].target);
+		}
+	});
+}
+</script>
 <script src="js/analytics.js"></script>
 <?php } ?>
 </body>
