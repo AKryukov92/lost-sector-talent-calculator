@@ -92,7 +92,7 @@ function InventoryModel(data) {
 	this.resetInventorySlot = function(slot_name) {
 		this.addItem(slot_name, {});
 		$("#" + slot_name + "-link").attr("href", "");
-		$("#" + slot_name + "-container").html("<img src=\"itemspng/slot-" + slot_name + ".png\">");
+		$("#" + slot_name + "-container").html("<img src=\"images/slot-" + slot_name + ".png\">");
 		$("#" + slot_name + "-name").text("");
 		$("#" + slot_name + "-value").text("");
 		if (typeof update_link != 'undefined') {
@@ -105,6 +105,9 @@ function InventoryModel(data) {
 				slot.item = null;
 			}
 		}
+	};
+	this.autoEquipItem = function(item) {
+		var temp = 0;
 	};
 	this.equipItem = function(item, slot_name) {
 		var old_item = this.slots[slot_name].item;
@@ -153,7 +156,7 @@ function InventoryModel(data) {
 				"<div id=\"item_" + item.id + "\" class=\"swimmer-image-container\">" +
 					this.getImageForItem(item) +
 				"</div>" +
-				"<span class=\"fake-tooltip\">" + item.name + "</span>" +
+				"<a href='javascript:autoEquipItem(" + item.id + ")' class=\"fake-tooltip\">" + item.name + "</a>" +
 			"</div>");
 		$("#item_" + item.id).draggable({
 			containment:"document",
