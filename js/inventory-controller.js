@@ -37,6 +37,17 @@ function specialItemUriHandler(key, value, target) {
 	var item = inventoryApp.getItemById(itemstring.split("_")[0]);
 	inventoryApp.equipItem(item, target);
 }
+function autoEquipItem(itemId) {
+	var item = inventoryApp.getItemById(itemId);
+	var slots = inventoryApp.weapontype_map[item.category].slots;
+	for (var i = 0; i < slots.length; i++) {
+		if (isEmpty(inventoryApp.slots[slots[i]].item)) {
+			inventoryApp.equipItem(item, slots[i]);
+			return;
+		}
+	}
+	inventoryApp.equipItem(item, slots[slots.length - 1]);
+}
 $(document).ready(function(){
 	document.oncontextmenu = function() {return false;};
     $( "#armor-slider" ).slider({
