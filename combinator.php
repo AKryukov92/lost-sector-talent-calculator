@@ -10,15 +10,15 @@ function GetItemData($id) {
 	return "{}";
 }
 $talentString = "";
-$primary = "";
-$secondary = "";
-$armor = "";
-$hat = "";
-$consumable1 = "";
-$consumable2 = "";
-$consumable3 = "";
-$consumable4 = "";
-$consumable5 = "";
+$primary = "{}";
+$secondary = "{}";
+$armor = "{}";
+$hat = "{}";
+$consumable1 = "{}";
+$consumable2 = "{}";
+$consumable3 = "{}";
+$consumable4 = "{}";
+$consumable5 = "{}";
 if (isset($_GET["t"])) {
 	$talentString = $_GET["t"];
 }
@@ -53,11 +53,13 @@ if (isset($_GET["c5"])) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
+	<meta charset="UTF-8">
 	<link href="css/local.css" rel="stylesheet">
-	<script src="js/jquery.js"></script>
-	<script src="js/item_detail.js"></script>
-	<script src="js/calculator.js"></script>
-	<script src="js/utils.js"></script>
+	<script src="js/jquery.js" charset="utf-8"></script>
+	<script src="js/item_detail.js" charset="utf-8"></script>
+	<script src="js/calculator.js" charset="utf-8"></script>
+	<script src="js/combinator.js" charset="utf-8"></script>
+	<script src="js/utils.js" charset="utf-8"></script>
 	<script>
 		var talentString = "<?php print $talentString; ?>";
 		var primary = <?php print $primary; ?>;
@@ -72,7 +74,7 @@ if (isset($_GET["c5"])) {
 </head>
 <body style="margin:0px;">
 <div id="report"></div>
-<script src="js/analytics-controller.js"></script>
+<script src="js/combinator-controller.js"></script>
 <script src="js/analytics.js"></script>
 </body>
 </html>
