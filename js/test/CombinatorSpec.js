@@ -1,3 +1,5 @@
+var TALENT_NOT_LEARNED = 0;
+var TALENT_LEARNED = 1;
 describe('testing Combinator class', function() {
 	var talent1, talent57, talent71, talent86;
 	var item324, item401, itemDummy, item607;
@@ -15,6 +17,7 @@ describe('testing Combinator class', function() {
 			column:0
 		};
 		talent57 = {
+			status:1,
 			id:57,
 			imageid:57,
 			name:"Глухая оборона",
@@ -29,6 +32,7 @@ describe('testing Combinator class', function() {
 		action57 = new Action(20, "Глухая оборона", 2);
 		action57.imageid = 57;
 		talent71 = {
+			status:1,
 			id:71,
 			imageid:71,
 			name:"Сошки",
@@ -42,6 +46,7 @@ describe('testing Combinator class', function() {
 		action71 = new Action(10, "Сошки");
 		action71.imageid = 71;
 		talent86 = {
+			status:0,
 			id:86,
 			imageid:86,
 			name:"Стрелять до конца",
@@ -142,7 +147,7 @@ describe('testing Combinator class', function() {
 	});
 	it('should populate Combinator object with active talent with UNlimited number of uses', function() {
 		var calculator = {
-			items: [ { base: function() { return talent86; } } ]
+			items: [ { base: function() { return talent71; } } ]
 		};
 		var combinator = new Combinator();
 		combinator.addFromCalculator(calculator);
@@ -195,6 +200,17 @@ describe('testing Combinator class', function() {
 		var rootSets = combinator.createRoots();
 		var leavesSets = combinator.produceLeaves(rootSets);
 		expect(leavesSets.length).toEqual(8);
+	});
+	it('should not create actions for unlearned talents', function() {
+		var calculator = {
+			items: [
+				{ base: function() { return talent86; } },
+				{ base: function() { return talent71; } }
+			]
+		};
+		var combinator = new Combinator();
+		combinator.addFromCalculator(calculator);
+		expect(combinator.actions.length).toEqual(1);
 	});
 	// it('should throw exception about illegal data', function() {
 		// var assault_data = {

@@ -1,4 +1,4 @@
-function Action(cost, name, numberOfUses) {
+﻿function Action(cost, name, numberOfUses) {
 	this.cost = cost;
 	this.imageid = 0;
 	this.name = name;
@@ -46,7 +46,7 @@ function ActionSet(maxCost, action) {
 		if (countOfEqual >= action.numberOfUses) {
 			return null;
 		}
-		if (this.getCost() + action.cost < this.maxCost) {
+		if (this.getCost() + action.cost <= this.maxCost) {
 			var leaf = new ActionSet(this.maxCost, action);
 			leaf.appendFrom(this);
 			return leaf;
@@ -72,6 +72,10 @@ function Combinator() {
 		}
 		for (var i = 0; i < calculator.items.length; i ++) {
 			var talent = calculator.items[i].base();
+			if (typeof talent.status == 'undefined' ||
+					talent.status == TALENT_NOT_LEARNED) {
+				continue;
+			}
 			if (typeof talent.AP_cost == 'undefined') {
 				continue;
 			}
@@ -95,7 +99,7 @@ function Combinator() {
 				var action = new Action();
 				action.source = item;
 				action.cost = item.attacks[i].cost;
-				action.name = item.name + item.attacks[i].name;
+				action.name = item.name + " " + item.attacks[i].name;
 				action.imageid = getImageId(item);
 				this.actions.push(action);
 			}
@@ -138,7 +142,6 @@ function Combinator() {
 			for (var j = 0; j < roots.length; j++) {
 				var temp = roots[j].createLeaf(this.actions[i]);
 				if (temp != null) {
-					console.log(roots[j].actions[0].name + " " + this.actions[i].name);
 					ret.push(temp);
 				}
 			}

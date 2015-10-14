@@ -1,7 +1,7 @@
 var calculator = new Calculator();
 var patchdata = {};
 var images = [];
-function analyze() {
+function combine() {
 	var reportText = "";
 	for (var i = 0; i < calculator.items.length; i++) {
 		if (calculator.items[i].base().status == TALENT_LEARNED) {
@@ -9,6 +9,30 @@ function analyze() {
 		}
 	}
 	$("#report").append(reportText);
+	var combinator = new Combinator();
+	combinator.addFromCalculator(calculator);
+	combinator.addFromItem(primary);
+	combinator.addFromItem(secondary);
+	combinator.addFromItem(consumable1);
+	combinator.addFromItem(consumable2);
+	combinator.addFromItem(consumable3);
+	combinator.addFromItem(consumable4);
+	combinator.addFromItem(consumable5);
+	var temp = combinator.createRoots();
+	var total = [];
+	reportText = "";
+	while(temp.length > 0) {
+		total.concat(temp);
+		reportText += "<div class='actionset'>";
+		for (var i = 0; i < temp.length; i++) {
+			var row = temp[i].actions.length + " ";
+			for (var j = 0; j < temp[i].actions.length; j++) {
+				row += "(" + temp[i].actions[j].name + ") ";
+			}
+			console.log(row);
+		}
+		temp = combinator.produceLeaves(temp);
+	}
 }
 function talentUriHandler(key, value, target) {
 	talent = decodeURIComponent(value);
@@ -24,7 +48,8 @@ function talentUriHandler(key, value, target) {
 	} else {
 		initialTalentData = {
 			gameVersion : 101,
-			classPrefix : "as"
+			classPrefix : "as",
+			talentInput : ""
 		};
 	}
 	var sources = {
@@ -46,8 +71,10 @@ function talentUriHandler(key, value, target) {
 				calculator.init(this.patchdata.support_data);
 			}
 			calculator.init(this.patchdata.assault_data);
-			calculator.learnTalentsFromString(initialTalentData.talentInput);
-			analyze();
+			if (initialTalentData.talentInput.length > 0) {
+				calculator.learnTalentsFromString(initialTalentData.talentInput);
+			}
+			combine();
 		});
 	});
 }

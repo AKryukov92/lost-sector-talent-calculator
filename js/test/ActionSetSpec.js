@@ -58,4 +58,9 @@ describe('testing ActionSpec class', function() {
 		var leaf2 = leaf1.createLeaf(action30n2);
 		expect(leaf2).toEqual(null);
 	});
+	it('should create leaf if cost will be equal', function() {
+		var set = new ActionSet(30, action15);
+		var leaf1 = set.createLeaf(action15);
+		expect(leaf1.actions.length).toEqual(2);
+	});
 });
