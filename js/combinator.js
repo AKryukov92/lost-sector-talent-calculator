@@ -57,23 +57,32 @@ function ActionSet(maxCost, action) {
 	};
 	this.validateRepeatedActions = function() {
 		var recent = false;
-		var recentImageId = 0;
+		var recentImageId = [];
 		for (var i = 0; i < this.actions.length; i++) {
 			var action = this.actions[i];
 			if (!action.possibleRepeat) {
-				if (recent && action.imageid == recentImageId) {
+				var found = false;
+				for (var j = 0; j < recentImageId.length; j++) {
+					if (action.imageid == recentImageId[j]) {
+						found = true;
+					}
+				}
+				if (recent && found) {
 					this.valid = false;
 					return true;
 				} else {
 					recent = true;
-					recentImageId = action.imageid;
+					recentImageId.push(action.imageid);
 				}
 			} else {
 				recent = false;
-				recentImageId = 0;
+				recentImageId = [];
 			}
 		}
 		return false;
+	};
+	this.validateSwapDividedWithPossibleAttack = function() {
+		
 	};
 }
 

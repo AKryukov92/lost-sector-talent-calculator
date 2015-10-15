@@ -1,6 +1,9 @@
 describe('testing ActionSpec class', function() {
 	var action30, action15, action200;
+	var attack1_10, attack1_15, attack2_10, attack2_5;
 	var swap, duck;
+	var weapon1 = { name: "weapon1" };
+	var weapon2 = { name: "weapon2" };
 	beforeEach(function() {
 		action30 = new Action(30, "action30" );
 		action30.possibleRepeat = true;
@@ -23,6 +26,14 @@ describe('testing ActionSpec class', function() {
 		duck = new Action(15, "Присесть");
 		duck.possibleRepeat = false;
 		duck.imageid = 2;
+		attack1_10 = new Action(10, "attack1_10");
+		attack1_10.source = weapon1;
+		attack1_15 = new Action(15, "attack1_15");
+		attack1_15.source = weapon1;
+		attack2_10 = new Action(10, "attack2_10");
+		attack2_10.source = weapon2;
+		attack2_5 = new Action(5, "attack2_5");
+		attack2_5.source = weapon2;
 	});
 	it('should create ActionSet', function() {
 		var set = new ActionSet(100);
@@ -133,5 +144,20 @@ describe('testing ActionSpec class', function() {
 		leaf = leaf.createLeaf(duck);
 		leaf.validateRepeatedActions();
 		expect(leaf.valid).toEqual(true);
+	});
+	
+	it('should be valid with actions [weap1, weap1]', function() {
+	});
+	it('should be invalid with actions [weap1, weap2]', function() {
+	});
+	it('should be valid with actions [weap1, swap, weap2]', function() {
+	});
+	it('should be valid with actions [weap2, swap, weap1]', function() {
+	});
+	it('should be invalid with actions [weap1, swap, weap1]', function() {
+	});
+	it('should be valid with actions [weap1, action, swap, weap2]', function() {
+	});
+	it('should be invalid with actions [weap1, action, swap, weap1]', function() {
 	});
 });
