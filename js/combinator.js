@@ -17,6 +17,7 @@
 
 function ActionSet(maxCost, action) {
 	this.actions = [];
+	this.valid = true;
 	this.maxCost = maxCost;
 	if (typeof action != 'undefined') {
 		if (action.cost > this.maxCost) {
@@ -54,6 +55,26 @@ function ActionSet(maxCost, action) {
 			return null;
 		}
 	};
+	this.validateRepeatedActions = function() {
+		var recent = false;
+		var recentImageId = 0;
+		for (var i = 0; i < this.actions.length; i++) {
+			var action = this.actions[i];
+			if (!action.possibleRepeat) {
+				if (recent && action.imageid == recentImageId) {
+					this.valid = false;
+					return true;
+				} else {
+					recent = true;
+					recentImageId = action.imageid;
+				}
+			} else {
+				recent = false;
+				recentImageId = 0;
+			}
+		}
+		return false;
+	};
 }
 
 function getImageId(talentOrItem) {
@@ -86,7 +107,9 @@ function Combinator() {
 			action.source = talent;
 			action.cost = talent.AP_cost;
 			action.imageid = getImageId(talent);
+			action.possibleRepeat = false;
 			action.name = talent.name;
+			action.imagesrc = "talents";
 			this.actions.push(action);
 		}
 	};
@@ -99,16 +122,20 @@ function Combinator() {
 				var action = new Action();
 				action.source = item;
 				action.cost = item.attacks[i].cost;
-				action.name = item.name + " " + item.attacks[i].name;
+				action.name = item.attacks[i].name;
+				action.possibleRepeat = true;
 				action.imageid = getImageId(item);
+				action.imagesrc = "items";
 				this.actions.push(action);
 			}
 			if (typeof item.reload_cost != 'undefined') {
 				var reload = new Action();
 				reload.source = item;
 				reload.cost = item.reload_cost;
-				reload.name = "Перезарядка";
+				action.possibleRepeat = false;
+				reload.name = "Пер-ка";
 				reload.imageid = getImageId(item);
+				reload.imagesrc = "items";
 				this.actions.push(reload);
 			}
 		}
@@ -116,18 +143,34 @@ function Combinator() {
 			var consumable = new Action();
 			consumable.source = item;
 			consumable.cost = item.AP_cost;
-			consumable.name = item.name;
 			consumable.imageid = getImageId(item);
+			consumable.name = "расход";
 			consumable.numberOfUses = 1;
+			consumable.possibleRepeat = true;
+			consumable.imagesrc = "items";
 			this.actions.push(consumable);
 		}
+	};
+	this.addSwap = function(item) {
+		var swap = new Action();
+		swap.cost = 10;
+		swap.name = "Сменить";
+		swap.source = { name: "Действие" };
+		swap.imageid = 2;
+		swap.imagesrc = "special";
+		swap.possibleRepeat = false;
+		this.actions.push(swap);
 	};
 	this.addDuck = function(item) {
 		var duck = new Action();
 		duck.cost = 15;
 		duck.name = "Присесть";
+		duck.source = { name: "Действие" };
+		duck.possibleRepeat = false;
+		duck.imageid = 1;
+		duck.imagesrc = "special";
 		this.actions.push(duck);
-	}
+	};
 	this.createRoots = function () {
 		var ret = [];
 		for (var i = 0; i < this.actions.length; i++) {
@@ -135,7 +178,7 @@ function Combinator() {
 			ret.push(set);
 		}
 		return ret;
-	}
+	};
 	this.produceLeaves = function(roots) {
 		var ret = [];
 		for (var i = 0; i < this.actions.length; i++) {
@@ -147,5 +190,14 @@ function Combinator() {
 			}
 		}
 		return ret;
-	}
+	};
+	this.createTree = function() {
+		var totalSets = [];
+		var temp = this.createRoots();
+		while(temp.length > 0) {
+			totalSets = totalSets.concat(temp);
+			temp = this.produceLeaves(temp);
+		}
+		return totalSets;
+	};
 }

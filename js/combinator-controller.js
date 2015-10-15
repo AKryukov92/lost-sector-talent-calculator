@@ -1,15 +1,44 @@
 var calculator = new Calculator();
 var patchdata = {};
 var images = [];
+function fillAvailableActions(combinator) {
+	var text = "";
+	for (var i = 0; i < combinator.actions.length; i++) {
+		var action = combinator.actions[i];
+		var imagesource = "";
+		var boxSize = 0;
+		if (action.imagesrc == "items") {
+			imagesource = "images/Items.png";
+			boxSize = 64;
+		} else if (action.imagesrc == "talents") {
+			imagesource = "images/Skills" + initialTalentData.gameVersion + ".png";
+			boxSize = 48;
+		} else {
+			imagesource = "";
+		}
+		var dx = (action.imageid % 20) * boxSize;
+		var dy = (~~(action.imageid / 20)) * boxSize;
+		text += 
+		"<div style='float:left; width:80px'>" +
+			"<div class='action' style='width:" + boxSize + "px;height:" + boxSize + "px;'>"
+				+ "<img src='" + imagesource + "' style='margin-left:-" + dx + "px;margin-top:-" + dy + "px'/>"
+			+ "</div>"
+			+ "<div>"
+				+ action.source.name 
+			+ "</div>"
+			+ "<div>"
+				+ action.name
+			+ "</div>"
+		+ "</div>";
+	}
+	$("#availableActions").append(text);
+}
 function combine() {
 	var reportText = "";
-	for (var i = 0; i < calculator.items.length; i++) {
-		if (calculator.items[i].base().status == TALENT_LEARNED) {
-			reportText += calculator.items[i].base().name + "</br>";
-		}
-	}
 	$("#report").append(reportText);
 	var combinator = new Combinator();
+	combinator.addSwap();
+	combinator.addDuck();
 	combinator.addFromCalculator(calculator);
 	combinator.addFromItem(primary);
 	combinator.addFromItem(secondary);
@@ -18,21 +47,24 @@ function combine() {
 	combinator.addFromItem(consumable3);
 	combinator.addFromItem(consumable4);
 	combinator.addFromItem(consumable5);
-	var temp = combinator.createRoots();
-	var total = [];
-	reportText = "";
-	while(temp.length > 0) {
-		total.concat(temp);
-		reportText += "<div class='actionset'>";
-		for (var i = 0; i < temp.length; i++) {
-			var row = temp[i].actions.length + " ";
-			for (var j = 0; j < temp[i].actions.length; j++) {
-				row += "(" + temp[i].actions[j].name + ") ";
+	fillAvailableActions(combinator);
+	var totalSets = combinator.createTree();
+	var rowCount = 0;
+	for (var i = totalSets.length - 1; i >= 0; i--) {
+		totalSets[i].validateRepeatedActions();
+		if (!totalSets[i].valid) {
+			continue;
+		}
+		for (var j = 0; j < totalSets[i].actions.length; j++) {
+			var row = totalSets[i].actions.length + " ";
+			for (var j = 0; j < totalSets[i].actions.length; j++) {
+				row += "(" + totalSets[i].actions[j].name + " " + totalSets[i].actions[j].source.name + ") ";
 			}
+			rowCount ++;
 			console.log(row);
 		}
-		temp = combinator.produceLeaves(temp);
 	}
+	console.log(rowCount);
 }
 function talentUriHandler(key, value, target) {
 	talent = decodeURIComponent(value);
@@ -54,7 +86,6 @@ function talentUriHandler(key, value, target) {
 	}
 	var sources = {
 		atlasActive: "images/Skills" + initialTalentData.gameVersion + ".png",
-		atlasInactive: "images/inactiveSkills" + initialTalentData.gameVersion + ".png",
 		items: "images/Items.png"
 	};
 	loadImages(sources, function(imgs) {
