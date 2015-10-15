@@ -1,11 +1,28 @@
 describe('testing ActionSpec class', function() {
 	var action30, action15, action200;
+	var swap, duck;
 	beforeEach(function() {
 		action30 = new Action(30, "action30" );
+		action30.possibleRepeat = true;
+		action30.imageid = 30;
 		action30n1 = new Action (30, "action30n1", 1);
+		action30n1.possibleRepeat = true;
+		action30n1.imageid = 31;
 		action30n2 = new Action (30, "action30n2", 2);
+		action30n2.possibleRepeat = true;
+		action30n2.imageid = 32;
 		action15 = new Action (15, "action15");
+		action15.possibleRepeat = true;
+		action15.imageid = 15;
 		action200 = new Action (200, "action200");
+		action200.possibleRepeat = true;
+		action200.imageid = 200;
+		swap = new Action(10, "Сменить");
+		swap.possibleRepeat = false;
+		swap.imageid = 1;
+		duck = new Action(15, "Присесть");
+		duck.possibleRepeat = false;
+		duck.imageid = 2;
 	});
 	it('should create ActionSet', function() {
 		var set = new ActionSet(100);
@@ -62,5 +79,59 @@ describe('testing ActionSpec class', function() {
 		var set = new ActionSet(30, action15);
 		var leaf1 = set.createLeaf(action15);
 		expect(leaf1.actions.length).toEqual(2);
+	});
+	
+	it('should be valid with actinos [action, action]', function() {
+		var root = new ActionSet(100, action30);
+		var leaf = root.createLeaf(action30);
+		leaf.validateRepeatedActions();
+		expect(leaf.valid).toEqual(true);
+	});
+	it('should be invalid with actions [swap, swap]', function() {
+		var root = new ActionSet(100, swap);
+		var leaf = root.createLeaf(swap);
+		leaf.validateRepeatedActions();
+		expect(leaf.valid).toEqual(false);
+	});
+	it('should be valid with actions [swap, talent]', function() {
+		var root = new ActionSet(100, swap);
+		var leaf = root.createLeaf(action30);
+		leaf.validateRepeatedActions();
+		expect(leaf.valid).toEqual(true);
+	});
+	it('should be valid with actions [swap, talent, swap]', function() {
+		var root = new ActionSet(100, swap);
+		var leaf = root.createLeaf(action30);
+		leaf = leaf.createLeaf(swap);
+		leaf.validateRepeatedActions();
+		expect(leaf.valid).toEqual(true);
+	});
+	it('should be invalid with actions[swap, talent, swap, swap]', function() {
+		var root = new ActionSet(100, swap);
+		var leaf = root.createLeaf(action30);
+		leaf = root.createLeaf(swap);
+		leaf.validateRepeatedActions();
+		expect(leaf.valid).toEqual(false);
+	});
+	it('should be valid with actions [swap, duck]', function() {
+		var root = new ActionSet(100, swap);
+		var leaf = root.createLeaf(duck);
+		leaf.validateRepeatedActions();
+		expect(leaf.valid).toEqual(true);
+	});
+	it('should be invalid with actions [swap, duck, swap]', function() {
+		var root = new ActionSet(100, swap);
+		var leaf = root.createLeaf(duck);
+		leaf = leaf.createLeaf(swap);
+		leaf.validateRepeatedActions();
+		expect(leaf.valid).toEqual(false);
+	});
+	it('should be valid with actions [swap, duck, action, duck]', function() {
+		var root = new ActionSet(100, swap);
+		var leaf = root.createLeaf(duck);
+		leaf = leaf.createLeaf(action15);
+		leaf = leaf.createLeaf(duck);
+		leaf.validateRepeatedActions();
+		expect(leaf.valid).toEqual(true);
 	});
 });

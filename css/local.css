@@ -384,3 +384,8 @@ input[type=radio]:not(old):checked +  label > span > span{
 	float:left;
 	width:610px;
 }
+
+.action {
+	overflow:hidden;
+	margin:3px;
+}

@@ -3,6 +3,7 @@ var TALENT_LEARNED = 1;
 describe('testing Combinator class', function() {
 	var talent1, talent57, talent71, talent86;
 	var item324, item401, itemDummy, item607;
+	var swap;
 	var action57, action71, action86, action401a, action401b, action401r, action607;
 	var calculator;
 	beforeEach(function() {
@@ -121,6 +122,9 @@ describe('testing Combinator class', function() {
 		};
 		action607 = new Action(20, "Запас амуниции", 1);
 		action607.imageid = 607;
+		swap = new Action(10, "Сменить");
+		swap.imageid = 2;
+		swap.imagesrc = "special";
 		calculator = {
 			items: [
 				{ base: function() { return talent1; } },
@@ -211,6 +215,14 @@ describe('testing Combinator class', function() {
 		var combinator = new Combinator();
 		combinator.addFromCalculator(calculator);
 		expect(combinator.actions.length).toEqual(1);
+	});
+	it('should add Swap action' , function() {
+		var combinator = new Combinator();
+		combinator.addSwap();
+		var swap = combinator.actions[0];
+		expect(swap.cost).toEqual(10);
+		expect(swap.imageid).toEqual(2);
+		expect(swap.imagesrc).toEqual("special");
 	});
 	// it('should throw exception about illegal data', function() {
 		// var assault_data = {
