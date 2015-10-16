@@ -172,6 +172,16 @@ function Calculator () {
 	this.heightmap = [];
 	
 	this.init = function(input) {
+		this.consumeInput(input);
+		this.calculateWidth();
+		this.assignPowerToTalents();
+		this.fillHeightMap();
+		this.mapRefsReqs();
+		this.mapRanks();
+		this.arrangeRows(5,3,35,50);
+	};
+	
+	this.consumeInput = function(input) {
 		if (typeof input.prefix == 'undefined') {
 			throw new Error("Illegal class data. Class prefix not defined");
 		}
@@ -187,13 +197,7 @@ function Calculator () {
 			}
 			this.items.push(new CalculatorItem(this.talents_data[i]));
 		}
-		this.calculateWidth();
-		this.assignPowerToTalents();
-		this.fillHeightMap();
-		this.mapRefsReqs();
-		this.mapRanks();
-		this.arrangeRows(5,3,35,50);
-	};
+	}
 	
 	this.calculateWidth = function() {
 		var max_column = 0;

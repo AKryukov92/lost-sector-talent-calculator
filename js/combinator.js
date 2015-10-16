@@ -13,14 +13,34 @@
 			this.imageid == action.imageid &&
 			this.numberOfUses == action.numberOfUses;
 	}
+	this.getWeapon = function() {
+		if (typeof this.source != 'undefined' && typeof this.source.category != 'undefined') {
+			return this.source;
+		} else {
+			return null;
+		}
+	}
+	this.isSwap = function() {
+		return this.cost == 10 && this.imageid == 1 && this.possibleRepeat == false;
+	}
 }
 
-function ActionSet(maxCost, action) {
+function AttributeModifier() {
+	this.duration = 99;
+}
+
+function ActionSet(unitState, action) {
 	this.actions = [];
 	this.valid = true;
-	this.maxCost = maxCost;
+	this.unitState = unitState;
+	if (isEmpty(unitState)) {
+		throw new Error("Unit state is empty");
+	}
+	if (typeof unitState.actionPoints == 'undefined') {
+		unitState.actionPoints = 100;
+	}
 	if (typeof action != 'undefined') {
-		if (action.cost > this.maxCost) {
+		if (action.cost > this.unitState.actionPoints) {
 			throw new Error("overflow");
 		}
 		this.actions.push(action);
@@ -47,8 +67,8 @@ function ActionSet(maxCost, action) {
 		if (countOfEqual >= action.numberOfUses) {
 			return null;
 		}
-		if (this.getCost() + action.cost <= this.maxCost) {
-			var leaf = new ActionSet(this.maxCost, action);
+		if (this.getCost() + action.cost <= this.unitState.actionPoints) {
+			var leaf = new ActionSet(this.unitState, action);
 			leaf.appendFrom(this);
 			return leaf;
 		} else {
@@ -69,7 +89,7 @@ function ActionSet(maxCost, action) {
 				}
 				if (recent && found) {
 					this.valid = false;
-					return true;
+					return;
 				} else {
 					recent = true;
 					recentImageId.push(action.imageid);
@@ -79,10 +99,40 @@ function ActionSet(maxCost, action) {
 				recentImageId = [];
 			}
 		}
-		return false;
+		return;
 	};
-	this.validateSwapDividedWithPossibleAttack = function() {
-		
+	this.validateSwapBeforeOtherWeapon = function() {
+		var currentWeapon = null;
+		var requireNewWeapon = false;
+		var attackActionIndex = 0;
+		for (var i = 0; i < this.actions.length; i++) {
+			if (this.actions[i].getWeapon() != null) {
+				currentWeapon = this.actions[i].getWeapon();
+				attackActionIndex = i;
+				break;
+			}
+		}
+		if (currentWeapon == null) {
+			return;
+		}
+		for (var i = 0; i < this.actions.length; i++) {
+			var tempWeapon = this.actions[i].getWeapon();
+			if (tempWeapon == null) {
+				if (this.actions[i].isSwap()) {
+					requireNewWeapon = true;
+				}
+			} else if (requireNewWeapon){
+				if (tempWeapon == currentWeapon) {
+					this.valid = false;
+					return;
+				}
+			} else {
+				if (tempWeapon != currentWeapon) {
+					this.valid = false;
+					return;
+				}
+			}
+		}
 	};
 }
 
@@ -183,7 +233,7 @@ function Combinator() {
 	this.createRoots = function () {
 		var ret = [];
 		for (var i = 0; i < this.actions.length; i++) {
-			var set = new ActionSet(100, this.actions[i]);
+			var set = new ActionSet({actionPoints:100}, this.actions[i]);
 			ret.push(set);
 		}
 		return ret;
