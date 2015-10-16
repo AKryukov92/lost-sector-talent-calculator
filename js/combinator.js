@@ -2,6 +2,8 @@
 	this.cost = cost;
 	this.imageid = 0;
 	this.name = name;
+	this.maxDist = 99;
+	this.minDist = 0;
 	if (typeof numberOfUses == 'undefined') {
 		this.numberOfUses = Number.MAX_VALUE;
 	} else {
@@ -27,6 +29,11 @@
 
 function AttributeModifier() {
 	this.duration = 99;
+	this.attribute = "";
+	this.operation = function(value) {
+		var newValue = 0;
+		return newValue;
+	}
 }
 
 function ActionSet(unitState, action) {
@@ -65,6 +72,9 @@ function ActionSet(unitState, action) {
 			}
 		}
 		if (countOfEqual >= action.numberOfUses) {
+			return null;
+		}
+		if (this.unitState.sightRange < action.minDist) {
 			return null;
 		}
 		if (this.getCost() + action.cost <= this.unitState.actionPoints) {
@@ -182,6 +192,12 @@ function Combinator() {
 				action.source = item;
 				action.cost = item.attacks[i].cost;
 				action.name = item.attacks[i].name;
+				action.minDist = item.attacks[i].min_dist;
+				action.maxDist = item.attacks[i].max_dist;
+				if (item.category == 'consumable') {
+					//Гранаты
+					action.numberOfUses = 1;
+				}
 				action.possibleRepeat = true;
 				action.imageid = getImageId(item);
 				action.imagesrc = "items";

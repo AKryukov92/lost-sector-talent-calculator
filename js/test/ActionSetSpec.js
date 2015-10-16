@@ -28,12 +28,20 @@ describe('testing ActionSpec class', function() {
 		duck.imageid = 2;
 		attack1_10 = new Action(10, "attack1_10");
 		attack1_10.source = weapon1;
+		attack1_10.minDist = 0;
+		attack1_10.maxDist = 1.5;
 		attack1_15 = new Action(15, "attack1_15");
 		attack1_15.source = weapon1;
+		attack1_15.minDist = 4;
+		attack1_15.maxDist = 9;
 		attack2_10 = new Action(10, "attack2_10");
 		attack2_10.source = weapon2;
+		attack2_10.minDist = 10;
+		attack2_10.maxDist = 26;
 		attack2_5 = new Action(5, "attack2_5");
 		attack2_5.source = weapon2;
+		attack2_5.minDist = 0;
+		attack2_5.maxDist = 1.5;
 	});
 	it('should create ActionSet', function() {
 		var set = new ActionSet({actionPoints:100});
@@ -90,6 +98,16 @@ describe('testing ActionSpec class', function() {
 		var set = new ActionSet({actionPoints:30}, action15);
 		var leaf1 = set.createLeaf(action15);
 		expect(leaf1.actions.length).toEqual(2);
+	});
+	it('should create leaf if sight range is more than minimal attack distance', function() {
+		var root = new ActionSet({actionPoints:100, sightRange:99}, action30);
+		var leaf = root.createLeaf(attack1_10);
+		expect(leaf.actions.length).toEqual(2);
+	});
+	it('should not create leaf if sight range is less than minimal attack distance', function() {
+		var root = new ActionSet({actionPoints:100, sightRange:5}, action30);
+		var leaf = root.createLeaf(attack2_10);
+		expect(leaf).toEqual(null);
 	});
 	
 	it('should be valid with actinos [action, action]', function() {
