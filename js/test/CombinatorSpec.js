@@ -2,9 +2,9 @@ var TALENT_NOT_LEARNED = 0;
 var TALENT_LEARNED = 1;
 describe('testing Combinator class', function() {
 	var talent1, talent57, talent71, talent86;
-	var item324, item401, itemDummy, item607;
+	var item324, item401, item422, item465, itemDummy, item607;
 	var swap;
-	var action57, action71, action86, action401a, action401b, action401r, action607;
+	var action57, action71, action86, action401a, action422, action401b, action401r, action465a, action465b, action465r, action607;
 	var calculator;
 	beforeEach(function() {
 		talent1 = {
@@ -105,6 +105,71 @@ describe('testing Combinator class', function() {
 		action401b.imageid = 401;
 		action401r = new Action(20, "Перезарядка");
 		action401r.imageid = 401;
+		item422 = {
+			id:422,
+			name:"Оглушающая граната",
+			category:"consumable",
+			consumable_type:4,
+			lvlreq:3,
+			talentreq:4,
+			attacks:[{
+				name:"Бросок",
+				type:6,
+				accuracy:50,
+				radius:2,
+				cost:40,
+				min_dist:0,
+				max_dist:15,
+				min_damage:5,
+				max_damage:10,
+				specials:[
+				{
+					duration:1,
+					effects:["Уменьшает максимум очков действия на 40"]
+				}]
+			}]
+		};
+		action422 = new Action(40, "Бросок");
+		action422.imageid = 422;
+		item465 = {
+			name:"Гранатомет М79",
+			category:"launcher",
+			mobility:69,
+			clip:1,
+			ammo:8,
+			reload_cost:20,
+			lvlreq:5,
+			talentreq:12,
+			classreq:["su"],
+			id:465,
+			attacks:[{
+				name:"Удар",
+				type:1,
+				accuracy:90,
+				cost:45,
+				min_dist:0,
+				max_dist:1.8,
+				min_damage:20,
+				max_damage:30
+			},{
+				name:"Запуск",
+				type:6,
+				accuracy:28,
+				radius:4,
+				cost:35,
+				min_dist:10,
+				max_dist:26,
+				bullets:1,
+				min_damage:59,
+				max_damage:78
+			}]
+		}
+		action465a = new Action(45, "Удар");
+		action465a.imageid = 465;
+		action465b = new Action(35, "Запуск");
+		action465b.imageid = 465;
+		action465r = new Action(20, "Перезарядка");
+		action465r.imageid = 465;
 		itemDummy = {
 			name:"Болванка с перезарядкой без атак",
 			reload_cost:30,
@@ -172,8 +237,20 @@ describe('testing Combinator class', function() {
 		combinator.addFromItem(item401);
 		expect(combinator.actions.length).toEqual(3);
 		expect(combinator.actions[0].numberOfUses).toEqual(Number.MAX_VALUE);
+		expect(combinator.actions[0].minDist).toEqual(0);
+		expect(combinator.actions[0].maxDist).toEqual(1.5);
 		expect(combinator.actions[1].numberOfUses).toEqual(Number.MAX_VALUE);
+		expect(combinator.actions[1].minDist).toEqual(4);
+		expect(combinator.actions[1].maxDist).toEqual(9);
 		expect(combinator.actions[2].numberOfUses).toEqual(Number.MAX_VALUE);
+	});
+	it('should add actions from consumable with attacks', function() {
+		var combinator = new Combinator();
+		combinator.addFromItem(item422);
+		expect(combinator.actions.length).toEqual(1);
+		expect(combinator.actions[0].numberOfUses).toEqual(1);
+		expect(combinator.actions[0].minDist).toEqual(0);
+		expect(combinator.actions[0].maxDist).toEqual(15);
 	});
 	it('should add action from consumable item', function() {
 		var combinator = new Combinator();
