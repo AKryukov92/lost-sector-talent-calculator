@@ -55,6 +55,10 @@ function combine() {
 		if (!totalSets[i].valid) {
 			continue;
 		}
+		totalSets[i].validateSwapBeforeOtherWeapon();
+		if (!totalSets[i].valid) {
+			continue;
+		}
 		for (var j = 0; j < totalSets[i].actions.length; j++) {
 			var row = totalSets[i].actions.length + " ";
 			for (var j = 0; j < totalSets[i].actions.length; j++) {

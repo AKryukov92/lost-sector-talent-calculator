@@ -155,20 +155,20 @@
 	
 	it('calculates talent image bounds in atlas based on id when it is in first row', function() {
 		var item = new CalculatorItem(talent1);
-		expect(item.imageBoundsX).toEqual(ITEM_BOX_SIZE);
+		expect(item.imageBoundsX).toEqual(SOURCE_BOX_SIZE);
 		expect(item.imageBoundsY).toEqual(0);
 	});
 	
 	it('calculates talent image bounds in atlas based on id when it is in the middle', function() {
 		var item = new CalculatorItem(talent86);
-		expect(item.imageBoundsX).toEqual(ITEM_BOX_SIZE*6);
-		expect(item.imageBoundsY).toEqual(ITEM_BOX_SIZE*4);
+		expect(item.imageBoundsX).toEqual(SOURCE_BOX_SIZE*6);
+		expect(item.imageBoundsY).toEqual(SOURCE_BOX_SIZE*4);
 	});
 	
 	it('calculates talent image bounds in atlas based on imageid if defined', function() {
 		var item = new CalculatorItem(talent392);
-		expect(item.imageBoundsX).toEqual(ITEM_BOX_SIZE*19);
-		expect(item.imageBoundsY).toEqual(ITEM_BOX_SIZE);
+		expect(item.imageBoundsX).toEqual(SOURCE_BOX_SIZE*19);
+		expect(item.imageBoundsY).toEqual(SOURCE_BOX_SIZE);
 	});
 	
 	it('return false on learn check if required talent is not learned', function() {

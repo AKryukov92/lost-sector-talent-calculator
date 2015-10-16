@@ -121,7 +121,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent2, talent4]
 		};
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		expect(calculator.prefix).toEqual("as");
 	});
 	
@@ -129,14 +130,17 @@ describe('testing Calculator class', function() {
 		var assault_data = {
 			prefix:"as"
 		};
-		expect(function() {new Calculator(assault_data); }).toThrow(new Error("Illegal class data. Talents data not defined"));
+		var calculator = new Calculator();
+		
+		expect(function() {calculator.consumeInput(assault_data); }).toThrow(new Error("Illegal class data. Talents data not defined"));
 	});
 	
 	it('should throw exception about illegal data', function() {
 		var assault_data = {
 			talents:[]
 		};
-		expect(function() {new Calculator(assault_data); }).toThrow(new Error("Illegal class data. Class prefix not defined"));
+		var calculator = new Calculator();
+		expect(function() {calculator.consumeInput(assault_data); }).toThrow(new Error("Illegal class data. Class prefix not defined"));
 	});
 	
 	it('should set Calculator width to max value', function() {
@@ -144,7 +148,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent1, talent48, talent86]
 		};
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.calculateWidth();
 		expect(calculator.width).toEqual(12);
 	});
@@ -154,7 +159,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent1]
 		};
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.fillHeightMap();
 		expect(calculator.heightmap[0]).toEqual(1);
 		expect(calculator.heightmap.length).toEqual(1);
@@ -165,7 +171,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent1,talent2]
 		}
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.fillHeightMap();
 		expect(calculator.heightmap[0]).toEqual(1);
 		expect(calculator.heightmap.length).toEqual(1);
@@ -176,7 +183,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent1,talent2, talent4]
 		}
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.fillHeightMap();
 		expect(calculator.heightmap[0]).toEqual(1);
 		expect(calculator.heightmap[1]).toEqual(4);
@@ -188,7 +196,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent1, talent4, talent2]
 		}
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.fillHeightMap();
 		expect(calculator.heightmap[0]).toEqual(1);
 		expect(calculator.heightmap[1]).toEqual(4);
@@ -200,7 +209,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[]
 		};
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		expect(function() { calculator.fillHeightMap(); }).toThrow(new Error("Talent data is empty"));
 	});
 	
@@ -209,7 +219,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent1, talent2]
 		};
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		expect(calculator.items.length).toEqual(2);
 	});
 	
@@ -218,7 +229,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent2, talent4]
 		};
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.mapRefsReqs();
 		expect(calculator.items[0].refs).toContain(calculator.items[1]);
 		expect(calculator.items[1].reqs).toContain(calculator.items[0]);
@@ -229,7 +241,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent4]
 		}
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		expect(function(){ calculator.mapRefsReqs(); }).toThrow(new Error("Illegal talents data"));
 	});
 	
@@ -238,7 +251,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent45, talent452, talent453, talent454]
 		};
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.mapRanks();
 		expect(calculator.items[0].ranks[0]).toEqual(talent45);
 		expect(calculator.items[0].ranks[1]).toEqual(talent452);
@@ -251,7 +265,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent454, talent453, talent452, talent45]
 		};
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.mapRanks();
 		expect(calculator.items[0].ranks[0]).toEqual(talent45);
 		expect(calculator.items[0].ranks[1]).toEqual(talent452);
@@ -264,7 +279,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[ talent392]
 		};
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		expect(function() {calculator.mapRanks(); }).toThrow(new Error("Illegal talents data"));
 	});
 	
@@ -273,7 +289,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent45, talent452, talent453, talent454]
 		};
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.mapRanks();
 		calculator.assignPowerToTalents();
 		expect(calculator.items[0].ranks[0].power).toEqual(1);
@@ -286,7 +303,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent45, talent452, talent453, talent454, talent48, talent86]
 		};
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.mapRanks();
 		calculator.assignPowerToTalents();
 		expect(calculator.getPowerSum()).toEqual(0);
@@ -301,7 +319,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent1, talent2, talent4]
 		}
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.fillHeightMap();
 		calculator.arrangeRows();
 		expect(calculator.rows.length).toEqual(2);
@@ -312,7 +331,8 @@ describe('testing Calculator class', function() {
 			prefix: "as",
 			talents:[talent1]
 		}
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		expect(calculator.getSpentTalentPoints()).toEqual(0);
 		calculator.items[0].learn();
 		expect(calculator.getSpentTalentPoints()).toEqual(1);
@@ -323,7 +343,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent1, talent2]
 		}
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		expect(calculator.getRequiredLevel()).toEqual(1);
 	});
 	
@@ -332,7 +353,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent1, talent2, talent4]
 		}
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.items[0].learn();
 		expect(calculator.getRequiredLevel()).toEqual(1);
 		calculator.items[1].learn();
@@ -346,7 +368,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent1, talent2, talent4]
 		}
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		calculator.assignPowerToTalents();
 		expect(calculator.getTalentString()).toEqual("0");
 	});
@@ -356,7 +379,8 @@ describe('testing Calculator class', function() {
 			prefix:"as",
 			talents:[talent1, talent2, talent4]
 		}
-		var calculator = new Calculator(assault_data);
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
 		expect(function() { calculator.getPowerSum(); }).toThrow(new Error("Assign power to talents first"));
 	});
 });
