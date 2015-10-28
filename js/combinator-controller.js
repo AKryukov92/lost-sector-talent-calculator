@@ -1,6 +1,7 @@
 var calculator = new Calculator();
 var patchdata = {};
 var images = [];
+var combinator = new Combinator();
 function fillAvailableActions(combinator) {
 	var text = "";
 	for (var i = 0; i < combinator.actions.length; i++) {
@@ -29,14 +30,26 @@ function fillAvailableActions(combinator) {
 			+ "<div>"
 				+ action.name
 			+ "</div>"
+			+ "<input type='checkbox' id='useAction" + action.id + "' checked onclick='actionToggle(" + action.id + ")'>Вкл</input>"
 		+ "</div>";
 	}
 	$("#availableActions").append(text);
 }
-function combine() {
+function actionToggle(actionId) {
+	for (var i = 0; i < combinator.actions.length; i++) {
+		var action = combinator.actions[i];
+		if (action.id == actionId) {
+			action.isActive = $("#useAction" + actionId).is(":checked");
+			return;
+		}
+	}
+}
+$("#runAnalysis").click(function() {
+	combine();
+});
+function prepareActions() {
 	var reportText = "";
 	$("#report").append(reportText);
-	var combinator = new Combinator();
 	combinator.addSwap();
 	combinator.addDuck();
 	combinator.addFromCalculator(calculator);
@@ -48,6 +61,8 @@ function combine() {
 	combinator.addFromItem(consumable4);
 	combinator.addFromItem(consumable5);
 	fillAvailableActions(combinator);
+}
+function combine() {
 	var totalSets = combinator.createTree();
 	var rowCount = 0;
 	for (var i = totalSets.length - 1; i >= 0; i--) {
@@ -109,7 +124,7 @@ function talentUriHandler(key, value, target) {
 			if (initialTalentData.talentInput.length > 0) {
 				calculator.learnTalentsFromString(initialTalentData.talentInput);
 			}
-			combine();
+			prepareActions();
 		});
 	});
 }

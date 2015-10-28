@@ -1,44 +1,50 @@
 describe('testing ActionSpec class', function() {
+	var actionIdSequence = 0;
 	var action30, action15, action200;
+	var actionInactive;
 	var attack1_10, attack1_15, attack2_10, attack2_5;
 	var swap, duck;
 	var weapon1 = { name: "weapon1", category:"dummy" };
 	var weapon2 = { name: "weapon2", category:"dummy" };
 	beforeEach(function() {
-		action30 = new Action(30, "action30" );
+		action30 = new Action(actionIdSequence++, 30, "action30" );
 		action30.possibleRepeat = true;
 		action30.imageid = 30;
-		action30n1 = new Action (30, "action30n1", 1);
+		action30n1 = new Action (actionIdSequence++, 30, "action30n1", 1);
 		action30n1.possibleRepeat = true;
 		action30n1.imageid = 31;
-		action30n2 = new Action (30, "action30n2", 2);
+		action30n2 = new Action (actionIdSequence++, 30, "action30n2", 2);
 		action30n2.possibleRepeat = true;
 		action30n2.imageid = 32;
-		action15 = new Action (15, "action15");
+		action15 = new Action (actionIdSequence++, 15, "action15");
 		action15.possibleRepeat = true;
 		action15.imageid = 15;
-		action200 = new Action (200, "action200");
+		action200 = new Action (actionIdSequence++, 200, "action200");
 		action200.possibleRepeat = true;
 		action200.imageid = 200;
-		swap = new Action(10, "Сменить");
+		actionInactive = new Action(actionIdSequence++, 7, "actionInactive");
+		actionInactive.isActive = false;
+		actionInactive.possibleRepeat = true;
+		actionInactive.imageid = 7;
+		swap = new Action(actionIdSequence++, 10, "Сменить");
 		swap.possibleRepeat = false;
 		swap.imageid = 1;
-		duck = new Action(15, "Присесть");
+		duck = new Action(actionIdSequence++, 15, "Присесть");
 		duck.possibleRepeat = false;
 		duck.imageid = 2;
-		attack1_10 = new Action(10, "attack1_10");
+		attack1_10 = new Action(actionIdSequence++, 10, "attack1_10");
 		attack1_10.source = weapon1;
 		attack1_10.minDist = 0;
 		attack1_10.maxDist = 1.5;
-		attack1_15 = new Action(15, "attack1_15");
+		attack1_15 = new Action(actionIdSequence++, 15, "attack1_15");
 		attack1_15.source = weapon1;
 		attack1_15.minDist = 4;
 		attack1_15.maxDist = 9;
-		attack2_10 = new Action(10, "attack2_10");
+		attack2_10 = new Action(actionIdSequence++, 10, "attack2_10");
 		attack2_10.source = weapon2;
 		attack2_10.minDist = 10;
 		attack2_10.maxDist = 26;
-		attack2_5 = new Action(5, "attack2_5");
+		attack2_5 = new Action(actionIdSequence++, 5, "attack2_5");
 		attack2_5.source = weapon2;
 		attack2_5.minDist = 0;
 		attack2_5.maxDist = 1.5;
@@ -107,6 +113,11 @@ describe('testing ActionSpec class', function() {
 	it('should not create leaf if sight range is less than minimal attack distance', function() {
 		var root = new ActionSet({actionPoints:100, sightRange:5}, action30);
 		var leaf = root.createLeaf(attack2_10);
+		expect(leaf).toEqual(null);
+	});
+	it('should not create leaf if action is inactive', function() {
+		var root = new ActionSet({actionPoints:100, sightRange:99}, action30);
+		var leaf = root.createLeaf(actionInactive);
 		expect(leaf).toEqual(null);
 	});
 	
