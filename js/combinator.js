@@ -1,5 +1,7 @@
-﻿function Action(cost, name, numberOfUses) {
+﻿function Action(id, cost, name, numberOfUses) {
+	this.id = id;
 	this.cost = cost;
+	this.isActive = true;
 	this.imageid = 0;
 	this.name = name;
 	this.maxDist = 99;
@@ -65,6 +67,9 @@ function ActionSet(unitState, action) {
 		return cost;
 	}
 	this.createLeaf = function(action) {
+		if (typeof action.isActive == "undefined" || !action.isActive) {
+			return null;
+		}
 		var countOfEqual = 0;
 		for (var i = 0; i < this.actions.length; i++) {
 			if (action.isEqual(this.actions[i])) {
@@ -156,6 +161,7 @@ function getImageId(talentOrItem) {
 
 function Combinator() {
 	this.actions = [];
+	this.actionIdSequence = 0;
 	this.addFromCalculator = function(calculator) {
 		if (typeof calculator.items == 'undefined') {
 			return;
@@ -169,7 +175,7 @@ function Combinator() {
 			if (typeof talent.AP_cost == 'undefined') {
 				continue;
 			}
-			var action = new Action();
+			var action = new Action(this.actionIdSequence++);
 			if (typeof talent.number_of_uses != 'undefined') {
 				action.numberOfUses = talent.number_of_uses;
 			}
@@ -188,7 +194,7 @@ function Combinator() {
 		}
 		if (typeof item.attacks != 'undefined' && item.attacks.length > 0) {
 			for (var i = 0; i < item.attacks.length; i++) {
-				var action = new Action();
+				var action = new Action(this.actionIdSequence++);
 				action.source = item;
 				action.cost = item.attacks[i].cost;
 				action.name = item.attacks[i].name;
@@ -204,7 +210,7 @@ function Combinator() {
 				this.actions.push(action);
 			}
 			if (typeof item.reload_cost != 'undefined') {
-				var reload = new Action();
+				var reload = new Action(this.actionIdSequence++);
 				reload.source = item;
 				reload.cost = item.reload_cost;
 				action.possibleRepeat = false;
@@ -215,7 +221,7 @@ function Combinator() {
 			}
 		}
 		if (typeof item.AP_cost != 'undefined') {
-			var consumable = new Action();
+			var consumable = new Action(this.actionIdSequence++);
 			consumable.source = item;
 			consumable.cost = item.AP_cost;
 			consumable.imageid = getImageId(item);
@@ -227,7 +233,7 @@ function Combinator() {
 		}
 	};
 	this.addSwap = function(item) {
-		var swap = new Action();
+		var swap = new Action(this.actionIdSequence++);
 		swap.cost = 10;
 		swap.name = "Сменить";
 		swap.source = { name: "Действие" };
@@ -237,7 +243,7 @@ function Combinator() {
 		this.actions.push(swap);
 	};
 	this.addDuck = function(item) {
-		var duck = new Action();
+		var duck = new Action(this.actionIdSequence++);
 		duck.cost = 15;
 		duck.name = "Присесть";
 		duck.source = { name: "Действие" };

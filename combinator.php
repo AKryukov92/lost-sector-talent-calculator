@@ -73,7 +73,8 @@ if (isset($_GET["c5"])) {
 	</script>
 </head>
 <body style="margin:0px;">
-<div id="availableActions"></div>
+<div id="availableActions" style="overflow:auto;"></div>
+<input type="button" id="runAnalysis" value="Рассчитать"/>
 <div id="report"></div>
 <script src="js/combinator-controller.js"></script>
 <script src="js/analytics.js"></script>
