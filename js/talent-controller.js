@@ -121,3 +121,13 @@ $("#selVersion").change(function(){
 	var prefix = talentApplication.activeClass.prefix;
 	switchVersionClass(prefix, version);
 });
+$("#selLang").change(function() {
+	var locale = $("#selLang").val();
+	if (typeof(localStorage) !== "undefined") {
+		localStorage.setItem("lstc.wc.lt/locale", $("#selLang").val());
+	}
+	if (inventoryApp != "undefined") {
+		inventoryApp.applyLocale(locale);
+		applyLocaleToInventory(locale);
+	}
+});

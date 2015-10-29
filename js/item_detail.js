@@ -1,5 +1,9 @@
 
-function InventoryModel(data) {
+function InventoryModel(locale,data) {
+	if (typeof locale == "undefined") {
+		throw new Error("Locale was not defined");
+	}
+	this.locale = locale;
 	this.slots = {
 		primary: {short_name :"p", item:{} },
 		secondary: { short_name :"s", item:{} },
@@ -82,7 +86,7 @@ function InventoryModel(data) {
 		var item = this.slots[slot_name].item;
 		if (!$.isEmptyObject(item) && typeof item.id != 'undefined'){
 			this.setGrade(slot_name, selected_quality);
-			$("#" + slot_name + "-name").text(item.name);
+			$("#" + slot_name + "-name").text(this.getLocalizedProperty(item, "name"));
 			var link = "/item.php?id=" + item.id + "&color=" + selected_color + "&quality=" + selected_quality;
 			$("#" + slot_name + "-link").attr("href", link);
 			$("#" + slot_name + "-link").removeClass("grey-link white-link green-link blue-link").addClass(selected_color + "-link");
@@ -163,6 +167,23 @@ function InventoryModel(data) {
 			helper:"clone",
 			appendTo: "body"
 		});
+	};
+	this.getLocalizedProperty = function(container, property, locale) {
+		if (typeof container[property] == "undefined") {
+			throw new Error("Свойство не существует");
+		}
+		if (typeof container[property] === "object" && container[property] !== null) {
+			if (typeof container[property][locale] != 'undefined') {
+				return container[property][locale];
+			} else {
+				return container[property][this.locale];
+			}
+		} else {
+			return container[property];
+		}
+	};
+	this.applyLocale = function(locale) {
+		
 	};
 	this.fillAvailableItems = function(data){
 		this.itemData = data;
