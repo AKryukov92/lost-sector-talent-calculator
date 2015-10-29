@@ -1,5 +1,5 @@
 var images;
-var talentApplication = new TalentView();
+var talentApplication = new TalentView(getLocale());
 var initialTalentData = {};
 
 function switchVersionClass(prefix, version) {
@@ -43,7 +43,7 @@ function talentUriHandler(key, value, target) {
 		switchVersionClass("as", 101);
 	}
 }
-var initialLink = new TalentLink(location.search);
+var initialLink = new ApplicationLink(location.search);
 if (initialLink.linkString.length != 0) {
 	// заходим по ссылке с данными о талантах "?t=981sc=2"
 	// заходим по ссылке с данными о талантах "?talent=981sc=2" - старый формат
@@ -65,15 +65,18 @@ function toggleTalentTooltip() {
 	$("#talent-tooltip").toggle(!display);
 }
 toggleTalentTooltip();
-function updateTooltip(controller, prefix) {
+function updateTalentTooltip(controller) {
 	if (typeof controller.recentItem != 'undefined') {
 		if (controller.recentItem.base().id != recentId) {
-			recentId = controller.recentItem.base().id;
-			$("#talent-iframe").attr("src", "/talent.php?id=" + controller.recentItem.base().id +
-				"&prefix=" + prefix +
-				"&iframe=true&version=" + $("#selVersion").val());
+			refreshTalentTooltipIframe(controller);
 		}
 	}
+}
+function refreshTalentTooltipIframe(controller){
+	recentId = controller.recentItem.base().id;
+	$("#talent-iframe").attr("src", "/talent.php?id=" + controller.recentItem.base().id +
+		"&prefix=" + controller.activeClass.prefix +
+		"&iframe=true&version=" + $("#selVersion").val());
 }
 function processTalentData(data) {
 	talentApplication.init(data);
@@ -99,13 +102,13 @@ $.each(talentApplication.classes, function(prefix, calculator) {
 		update_link();
 		$("#merc-level").html(calculator.getRequiredLevel());
 		$("#points-left").html(calculator.getAvailableTalentPoints());
-		updateTooltip(talentApplication, prefix);
+		updateTalentTooltip(talentApplication);
 	});
 	$("#calculator-" + prefix + "-layout").mousemove(function(e) {
 		var offset = $(this).offset();
 		talentApplication.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
 		if (!$("#talent-visibility-checkbox").is(":checked")) {
-			updateTooltip(talentApplication, prefix);
+			updateTalentTooltip(talentApplication);
 		}
 	});
 	$("#" + prefix + "-link").click(function(){
@@ -120,14 +123,4 @@ $("#selVersion").change(function(){
 	var version = $("#selVersion").val();
 	var prefix = talentApplication.activeClass.prefix;
 	switchVersionClass(prefix, version);
-});
-$("#selLang").change(function() {
-	var locale = $("#selLang").val();
-	if (typeof(localStorage) !== "undefined") {
-		localStorage.setItem("lstc.wc.lt/locale", $("#selLang").val());
-	}
-	if (inventoryApp != "undefined") {
-		inventoryApp.applyLocale(locale);
-		applyLocaleToInventory(locale);
-	}
 });

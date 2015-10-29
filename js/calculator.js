@@ -409,7 +409,15 @@ function Calculator () {
 		return totalTalentPoints - this.getSpentTalentPoints();
 	};
 };
-function TalentView() {
+function TalentView(locale) {
+	if (typeof locale == "undefined") {
+		throw new Error("Locale was not defined");
+	}
+	this.locale = locale;
+	this.applyLocale = function(locale) {
+		this.locale = locale;
+		this.displayLayout();
+	};
 	this.atlasActive;
 	this.atlasInactive;
 	this.recentItem;
@@ -470,12 +478,18 @@ function TalentView() {
 		ctx.fillStyle = "#1f1f1f";
 		ctx.fillRect(row.x, row.y, calculator.rowHeaderWidth, row.height);
 		ctx.font = "1.1em Trebuchet MS,Tahoma,Verdana,Arial,sans-serif";
+		var rowHeaderText = "";
+		if (this.locale == "en") {
+			rowHeaderText = "Lvl" + row.level;
+		} else {
+			rowHeaderText = "Ур." + row.level;
+		}
 		if (bright) {
 			ctx.fillStyle = "#e7a516";
-			ctx.fillText("Ур." + row.level, row.x, row.y + DEST_BOX_SIZE);
+			ctx.fillText(rowHeaderText, row.x, row.y + DEST_BOX_SIZE);
 		} else {
 			ctx.fillStyle = "#939393";
-			ctx.fillText("Ур." + row.level, row.x, row.y + DEST_BOX_SIZE);
+			ctx.fillText(rowHeaderText, row.x, row.y + DEST_BOX_SIZE);
 		}
 	};
 	this.markRows = function() {
