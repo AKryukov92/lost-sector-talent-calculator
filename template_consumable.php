@@ -59,13 +59,13 @@ header("Content-Type: text/html; charset=utf-8");
 	<?php } ?>
 	<div style="color:white;font-size:16pt;"><?php print $data["name"]; ?></div>
 	<?php if (!IsNullOrEmptyString($consumable_type_name)) { ?>
-		<div class="entry">Активная вещь (<?php print $consumable_type_name; ?>)</div>
+		<div class="entry"><span name="t-active-item">Активная вещь</span> (<?php print $consumable_type_name; ?>)</div>
 	<?php } ?>
 	<?php if(isset($data["lvlreq"])) { ?>
-		<div class="entry">Необходимый уровень: <?php print $data["lvlreq"];?></div>
+		<div class="entry"><span name="t-required-level">Необходимый уровень</span>: <?php print $data["lvlreq"];?></div>
 	<?php } ?>
 	<?php if (!IsNullOrEmptyString($talentreq_name)) { ?>
-		<div class="entry">Требуемый навык: <?php print $talentreq_name; ?></div>
+		<div class="entry"><span name="t-required-skill">Требуемый навык</span>: <?php print $talentreq_name; ?></div>
 	<?php } ?>
 	<?php if (isset($data["description"])) {?>
 		<div class="entry"><?php print $data["description"] ?></div>
@@ -75,7 +75,7 @@ header("Content-Type: text/html; charset=utf-8");
 		include "template_specials.php";
 	} ?>
 	<?php if (isset($data["AP_cost"])) {?>
-		<div class="entry">Необходимо <?php print $data["AP_cost"];?> ОД</div>
+		<div class="entry"><span name="t-required">Необходимо</span> <?php print $data["AP_cost"];?> <span name="t-AP">ОД</span></div>
 	<?php } ?>
 	<?php if (isset($data["attacks"])) {
 		for($i = 0; $i < count($data["attacks"]); $i++) {
@@ -84,7 +84,9 @@ header("Content-Type: text/html; charset=utf-8");
 		}
 	} ?>
 </div>
-
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/utils.js"></script>
 <?php if (!$iframe) { ?>
 <script src="js/analytics.js"></script>
 <?php } ?>

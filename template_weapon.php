@@ -53,10 +53,6 @@ header("Content-Type: text/html; charset=utf-8");
 <?php if (!$iframe) { ?>
 	<link href="css/jquery-ui.css" rel="stylesheet">
 	<link href="css/local.css" rel="stylesheet">
-	<script src="js/jquery.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/link.js"></script>
-	<script src="js/item_detail.js"></script>
 	<script>
         function resizeIframe(obj) {
             obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
@@ -77,59 +73,55 @@ header("Content-Type: text/html; charset=utf-8");
 			{ print " +".$quality; } ?>
 	</div>
 	<?php if ($category == "light") {?>
-		<div class="entry">Легкое оружие</div>
+		<div class="entry"><span name="t-light-weapon">Легкое оружие</span></div>
 	<?php } else { ?>
-		<div class="entry">Среднее оружие</div>
+		<div class="entry"><span name="t-medium-weapon">Среднее оружие</span></div>
 	<?php } ?>
 	<?php if (isset($data["protection"])) {?>
-		<div class="entry">Защита: <?php print $data["protection"];?></div>
+		<div class="entry"><span name="t-protection">Защита</span>: <?php print $data["protection"];?></div>
 	<?php } ?>
 	<?php if (isset($data["mobility"])) {?>
-		<div class="entry">Мобильность: <?php print $data["mobility"]; ?></div>
+		<div class="entry"><span name="t-mobility">Мобильность</span>: <?php print $data["mobility"]; ?></div>
 	<?php } ?>
 	<?php if (isset($data["clip"])) {?>
-		<div class="entry">Размер магазина: <?php print $data["clip"]; ?></div>
+		<div class="entry"><span name="t-clip-size">Размер магазина</span>: <?php print $data["clip"]; ?></div>
 	<?php } ?>
 	<?php if (isset($data["ammo"])) {?>
-		<div class="entry">Кол-во боеприпасов: <?php print $data["ammo"]; ?></div>
+		<div class="entry"><span name="t-ammo">Кол-во боеприпасов</span>: <?php print $data["ammo"]; ?></div>
 	<?php } ?>
 	<?php if (isset($data["reload_cost"])) {?>
-	<div class="entry">ОД для перезарядки: <?php print $data["reload_cost"];?></div>
+	<div class="entry"><span name="t-reload-cost">ОД для перезарядки</span>: <?php print $data["reload_cost"];?></div>
 	<?php } ?>
 	<?php if (isset($data["lvlreq"])) {?>
-		<div class="entry">Необходимый уровень: <?php if ($color == "gray") {
+		<div class="entry"><span name="t-required-level">Необходимый уровень</span>: <?php if ($color == "gray") {
 			print $data["lvlreq"] - 1;
 		} else {
 			print $data["lvlreq"];
 		}?></div>
 	<?php } ?>
 	<?php if (isset($data["classreq"])) { ?>
-		<div class="entry">Требуемый класс:
+		<div class="entry"><span name="t-required-class">Требуемый класс</span>:
 			<?php for ($i = 0; $i < count($data["classreq"]); $i++) { 
 				if ($i > 0) {
-					print ",";
+					print ", ";
 				}
 				if ($data["classreq"][$i] == "as") {
-					print "Штурмовик";
-					break;
+					print "<span id='t-assault'>Штурмовик</span>";
 				}
 				if ($data["classreq"][$i] == "sc"){
-					print "Скаут";
-					break;
+					print "<span id='t-scout'>Скаут</span>";
 				}
 				if ($data["classreq"][$i] == "ju") {
-					print "Джаггернаут";
-					break;
+					print "<span id='t-juggernaut'>Джаггернаут</span>";
 				}
 				if ($data["classreq"][$i] == "su"){
-					print "Поддержка";
-					break;
+					print "<span id='t-support'>Поддержка</span>";
 				}
 			} ?>
 		</div>
 	<?php } ?>
 	<?php if (isset($data["talentreq"])) {?>
-		<div class="entry">Требуемый навык: <?php print $talentreq_name; ?></div>
+		<div class="entry"><span name="t-required-skill">Требуемый навык</span>: <?php print $talentreq_name; ?></div>
 	<?php } ?>
 	<?php if (isset($data["attacks"])) {
 		for($i = 0; $i < count($data["attacks"]); $i++) {
@@ -149,7 +141,7 @@ header("Content-Type: text/html; charset=utf-8");
 				<div id="primary-container" class="inventory-item-container">
 					<img src="images/slot-primary.png"/>
 				</div>
-				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('primary');">очистить</a>
+				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('primary');"><span id="primary-reset">очистить</span></a>
 			</div>
 			<div style="float:left;">
 				<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">
@@ -166,6 +158,10 @@ header("Content-Type: text/html; charset=utf-8");
 				</input>
 				<div id="primary-slider" style="clear:both;"></div>
 			</div>
+			<select id="selLang" style="margin:10px;float:right;">
+				<option value="ru">ру</option>
+				<option value="en">en</option>
+			</select>
 		</div>
 	</div>
 	<div class="fake-tooltip-container" style="margin:2px;">
@@ -175,15 +171,15 @@ header("Content-Type: text/html; charset=utf-8");
 	</div>
 	<div id="items-pool" style="clear:both;overflow:auto;">
 		<ul>
-			<li><a href="#all-melee">Ближний бой</a></li>
-			<li><a href="#all-pistol">Пистолеты</a></li>
-			<li><a href="#all-smg">ПП</a></li>
-			<li><a href="#all-shotgun">Дробовики</a></li>
-			<li><a href="#all-assault-rifle">Автоматы</a></li>
-			<li><a href="#all-sniper-rifle">Снайперское</a></li>
-			<li><a href="#all-machinegun">Пулеметы</a></li>
-			<li><a href="#all-launcher">Взрывное</a></li>
-			<li><a href="#all-shield">Щиты</a></li>
+			<li><a href="#all-melee"><span name="t-melee">Ближний бой</span></a></li>
+			<li><a href="#all-pistol"><span name="t-pistol">Пистолеты</span></a></li>
+			<li><a href="#all-smg"><span name="t-smg">ПП</span></a></li>
+			<li><a href="#all-shotgun"><span name="t-shotgun">Дробовики</span></a></li>
+			<li><a href="#all-assault-rifle"><span name="t-assault-rifle">Автоматы</span></a></li>
+			<li><a href="#all-sniper-rifle"><span name="t-sniper-rifle">Снайперское</span></a></li>
+			<li><a href="#all-machinegun"><span name="t-machinegun">Пулеметы</span></a></li>
+			<li><a href="#all-launcher"><span name="t-launcher">Взрывное</span></a></li>
+			<li><a href="#all-shield"><span name="t-shield">Щиты</span></a></li>
 		</ul>
 		<div id="all-melee">
 			<div id="melee-pool" class="pool"></div>
@@ -213,13 +209,18 @@ header("Content-Type: text/html; charset=utf-8");
 			<div id="shield-pool" class="pool"></div>
 		</div>
 	</div>
+<?php } ?>
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/utils.js"></script>
+<?php if (!$iframe) { ?>
+<script src="js/item_detail.js"></script>
 <script>
-$("#items-pool").tabs();
-$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+	function update_link() {}
 </script>
 <script src="js/inventory-controller.js"></script>
 <script>
-var initialLink = new TalentLink(location.search);
+var initialLink = new ApplicationLink(location.search);
 if (initialLink.linkString.length != 0) {
 	initialLink.parts.forEach(function(item){
 		if (typeof inventoryApp.UriHandlers[item.key] != 'undefined') {

@@ -21,9 +21,9 @@ header("Content-Type: text/html; charset=utf-8");
 	<?php } ?>
 	<div style="color:#ff7700;font-size:16pt;"><?php print $data["name"]; ?></div>
 	<div class="entry">Аватар</div>
-	<div class="entry">Защита: 5</div>
+	<div class="entry"><span name="t-protection">Защита</span>: 5</div>
 	<?php if (isset($data["classreq"])) { ?>
-		<div class="entry">Требуемый класс:
+		<div class="entry"><span name="t-required-class">Требуемый класс</span>:
 			<?php for ($i = 0; $i < count($data["classreq"]); $i++) { 
 				if ($i > 0) {
 					print ",";

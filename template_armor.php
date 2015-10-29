@@ -41,13 +41,10 @@ header("Content-Type: text/html; charset=utf-8");
 <?php if (!$iframe) { ?>
 	<link href="css/jquery-ui.css" rel="stylesheet">
 	<link href="css/local.css" rel="stylesheet">
-	<script src="js/jquery.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/item_detail.js"></script>
-	<script src="js/link.js"></script>
-	<script src="js/utils.js"></script>
 	<script>
-		function update_link() {}
+        function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+        }
 	</script>
 <?php } ?>
 </head>
@@ -63,41 +60,37 @@ header("Content-Type: text/html; charset=utf-8");
 			if ($quality != 0)
 			{ print " +".$quality; } ?>
 	</div>
-	<div class="entry">Броня</div>
+	<div class="entry"><span name="t-armor">Броня</span></div>
 	<?php if (isset($data["protection"])) {?>
-		<div class="entry">Защита: <?php print $real_protection;?></div>
+		<div class="entry"><span name="t-protection">Защита</span>: <?php print $real_protection;?></div>
 	<?php } ?>
 	<?php if (isset($data["mobility"])) {?>
 		<div class="entry">Мобильность: <?php print $data["mobility"]; ?></div>
 	<?php } ?>
 	<?php if (isset($data["lvlreq"])) {?>
-		<div class="entry">Необходимый уровень: <?php if ($color == "gray") {
+		<div class="entry"><span name="t-required-level">Необходимый уровень</span>: <?php if ($color == "gray") {
 			print $data["lvlreq"] - 1;
 		} else {
 			print $data["lvlreq"];
 		}?></div>
 	<?php } ?>
 	<?php if (isset($data["classreq"])) { ?>
-		<div class="entry">Требуемый класс:
+		<div class="entry"><span name="t-required-class">Требуемый класс</span>:
 			<?php for ($i = 0; $i < count($data["classreq"]); $i++) { 
 				if ($i > 0) {
 					print ",";
 				}
 				if ($data["classreq"][$i] == "as") {
-					print "Штурмовик";
-					break;
+					print "<span id='t-assault'>Штурмовик</span>";
 				}
 				if ($data["classreq"][$i] == "sc"){
-					print "Скаут";
-					break;
+					print "<span id='t-scout'>Скаут</span>";
 				}
 				if ($data["classreq"][$i] == "ju") {
-					print "Джаггернаут";
-					break;
+					print "<span id='t-juggernaut'>Джаггернаут</span>";
 				}
 				if ($data["classreq"][$i] == "su"){
-					print "Поддержка";
-					break;
+					print "<span id='t-support'>Поддержка</span>";
 				}
 			} ?>
 		</div>
@@ -114,7 +107,7 @@ header("Content-Type: text/html; charset=utf-8");
 				<div id="armor-container" class="inventory-item-container">
 					<img src="images/slot-armor.png"/>
 				</div>
-				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('armor');">очистить</a>
+				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('armor');"><span id="armor-reset">очистить</span></a>
 			</div>
 			<div style="float:left;">
 				<input type="radio" name="armor-quality" value="gray" id="armor-quality-gray" class="quality">
@@ -131,6 +124,10 @@ header("Content-Type: text/html; charset=utf-8");
 				</input>
 				<div id="armor-slider" style="clear:both;"></div>
 			</div>
+			<select id="selLang" style="margin:10px;float:right;">
+				<option value="ru">ру</option>
+				<option value="en">en</option>
+			</select>
 		</div>
 	</div>
 	<div class="fake-tooltip-container" style="margin:2px;">
@@ -141,12 +138,18 @@ header("Content-Type: text/html; charset=utf-8");
 	<div id="items-pool" style="clear:both;overflow:auto;">
 		<div id="armor-pool" class="pool"></div>
 	</div>
+<?php } ?>
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/utils.js"></script>
+<?php if (!$iframe) { ?>
+<script src="js/item_detail.js"></script>
 <script>
-$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+	function update_link() {}
 </script>
 <script src="js/inventory-controller.js"></script>
 <script>
-var initialLink = new TalentLink(location.search);
+var initialLink = new ApplicationLink(location.search);
 if (initialLink.linkString.length != 0) {
 	initialLink.parts.forEach(function(item){
 		if (typeof inventoryApp.UriHandlers[item.key] != 'undefined') {
