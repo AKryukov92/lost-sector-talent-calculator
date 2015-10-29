@@ -259,11 +259,15 @@ input[type=radio]:not(old):checked +  label > span > span{
 }
 
 .special-item {
-	    background-color: rgba(55,55,55,0.9);
+	background-color: rgba(55,55,55,0.9);
 	float:left;
 	display:block;
 	margin:2px;
 	border:1px solid #e7a516;
+	text-align:center;
+}
+.special-item .white-link{
+	margin:3px;
 }
 .special-item img{
 	padding:1px;

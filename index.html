@@ -17,10 +17,6 @@
 		<div style="float:left;width:250px"><a style="color:#e7a516" href="http://lsonline.ru/"><img src="http://lsonline.ru/data/images/logo.png"/></a></div>
 		<div style="float:left;">
 			<div style="width:100%"><label>Ссылка: <input id="link-to-build" style="width:80%"></input></label></div>
-<!--			<div>
- 			<label>Язык<select id="selLang">
-				<option value="ru">русский</option>
-			</select></label></div> -->
 			<div style="clear:both;">Очки <span id="points-left">0</span></div>
 			<div>Уровень <span id="merc-level">1</span></div>
 			<div><label>Спрятать тултипы талантов<input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked></label></div>
@@ -28,7 +24,10 @@
 				<label>Версия игры<select id="selVersion">
 					<option value="98">98</option>
 					<option value="101" selected>101</option>
-				</select></label>
+				</select><select id="selLang">
+				<option value="ru">ру</option>
+				<option value="en">en</option>
+			</select></label>
 			</div>
 		</div>
 	</div>
@@ -105,7 +104,7 @@
 				<div id="armor-container" class="inventory-item-container">
 					<img src="images/slot-armor.png"/>
 				</div>
-				<a class="tunable-reset" onclick="reset_slot('armor');">очистить</a>
+				<a class="tunable-reset" onclick="reset_slot('armor');"><span id="armor-reset">очистить</span></a>
 			</div>
 			<div style="float:left;">
 				<input type="radio" name="armor-quality" value="gray" id="armor-quality-gray" class="quality">
@@ -136,7 +135,7 @@
 				<div id="primary-container" class="inventory-item-container">
 					<img src="images/slot-primary.png"/>
 				</div>
-				<a class="tunable-reset" onclick="reset_slot('primary');">очистить</a>
+				<a class="tunable-reset" onclick="reset_slot('primary');"><span id="primary-reset">очистить</span></a>
 			</div>
 			<div style="float:left;">
 				<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">
@@ -167,7 +166,7 @@
 				<div id="secondary-container" class="inventory-item-container">
 					<img src="images/slot-secondary.png"/>
 				</div>
-				<a class="tunable-reset" onclick="reset_slot('secondary');">очистить</a>
+				<a class="tunable-reset" onclick="reset_slot('secondary');"><span id="secondary-reset">очистить</span></a>
 			</div>
 			<div style="float:left;">
 				<input type="radio" name="secondary-quality" value="gray" id="secondary-quality-gray" class="quality">
@@ -197,7 +196,7 @@
 			<div id="hat-container" class="inventory-item-container">
 				<img src="images/slot-hat.png"/>
 			</div>
-			<a class="tunable-reset" onclick="reset_slot('hat');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('hat');"><span id="hat-reset">очистить</span></a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="hat-fake-tooltip">
 					<iframe id="hat-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -205,11 +204,11 @@
 			</div>
 		</div>
 		<div class="special-item">
-			<a id="consumable_1-link" target="_blank" class="white-link" style="margin:3px;">ссылка</a>
+			<a id="consumable_1-link" target="_blank" class="white-link">ссылка</a>
 			<div id="consumable_1-container" class="inventory-item-container">
 				<img src="images/slot-consumable_1.png"/>
 			</div>
-			<a class="tunable-reset" onclick="reset_slot('consumable_1');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('consumable_1');"><span id="consumable_1-reset">очистить</span></a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="consumable_1-fake-tooltip">
 					<iframe id="consumable_1-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -217,11 +216,11 @@
 			</div>
 		</div>
 		<div class="special-item">
-			<a id="consumable_2-link" target="_blank" class="white-link" style="margin:3px;">ссылка</a>
+			<a id="consumable_2-link" target="_blank" class="white-link">ссылка</a>
 			<div id="consumable_2-container" class="inventory-item-container">
 				<img src="images/slot-consumable_2.png"/>
 			</div>
-			<a class="tunable-reset" onclick="reset_slot('consumable_2');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('consumable_2');"><span id="consumable_2-reset">очистить</span></a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="consumable_2-fake-tooltip">
 					<iframe id="consumable_2-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -229,11 +228,11 @@
 			</div>
 		</div>
 		<div class="special-item">
-			<a id="consumable_3-link" target="_blank" class="white-link" style="margin:3px;">ссылка</a>
+			<a id="consumable_3-link" target="_blank" class="white-link">ссылка</a>
 			<div id="consumable_3-container" class="inventory-item-container">
 				<img src="images/slot-consumable_3.png"/>
 			</div>
-			<a class="tunable-reset" onclick="reset_slot('consumable_3');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('consumable_3');"><span id="consumable_3-reset">очистить</span></a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="consumable_3-fake-tooltip">
 					<iframe id="consumable_3-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -241,11 +240,11 @@
 			</div>
 		</div>
 		<div class="special-item">
-			<a id="consumable_4-link" target="_blank" class="white-link" style="margin:3px;">ссылка</a>
+			<a id="consumable_4-link" target="_blank" class="white-link">ссылка</a>
 			<div id="consumable_4-container" class="inventory-item-container">
 				<img src="images/slot-consumable_4.png"/>
 			</div>
-			<a class="tunable-reset" onclick="reset_slot('consumable_4');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('consumable_4');"><span id="consumable_4-reset">очистить</span></a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="consumable_4-fake-tooltip">
 					<iframe id="consumable_4-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -253,11 +252,11 @@
 			</div>
 		</div>
 		<div class="special-item">
-			<a id="consumable_5-link" target="_blank" class="white-link" style="margin:3px;">ссылка</a>
+			<a id="consumable_5-link" target="_blank" class="white-link">ссылка</a>
 			<div id="consumable_5-container" class="inventory-item-container">
 				<img src="images/slot-consumable_5.png"/>
 			</div>
-			<a class="tunable-reset" onclick="reset_slot('consumable_5');">очистить</a>
+			<a class="tunable-reset" onclick="reset_slot('consumable_5');"><span id="consumable_5-reset">очистить</span></a>
 			<div class="fake-tooltip-container">
 				<div class="fake-tooltip" id="consumable_5-fake-tooltip">
 					<iframe id="consumable_5-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
@@ -267,18 +266,18 @@
 	</div>
 	<div id="items-pool" style="clear:both;overflow:auto;">
 		<ul>
-			<li><a href="#all-armor">Броня</a></li>
-			<li><a href="#all-melee">Ближний бой</a></li>
-			<li><a href="#all-pistol">Пистолеты</a></li>
-			<li><a href="#all-smg">ПП</a></li>
-			<li><a href="#all-shotgun">Дробовики</a></li>
-			<li><a href="#all-assault-rifle">Автоматы</a></li>
-			<li><a href="#all-sniper-rifle">Снайперское</a></li>
-			<li><a href="#all-machinegun">Пулеметы</a></li>
-			<li><a href="#all-launcher">Взрывное</a></li>
-			<li><a href="#all-shield">Щиты</a></li>
-			<li><a href="#all-hat">Шапки</a></li>
-			<li><a href="#all-consumable">Активки</a></li>
+			<li><a href="#all-armor"><span id="tab-name-armor">Броня</span></a></li>
+			<li><a href="#all-melee"><span id="tab-name-melee">Ближний бой</span></a></li>
+			<li><a href="#all-pistol"><span id="tab-name-pistol">Пистолеты</span></a></li>
+			<li><a href="#all-smg"><span id="tab-name-smg">ПП</span></a></li>
+			<li><a href="#all-shotgun"><span id="tab-name-shotgun">Дробовики</span></a></li>
+			<li><a href="#all-assault-rifle"><span id="tab-name-assault-rifle">Автоматы</span></a></li>
+			<li><a href="#all-sniper-rifle"><span id="tab-name-sniper-rifle">Снайперское</span></a></li>
+			<li><a href="#all-machinegun"><span id="tab-name-machinegun">Пулеметы</span></a></li>
+			<li><a href="#all-launcher"><span id="tab-name-launcher">Взрывное</span></a></li>
+			<li><a href="#all-shield"><span id="tab-name-shield">Щиты</span></a></li>
+			<li><a href="#all-hat"><span id="tab-name-hat">Шапки</span></a></li>
+			<li><a href="#all-consumable"><span id="tab-name-consumable">Активки</span></a></li>
 		</ul>
 		<div id="all-armor">
 			<div id="armor-pool" class="pool"></div>
@@ -323,6 +322,13 @@
 $("#items-pool").tabs();
 $( "#tabs" ).tabs();
 $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+if (typeof(localStorage) !== "undefined") {
+	if (localStorage.getItem("lstc.wc.lt/locale") != null) {
+		$("#selLang").val(localStorage.getItem("lstc.wc.lt/locale"));
+	} else {
+		$("#selLang").val("ru");
+	}
+}
 </script>
 <script src="js/talent-controller.js"></script>
 <script src="js/inventory-controller.js"></script>

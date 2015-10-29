@@ -1,4 +1,41 @@
-var inventoryApp = new InventoryModel();
+var inventoryApp = new InventoryModel($("#selLang").val());
+var localizationData = [
+	{ id:"armor-reset", text:{ "ru":"очистить", "en":"clear" } },
+	{ id:"primary-reset", text:{ "ru":"очистить", "en":"clear" } },
+	{ id:"secondary-reset", text:{ "ru":"очистить", "en":"clear" } },
+	{ id:"hat-reset", text:{ "ru":"очистить", "en":"clear" } },
+	{ id:"consumable_1-reset", text:{ "ru":"очистить", "en":"clear" } },
+	{ id:"consumable_2-reset", text:{ "ru":"очистить", "en":"clear" } },
+	{ id:"consumable_3-reset", text:{ "ru":"очистить", "en":"clear" } },
+	{ id:"consumable_4-reset", text:{ "ru":"очистить", "en":"clear" } },
+	{ id:"consumable_5-reset", text:{ "ru":"очистить", "en":"clear" } },
+	{ id:"hat-link", text:{ "ru":"ссылка", "en":"link" } },
+	{ id:"consumable_1-link", text:{ "ru":"ссылка", "en":"link" } },
+	{ id:"consumable_2-link", text:{ "ru":"ссылка", "en":"link" } },
+	{ id:"consumable_3-link", text:{ "ru":"ссылка", "en":"link" } },
+	{ id:"consumable_4-link", text:{ "ru":"ссылка", "en":"link" } },
+	{ id:"consumable_5-link", text:{ "ru":"ссылка", "en":"link" } },
+	{ id:"hat-link", text:{ "ru":"ссылка", "en":"link" } },
+	{ id:"tab-name-armor", text:{ "ru":"Броня", "en":"Armor" } },
+	{ id:"tab-name-melee", text:{ "ru":"Ближний бой", "en":"Melee" } },
+	{ id:"tab-name-pistol", text:{ "ru":"Пистолеты", "en":"Pistols" } },
+	{ id:"tab-name-smg", text:{ "ru":"ПП", "en":"SMG" } },
+	{ id:"tab-name-shotgun", text:{ "ru":"Дробовики", "en":"Shotguns" } },
+	{ id:"tab-name-assault-rifle", text:{ "ru":"Автоматы", "en":"Assault rifles" } },
+	{ id:"tab-name-sniper-rifle", text:{ "ru":"Снайперское", "en":"Sniper rifles" } },
+	{ id:"tab-name-machinegun", text:{ "ru":"Пулеметы", "en":"Machinegun" } },
+	{ id:"tab-name-launcher", text:{ "ru":"Взрывное", "en":"Launchers" } },
+	{ id:"tab-name-shield", text:{ "ru":"Щиты", "en":"Shields" } },
+	{ id:"tab-name-hat", text:{ "ru":"Шапки", "en":"Hats" } },
+	{ id:"tab-name-consumable", text:{ "ru":"Активки", "en":"Consumables" } }
+];
+
+function applyLocaleToInventory(locale) {
+	for (item of localizationData){
+		var id = item.id;
+		$("#" + id).html(item.text[locale]);
+	}
+}
 
 function slider_slide_handler(slot_name, event, ui) {
 	if ($.isEmptyObject(inventoryApp.slots[slot_name].item)) {
@@ -50,6 +87,7 @@ function autoEquipItem(itemId) {
 }
 $(document).ready(function(){
 	document.oncontextmenu = function() {return false;};
+	applyLocaleToInventory(inventoryApp.locale);
     $( "#armor-slider" ).slider({
       value:0,
       min: 0,
