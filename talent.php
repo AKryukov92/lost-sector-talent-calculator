@@ -1,7 +1,5 @@
 <?php
-function IsNullOrEmptyString($question) {
-	return (!isset($question) || trim($question)==='');
-}
+include "commons.php";
 if(!isset($_GET["id"]) && IsNullOrEmptyString($id)) {
 	print "talent is not specified";
 	return;
@@ -13,6 +11,12 @@ if (!isset($_GET["prefix"]) && IsNullOrEmptyString($id)) {
 $iframe = isset($_GET["iframe"]);
 $id = $_GET["id"];
 $prefix = $_GET["prefix"];
+
+if (isset($_GET["locale"])) {
+	$GLOBALS["locale"] = $_GET["locale"];
+} else {
+	$GLOBALS["locale"] = "ru";
+}
 
 if (isset($_GET["version"])) {
 	$version = $_GET["version"];
@@ -84,40 +88,40 @@ header("Content-Type: text/html; charset=utf-8");
 	<?php } ?>
 <h3><?php print $data["name"] ?></h3>
 <?php if (!isset($ranks)) {?>
-	<div class="entry"><span class="key"><span name="t-required">Требуется</span>:</span>
+	<div class="entry"><span class="key"><?php print Placeholder("t-required");?>:</span>
 		<?php if (isset($data["lvlreq"])) {?>
-			<span name="t-merc-level">Уровень бойца</span>&nbsp;<?php print $data["lvlreq"]?>
+			<?php print Placeholder("t-merc-level");?>&nbsp;<?php print $data["lvlreq"]?>
 		<?php } ?>
 		<?php if (isset($required_data["name"])) {?>
 			<?php print ", " . $required_data["name"]; ?>
 		<?php }?>
 	</div>
 	<?php if(isset($data["cost"])){?>
-		<div class="entry"><span class="key"><span name="t-cost">Стоимость</span>:</span> <?php print $data["cost"] ?> <span name="t-skill-points">очков навыков</span></div>
+		<div class="entry"><span class="key"><?php print Placeholder("t-cost");?>:</span> <?php print $data["cost"] ?> <?php print Placeholder("t-skill-points");?></div>
 	<?php } ?>
 <?php } ?>
 <?php if (isset($data["radius"])){?>
-	<div class="entry"><span class="key"><span name="t-radius">Радиус</span>:</span> <?php print $data["radius"]?></div>
+	<div class="entry"><span class="key"><?php print Placeholder("t-radius");?>:</span> <?php print $data["radius"]?></div>
 <?php }?>
 <?php if (isset($data["number_of_uses"])) { ?>
-	<div class="entry"><span class="key"><span name="t-number-of-uses">Число использований</span>:</span> <?php print $data["number_of_uses"]; ?></div>
+	<div class="entry"><span class="key"><?php print Placeholder("t-number-of-uses");?>:</span> <?php print $data["number_of_uses"]; ?></div>
 <?php } ?>
 <?php if (isset($data["AP_cost"])) {?>
-	<div class="entry"><span class="key"><span name="t-AP-cost">Затраты ОД</span>:</span> <?php print $data["AP_cost"] ?></div>
+	<div class="entry"><span class="key"><?php print Placeholder("t-AP-cost");?>:</span> <?php print $data["AP_cost"] ?></div>
 <?php } ?>
 <?php if (isset($data["description"])) {?>
-	<div class="entry"><span class="key"><span name="t-description">Описание</span>:</span> <?php print $data["description"] ?></div>
+	<div class="entry"><span class="key"><?php print Placeholder("t-description");?>:</span> <?php print $data["description"] ?></div>
 <?php } ?>
 <?php if (isset($ranks)) {
 	for ($i = 1; $i <= count($ranks); $i ++) {?>
-	<div><div class="attack-name"><span name="t-rank">Ранг</span> <?php print $i ?></div>
+	<div><div class="attack-name"><?php print Placeholder("t-rank");?> <?php print $i ?></div>
 		<?php if (isset($ranks[$i]["cost"])) {?>
-			<div class="entry"><span class="key"><span name="t-cost">Стоимость</span>:</span> <?php print $ranks[$i]["cost"] ?></div>
+			<div class="entry"><span class="key"><?php print Placeholder("t-cost");?>:</span> <?php print $ranks[$i]["cost"] ?></div>
 		<?php }?>
 		<?php if (isset($ranks[$i]["lvlreq"])) {?>
-			<div class="entry"><span class="key"><span name="t-required-level">Требуемый уровень</span>:</span> <?php print $ranks[$i]["lvlreq"] ?></div>
+			<div class="entry"><span class="key"><?php print Placeholder("t-required-level");?>:</span> <?php print $ranks[$i]["lvlreq"] ?></div>
 		<?php } ?>
-		<div  class="entry"><span class="key"><span name="t-effect">Эффект</span>:</span> <?php print $ranks[$i]["effect"];?></div>
+		<div  class="entry"><span class="key"><?php print Placeholder("t-effect");?>:</span> <?php print $ranks[$i]["effect"];?></div>
 	</div>
 	<?php }?>
 	</div>

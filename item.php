@@ -1,8 +1,5 @@
-﻿<?php 
-// Function for basic field validation (present and neither empty nor only white space
-function IsNullOrEmptyString($question){
-    return (!isset($question) || trim($question)==='');
-}
+﻿<?php
+include "commons.php";
 if (!isset($_GET["id"]) && IsNullOrEmptyString($id)) {
 	print "item is not specified";
 	return;
@@ -19,6 +16,11 @@ if (isset($_GET["color"])) {
 } else {
 	$color = "white";
 }
+if (isset($_GET["locale"])) {
+	$GLOBALS["locale"] = $_GET["locale"];
+} else {
+	$GLOBALS["locale"] = "ru";
+}
 
 if (isset($_GET["quality"])) {
 	$quality = $_GET["quality"];
@@ -26,9 +28,9 @@ if (isset($_GET["quality"])) {
 	$quality = 0;
 }
 if (isset($_GET["iframe"])) {
-	$iframe = true;
+	$GLOBALS["iframe"] = true;
 } else {
-	$iframe = false;
+	$GLOBALS["iframe"] = false;
 }
 
 $filecontent = file_get_contents($filename);

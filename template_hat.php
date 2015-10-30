@@ -9,49 +9,45 @@ header("Content-Type: text/html; charset=utf-8");
 	<meta charset="UTF-8">
 <link href="css/local.css" rel="stylesheet">
 <?php if (isset($data["name"])) { ?>
-	<title><?php print $data["name"];?></title>
+	<title><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]);?></title>
 <?php } ?>
 <head>
 <body style="margin:0px;">
 <div class="tooltip-content" style="overflow:auto;">
-	<?php if (!$iframe) {?>
+	<?php if (!$GLOBALS["iframe"]) {?>
 		<div class="tooltip-image-container" style="width:<?php print $ITEM_BOX_SIZE; ?>px;height:<?php print $ITEM_BOX_SIZE; ?>px;background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));">
 			<img src="images/items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
 		</div>
 	<?php } ?>
-	<div style="color:#ff7700;font-size:16pt;"><?php print $data["name"]; ?></div>
-	<div class="entry">Аватар</div>
-	<div class="entry"><span name="t-protection">Защита</span>: 5</div>
+	<div style="color:#ff7700;font-size:16pt;"><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]); ?></div>
+	<div class="entry"><?php print Placeholder("t-avatar");?></div>
+	<div class="entry"><?php print Placeholder("t-protection");?>: 5</div>
 	<?php if (isset($data["classreq"])) { ?>
-		<div class="entry"><span name="t-required-class">Требуемый класс</span>:
+		<div class="entry"><?php print Placeholder("t-required-class");?>:
 			<?php for ($i = 0; $i < count($data["classreq"]); $i++) { 
 				if ($i > 0) {
 					print ",";
 				}
 				if ($data["classreq"][$i] == "as") {
-					print "Штурмовик";
-					break;
+					print Placeholder("t-assault");
 				}
 				if ($data["classreq"][$i] == "sc"){
-					print "Скаут";
-					break;
+					print Placeholder("t-scout");
 				}
 				if ($data["classreq"][$i] == "ju") {
-					print "Джаггернаут";
-					break;
+					print Placeholder("t-juggernaut");
 				}
 				if ($data["classreq"][$i] == "su"){
-					print "Поддержка";
-					break;
+					print Placeholder("t-support");
 				}
 			} ?>
 		</div>
 	<?php } ?>
-	<?php if (isset($data["description"])) { ?>
-		<div style="color:gray;"><?php print $data["description"]; ?></div>
+	<?php if (isset($data["description"])) {?>
+		<div class="entry"><?php print GetLocalizedProperty($data, "description", $GLOBALS["locale"]); ?></div>
 	<?php } ?>
 </div>
-<?php if (!$iframe) { ?>
+<?php if (!$GLOBALS["iframe"]) { ?>
 <script src="js/analytics.js"></script>
 <?php } ?>
 </body>

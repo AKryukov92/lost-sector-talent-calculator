@@ -87,7 +87,13 @@ function InventoryModel(locale,data) {
 		if (!$.isEmptyObject(item) && typeof item.id != 'undefined'){
 			this.setGrade(slot_name, selected_quality);
 			$("#" + slot_name + "-name").text(this.getLocalizedProperty(item, "name"));
-			var link = "/item.php?id=" + item.id + "&color=" + selected_color + "&quality=" + selected_quality;
+			var link = "/item.php?"
+				+ "id=" + item.id
+				+ "&locale=" + this.locale;
+			if (item.category != "consumable" && item.category != "hat") {
+				link += "&color=" + selected_color
+					+ "&quality=" + selected_quality;
+			}
 			$("#" + slot_name + "-link").attr("href", link);
 			$("#" + slot_name + "-link").removeClass("grey-link white-link green-link blue-link").addClass(selected_color + "-link");
 			$("#" + slot_name + "-iframe").attr("src", link + "&iframe=true");
@@ -160,7 +166,7 @@ function InventoryModel(locale,data) {
 				"<div id=\"item_" + item.id + "\" class=\"swimmer-image-container\">" +
 					this.getImageForItem(item) +
 				"</div>" +
-				"<a href='javascript:autoEquipItem(" + item.id + ")' class=\"fake-tooltip\">" + item.name + "</a>" +
+				"<a id=\"item" + item.id + "name\" href='javascript:autoEquipItem(" + item.id + ")' class=\"fake-tooltip\">" + this.getLocalizedProperty(item, "name") + "</a>" +
 			"</div>");
 		$("#item_" + item.id).draggable({
 			containment:"document",
@@ -183,7 +189,14 @@ function InventoryModel(locale,data) {
 		}
 	};
 	this.applyLocale = function(locale) {
-		
+		this.locale = locale;
+		for (var i = 0; i < this.itemData.length; i++) {
+			var current = this.itemData[i];
+			$("#item" + current.id + "name").html(this.getLocalizedProperty(current, "name"));
+		}
+		for (slot in this.possible_slots){
+			this.updateSlotTooltip(slot);
+		}
 	};
 	this.fillAvailableItems = function(data){
 		this.itemData = data;

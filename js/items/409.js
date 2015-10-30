@@ -7,7 +7,7 @@
 	"classreq":["ju","sc"],
 	"id":409,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":100,
 		"cost":45,
@@ -18,7 +18,7 @@
 		"specials":[
 		{
 			"duration":1,
-			"effects":["Делит мобильность на 2"]
+			"effects":[{"ru":"Делит мобильность на 2","en":"Divides mobility by 2"}]
 		}]
 	}],
 	"ingredients":{
