@@ -20,24 +20,9 @@ switch($color) {
 if($data["category"] == "pistol" || $data["category"] == "melee" || $data["category"] == "smg") {
 	$category = "light";
 } else {
-	$category = "middle";
+	$category = "medium";
 }
-$talentreq_name = "";
-if (isset($data["talentreq"])) {
-	if (isset($data["classreq"])) {
-		$talentreq = $data["classreq"][0] . "/" . $data["talentreq"];
-	} else {
-		$talentreq = "as/" . $data["talentreq"];
-	}
-	$filename = "js/talents/" . $talentreq . ".js";
-	if (file_exists($filename)) {
-		$filecontent = file_get_contents($filename);
-		$talent = json_decode($filecontent, true);
-		if (json_last_error() == 0 && isset($talent["name"])) {
-			$talentreq_name = $talent["name"];
-		}
-	}
-}
+$talentreq_name = getRequiredTalentName($data);
 
 header("Content-Type: text/html; charset=utf-8");
 
@@ -48,9 +33,9 @@ header("Content-Type: text/html; charset=utf-8");
 	<meta charset="UTF-8">
 <link href="css/local.css" rel="stylesheet">
 <?php if (isset($data["name"])) { ?>
-	<title><?php print $data["name"];?></title>
+	<title><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]);?></title>
 <?php } ?>
-<?php if (!$iframe) { ?>
+<?php if (!$GLOBALS["iframe"]) { ?>
 	<link href="css/jquery-ui.css" rel="stylesheet">
 	<link href="css/local.css" rel="stylesheet">
 	<script>
@@ -62,66 +47,67 @@ header("Content-Type: text/html; charset=utf-8");
 </head>
 <body style="margin:0px;">
 <div class="tooltip-content" style="overflow:auto;width:300px;">
-	<?php if (!$iframe) {?>
+	<?php if (!$GLOBALS["iframe"]) {?>
 		<div class="tooltip-image-container" style="width:<?php print $ITEM_BOX_SIZE; ?>px;height:<?php print $ITEM_BOX_SIZE; ?>px;background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));">
 			<img src="images/items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
 		</div>
 	<?php } ?>
 	<div style="color:<?php print $colorname; ?>;font-size:16pt;">
-		<?php print $data["name"]; 
+		<?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]);
 			if ($quality != 0)
 			{ print " +".$quality; } ?>
 	</div>
 	<?php if ($category == "light") {?>
-		<div class="entry"><span name="t-light-weapon">Легкое оружие</span></div>
+		<div class="entry"><?php print Placeholder("t-light-weapon"); ?></div>
 	<?php } else { ?>
-		<div class="entry"><span name="t-medium-weapon">Среднее оружие</span></div>
+		<div class="entry"><?php print Placeholder("t-medium-weapon"); ?></div>
 	<?php } ?>
 	<?php if (isset($data["protection"])) {?>
-		<div class="entry"><span name="t-protection">Защита</span>: <?php print $data["protection"];?></div>
+		<div class="entry"><?php print Placeholder("t-protection"); ?>: <?php print $data["protection"];?></div>
 	<?php } ?>
 	<?php if (isset($data["mobility"])) {?>
-		<div class="entry"><span name="t-mobility">Мобильность</span>: <?php print $data["mobility"]; ?></div>
+		<div class="entry"><?php print Placeholder("t-mobility"); ?>: <?php print $data["mobility"]; ?></div>
 	<?php } ?>
 	<?php if (isset($data["clip"])) {?>
-		<div class="entry"><span name="t-clip-size">Размер магазина</span>: <?php print $data["clip"]; ?></div>
+		<div class="entry"><?php print Placeholder("t-clip"); ?>: <?php print $data["clip"]; ?></div>
 	<?php } ?>
 	<?php if (isset($data["ammo"])) {?>
-		<div class="entry"><span name="t-ammo">Кол-во боеприпасов</span>: <?php print $data["ammo"]; ?></div>
+		<div class="entry"><?php print Placeholder("t-ammo"); ?>: <?php print $data["ammo"]; ?></div>
 	<?php } ?>
 	<?php if (isset($data["reload_cost"])) {?>
-	<div class="entry"><span name="t-reload-cost">ОД для перезарядки</span>: <?php print $data["reload_cost"];?></div>
+		<div class="entry"><?php print Placeholder("t-reload-cost"); ?>: <?php print $data["reload_cost"];?></div>
 	<?php } ?>
 	<?php if (isset($data["lvlreq"])) {?>
-		<div class="entry"><span name="t-required-level">Необходимый уровень</span>: <?php if ($color == "gray") {
+		<div class="entry"><?php print Placeholder("t-required-level"); ?>:
+		<?php if ($color == "gray") {
 			print $data["lvlreq"] - 1;
 		} else {
 			print $data["lvlreq"];
 		}?></div>
 	<?php } ?>
 	<?php if (isset($data["classreq"])) { ?>
-		<div class="entry"><span name="t-required-class">Требуемый класс</span>:
+		<div class="entry"><?php print Placeholder("t-required-class"); ?>:
 			<?php for ($i = 0; $i < count($data["classreq"]); $i++) { 
 				if ($i > 0) {
 					print ", ";
 				}
 				if ($data["classreq"][$i] == "as") {
-					print "<span id='t-assault'>Штурмовик</span>";
+					print Placeholder("t-assault");
 				}
 				if ($data["classreq"][$i] == "sc"){
-					print "<span id='t-scout'>Скаут</span>";
+					print Placeholder("t-scout");
 				}
 				if ($data["classreq"][$i] == "ju") {
-					print "<span id='t-juggernaut'>Джаггернаут</span>";
+					print Placeholder("t-juggernaut");
 				}
 				if ($data["classreq"][$i] == "su"){
-					print "<span id='t-support'>Поддержка</span>";
+					print Placeholder("t-support");
 				}
 			} ?>
 		</div>
 	<?php } ?>
 	<?php if (isset($data["talentreq"])) {?>
-		<div class="entry"><span name="t-required-skill">Требуемый навык</span>: <?php print $talentreq_name; ?></div>
+		<div class="entry"><?php print Placeholder("t-required-skill"); ?>: <?php print $talentreq_name; ?> </div>
 	<?php } ?>
 	<?php if (isset($data["attacks"])) {
 		for($i = 0; $i < count($data["attacks"]); $i++) {
@@ -130,10 +116,10 @@ header("Content-Type: text/html; charset=utf-8");
 		}
 	} ?>
 	<?php if (isset($data["description"])) {?>
-		<div class="entry"><?php print $data["description"]; ?></div>
+		<div class="entry"><?php print GetLocalizedProperty($data, "description", $GLOBALS["locale"]); ?></div>
 	<?php } ?>
 </div>
-<?php if (!$iframe) { ?>
+<?php if (!$GLOBALS["iframe"]) { ?>
 	<div id="primary" class="tunable-item">
 		<div><a target="_blank" id="primary-link"><span id="primary-name"></span><span id="primary-value"></span></a></div>
 		<div style="overflow:auto;">
@@ -213,7 +199,7 @@ header("Content-Type: text/html; charset=utf-8");
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/utils.js"></script>
-<?php if (!$iframe) { ?>
+<?php if (!$GLOBALS["iframe"]) { ?>
 <script src="js/item_detail.js"></script>
 <script>
 	function update_link() {}

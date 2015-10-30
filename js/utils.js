@@ -118,58 +118,69 @@ function ApplicationLink(linkString) {
 	this.processParts();
 }
 
-var localizationData = [
-	{ id:"t-clear", text:{ "ru":"очистить", "en":"clear" } },
-	{ id:"t-armor", text:{ "ru":"Броня", "en":"Armor" } },
-	{ id:"t-melee", text:{ "ru":"Ближний бой", "en":"Melee" } },
-	{ id:"t-pistol", text:{ "ru":"Пистолеты", "en":"Pistols" } },
-	{ id:"t-smg", text:{ "ru":"ПП", "en":"SMG" } },
-	{ id:"t-shotgun", text:{ "ru":"Дробовики", "en":"Shotguns" } },
-	{ id:"t-assault-rifle", text:{ "ru":"Автоматы", "en":"Assault rifles" } },
-	{ id:"t-sniper-rifle", text:{ "ru":"Снайперское", "en":"Sniper rifles" } },
-	{ id:"t-machinegun", text:{ "ru":"Пулеметы", "en":"Machinegun" } },
-	{ id:"t-launcher", text:{ "ru":"Взрывное", "en":"Launchers" } },
-	{ id:"t-shield", text:{ "ru":"Щиты", "en":"Shields" } },
-	{ id:"t-hat", text:{ "ru":"Шапки", "en":"Hats" } },
-	{ id:"t-consumable", text:{ "ru":"Активки", "en":"Consumables" } },
-	{ id:"t-light-weapon", text:{ "ru":"Легкое оружие", "en":"Light weapon" } },
-	{ id:"t-medium-weapon", text:{ "ru":"Среднее оружие", "en":"Medium weapon" } },
-	{ id:"t-protection", text:{ "ru":"Защита", "en":"Protection" } },
-	{ id:"t-mobility", text:{ "ru":"Мобильность", "en":"Mobility" } },
-	{ id:"t-clip-size", text:{ "ru":"Размер магазина", "en":"Clip size" } },
-	{ id:"t-ammo", text:{ "ru":"Кол-во боеприпасов", "en":"Ammo" } },
-	{ id:"t-reload-cost", text:{ "ru":"ОД для перезарядки", "en":"Reload cost" } },
-	{ id:"t-required-level", text:{ "ru":"Необходимый уровень", "en":"Required level" } },
-	{ id:"t-required-class", text:{ "ru":"Необходимый класс", "en":"Required class" } },
-	{ id:"t-assault", text:{ "ru":"Штурмовик", "en":"Assault" } },
-	{ id:"t-scout", text:{ "ru":"Скаут", "en":"Scout" } },
-	{ id:"t-juggernaut", text:{ "ru":"Джаггернаут", "en":"Juggernaut" } },
-	{ id:"t-support", text:{ "ru":"Поддержка", "en":"Support" } },
-	{ id:"t-required-skill", text:{ "ru":"Требуемый навык", "en":"Required skill" } },
-	{ id:"t-active-item", text:{ "ru":"Активная вещь", "en":"Active item" } },
-	{ id:"t-required", text:{ "ru":"Необходимо", "en":"Required" } },
-	{ id:"t-AP", text:{ "ru":"ОД", "en":"\AP" } },
-	{ id:"t-link", text:{ "ru":"ссылка", "en":"link" } },
-	{ id:"t-level", text:{ "ru":"Уровень", "en":"Level" } },
-	{ id:"t-hide-tooltip", text:{ "ru":"Спрятать тултипы талантов", "en":"Hide talent tooltips" } },
-	{ id:"t-version", text:{ "ru":"Версия игры", "en":"Game version" } },
-	{ id:"t-merc-level", text:{ "ru":"Уровень бойца", "en":"Mercenary level" } },
-	{ id:"t-cost", text:{ "ru":"Стоимость", "en":"Cost" } },
-	{ id:"t-skill-points", text:{ "ru":"очков навыков", "en":"skill points" } },
-	{ id:"t-radius", text:{ "ru":"Радиус", "en":"Radius" } },
-	{ id:"t-number-of-uses", text:{ "ru":"Число использований", "en":"Number of uses" } },
-	{ id:"t-AP-cost", text:{ "ru":"Затраты ОД", "en":"AP cost" } },
-	{ id:"t-description", text:{ "ru":"Описание", "en":"Description" } },
-	{ id:"t-rank", text:{ "ru":"Ранг", "en":"Rank" } },
-	{ id:"t-effect", text:{ "ru":"Эффект", "en":"Effect" } }
-	// { id:"t-", text:{ "ru":"", "en":"" } }
-];
+var localizationData = {
+	't-clear':{ 'ru':'очистить', 'en':'clear' },
+	't-armor':{ 'ru':'Броня', 'en':'Armor' },
+	't-melee':{ 'ru':'Ближний бой', 'en':'Melee' },
+	't-pistol':{ 'ru':'Пистолеты', 'en':'Pistols' },
+	't-smg':{ 'ru':'ПП', 'en':'SMG' },
+	't-shotgun':{ 'ru':'Дробовики', 'en':'Shotguns' },
+	't-assault-rifle':{ 'ru':'Автоматы', 'en':'Assault rifles' },
+	't-sniper-rifle':{ 'ru':'Снайперское', 'en':'Sniper rifles' },
+	't-machinegun':{ 'ru':'Пулеметы', 'en':'Machinegun' },
+	't-launcher':{ 'ru':'Взрывное', 'en':'Launchers' },
+	't-shield':{ 'ru':'Щиты', 'en':'Shields' },
+	't-hat':{ 'ru':'Шапки', 'en':'Hats' },
+	't-consumable':{ 'ru':'Активки', 'en':'Consumables' },
+	't-light-weapon':{ 'ru':'Легкое оружие', 'en':'Light weapon' },
+	't-medium-weapon':{ 'ru':'Среднее оружие', 'en':'Medium weapon' },
+	't-protection':{ 'ru':'Защита', 'en':'Protection' },
+	't-mobility':{ 'ru':'Мобильность', 'en':'Mobility' },
+	't-clip':{ 'ru':'Размер магазина', 'en':'Clip' },
+	't-ammo':{ 'ru':'Кол-во боеприпасов', 'en':'Ammo' },
+	't-reload-cost':{ 'ru':'ОД для перезарядки', 'en':'Reload cost' },
+	't-required-level':{ 'ru':'Необходимый уровень', 'en':'Required level' },
+	't-required-class':{ 'ru':'Необходимый класс', 'en':'Required class' },
+	't-assault':{ 'ru':'Штурмовик', 'en':'Assault' },
+	't-scout':{ 'ru':'Скаут', 'en':'Scout' },
+	't-juggernaut':{ 'ru':'Джаггернаут', 'en':'Juggernaut' },
+	't-support':{ 'ru':'Поддержка', 'en':'Support' },
+	't-required-skill':{ 'ru':'Требуемый навык', 'en':'Required skill' },
+	't-active-item':{ 'ru':'Активная вещь', 'en':'Active item' },
+	't-required':{ 'ru':'Необходимо', 'en':'Required' },
+	't-AP':{ 'ru':'ОД', 'en':'AP' },
+	't-link':{ 'ru':'ссылка', 'en':'link' },
+	't-level':{ 'ru':'Уровень', 'en':'Level' },
+	't-hide-tooltip':{ 'ru':'Спрятать тултипы талантов', 'en':'Hide talent tooltips' },
+	't-version':{ 'ru':'Версия игры', 'en':'Game version' },
+	't-merc-level':{ 'ru':'Уровень бойца', 'en':'Mercenary level' },
+	't-cost':{ 'ru':'Стоимость', 'en':'Cost' },
+	't-skill-points':{ 'ru':'очков навыков', 'en':'skill points' },
+	't-radius':{ 'ru':'Радиус', 'en':'Radius' },
+	't-number-of-uses':{ 'ru':'Число использований', 'en':'Number of uses' },
+	't-AP-cost':{ 'ru':'Затраты ОД', 'en':'AP cost' },
+	't-description':{ 'ru':'Описание', 'en':'Description' },
+	't-rank':{ 'ru':'Ранг', 'en':'Rank' },
+	't-effect':{ 'ru':'Эффект', 'en':'Effect' },
+	't-medkit':{ 'ru':'Аптечка', 'en':'Medkit' },
+	't-steroid':{ 'ru':'Стимулятор', 'en':'Steroid' },
+	't-gear':{ 'ru':'Оборудование', 'en':'Gear' },
+	't-grenade':{ 'ru':'Граната', 'en':'Grenade' },
+	't-damage':{ 'ru':'Урон', 'en':'Damage' },
+	't-melee-damage':{ 'ru':'от удара', 'en':'melee' },
+	't-soft-bullet-damage':{ 'ru':'мягкими пулями', 'en':'soft bullets' },
+	't-bullet-damage':{ 'ru':'пулями', 'en':'bullets' },
+	't-shot-damage':{ 'ru':'дробью', 'en':'shot' },
+	't-high-caliber-damage':{ 'ru':'крупным калибром', 'en':'high caliber' },
+	't-explosion-damage':{ 'ru':'взрывом', 'en':'explosion' },
+	't-acid-damage':{ 'ru':'кислотой', 'en':'acid' },
+	't-fire-damage':{ 'ru':'огнем', 'en':'fire' }
+	};
 
 function applyLocaleToInterface(locale) {
-	for (item of localizationData){
-		var id = item.id;
-		$("[name=" + id + "]").each(function(){
-			$(this).html(item.text[locale]);
+	for (var key in localizationData){
+		$("[name=" + key + "]").each(function(){
+			$(this).html(localizationData[key][locale]);
 		});
 	}
 }
@@ -187,13 +198,10 @@ function getLocale() {
 function applyLocale(){
 	var locale = getLocale();
 	applyLocaleToInterface(locale);
-	if (inventoryApp != "undefined") {
+	if (typeof inventoryApp != "undefined") {
 		inventoryApp.applyLocale(locale);
-		for (slot in inventoryApp.possible_slots){
-			inventoryApp.updateSlotTooltip(slot);
-		}
 	}
-	if (talentApplication != "undefined") {
+	if (typeof talentApplication != "undefined") {
 		talentApplication.applyLocale(locale);
 		refreshTalentTooltipIframe(talentApplication);
 	}

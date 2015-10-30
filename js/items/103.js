@@ -1,6 +1,6 @@
 {
 	"id":103,
-	"name":"Большая инъекция ребиса",
+	"name":{"ru":"Большая инъекция ребиса","en":"Rebis injection large"},
 	"consumable_type":1,
 	"category":"consumable",
 	"description":"Восстанавливает 55 очков здоровья",

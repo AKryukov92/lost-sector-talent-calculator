@@ -3,28 +3,28 @@ $typename = "";
 if (isset($attack["type"])) {
 	switch($attack["type"]) {
 		case 1:
-			$typename = "от удара";
+			$typename = Placeholder("t-melee-damage");
 			break;
 		case 2:
-			$typename = "мягкими пулями";
+			$typename = Placeholder("t-soft-bullet-damage");
 			break;
 		case 3:
-			$typename = "пулями";
+			$typename = Placeholder("t-bullet-damage");
 			break;
 		case 4:
-			$typename = "дробью";
+			$typename = Placeholder("t-shot-damage");
 			break;
 		case 5:
-			$typename = "крупным калибром";
+			$typename = Placeholder("t-high-caliber-damage");
 			break;
 		case 6:
-			$typename = "взрывом";
+			$typename = Placeholder("t-explosion-damage");
 			break;
 		case 8:
-			$typename = "кислотой";
+			$typename = Placeholder("t-acid-damage");
 			break;
 		case 9:
-			$typename = "огнем";
+			$typename = Placeholder("t-fire-damage");
 			break;
 		default:
 			$typename = $attack["type"];
@@ -40,9 +40,9 @@ if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {
 }
 ?>
 <div class="attack">
-<h3><?php print $attack["name"]; ?></h3>
+<h3><?php print GetLocalizedProperty($attack, "name", $GLOBALS["locale"]); ?></h3>
 <?php if (!IsNullOrEmptyString($typename)) { ?>
-	<div class="entry"> Урон <?php print $typename; ?></div>
+	<div class="entry"> <?php print Placeholder("t-damage"); ?> <?php print $typename; ?></div>
 <?php } ?>
 <div class="entry">
 <?php if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {?>
@@ -81,7 +81,7 @@ if (isset($attack["min_damage"]) && isset($attack["max_damage"])) {
 	<div class="attack_property">
 	<?php print $attack["cost"]; ?>
 	</div>
-	<div class="attack_property" style="color:#80bb80;font-size:8pt;margin:4px;"> ОД
+	<div class="attack_property" style="color:#80bb80;font-size:8pt;margin:4px;"> <?php print Placeholder("t-AP"); ?>
 	</div>
 <?php } ?>
 <?php if (isset($attack["min_dist"]) && isset($attack["max_dist"])) { ?>

@@ -68,15 +68,18 @@ toggleTalentTooltip();
 function updateTalentTooltip(controller) {
 	if (typeof controller.recentItem != 'undefined') {
 		if (controller.recentItem.base().id != recentId) {
+			recentId = controller.recentItem.base().id;
 			refreshTalentTooltipIframe(controller);
 		}
 	}
 }
 function refreshTalentTooltipIframe(controller){
-	recentId = controller.recentItem.base().id;
-	$("#talent-iframe").attr("src", "/talent.php?id=" + controller.recentItem.base().id +
-		"&prefix=" + controller.activeClass.prefix +
-		"&iframe=true&version=" + $("#selVersion").val());
+	if (typeof controller.recentItem != 'undefined') {
+		$("#talent-iframe").attr("src", "/talent.php?id=" + controller.recentItem.base().id
+		+ "&locale=" + getLocale()
+		+ "&prefix=" + controller.activeClass.prefix
+		+ "&iframe=true&version=" + $("#selVersion").val());
+	}
 }
 function processTalentData(data) {
 	talentApplication.init(data);
