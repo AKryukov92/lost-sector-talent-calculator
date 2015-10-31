@@ -1,13 +1,16 @@
 {
 	"id":514,
-	"name":"Связка гранат",
+	"name":{
+		"ru":"Связка гранат",
+		"en":"Double Grenade"
+	},
 	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":6,
 	"talentreq":25,
 	"classreq":["as","ju"],
 	"attacks":[{
-		"name":"Бросок",
+		"name":{"ru":"Бросок","en":"Throw"},
 		"type":6,
 		"accuracy":45,
 		"radius":5,

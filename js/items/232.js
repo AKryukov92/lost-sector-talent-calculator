@@ -1,7 +1,13 @@
 {
-	"name":"Маска-флаг 'Швейцария",
+	"name":{
+		"ru":"Маска-флаг 'Швейцария",
+		"en":"Vanguard Switzerland Mask"
+	},
 	"category":"hat",
-	"description":"Покупается отдельно за 30 голд",
+	"description":{
+		"ru":"Покупается отдельно за 30 голд",
+		"en":"You can buy it for 30 gold"
+	},
 	"protection":5,
 	"lvlreq":5,
 	"id":232

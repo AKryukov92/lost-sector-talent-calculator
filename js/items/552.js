@@ -9,7 +9,7 @@
 	"lvlreq":12,
 	"id":552,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":35,
@@ -18,7 +18,7 @@
 		"min_damage":8,
 		"max_damage":35
 	},{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":3,
 		"accuracy":47,
 		"cost":32,
@@ -28,7 +28,7 @@
 		"min_damage":35,
 		"max_damage":60
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
 		"accuracy":67,
 		"cost":40,

@@ -1,9 +1,15 @@
 {
 	"id":476,
-	"name":"Противопехотная мина",
+	"name":{
+		"ru":"Противопехотная мина",
+		"en":"Land Mine"
+	},
 	"category":"consumable",
 	"consumable_type":3,
-	"description":"Боевая противопехотная мина. Подрывается при любой активности в радиусе 1м, нанося 90-120 повреждений взрывом в области 4м",
+	"description":{
+		"ru":"Боевая противопехотная мина. Подрывается при любой активности в радиусе 1м, нанося 90-120 повреждений взрывом в области 4м",
+		"en":"Combat anti-personnel mine. Explodes in any activity within radius 1m, dealing 90-120 damage by explosion in 4m area."
+	},
 	"lvlreq":8,
 	"talentreq":15,
 	"classreq":["as","su"],

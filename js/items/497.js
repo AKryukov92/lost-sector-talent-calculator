@@ -10,7 +10,7 @@
 	"classreq":["ju"],
 	"id":497,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +19,7 @@
 		"min_damage":30,
 		"max_damage":40
 	},{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
 		"min_damage":95,
 		"max_damage":108,
@@ -29,7 +29,7 @@
 		"min_dist":18,
 		"max_dist":45
 	},{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":5,
 		"min_damage":188,
 		"max_damage":209,

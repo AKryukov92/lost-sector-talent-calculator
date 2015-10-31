@@ -1,5 +1,8 @@
 {
-	"name":"Дробовик Шарк",
+	"name":{
+		"ru":"Дробовик Шарк",
+		"en":"Shark Shotgun"
+	},
 	"category":"shotgun",
 	"mobility":85,
 	"clip":3,
@@ -8,7 +11,7 @@
 	"lvlreq":4,
 	"id":423,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"min_damage":20,
 		"max_damage":30,
@@ -17,7 +20,7 @@
 		"min_dist":0,
 		"max_dist":1.5
 	},{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":4,
 		"min_damage":63,
 		"max_damage":89,

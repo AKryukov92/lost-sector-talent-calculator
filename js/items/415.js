@@ -1,10 +1,13 @@
 {
-	"name":"Разводной ключ",
+	"name":{
+		"ru":"Разводной ключ",
+		"en":"Wrench"
+	},
 	"category":"melee",
 	"mobility":95,
 	"id":415,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":100,
 		"cost":50,

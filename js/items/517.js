@@ -3,23 +3,23 @@
 	"category":"assault_rifle",
 	"mobility":77,
 	"clip":20,
-	"ammo":40,
+	"ammo":60,
 	"reload_cost":20,
 	"lvlreq":10,
 	"talentreq":22,
 	"classreq":["as"],
 	"id":517,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
+		"min_damage":20,
+		"max_damage":30,
 		"accuracy":90,
 		"cost":45,
 		"min_dist":0,
-		"max_dist":1.5,
-		"min_damage":20,
-		"max_damage":30
+		"max_dist":1.5
 	},{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
 		"min_damage":55,
 		"max_damage":64,
@@ -29,7 +29,7 @@
 		"min_dist":14,
 		"max_dist":32
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
 		"min_damage":81,
 		"max_damage":92,

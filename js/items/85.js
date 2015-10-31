@@ -1,16 +1,22 @@
 {
 	"id":85,
-	"name":"Малая инъекция 'Церера'",
+	"name":{
+		"ru":"Малая инъекция 'Церера'",
+		"en":"Ceres Light Shot"
+	},
 	"category":"consumable",
 	"consumable_type":2,
-	"description":"Тип: Адреналиновые",
+	"description":{"ru":"Тип: Адреналиновые","en":"Type:Adrenalin"},
 	"lvlreq":4,
 	"talentreq":35,
 	"AP_cost":30,
 	"specials":[
 	{
 		"duration":1,
-		"effects":["Увеличивает максимум очков действия на 30"]
+		"effects":[{
+			"ru":"Увеличивает максимум очков действия на 30",
+			"en":"Increases maximum of action points for 30"
+		}]
 	}],
 	"ingredients":{
 		"bio":3,

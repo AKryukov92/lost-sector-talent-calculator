@@ -7,7 +7,7 @@
 	"reload_cost":25,
 	"id":493,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":40,
@@ -16,7 +16,7 @@
 		"min_damage":10,
 		"max_damage":25
 	},{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":2,
 		"accuracy":41,
 		"cost":30,

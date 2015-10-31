@@ -1,7 +1,13 @@
 {
-	"name":"Шлем штурмовика",
+	"name":{
+		"ru":"Шлем штурмовика",
+		"en":"Commando Helmet"
+	},
 	"category":"hat",
-	"description":"Входит в состав наборов брони для штурмовика за голд или платину",
+	"description":{
+		"ru":"Входит в состав наборов брони для штурмовика за голд или платину",
+		"en":"Part of any Commando Class armor set"
+	},
 	"protection":5,
 	"lvlreq":5,
 	"classreq":["as"],

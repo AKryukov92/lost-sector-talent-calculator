@@ -1,9 +1,9 @@
 {
 	"id":24,
-	"name":"Инъекция 'Церера'",
+	"name":{"ru":"Инъекция 'Церера'","en":"Ceres Medium Shot"},
 	"category":"consumable",
 	"consumable_type":2,
-	"description":"Тип: Адреналиновые",
+	"description":{"ru":"Тип: Адреналиновые","en":"Type:Adrenalin"},
 	"lvlreq":4,
 	"talentreq":35,
 	"AP_cost":35,

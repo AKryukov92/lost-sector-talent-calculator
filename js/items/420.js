@@ -1,12 +1,15 @@
 {
 	"id":420,
-	"name":"Осколочная граната",
+	"name":{
+		"ru":"Осколочная граната",
+		"en":"Stun Grenade"
+	},
 	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":3,
 	"talentreq":4,
 	"attacks":[{
-		"name":"Бросок",
+		"name":{"ru":"Бросок","en":"Throw"},
 		"type":6,
 		"accuracy":50,
 		"radius":4,

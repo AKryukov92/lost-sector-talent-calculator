@@ -1,11 +1,14 @@
 {
-	"name":"Бейсбольная бита",
+	"name":{
+		"ru":"Бейсбольная бита",
+		"en":"Baseball Bat"
+	},
 	"category":"melee",
 	"mobility":90,
 	"lvlreq":2,
 	"id":413,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":100,
 		"cost":45,

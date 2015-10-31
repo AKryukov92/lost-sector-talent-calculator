@@ -1,7 +1,13 @@
 {
-	"name":"VG пистолет",
+	"name":{
+		"ru":"VG пистолет",
+		"en":"VG Pistol"
+	},
 	"category":"pistol",
-	"description":"Тяжёлый пистолет вангардов. С этого начинался Lost sector.",
+	"description":{
+		"ru":"Тяжёлый пистолет вангардов. С этого начинался Lost sector.",
+		"en":"Heavy Vanguard pistol. This is what Lost Sector was beginning with."
+	},
 	"mobility":92,
 	"clip":5,
 	"ammo":15,
@@ -11,7 +17,7 @@
 	"talentreq":6,
 	"classreq":["as","sc"],
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":35,
@@ -20,7 +26,7 @@
 		"min_damage":10,
 		"max_damage":40
 	},{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":3,
 		"accuracy":43,
 		"cost":32,
@@ -30,7 +36,7 @@
 		"min_damage":37,
 		"max_damage":58
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
 		"accuracy":67,
 		"cost":50,

@@ -10,7 +10,7 @@
 	"classreq":["su"],
 	"id":466,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +19,7 @@
 		"min_damage":25,
 		"max_damage":40
 	},{
-		"name":"Запуск",
+		"name":{"ru":"Запуск","en":"Launch"},
 		"type":6,
 		"accuracy":45,
 		"radius":6,

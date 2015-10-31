@@ -1,5 +1,8 @@
 {
-	"name":"Легкая броня вангардов III",
+	"name":{
+		"ru":"Легкая броня вангардов III",
+		"en":"Vanguard Light Armor III"
+	},
 	"category":"armor",
 	"id":437,
 	"protection":55,

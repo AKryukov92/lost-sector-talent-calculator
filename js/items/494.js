@@ -8,7 +8,7 @@
 	"lvlreq":3,
 	"id":494,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":40,
@@ -17,7 +17,7 @@
 		"min_damage":10,
 		"max_damage":25
 	},{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":2,
 		"accuracy":43,
 		"cost":30,

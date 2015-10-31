@@ -6,7 +6,7 @@
 	"lvlreq":3,
 	"talentreq":4,
 	"attacks":[{
-		"name":"Бросок",
+		"name":{"ru":"Бросок","en":"Throw"},
 		"type":6,
 		"accuracy":50,
 		"radius":2,
@@ -18,7 +18,10 @@
 		"specials":[
 		{
 			"duration":1,
-			"effects":["Уменьшает максимум очков действия на 40"]
+			"effects":[{
+				"ru":"Уменьшает максимум очков действия на 40",
+				"en":"Decreases maximum of action points for 40"
+			}]
 		}]
 	}],
 	"ingredients":{

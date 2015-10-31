@@ -1,7 +1,13 @@
 {
-	"name":"Шлем джаггернаута",
+	"name":{
+		"ru":"Шлем джаггернаута",
+		"en":"Juggernaut helmet"
+	},
 	"category":"hat",
-	"description":"Входит в состав наборов брони для джаггернаута за голд или платину",
+	"description":{
+		"ru":"Входит в состав наборов брони для джаггернаута за голд или платину",
+		"en":"Part of any Juggernaut class armor set."
+	},
 	"protection":5,
 	"lvlreq":5,
 	"classreq":["ju"],

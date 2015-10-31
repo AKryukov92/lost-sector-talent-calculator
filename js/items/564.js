@@ -1,11 +1,14 @@
 {
 	"id":564,
-	"name":"Святая ручная граната",
+	"name":{
+		"ru":"Святая ручная граната",
+		"en":"Holy Hand Grenade"
+	},
 	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":10,
 	"attacks":[{
-		"name":"Бросок",
+		"name":{"ru":"Бросок","en":"Throw"},
 		"type":6,
 		"radius":6,
 		"accuracy":50,

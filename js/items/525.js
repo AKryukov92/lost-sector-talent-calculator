@@ -1,5 +1,8 @@
 {
-	"name":"Сигнальная ракетница",
+	"name":{
+		"ru":"Сигнальная ракетница",
+		"en":"Flare Gun"
+	},
 	"category":"pistol",
 	"mobility":100,
 	"clip":1,
@@ -7,7 +10,7 @@
 	"reload_cost":45,
 	"id":525,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":40,
@@ -16,7 +19,7 @@
 		"min_damage":10,
 		"max_damage":25
 	},{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":2,
 		"accuracy":52,
 		"cost":50,
@@ -27,10 +30,13 @@
 		"max_damage":62,
 		"specials":[{
 			"duration":3,
-			"effects":[
-				"Наносит 14 ед. повреждения каждый раунд.",
-				"Уменьшает эффективность лечения на 30%"
-			]
+			"effects":[{
+				"ru":"Наносит 14 ед. повреждения каждый раунд.",
+				"en":"Causes 14 damage each round"
+			},{
+				"ru":"Уменьшает эффективность лечения на 30%",
+				"en":"Decreases healing effectiveness for 30%"
+			}]
 		}]
 	}],
 	"ingredients":0

@@ -1,9 +1,15 @@
 {
 	"id":600,
-	"name":"Инфракраская камера",
+	"name":{
+		"ru":"Инфракраская камера",
+		"en":"Infrared Camera"
+	},
 	"category":"consumable",
 	"consumable_type":3,
-	"description":"Камера с углом обзора в 360 градусов. Обнаруживает противника, а также скрытые объекты в зоне прямой видимости.",
+	"description":{
+		"ru":"Камера с углом обзора в 360 градусов. Обнаруживает противника, а также скрытые объекты в зоне прямой видимости.",
+		"en":"Detects enemy and concealed objects in the line-of-sight"
+	},
 	"lvlreq":7,
 	"talentreq":18,
 	"classreq":["sc","su"],

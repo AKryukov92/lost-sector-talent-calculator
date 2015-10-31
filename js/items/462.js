@@ -10,34 +10,34 @@
 	"classreq":["sc"],
 	"id":462,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
+		"min_damage":20,
+		"max_damage":35,
 		"accuracy":90,
 		"cost":45,
 		"min_dist":0,
-		"max_dist":2,
-		"min_damage":20,
-		"max_damage":35
+		"max_dist":2
 	},{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
-		"accuracy":76,
-		"cost":60,
-		"min_dist":18,
-		"max_dist":45,
-		"bullets":1,
 		"min_damage":60,
-		"max_damage":97
+		"max_damage":97,
+		"accuracy":59,
+		"bullets":1,
+		"cost":50,
+		"min_dist":17,
+		"max_dist":40
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":5,
+		"min_damage":90,
+		"max_damage":127,
 		"accuracy":76,
+		"bullets":1,
 		"cost":60,
 		"min_dist":18,
-		"max_dist":45,
-		"bullets":1,
-		"min_damage":90,
-		"max_damage":127
+		"max_dist":45
 	}],
 	"ingredients":{
 		"light_metals":28,

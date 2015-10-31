@@ -1,5 +1,8 @@
 {
-	"name":"РПД",
+	"name":{
+		"ru":"РПД",
+		"en":"RPD"
+	},
 	"category":"machinegun",
 	"mobility":59,
 	"clip":75,
@@ -10,7 +13,7 @@
 	"classreq":["ju"],
 	"id":460,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +22,7 @@
 		"min_damage":30,
 		"max_damage":40
 	},{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
 		"min_damage":100,
 		"max_damage":130,
@@ -29,7 +32,7 @@
 		"min_dist":15,
 		"max_dist":45
 	},{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":5,
 		"min_damage":205,
 		"max_damage":255,

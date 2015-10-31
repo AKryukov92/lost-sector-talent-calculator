@@ -1,9 +1,15 @@
 {
 	"id":481,
-	"name":"Радар",
+	"name":{
+		"ru":"Радар",
+		"en":"Radar"
+	},
 	"category":"consumable",
 	"consumable_type":3,
-	"description":"Легкий радар для обнаружения активности противника, скрытых объектов в радиусе 10м",
+	"description":{
+		"ru":"Легкий радар для обнаружения активности противника, скрытых объектов в радиусе 10м",
+		"en":"Simple radar. Can detect enemy activity and concealed objects in 10m area"
+	},
 	"lvlreq":6,
 	"talentreq":5,
 	"classreq":["sc","su"],

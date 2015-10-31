@@ -1,12 +1,15 @@
 {
 	"id":421,
-	"name":"Световая граната",
+	"name":{
+		"ru":"Световая граната",
+		"en":"Flash Grenade"
+	},
 	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":3,
 	"talentreq":4,
 	"attacks":[{
-		"name":"Бросок",
+		"name":{"ru":"Бросок","en":"Throw"},
 		"accuracy":50,
 		"radius":5,
 		"cost":40,
@@ -15,7 +18,10 @@
 		"specials":[
 		{
 			"duration":1,
-			"effects":["Устанавливает дальность зрения равным 5"]
+			"effects":[{
+				"ru":"Устанавливает дальность зрения равным 5",
+				"en":"Sets sight range equal to 5"
+			}]
 		}]
 	}],
 	"ingredients":{

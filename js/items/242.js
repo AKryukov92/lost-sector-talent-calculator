@@ -1,7 +1,13 @@
 {
-	"name":"Шлем 'Страж'",
+	"name":{
+		"ru":"Шлем 'Страж'",
+		"en":"Peacekeeper Helmet"
+	},
 	"category":"hat",
-	"description":"Покупается отдельно за 100 голд",
+	"description":{
+		"ru":"Покупается отдельно за 120 голд",
+		"en":"You can buy it for 120 gold"
+	},
 	"protection":5,
 	"lvlreq":5,
 	"id":242

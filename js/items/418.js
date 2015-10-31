@@ -1,14 +1,17 @@
 {
-	"name":"Топор",
+	"name":{
+		"ru":"Топор",
+		"en":"Axe"
+	},
 	"category":"melee",
 	"type":1,
-	"mobility":82,
+	"mobility":84,
 	"lvlreq":7,
 	"talentreq":7,
 	"classreq":["ju","sc"],
 	"id":418,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":100,
 		"cost":45,

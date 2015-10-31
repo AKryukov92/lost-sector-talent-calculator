@@ -1,11 +1,14 @@
 {
-	"name":"Боевой нож",
+	"name":{
+		"ru":"Боевой нож",
+		"en":"Combat Knife"
+	},
 	"category":"melee",
 	"mobility":100,
 	"lvlreq":5,
 	"id":417,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":100,
 		"cost":30,

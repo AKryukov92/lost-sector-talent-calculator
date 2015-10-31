@@ -1,9 +1,15 @@
 {
 	"id":87,
-	"name":"Средняя инъекция ребиса",
+	"name":{
+		"ru":"Средняя инъекция ребиса",
+		"en":"Heal Injection Medium"
+	},
 	"category":"consumable",
 	"consumable_type":1,
-	"description":"Восстанавливает 40 очков здоровья",
+	"description":{
+		"ru":"Восстанавливает 40 очков здоровья",
+		"en":"Restores 40 HP"
+	},
 	"lvlreq":4,
 	"talentreq":2,
 	"AP_cost":15,
