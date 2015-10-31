@@ -1,5 +1,8 @@
 {
-	"name":"Шит",
+	"name":{
+		"ru":"Шит",
+		"en":"Shield"
+	},
 	"category":"shield",
 	"mobility":72,
 	"protection":60,

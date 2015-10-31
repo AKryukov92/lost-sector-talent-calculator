@@ -9,7 +9,7 @@
 	"id":402,
 	"attacks":[
 	{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +19,7 @@
 		"max_damage":30
 	},
 	{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
 		"accuracy":64,
 		"cost":45,
@@ -30,7 +30,7 @@
 		"max_damage":51
 	},
 	{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
 		"accuracy":71,
 		"cost":55,

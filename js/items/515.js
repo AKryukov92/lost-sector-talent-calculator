@@ -1,13 +1,16 @@
 {
 	"id":515,
-	"name":"Граната Ф-1",
+	"name":{
+		"ru":"Граната Ф-1",
+		"en":"F-1 Grenade"
+	},
 	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":8,
 	"talentreq":25,
 	"classreq":["as","ju"],
 	"attacks":[{
-		"name":"Бросок",
+		"name":{"ru":"Бросок","en":"Throw"},
 		"type":6,
 		"accuracy":50,
 		"radius":5,

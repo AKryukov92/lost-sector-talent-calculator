@@ -1,5 +1,8 @@
 {
-	"name":"Дубинка-шокер",
+	"name":{
+		"ru":"Дубинка-шокер",
+		"en":"Shock-Baton"
+	},
 	"category":"melee",
 	"mobility":95,
 	"lvlreq":6,
@@ -18,7 +21,10 @@
 		"specials":[
 		{
 			"duration":1,
-			"effects":[{"ru":"Делит мобильность на 2","en":"Divides mobility by 2"}]
+			"effects":[{
+				"ru":"Делит мобильность на 2",
+				"en":"Divides mobility by 2"
+			}]
 		}]
 	}],
 	"ingredients":{

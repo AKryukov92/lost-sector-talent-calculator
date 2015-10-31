@@ -1,5 +1,8 @@
 {
-	"name":"Дробовик Ремингтон M870",
+	"name":{
+		"ru":"Дробовик Ремингтон M870",
+		"en":"Remington M870 Shotgun"
+	},
 	"category":"shotgun",
 	"mobility":85,
 	"clip":3,
@@ -9,7 +12,7 @@
 	"id":401,
 	"attacks":[
 	{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"min_damage":20,
 		"max_damage":30,
@@ -19,7 +22,7 @@
 		"max_dist":1.5
 	},
 	{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":4,
 		"min_damage":56,
 		"max_damage":79,

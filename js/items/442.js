@@ -1,5 +1,8 @@
 {
-	"name":"СВД",
+	"name":{
+		"ru":"СВД",
+		"en":"SVD (Dragunov)"
+	},
 	"category":"sniper_rifle",
 	"mobility":66,
 	"clip":5,
@@ -10,7 +13,7 @@
 	"classreq":["sc"],
 	"id":442,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +22,7 @@
 		"min_damage":20,
 		"max_damage":35
 	},{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
 		"accuracy":65,
 		"cost":50,
@@ -29,7 +32,7 @@
 		"min_damage":68,
 		"max_damage":87
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":5,
 		"accuracy":74,
 		"cost":70,

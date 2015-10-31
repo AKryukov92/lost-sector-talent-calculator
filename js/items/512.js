@@ -1,13 +1,16 @@
 {
 	"id":512,
-	"name":"Ребис граната А (Активный Ребис)",
+	"name":{
+		"ru":"Ребис граната А (Активный Ребис)",
+		"en":"Rebis Grenade A (Active Rebis)"
+	},
 	"category":"consumable",
 	"consumable_type":3,
 	"lvlreq":5,
 	"talentreq":3,
 	"classreq":["sc","su"],
 	"attacks":[{
-		"name":"Бросок",
+		"name":{"ru":"Бросок","en":"Throw"},
 		"type":6,
 		"accuracy":50,
 		"radius":6,
@@ -16,10 +19,16 @@
 		"max_dist":15,
 		"specials":[{
 			"duration":0,
-			"effects":["Увеличивает текущее здоровье на 30"]
+			"effects":[{
+				"ru":"Увеличивает текущее здоровье на 30",
+				"en":"Increases current health for 30"
+			}]
 		},{
 			"duration":1,
-			"effects":["Увеличивает текущее здоровье на 30"]
+			"effects":[{
+				"ru":"Увеличивает текущее здоровье на 30",
+				"en":"Increases current health for 30"
+			}]
 		}]
 	}],
 	"ingredients":{

@@ -1,5 +1,8 @@
 {
-	"name":"Средняя броня вангардов III",
+	"name":{
+		"ru":"Средняя броня вангардов III",
+		"en":"Vanguard Medium Armor III"
+	},
 	"category":"armor",
 	"id":469,
 	"protection":80,

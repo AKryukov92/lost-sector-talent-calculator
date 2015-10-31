@@ -1,5 +1,8 @@
 {
-	"name":"Рино",
+	"name":{
+		"ru":"Рино",
+		"en":"Rhino"
+	},
 	"category":"launcher",
 	"mobility":56,
 	"clip":1,
@@ -10,7 +13,7 @@
 	"classreq":["su"],
 	"id":549,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +22,7 @@
 		"min_damage":25,
 		"max_damage":39.8
 	},{
-		"name":"Запуск",
+		"name":{"ru":"Запуск","en":"Launch"},
 		"type":6,
 		"accuracy":47,
 		"radius":6,

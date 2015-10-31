@@ -1,5 +1,8 @@
 {
-	"name":"АК 47 золотой",
+	"name":{
+		"ru":"АК 47 золотой",
+		"en":"AK 47 Golden"
+	},
 	"category":"assault_rifle",
 	"mobility":77,
 	"clip":30,
@@ -7,11 +10,14 @@
 	"reload_cost":25,
 	"lvlreq":8,
 	"talentreq":22,
-	"description":"Лучше чем у Саддама",
+	"description":{
+		"ru":"Лучше чем у Саддама",
+		"en":"Better than Saddam had"
+	},
 	"classreq":["as"],
 	"id":522,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -20,7 +26,7 @@
 		"min_damage":20,
 		"max_damage":30
 	},{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
 		"accuracy":54,
 		"cost":40,
@@ -30,7 +36,7 @@
 		"min_damage":54,
 		"max_damage":85
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
 		"accuracy":62,
 		"cost":60,

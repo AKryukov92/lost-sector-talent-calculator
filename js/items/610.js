@@ -1,12 +1,18 @@
 {
 	"id":610,
-	"name":"Генератор инфразвука",
+	"name":{
+		"ru":"Генератор инфразвука",
+		"en":"Infrasound generator"
+	},
 	"category":"consumable",
 	"consumable_type":4,
-	"description":"Метательный прибор. Заряжается 1 раунд, после чего испускает импульс, вызывающий чувство страха у окружающих. Страх лишает всех очков действия и добавляет 100 очков движения. Действует сквозь препятствия. Не действует на мобов.",
+	"description":{
+		"ru":"Метательный прибор. Заряжается 1 раунд, после чего испускает импульс, вызывающий чувство страха у окружающих. Страх лишает всех очков действия и добавляет 100 очков движения. Действует сквозь препятствия. Не действует на мобов.",
+		"en":"Throwing device. Charges 1 round, after which emits an impulse, causing all the surrounding to feel fear. The fear deprives all the action points and grants 100 movement points. Affects through obstacles. Doesn't affect mobs."
+	},
 	"lvlreq":10,
 	"attacks":[{
-		"name":"Бросок",
+		"name":{"ru":"Бросок","en":"Throw"},
 		"radius":7,
 		"accuracy":90,
 		"cost":40,

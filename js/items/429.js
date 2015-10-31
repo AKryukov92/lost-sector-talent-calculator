@@ -10,7 +10,7 @@
 	"classreq":["as"],
 	"id":429,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +19,7 @@
 		"min_damage":20,
 		"max_damage":30
 	},{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
 		"accuracy":58,
 		"cost":40,
@@ -29,7 +29,7 @@
 		"min_damage":53,
 		"max_damage":79
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
 		"accuracy":65,
 		"cost":60,

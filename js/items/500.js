@@ -1,5 +1,5 @@
 {
-	"name":"Арбалет",
+	"name":{"ru":"Арбалет","en":"Crossbow"},
 	"category":"launcher",
 	"mobility":75,
 	"clip":1,
@@ -10,7 +10,7 @@
 	"classreq":["su"],
 	"id":500,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +19,7 @@
 		"min_damage":20,
 		"max_damage":35
 	},{
-		"name":"«апуск",
+		"name":{"ru":"Запуск","en":"Launch"},
 		"type":6,
 		"accuracy":52,
 		"radius":2,

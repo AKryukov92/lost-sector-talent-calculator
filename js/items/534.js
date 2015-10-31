@@ -8,9 +8,13 @@
 	"lvlreq":10,
 	"talentreq":20,
 	"classreq":["as","ju","su"],
+	"description":{
+		"ru":"Заряжено пулевыми патронами (slug) 12 калибра.",
+		"en":"Loaded with slug bullets of 12th caliber."
+	},
 	"id":534,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"min_damage":20,
 		"max_damage":30,
@@ -19,7 +23,7 @@
 		"min_dist":0,
 		"max_dist":1.5
 	},{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":3,
 		"min_damage":59,
 		"max_damage":71,
@@ -29,11 +33,11 @@
 		"min_dist":8,
 		"max_dist":22
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
 		"min_damage":64,
 		"max_damage":76,
-		"accuracy":65,
+		"accuracy":67,
 		"bullets":1,
 		"cost":50,
 		"min_dist":9,

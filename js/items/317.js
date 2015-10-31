@@ -1,7 +1,13 @@
 {
-	"name":"Шлем поддержки",
+	"name":{
+		"ru":"Шлем поддержки",
+		"en":"Support helmet"
+	},
 	"category":"hat",
-	"description":"Входит в состав наборов брони для поддержки за голд или платину",
+	"description":{
+		"ru":"Входит в состав наборов брони для поддержки за голд или платину",
+		"en":"Part of any Support class armor set"
+	},
 	"protection":5,
 	"lvlreq":5,
 	"classreq":["su"],

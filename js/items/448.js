@@ -1,5 +1,8 @@
 {
-	"name":"Беретта 93P",
+	"name":{
+		"ru":"Беретта 93P",
+		"en":"Beretta 93P"
+	},
 	"category":"pistol",
 	"mobility":100,
 	"clip":16,
@@ -8,7 +11,7 @@
 	"lvlreq":5,
 	"id":448,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":35,
@@ -17,7 +20,7 @@
 		"min_damage":10,
 		"max_damage":25
 	},{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":2,
 		"accuracy":31,
 		"cost":40,
@@ -27,7 +30,7 @@
 		"min_damage":44,
 		"max_damage":61
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":2,
 		"accuracy":57,
 		"cost":25,

@@ -1,7 +1,13 @@
 {
-	"name":"Шлем 'Мирмидонец'",
+	"name":{
+		"ru":"Шлем 'Мирмидонец'",
+		"en":"Myrmidon Helmet"
+	},
 	"category":"hat",
-	"description":"Покупается отдельно за 100 голд",
+	"description":{
+		"ru":"Покупается отдельно за 100 голд",
+		"en":"You can buy it for 100 gold"
+	},
 	"protection":5,
 	"lvlreq":5,
 	"id":255

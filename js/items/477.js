@@ -1,9 +1,15 @@
 {
 	"id":477,
-	"name":"Камера",
+	"name":{
+		"ru":"Камера",
+		"en":"Camera"
+	},
 	"category":"consumable",
 	"consumable_type":3,
-	"description":"Камера с углом обзора в 360 градусов. Обнаруживает противника в зоне прямой видимости.",
+	"description":{
+		"ru":"Камера с углом обзора в 360 градусов. Обнаруживает противника в зоне прямой видимости.",
+		"en":"360 camera. Detects enemy in the line-of-sight"
+	},
 	"lvlreq":7,
 	"talentreq":18,
 	"classreq":["sc","su"],

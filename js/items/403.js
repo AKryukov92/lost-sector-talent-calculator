@@ -9,7 +9,7 @@
 	"id":403,
 	"attacks":[
 	{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +19,7 @@
 		"max_damage":35
 	},
 	{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":3,
 		"accuracy":59,
 		"cost":50,
@@ -30,7 +30,7 @@
 		"max_damage":84
 	},
 	{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
 		"accuracy":76,
 		"cost":60,

@@ -1,14 +1,20 @@
 {
 	"id":605,
-	"name":"Мина-паук",
+	"name":{
+		"ru":"Мина-паук",
+		"en":"Spider Mine"
+	},
 	"category":"consumable",
 	"consumable_type":4,
-	"description":"Легкая метательная мина. Подрывается при любой активности в радиусе 1м, нанося 55-90 повреждений взрывом в области 4м",
+	"description":{
+		"ru":"Легкая метательная мина. Подрывается при любой активности в радиусе 1м, нанося 55-90 повреждений взрывом в области 4м",
+		"en":"Light throwing mine. Explodes in any activity within radius 1m, dealing 55-90 damage by explosion in 4m area."
+	},
 	"lvlreq":9,
 	"talentreq":16,
 	"classreq":["as","sc","su"],
 	"attacks":[{
-		"name":"Бросок",
+		"name":{"ru":"Бросок","en":"Throw"},
 		"accuracy":60,
 		"radius":1,
 		"cost":40,

@@ -1,5 +1,8 @@
 {
-	"name":"Многозарядный Гранатомет Милкор",
+	"name":{
+		"ru":"Многозарядный Гранатомет Милкор",
+		"en":"Milkor Multiple Grenade Launcher"
+	},
 	"category":"launcher",
 	"mobility":66,
 	"clip":6,
@@ -11,7 +14,7 @@
 	"id":410,
 	"attacks":[
 	{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -21,7 +24,7 @@
 		"max_damage":40
 	},
 	{
-		"name":"Запуск",
+		"name":{"ru":"Запуск","en":"Launch"},
 		"type":6,
 		"accuracy":24,
 		"radius":3.5,

@@ -10,7 +10,7 @@
 	"classreq":["as","sc","su"],
 	"id":464,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +19,7 @@
 		"min_damage":20,
 		"max_damage":30
 	},{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":4,
 		"accuracy":38,
 		"cost":30,
@@ -29,7 +29,7 @@
 		"min_damage":53,
 		"max_damage":72
 	},{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":4,
 		"accuracy":25,
 		"cost":50,

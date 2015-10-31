@@ -5,7 +5,7 @@
 	"lvlreq":3,
 	"id":414,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":100,
 		"cost":50,

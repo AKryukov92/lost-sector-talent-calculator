@@ -1,13 +1,16 @@
 {
 	"id":472,
-	"name":"Кислотная граната",
+	"name":{
+		"ru":"Кислотная граната",
+		"en":"Acid Grenade"
+	},
 	"category":"consumable",
 	"consumable_type":4,
 	"lvlreq":8,
 	"talentreq":17,
 	"classreq":["as","sc","su"],
 	"attacks":[{
-		"name":"Бросок",
+		"name":{"ru":"Бросок","en":"Throw"},
 		"type":8,
 		"accuracy":50,
 		"radius":3,
@@ -18,7 +21,10 @@
 		"max_damage":40,
 		"specials":[{
 			"duration":3,
-			"effects":["Наносит 30 ед. повреждения каждый раунд."]
+			"effects":[{
+				"ru":"Наносит 30 ед. повреждения каждый раунд.",
+				"en":"Causes 30 damage each round"
+			}]
 		}]
 	}],
 	"ingredients":{

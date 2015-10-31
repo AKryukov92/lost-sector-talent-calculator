@@ -1,13 +1,16 @@
 {
-	"name":"Мачете",
+	"name":{
+		"ru":"Мачете",
+		"en":"Machete"
+	},
 	"category":"melee",
-	"mobility":90,
+	"mobility":89,
 	"lvlreq":6,
 	"talentreq":7,
 	"classreq":["ju","sc"],
 	"id":416,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":100,
 		"cost":30,

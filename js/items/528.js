@@ -10,7 +10,7 @@
 	"classreq":["su"],
 	"id":528,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +19,7 @@
 		"min_damage":20,
 		"max_damage":35
 	},{
-		"name":"Навскидку",
+		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
 		"min_damage":78,
 		"max_damage":100,
@@ -29,7 +29,7 @@
 		"min_dist":14,
 		"max_dist":31
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":5,
 		"min_damage":111,
 		"max_damage":149,

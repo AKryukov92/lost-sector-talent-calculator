@@ -1,5 +1,8 @@
 {
-	"name":"Гранатомет М79",
+	"name":{
+		"ru":"Гранатомет М79",
+		"en":"M79 Grenade Launcher"
+	},
 	"category":"launcher",
 	"mobility":69,
 	"clip":1,
@@ -10,7 +13,7 @@
 	"classreq":["su"],
 	"id":465,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +22,7 @@
 		"min_damage":20,
 		"max_damage":30
 	},{
-		"name":"Запуск",
+		"name":{"ru":"Запуск","en":"Launch"},
 		"type":6,
 		"accuracy":28,
 		"radius":4,

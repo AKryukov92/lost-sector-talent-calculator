@@ -1,14 +1,17 @@
 {
-	"name":"Кувалда",
+	"name":{
+		"ru":"Кувалда",
+		"en":"Sledgehammer"
+	},
 	"category":"melee",
-	"mobility":70,
+	"mobility":78,
 	"lvlreq":8,
 	"talentreq":7,
 	"description":"Stop! Hammertime!",
 	"classreq":["ju","sc"],
 	"id":538,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":100,
 		"cost":45,
@@ -18,7 +21,10 @@
 		"max_damage":120,
 		"specials":[{
 			"duration":1,
-			"effects":["Уменьшает максимум очков действия на 40"]
+			"effects":[{
+				"ru":"Уменьшает максимум очков действия на 40",
+				"en":"Decreases maximum of action points for 40"
+			}]
 		}]
 	}],
 	"ingredients":0

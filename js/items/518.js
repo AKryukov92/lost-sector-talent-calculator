@@ -1,17 +1,23 @@
 {
-	"name":"VG штурмовая винтовка",
+	"name":{
+		"ru":"VG штурмовая винтовка",
+		"en":"VG Assault Rifle"
+	},
 	"category":"assault_rifle",
 	"mobility":78,
 	"clip":24,
 	"ammo":48,
-	"description":"Штурмовая винтовка вангардов. С этого начинался Lost Sector.",
+	"description":{
+		"ru":"Штурмовая винтовка вангардов. С этого начинался Lost Sector.",
+		"en":"Vanguard assault rifle. This is what Lost Sector was beginning with"
+	},
 	"reload_cost":20,
 	"lvlreq":12,
 	"talentreq":22,
 	"classreq":["as"],
 	"id":518,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -20,7 +26,7 @@
 		"min_damage":20,
 		"max_damage":30
 	},{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
 		"accuracy":54,
 		"cost":40,
@@ -30,7 +36,7 @@
 		"min_damage":62,
 		"max_damage":82
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
 		"accuracy":62,
 		"cost":60,

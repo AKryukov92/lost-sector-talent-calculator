@@ -1,9 +1,15 @@
 {
 	"id":71,
-	"name":"Малая инъекция ребиса",
+	"name":{
+		"ru":"Малая инъекция ребиса",
+		"en":"Heal Injection Light"
+	},
 	"category":"consumable",
 	"consumable_type":1,
-	"description":"Восстанавливает 25 очков здоровья",
+	"description":{
+		"ru":"Восстанавливает 25 очков здоровья",
+		"en":"Restores 25 HP"
+	},
 	"talentreq":2,
 	"AP_cost":10,
 	"ingredients":{

@@ -1,10 +1,16 @@
 {
-	"name":"Средняя броня поддержки III",
+	"name":{
+		"ru":"Средняя броня поддержки III",
+		"en":"Support Class Armor III"
+	},
 	"category":"armor",
 	"id":320,
 	"protection":95,
 	"lvlreq":13,
-	"description":"Специализированный костюм поддержки. Позволяет брать на 3 гранаты больше.",
+	"description":{
+		"ru":"Специализированный костюм поддержки. Позволяет брать на 3 гранаты больше.",
+		"en":"Support's specialized armor. Allows you to take three more grenades."
+	},
 	"classreq":["su"],
 	"ingredients":{
 		"light_metals":60,

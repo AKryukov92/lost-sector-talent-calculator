@@ -1,5 +1,8 @@
 {
-	"name":"M4A1",
+	"name":{
+		"ru":"M4A1",
+		"en":"M4A1 Carbine"
+	},
 	"category":"assault_rifle",
 	"mobility":78,
 	"clip":24,
@@ -10,7 +13,7 @@
 	"classreq":["as"],
 	"id":424,
 	"attacks":[{
-		"name":"Удар",
+		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":90,
 		"cost":45,
@@ -19,7 +22,7 @@
 		"min_damage":20,
 		"max_damage":30
 	},{
-		"name":"Очередь",
+		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
 		"accuracy":68,
 		"cost":45,
@@ -29,7 +32,7 @@
 		"min_damage":48,
 		"max_damage":55
 	},{
-		"name":"Прицельно",
+		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
 		"accuracy":75,
 		"cost":60,

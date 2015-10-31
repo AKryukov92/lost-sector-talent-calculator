@@ -1,5 +1,8 @@
 {
-	"name":"Полицейский щит",
+	"name":{
+		"ru":"Полицейский щит",
+		"en":"Police Shield"
+	},
 	"category":"shield",
 	"mobility":80,
 	"protection":73,
