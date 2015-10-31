@@ -1,8 +1,14 @@
 {
 	"id":55,
 	"imageid":55,
-	"name":"Спринт",
-	"description":"Увеличивает мобильность наемника на 40% до конца текущего хода.",
+	"name":{
+		"ru":"Спринт",
+		"en":"Sprint"
+	},
+	"description":{
+		"ru":"Увеличивает мобильность наемника на 40% до конца текущего хода.",
+		"en":"Increases mercenary's mobility by 40% until the end of the turn."
+	},
 	"cost":1,
 	"lvlreq":6,
 	"talentreq":431,

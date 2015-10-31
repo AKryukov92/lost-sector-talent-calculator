@@ -1,9 +1,18 @@
 {
 	"id":411,
 	"imageid":41,
-	"name":"Огнеупорный",
-	"description":"Добавляет базовое сопротивление огню.",
-	"effect":"Увеличивает сопротивление огню на 7%",
+	"name":{
+		"ru":"Огнеупорный",
+		"en":"Fire resistant"
+	},
+	"description":{
+		"ru":"Добавляет базовое сопротивление огню.",
+		"en":"Adds basic resistance to fire."
+	},
+	"effect":{
+		"ru":"Увеличивает сопротивление огню на 7%",
+		"en":"Increases fire resist for 7%"
+	},
 	"cost":1,
 	"lvlreq":6,
 	"column":9

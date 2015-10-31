@@ -1,8 +1,14 @@
 {
 	"id":16,
 	"imageid":16,
-	"name":"Гранаты-пауки",
-	"description":"Позволяет использовать гранаты-пауки.",
+	"name":{
+		"ru":"Гранаты-пауки",
+		"en":"Spider grenades"
+	},
+	"description":{
+		"ru":"Позволяет использовать гранаты-пауки.",
+		"en":"Allows you to use spider grenades."
+	},
 	"cost":1,
 	"lvlreq":10,
 	"talentreq":17,
