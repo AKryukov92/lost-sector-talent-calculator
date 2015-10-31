@@ -38,7 +38,7 @@ if (!file_exists($filename)) {
 $filecontent = file_get_contents($filename);
 $data = json_decode($filecontent, true);
 if (json_last_error() != 0) {
-	print 'error parsing item data';
+	print 'error parsing talent ' . $id . ' data';
 }
 if (isset($data["talentreq"])) {
 	$filename = $PATH_TO_TALENTS . "/" . $data["talentreq"] . ".js";
@@ -86,14 +86,14 @@ header("Content-Type: text/html; charset=utf-8");
 			<img src="Skills<?php print $version; ?>.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
 		</div>
 	<?php } ?>
-<h3><?php print $data["name"] ?></h3>
+<h3><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]); ?></h3>
 <?php if (!isset($ranks)) {?>
 	<div class="entry"><span class="key"><?php print Placeholder("t-required");?>:</span>
 		<?php if (isset($data["lvlreq"])) {?>
 			<?php print Placeholder("t-merc-level");?>&nbsp;<?php print $data["lvlreq"]?>
 		<?php } ?>
 		<?php if (isset($required_data["name"])) {?>
-			<?php print ", " . $required_data["name"]; ?>
+			<?php print ", " . GetLocalizedProperty($required_data,"name", $GLOBALS["locale"]); ?>
 		<?php }?>
 	</div>
 	<?php if(isset($data["cost"])){?>
@@ -110,7 +110,7 @@ header("Content-Type: text/html; charset=utf-8");
 	<div class="entry"><span class="key"><?php print Placeholder("t-AP-cost");?>:</span> <?php print $data["AP_cost"] ?></div>
 <?php } ?>
 <?php if (isset($data["description"])) {?>
-	<div class="entry"><span class="key"><?php print Placeholder("t-description");?>:</span> <?php print $data["description"] ?></div>
+	<div class="entry"><span class="key"><?php print Placeholder("t-description");?>:</span> <?php print GetLocalizedProperty($data, "description", $GLOBALS["locale"]); ?></div>
 <?php } ?>
 <?php if (isset($ranks)) {
 	for ($i = 1; $i <= count($ranks); $i ++) {?>
@@ -121,7 +121,7 @@ header("Content-Type: text/html; charset=utf-8");
 		<?php if (isset($ranks[$i]["lvlreq"])) {?>
 			<div class="entry"><span class="key"><?php print Placeholder("t-required-level");?>:</span> <?php print $ranks[$i]["lvlreq"] ?></div>
 		<?php } ?>
-		<div  class="entry"><span class="key"><?php print Placeholder("t-effect");?>:</span> <?php print $ranks[$i]["effect"];?></div>
+		<div  class="entry"><span class="key"><?php print Placeholder("t-effect");?>:</span> <?php print GetLocalizedProperty($ranks[$i], "effect", $GLOBALS["locale"]);?></div>
 	</div>
 	<?php }?>
 	</div>

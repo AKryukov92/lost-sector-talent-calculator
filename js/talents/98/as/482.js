@@ -1,9 +1,18 @@
 {
 	"id":482,
 	"imageid":48,
-	"name":"Крепкий",
-	"description":"Увеличивает базовое количество здоровья.",
-	"effect":"Увеличивает запас здоровья на 25.",
+	"name":{
+		"ru":"Крепкий",
+		"en":"Solid"
+	},
+	"description":{
+		"ru":"Увеличивает базовое количество здоровья.",
+		"en":"Increases the basic amount of health"
+	},
+	"effect":{
+		"ru":"Увеличивает запас здоровья на 25.",
+		"en":"Increases health maximum for 25."
+	},
 	"cost":3,
 	"lvlreq":11,
 	"rankof":481,
