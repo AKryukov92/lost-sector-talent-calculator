@@ -7,7 +7,7 @@
 	"reload_cost":30,
 	"lvlreq":11,
 	"talentreq":24,
-	"classreq":["su"],
+	"classreq":["sc"],
 	"id":528,
 	"attacks":[{
 		"name":{"ru":"Удар","en":"Hit"},
