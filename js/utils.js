@@ -219,6 +219,10 @@ $("#selLang").change(function() {
 $(document).ready(function(){
 	applyLocaleToInterface(getLocale());
 });
-$("#items-pool").tabs();
-$( "#tabs" ).tabs();
-$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+if (!isEmpty($("#items-pool"))) {
+	$("#items-pool").tabs();
+}
+if (!isEmpty($("#tabs"))) {
+	$( "#tabs" ).tabs();
+	$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+}

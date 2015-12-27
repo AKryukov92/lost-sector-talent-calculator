@@ -2,6 +2,8 @@ var calculator = new Calculator();
 var patchdata = {};
 var images = [];
 var combinator = new Combinator();
+var initialTalentData = {};
+
 function fillAvailableActions(combinator) {
 	var text = "";
 	for (var i = 0; i < combinator.actions.length; i++) {
@@ -88,7 +90,6 @@ function combine() {
 function talentUriHandler(key, value, target) {
 	talent = decodeURIComponent(value);
 	var match = /(\d*)(\d)(as|sc|ju|su)_(\w*)/.exec(value);
-	var initialTalentData = {};
 	if (match != null) {
 		initialTalentData = {
 			gameVersion : match[1],
