@@ -111,7 +111,11 @@ $GLOBALS['localizationData'] = json_decode(str_replace("'", "\"", "{
 	't-turn':{ 'ru':'раунда', 'en':'turn' },
 	't-turns':{ 'ru':'раундов', 'en':'turns' },
 	't-turns-effect-start':{ 'ru':'Длится в течениие', 'en':'Lasts for' },
-	't-avatar':{'ru':'Аватар', 'en':'Avatar'}
+	't-avatar':{'ru':'Аватар', 'en':'Avatar'},
+	't-head-mods':{'ru':'Череп', 'en':'Skull' },
+	't-hand-mods':{'ru':'Руки', 'en':'Arms' },
+	't-feet-mods':{'ru':'Ноги', 'en':'Legs' },
+	't-chest-mods':{'ru':'Грудная клетка', 'en':'Chest' }
 	}"), true);
 if (json_last_error() != 0) {
 	print 'error parsing localizationData';

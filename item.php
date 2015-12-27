@@ -66,5 +66,21 @@ if ($data["category"] == "shield") {
 	include 'template_armor.php';
 	return;
 }
+if ($data["category"] == "head_mod") {
+	include 'template_implant.php';
+	return;
+}
+if ($data["category"] == "hand_mod") {
+	include 'template_implant.php';
+	return;
+}
+if ($data["category"] == "chest_mod") {
+	include 'template_implant.php';
+	return;
+}
+if ($data["category"] == "feet_mod") {
+	include 'template_implant.php';
+	return;
+}
 include 'template_weapon.php';
 ?>
