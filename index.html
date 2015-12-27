@@ -262,6 +262,55 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="special-item" style="clear:left">
+			<a id="head_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="head_mod-container" class="inventory-item-container">
+				<img src="images/slot-head_mod.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('head_mod');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container">
+				<div class="fake-tooltip" id="head_mod-fake-tooltip">
+					<iframe id="head_mod-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+				</div>
+			</div>
+		</div>
+		<div class="special-item">
+			<a id="chest_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="chest_mod-container" class="inventory-item-container">
+				<img src="images/slot-chest_mod.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('chest_mod');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container">
+				<div class="fake-tooltip" id="chest_mod-fake-tooltip">
+					<iframe id="chest_mod-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+				</div>
+			</div>
+		</div>
+		<div class="special-item">
+			<a id="hand_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="hand_mod-container" class="inventory-item-container">
+				<img src="images/slot-hand_mod.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('hand_mod');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container">
+				<div class="fake-tooltip" id="hand_mod-fake-tooltip">
+					<iframe id="hand_mod-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+				</div>
+			</div>
+		</div>
+		<div class="special-item">
+			<a id="feet_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="feet_mod-container" class="inventory-item-container">
+				<img src="images/slot-feet_mod.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('feet_mod');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container">
+				<div class="fake-tooltip" id="feet_mod-fake-tooltip">
+					<iframe id="feet_mod-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div id="items-pool" style="clear:both;overflow:auto;">
 		<ul>
@@ -277,6 +326,10 @@
 			<li><a href="#all-shield"><span name="t-shield">Щиты</span></a></li>
 			<li><a href="#all-hat"><span name="t-hat">Шапки</span></a></li>
 			<li><a href="#all-consumable"><span name="t-consumable">Активки</span></a></li>
+			<li><a href="#all-head-mods"><span name="t-head-mods">Череп</span></a></li>
+			<li><a href="#all-chest-mods"><span name="t-chest-mods">Грудная клетка</span></a></li>
+			<li><a href="#all-hand-mods"><span name="t-hand-mods">Руки</span></a></li>
+			<li><a href="#all-feet-mods"><span name="t-feet-mods">Ноги</span></a></li>
 		</ul>
 		<div id="all-armor">
 			<div id="armor-pool" class="pool"></div>
@@ -313,6 +366,18 @@
 		</div>
 		<div id="all-consumable">
 			<div id="consumable-pool" class="pool"></div>
+		</div>
+		<div id="all-head-mods">
+			<div id="head_mod-pool" class="pool"></div>
+		</div>
+		<div id="all-chest-mods">
+			<div id="chest_mod-pool" class="pool"></div>
+		</div>
+		<div id="all-hand-mods">
+			<div id="hand_mod-pool" class="pool"></div>
+		</div>
+		<div id="all-feet-mods">
+			<div id="feet_mod-pool" class="pool"></div>
 		</div>
 	</div>
 	</div>

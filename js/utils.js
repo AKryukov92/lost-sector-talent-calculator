@@ -94,6 +94,22 @@ function update_link() {
 		if (!$.isEmptyObject(slot.item)) {
 			link += "&c5=" + slot.item.id;
 		}
+		slot = inventoryApp.slots["head_mod"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&hem=" + slot.item.id;
+		}
+		slot = inventoryApp.slots["chest_mod"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&cm=" + slot.item.id;
+		}
+		slot = inventoryApp.slots["hand_mod"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&ham=" + slot.item.id;
+		}
+		slot = inventoryApp.slots["feet_mod"];
+		if (!$.isEmptyObject(slot.item)) {
+			link += "&fm=" + slot.item.id;
+		}
 	}
 	$("#link-to-build").val(link);
 }
@@ -174,7 +190,16 @@ var localizationData = {
 	't-high-caliber-damage':{ 'ru':'крупным калибром', 'en':'high caliber' },
 	't-explosion-damage':{ 'ru':'взрывом', 'en':'explosion' },
 	't-acid-damage':{ 'ru':'кислотой', 'en':'acid' },
-	't-fire-damage':{ 'ru':'огнем', 'en':'fire' }
+	't-fire-damage':{ 'ru':'огнем', 'en':'fire' },
+	't-instant-effect':{ 'ru':'При применении', 'en':'Instant' },
+	't-turn':{ 'ru':'раунда', 'en':'turn' },
+	't-turns':{ 'ru':'раундов', 'en':'turns' },
+	't-turns-effect-start':{ 'ru':'Длится в течениие', 'en':'Lasts for' },
+	't-avatar':{'ru':'Аватар', 'en':'Avatar'},
+	't-head-mods':{'ru':'Череп', 'en':'Skull' },
+	't-hand-mods':{'ru':'Руки', 'en':'Arms' },
+	't-feet-mods':{'ru':'Ноги', 'en':'Legs' },
+	't-chest-mods':{'ru':'Грудная клетка', 'en':'Chest' }
 	};
 
 function applyLocaleToInterface(locale) {

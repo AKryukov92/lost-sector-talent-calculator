@@ -14,6 +14,10 @@ function InventoryModel(locale,data) {
 		consumable_3: { short_name :"c3", item:{} },
 		consumable_4: { short_name :"c4", item:{} },
 		consumable_5: { short_name :"c5", item:{} },
+		head_mod: {short_name:"hem", item:{} },
+		hand_mod: {short_name:"ham", item:{} },
+		feet_mod: {short_name:"fm", item:{} },
+		chest_mod: {short_name:"cm", item:{} }
 	};
 	this.possible_slots = {
 		primary:"",
@@ -24,7 +28,11 @@ function InventoryModel(locale,data) {
 		consumable_3:"",
 		consumable_4:"",
 		consumable_5:"",
-		hat:""
+		hat:"",
+		head_mod:"",
+		hand_mod:"",
+		feet_mod:"",
+		chest_mod:""
 	};
 	this.weapontype_map = {
 		armor: { slots:["armor"] },
@@ -38,7 +46,11 @@ function InventoryModel(locale,data) {
 		machinegun: { slots:["primary"] },
 		shield: { slots:["primary"] },
 		hat: { slots:["hat"] },
-		consumable: { slots:["consumable_1", "consumable_2", "consumable_3", "consumable_4", "consumable_5"] }
+		consumable: { slots:["consumable_1", "consumable_2", "consumable_3", "consumable_4", "consumable_5"] },
+		head_mod: { slots:["head_mod"] },
+		hand_mod: { slots:["hand_mod"] },
+		feet_mod: { slots:["feet_mod"] },
+		chest_mod: { slots:["chest_mod"] }
 	};
 	this.UriHandlers = {
 		"p": {fn: tunableItemUriHandler, target: "primary" },
@@ -50,6 +62,10 @@ function InventoryModel(locale,data) {
 		"c3": { fn: specialItemUriHandler, target: "consumable_3" },
 		"c4": { fn: specialItemUriHandler, target: "consumable_4" },
 		"c5": { fn: specialItemUriHandler, target: "consumable_5" },
+		"hem": { fn: specialItemUriHandler, target: "head_mod" },
+		"ham": { fn: specialItemUriHandler, target: "hand_mod" },
+		"fm": { fn: specialItemUriHandler, target: "feet_mod" },
+		"cm": { fn: specialItemUriHandler, target: "chest_mod" },
 		/*legacy links handlers: */
 		"primary": { fn: tunableItemUriHandler, target: "primary" },
 		"secondary": { fn: tunableItemUriHandler, target: "secondary" },
@@ -213,6 +229,9 @@ function InventoryModel(locale,data) {
 			}
 			//console.log("adding " + current.name + " to pool");
 			this.addItemToPool(current);
+			if (typeof this.weapontype_map[current.category] == 'undefined') {
+				throw new Error("Unknown category:" + current.category);
+			}				
 			var slots_of_item = this.weapontype_map[current.category].slots;
 			for (var j = 0; j < slots_of_item.length; j ++) {
 				if (this.possible_slots[slots_of_item[j]] === "") {
