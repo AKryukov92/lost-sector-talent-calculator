@@ -10,12 +10,12 @@
 	"attacks":[{
 		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
+		"min_damage":43,
+		"max_damage":78,
 		"accuracy":100,
 		"cost":45,
 		"min_dist":0,
-		"max_dist":1.9,
-		"min_damage":43,
-		"max_damage":78
+		"max_dist":1.9
 	}],
 	"ingredients":{
 		"light_metals":7,

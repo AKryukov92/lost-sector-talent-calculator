@@ -12,7 +12,7 @@
 	"cost":1,
 	"lvlreq":6,
 	"talentreq":471,
-	"AP_cost":30,
+	"AP_cost":20,
 	"number_of_uses":2,
 	"column":8
 }

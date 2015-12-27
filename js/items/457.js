@@ -1,7 +1,7 @@
 {
 	"name":"G36",
 	"category":"assault_rifle",
-	"mobility":82,
+	"mobility":84,
 	"clip":28,
 	"ammo":56,
 	"reload_cost":20,
@@ -12,32 +12,32 @@
 	"attacks":[{
 		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
+		"min_damage":20,
+		"max_damage":30,
 		"accuracy":90,
 		"cost":45,
 		"min_dist":0,
-		"max_dist":1.5,
-		"min_damage":20,
-		"max_damage":30
+		"max_dist":1.5
 	},{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
+		"min_damage":49,
+		"max_damage":59,
 		"accuracy":64,
+		"bullets":8,
 		"cost":45,
 		"min_dist":13,
-		"max_dist":27,
-		"bullets":8,
-		"min_damage":49,
-		"max_damage":59
+		"max_dist":27
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
+		"min_damage":53,
+		"max_damage":63,
 		"accuracy":72,
+		"bullets":4,
 		"cost":55,
 		"min_dist":15,
-		"max_dist":32,
-		"bullets":4,
-		"min_damage":53,
-		"max_damage":63
+		"max_dist":32
 	}],
 	"ingredients":{
 		"light_metals":18,

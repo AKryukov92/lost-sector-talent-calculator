@@ -14,8 +14,8 @@
 		"cost":30,
 		"min_dist":0,
 		"max_dist":1.5,
-		"min_damage":24,
-		"max_damage":58
+		"min_damage":30,
+		"max_damage":52
 	}],
 	"ingredients":{
 		"light_metals":6,

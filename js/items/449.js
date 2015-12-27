@@ -1,9 +1,9 @@
 {
 	"name":"PP-2000",
 	"category":"smg",
-	"mobility":97,
+	"mobility":98,
 	"clip":45,
-	"ammo":135,
+	"ammo":90,
 	"reload_cost":25,
 	"lvlreq":9,
 	"talentreq":26,
@@ -12,22 +12,22 @@
 	"attacks":[{
 		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
+		"min_damage":10,
+		"max_damage":25,
 		"accuracy":90,
 		"cost":40,
 		"min_dist":0,
-		"max_dist":1.5,
-		"min_damage":10,
-		"max_damage":25
+		"max_dist":1.5
 	},{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":2,
+		"min_damage":37,
+		"max_damage":48,
 		"accuracy":43,
-		"cost":30,
-		"min_dist":6,
-		"max_dist":15,
 		"bullets":15,
-		"min_damage":38,
-		"max_damage":48
+		"cost":30,
+		"min_dist":5,
+		"max_dist":15
 	}],
 	"ingredients":{
 		"light_metals":26,

@@ -99,7 +99,7 @@ function talentUriHandler(key, value, target) {
 		};
 	} else {
 		initialTalentData = {
-			gameVersion : 101,
+			gameVersion : 102,
 			classPrefix : "as",
 			talentInput : ""
 		};

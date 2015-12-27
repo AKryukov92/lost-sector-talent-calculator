@@ -1,0 +1,34 @@
+{
+	"name":{"ru":"Многозарядный гранатомет EX-41","en":""},
+	"category":"launcher",
+	"mobility":68,
+	"clip":3,
+	"ammo":6,
+	"reload_cost":40,
+	"lvlreq":10,
+	"talentreq":21,
+	"classreq":["su"],
+	"id":501,
+	"attacks":[{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":20,
+		"max_damage":30,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.9
+	},{
+		"name":{"ru":"Запуск","en":"Launch"},
+		"type":6,
+		"min_damage":64,
+		"max_damage":84,
+		"radius":4,
+		"accuracy":27,
+		"bullets":1,
+		"cost":45,
+		"min_dist":10,
+		"max_dist":27
+	}],
+	"ingredients":0
+}

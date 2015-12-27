@@ -21,23 +21,23 @@
 	},{
 		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
+		"min_damage":76,
+		"max_damage":112,
 		"accuracy":61,
+		"bullets":1,
 		"cost":50,
 		"min_dist":17,
-		"max_dist":42,
-		"bullets":1,
-		"min_damage":71,
-		"max_damage":115
+		"max_dist":42
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":5,
+		"min_damage":107,
+		"max_damage":151,
 		"accuracy":77,
+		"bullets":1,
 		"cost":60,
 		"min_dist":22,
-		"max_dist":48,
-		"bullets":1,
-		"min_damage":107,
-		"max_damage":151
+		"max_dist":48
 	}],
 	"ingredients":{
 		"light_metals":58,

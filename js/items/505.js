@@ -12,32 +12,32 @@
 	"attacks":[{
 		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
+		"min_damage":20,
+		"max_damage":50,
 		"accuracy":90,
 		"cost":45,
 		"min_dist":0,
-		"max_dist":2,
-		"min_damage":20,
-		"max_damage":50
+		"max_dist":2
 	},{
 		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
+		"min_damage":77,
+		"max_damage":109,
 		"accuracy":60,
+		"bullets":1,
 		"cost":50,
 		"min_dist":17,
-		"max_dist":42,
-		"bullets":1,
-		"min_damage":72,
-		"max_damage":112
+		"max_dist":42
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":5,
+		"min_damage":109,
+		"max_damage":147,
 		"accuracy":77,
+		"bullets":1,
 		"cost":60,
 		"min_dist":22,
-		"max_dist":48,
-		"bullets":1,
-		"min_damage":109,
-		"max_damage":147
+		"max_dist":48
 	}],
 	"ingredients":{
 		"light_metals":56,

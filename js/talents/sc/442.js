@@ -10,11 +10,11 @@
 		"en":"Increases inflicting damage at close combat."
 	},
 	"effect":{
-		"ru":"Увеличивает урон в ближнем бою на 40%",
-		"en":"Increases melee damage multiplier for 40%"
+		"ru":"Увеличивает урон в ближнем бою на 35%",
+		"en":"Increases melee damage multiplier for 35%"
 	},
 	"cost":2,
-	"lvlreq":11,
+	"lvlreq":10,
 	"rankof":441,
 	"column":7
 }

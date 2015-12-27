@@ -31,8 +31,8 @@
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":2,
-		"min_damage":15,
-		"max_damage":27,
+		"min_damage":16,
+		"max_damage":26,
 		"accuracy":57,
 		"bullets":1,
 		"cost":25,

@@ -26,8 +26,8 @@
 		"min_dist":4,
 		"max_dist":16,
 		"bullets":1,
-		"min_damage":33,
-		"max_damage":54
+		"min_damage":35,
+		"max_damage":52
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
@@ -36,8 +36,8 @@
 		"min_dist":6,
 		"max_dist":18,
 		"bullets":1,
-		"min_damage":33,
-		"max_damage":54
+		"min_damage":35,
+		"max_damage":52
 	}],
 	"ingredients":{
 		"light_metals":20,

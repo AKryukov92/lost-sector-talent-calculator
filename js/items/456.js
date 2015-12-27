@@ -1,7 +1,7 @@
 {
 	"name":"FN F2000",
 	"category":"assault_rifle",
-	"mobility":80,
+	"mobility":82,
 	"clip":32,
 	"ammo":64,
 	"reload_cost":20,
@@ -34,7 +34,7 @@
 		"accuracy":73,
 		"cost":55,
 		"min_dist":15,
-		"max_dist":30,
+		"max_dist":31,
 		"bullets":6,
 		"min_damage":62,
 		"max_damage":74
