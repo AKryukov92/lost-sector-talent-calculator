@@ -17,7 +17,7 @@
 		"cost":45,
 		"min_dist":0,
 		"max_dist":2.1,
-		"min_damage":60,
+		"min_damage":70,
 		"max_damage":105
 	}],
 	"ingredients":{

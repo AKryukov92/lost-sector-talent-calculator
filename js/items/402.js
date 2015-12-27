@@ -1,7 +1,7 @@
 {
 	"name":"Galil",
 	"category":"assault_rifle",
-	"mobility":80,
+	"mobility":82,
 	"clip":28,
 	"ammo":56,
 	"reload_cost":20,

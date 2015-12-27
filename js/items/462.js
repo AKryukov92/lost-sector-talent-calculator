@@ -21,8 +21,8 @@
 	},{
 		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
-		"min_damage":60,
-		"max_damage":97,
+		"min_damage":64,
+		"max_damage":94,
 		"accuracy":59,
 		"bullets":1,
 		"cost":50,

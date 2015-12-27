@@ -4,7 +4,7 @@
 		"en":"Machete"
 	},
 	"category":"melee",
-	"mobility":89,
+	"mobility":88,
 	"lvlreq":6,
 	"talentreq":7,
 	"classreq":["ju","sc"],

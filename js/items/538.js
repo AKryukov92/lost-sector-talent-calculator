@@ -16,9 +16,9 @@
 		"accuracy":100,
 		"cost":45,
 		"min_dist":0,
-		"max_dist":1.5,
-		"min_damage":70,
-		"max_damage":120,
+		"max_dist":2.1,
+		"min_damage":75,
+		"max_damage":115,
 		"specials":[{
 			"duration":1,
 			"effects":[{

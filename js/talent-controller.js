@@ -40,7 +40,7 @@ function talentUriHandler(key, value, target) {
 		$("#selVersion").val(initialTalentData.gameVersion);
 		switchVersionClass(initialTalentData.classPrefix, initialTalentData.gameVersion);
 	} else {
-		switchVersionClass("as", 101);
+		switchVersionClass("as", 102);
 	}
 }
 var initialLink = new ApplicationLink(location.search);
@@ -57,7 +57,7 @@ if (initialLink.linkString.length != 0) {
 	});
 } else {
 	// заходим по ссылке без указания патча ""
-	switchVersionClass("as", 101);
+	switchVersionClass("as", 102);
 }
 
 function toggleTalentTooltip() {

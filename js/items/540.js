@@ -1,7 +1,7 @@
 {
 	"name":"TAR 21",
 	"category":"assault_rifle",
-	"mobility":81,
+	"mobility":83,
 	"clip":32,
 	"ammo":64,
 	"reload_cost":20,

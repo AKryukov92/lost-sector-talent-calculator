@@ -47,7 +47,7 @@ if (!$files) {
 	return;
 }
 print("{");
-print("\"game_version\":101,");
+print("\"game_version\":102,");
 print("\"data_version\":1,");
 print("\"assault_data\":{\n");
 print_class_data("as", $TALENTS_DATA_DIRECTORY);

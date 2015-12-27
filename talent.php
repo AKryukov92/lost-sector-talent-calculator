@@ -23,7 +23,7 @@ if (isset($_GET["version"])) {
 	$PATH_TO_TALENTS = "js/talents/" . $_GET["version"] . "/" . $prefix;
 	$filename = $PATH_TO_TALENTS . "/" . $id . ".js";
 } else {
-	$version = 101;
+	$version = 102;
 	$filename = "";
 }
 

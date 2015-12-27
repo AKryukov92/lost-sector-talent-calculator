@@ -5,7 +5,7 @@
 	},
 	"category":"shield",
 	"mobility":80,
-	"protection":73,
+	"protection":59.5,
 	"lvlreq":7,
 	"talentreq":9,
 	"classreq":["ju"],

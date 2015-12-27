@@ -1,7 +1,7 @@
 {
 	"name":"FAMAS",
 	"category":"assault_rifle",
-	"mobility":80,
+	"mobility":82,
 	"clip":30,
 	"ammo":60,
 	"reload_cost":20,
