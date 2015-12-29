@@ -1,0 +1,50 @@
+{
+	"name":{
+		"ru":"VG дробовик",
+		"en":"VG Shotgun"
+	},
+	"category":"shotgun",
+	"mobility":82,
+	"description":{
+		"ru":"Дробовик вангардов. С этого начинался Lost sector.",
+		"en":"Vanguard shotgun. This is what Lost Sector was beginning with."
+	},
+	"clip":7,
+	"ammo":28,
+	"reload_cost":25,
+	"lvlreq":12,
+	"talentreq":20,
+	"classreq":["as","ju","su"],
+	"id":491,
+	"attacks":[{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":30
+	},{
+		"name":{"ru":"Навскидку","en":"Snap"},
+		"type":4,
+		"accuracy":47,
+		"cost":40,
+		"min_dist":4,
+		"max_dist":11,
+		"bullets":2,
+		"min_damage":77,
+		"max_damage":91
+	},{
+		"name":{"ru":"Прицельно","en":"Aimed"},
+		"type":4,
+		"accuracy":55,
+		"cost":30,
+		"min_dist":4,
+		"max_dist":11,
+		"bullets":1,
+		"min_damage":42,
+		"max_damage":50
+	}],
+	"ingredients":0
+}

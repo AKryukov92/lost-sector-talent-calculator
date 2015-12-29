@@ -1,0 +1,41 @@
+{
+	"name":{
+		"ru":"Гранатомет М79",
+		"en":"M79 Grenade Launcher"
+	},
+	"category":"launcher",
+	"mobility":69,
+	"clip":1,
+	"ammo":8,
+	"reload_cost":20,
+	"lvlreq":5,
+	"talentreq":12,
+	"classreq":["su"],
+	"id":465,
+	"attacks":[{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.8,
+		"min_damage":20,
+		"max_damage":30
+	},{
+		"name":{"ru":"Запуск","en":"Launch"},
+		"type":6,
+		"accuracy":28,
+		"radius":4,
+		"cost":35,
+		"min_dist":10,
+		"max_dist":26,
+		"bullets":1,
+		"min_damage":59,
+		"max_damage":78
+	}],
+	"ingredients":{
+		"light_metals":23,
+		"heavy_metals":34,
+		"mech_parts":12
+	}
+}
