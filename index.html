@@ -2,7 +2,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="css/jquery-ui.css" rel="stylesheet">
+	<!-- <link href="css/jquery-ui.css" rel="stylesheet"> -->
+	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/local.css" rel="stylesheet">
 	<script>
         function resizeIframe(obj) {
@@ -10,93 +11,96 @@
         }
 	</script>
 </head>
-<body>
-<div style="display:inline-block;background-color:#757575;width:100%;">
-	<div id="general-info" class="general-info">
-		<div style="float:left;width:250px"><a style="color:#e7a516" href="http://lsonline.ru/"><img src="http://lsonline.ru/data/images/logo.png"/></a></div>
-		<div style="float:left;">
-			<div style="width:100%"><label><span name="t-link">Ссылка</span>: <input id="link-to-build" style="width:80%"></input></label></div>
-			<div style="clear:both;"><span name="t-skill-points">Очки</span> <span id="points-left">0</span></div>
-			<div><span name="t-level">Уровень</span> <span id="merc-level">1</span></div>
-			<div><label><span name="t-hide-tooltip">Спрятать тултипы талантов</span><input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked></label></div>
-			<div>
-				<label><span name="t-version">Версия игры</span><select id="selVersion">
-					<option value="98">98</option>
-					<option value="101">101</option>
-					<option value="102" selected>102</option>
-				</select><select id="selLang">
-				<option value="ru">ру</option>
-				<option value="en">en</option>
-			</select></label>
+<body style="background-color:#757575;">
+	<div class="row">
+		<div id="general-info" class="general-info">
+			<div style="float:left;width:250px"><a style="color:#e7a516" href="http://lsonline.ru/"><img src="http://lsonline.ru/data/images/logo.png"/></a></div>
+			<div style="float:left;">
+				<div style="width:100%"><label><span name="t-link">Ссылка</span>: <input id="link-to-build" style="width:80%"></input></label></div>
+				<div style="clear:both;"><span name="t-skill-points">Очки</span> <span id="points-left">0</span></div>
+				<div><span name="t-level">Уровень</span> <span id="merc-level">1</span></div>
+				<div><label><span name="t-hide-tooltip">Спрятать тултипы талантов</span><input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked></label></div>
+				<div>
+					<label><span name="t-version">Версия игры</span><select id="selVersion">
+						<option value="98">98</option>
+						<option value="101">101</option>
+						<option value="102" selected>102</option>
+					</select><select id="selLang">
+					<option value="ru">ру</option>
+					<option value="en">en</option>
+				</select></label>
+				</div>
 			</div>
 		</div>
 	</div>
-<div class="talent-manager">
-	<div id="tabs" style="display:inline-block;">
-		<ul>
-			<li><a id="as-link" href="#tabs-as"><span name="t-assault">Штурмовик</span><br/>
-			<svg viewbox="0 0 128 128">
-			<path id="path_assault" 
-				style="fill-opacity:0.25098039;stroke-width:3;stroke-opacity:1"
-				d="m 63,2 -18,36 -41,6 29,30 -6,41 37,-19 36,18 -6,-41 28,-28 -40,-6 z"/>
-			</svg></a></li>
-			<li><a id="ju-link" href="#tabs-ju"><span name="t-juggernaut">Джаггернаут</span></br>
-			<svg viewbox="0 0 128 128">
-			<path id="path_juggernaut"
-				style="fill-opacity:0.25098039;stroke-width:3;stroke-opacity:1"
-				d="m 64,4 -44,9 c 0,0 -0,41 11,68 13,28 33,45 33,45 0,0 19,-15 33,-46 12,-27 10,-67 10,-67 z"/>
-			</svg>
-			</a></li>
-			<li><a id="sc-link" href="#tabs-sc"><span name="t-scout">Скаут</span></br>
-			<svg viewbox="0 0 128 128">
-			<path id="scout_path_circle"
-				style="fill:none;fill-opacity:0.25098039;stroke-width:7;stroke-opacity:1"
-				d="M 111,63 A 48,48 0 0 1 62,111 48,48 0 0 1 14,63 48,48 0 0 1 62,14 48,48 0 0 1 111,62" />
-			<path id="scout_path_vertical"
-				style="fill:none;stroke-width:4;stroke-opacity:1"
-				d="M 63,-0 63,127"/>
-			<path id="scout_path_horizontal"
-				style="fill:none;stroke-width:4;stroke-opacity:1"
-				d="m 0,63 125,0"/>
-			</svg></a></li>
-			<li><a id="su-link" href="#tabs-su"><span name="t-support">Поддержка</span></br>
-			<svg viewbox="0 0 128 128">
-			<path id="path_support_cross"
-				style="fill-opacity:0.25098039;stroke-width:4;stroke-opacity:1"
-				d="m 80,4 -32,-0 0,42 -43,0 -0,33 43,0 0,42 33,0 0,-42 42,0 0,-33 -42,-0 z"
-			/>
-			<path id="path_support_wrench"
-				style="fill-opacity:1;stroke:none;"
-				d="m 33,95 -15,-3 -11,12 -3,-0 C 2,80 23,80 34,79 L 79,33 C 79,21 80,2 103,0 l 0,4 -11,11 2,15 16,4 11,-12 4,0 c -2,22 -19,22 -32,23 L 49,94 c -1,15 -1,30 -24,33 l -0,-4 12,-12 z"/>
-			</svg></a></li>
-		</ul>
-		<div id="tabs-as" aria-labelledby="as-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="">
-			<div id="as-layout" class="talents-background">
-			<canvas id='calculator-as-layout'>Your browser do not support this application</canvas>
+	<div class="row">
+		<div class="col-sm-12 col-md-7 container">
+			<ul class="nav nav-tabs">
+				<li><a data-toggle="tab" id="as-link" href="#tabs-as"><span name="t-assault">Штурмовик</span><br/>
+				<svg viewbox="0 0 128 128">
+				<path id="path_assault" 
+					style="fill-opacity:0.25098039;stroke-width:3;stroke-opacity:1"
+					d="m 63,2 -18,36 -41,6 29,30 -6,41 37,-19 36,18 -6,-41 28,-28 -40,-6 z"/>
+				</svg></a></li>
+				<li><a data-toggle="tab" id="ju-link" href="#tabs-ju"><span name="t-juggernaut">Джаггернаут</span></br>
+				<svg viewbox="0 0 128 128">
+				<path id="path_juggernaut"
+					style="fill-opacity:0.25098039;stroke-width:3;stroke-opacity:1"
+					d="m 64,4 -44,9 c 0,0 -0,41 11,68 13,28 33,45 33,45 0,0 19,-15 33,-46 12,-27 10,-67 10,-67 z"/>
+				</svg>
+				</a></li>
+				<li><a data-toggle="tab" id="sc-link" href="#tabs-sc"><span name="t-scout">Скаут</span></br>
+				<svg viewbox="0 0 128 128">
+				<path id="scout_path_circle"
+					style="fill:none;fill-opacity:0.25098039;stroke-width:7;stroke-opacity:1"
+					d="M 111,63 A 48,48 0 0 1 62,111 48,48 0 0 1 14,63 48,48 0 0 1 62,14 48,48 0 0 1 111,62" />
+				<path id="scout_path_vertical"
+					style="fill:none;stroke-width:4;stroke-opacity:1"
+					d="M 63,-0 63,127"/>
+				<path id="scout_path_horizontal"
+					style="fill:none;stroke-width:4;stroke-opacity:1"
+					d="m 0,63 125,0"/>
+				</svg></a></li>
+				<li><a data-toggle="tab" id="su-link" href="#tabs-su"><span name="t-support">Поддержка</span></br>
+				<svg viewbox="0 0 128 128">	
+				<path id="path_support_cross"
+					style="fill-opacity:0.25098039;stroke-width:4;stroke-opacity:1"
+					d="m 80,4 -32,-0 0,42 -43,0 -0,33 43,0 0,42 33,0 0,-42 42,0 0,-33 -42,-0 z"
+				/>
+				<path id="path_support_wrench"
+					style="fill-opacity:1;stroke:none;"
+					d="m 33,95 -15,-3 -11,12 -3,-0 C 2,80 23,80 34,79 L 79,33 C 79,21 80,2 103,0 l 0,4 -11,11 2,15 16,4 11,-12 4,0 c -2,22 -19,22 -32,23 L 49,94 c -1,15 -1,30 -24,33 l -0,-4 12,-12 z"/>
+				</svg></a></li>
+			</ul>
+			<div class="tab-content">
+				<div id="tabs-as" class="tab-pane active">
+					<div id="as-layout" class="talents-background">
+					<canvas id='calculator-as-layout'>Your browser do not support this application</canvas>
+					</div>
+				</div>
+				<div id="tabs-ju" class="tab-pane">
+					<div id="ju-layout" class="talents-background">
+					<canvas id='calculator-ju-layout'>Your browser do not support this application</canvas>
+					</div>
+				</div>
+				<div id="tabs-sc" class="tab-pane">
+					<div id="sc-layout" class="talents-background">
+					<canvas id='calculator-sc-layout'>Your browser do not support this application</canvas>
+					</div>
+				</div>
+				<div id="tabs-su" class="tab-pane">
+					<div id="su-layout" class="talents-background">
+					<canvas id='calculator-su-layout'>Your browser do not support this application</canvas>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div id="tabs-ju" aria-labelledby="ju-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-			<div id="ju-layout" class="talents-background">
-			<canvas id='calculator-ju-layout'>Your browser do not support this application</canvas>
-			</div>
-		</div>
-		<div id="tabs-sc" aria-labelledby="sc-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-			<div id="sc-layout" class="talents-background">
-			<canvas id='calculator-sc-layout'>Your browser do not support this application</canvas>
-			</div>
-		</div>
-		<div id="tabs-su" aria-labelledby="su-link" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-			<div id="su-layout" class="talents-background">
-			<canvas id='calculator-su-layout'>Your browser do not support this application</canvas>
-			</div>
-		</div>
-	</div>
-	<div class="talent-tooltip-container" id="talent-tooltip">
-		<iframe id="talent-iframe" scrolling="no"  frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
-	</div>
+		<div class="col-sm-12 col-md-5">
+<div class="row" id="talent-tooltip">
+	<iframe id="talent-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);" class=" col-xs-12"></iframe>
 </div>
-<div class="item-manager">
-	<div id="armor" class="tunable-item">
+<div class="row">
+	<div id="armor" class="tunable-item col-xs-12 col-sm-4 col-md-12 col-lg-4">
 		<div class="tunable-item-name"><a target="_blank" id="armor-link"><span id="armor-name"></span><span id="armor-value"></span></a></div>
 		<div style="overflow:auto;">
 			<div class="draggable-landing">
@@ -127,7 +131,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="primary" class="tunable-item">
+	<div id="primary" class="tunable-item col-xs-12 col-sm-4 col-md-12 col-lg-4">
 		<div class="tunable-item-name"><a target="_blank" id="primary-link"><span id="primary-name"></span><span id="primary-value"></span></a></div>
 		<div style="overflow:auto;">
 			<div class="draggable-landing">
@@ -158,7 +162,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="secondary" class="tunable-item">
+	<div id="secondary" class="tunable-item col-xs-12 col-sm-4 col-md-12 col-lg-4">
 		<div class="tunable-item-name"><a target="_blank" id="secondary-link"><span id="secondary-name"></span><span id="secondary-value"></span></a></div>
 		<div style="overflow:auto;">
 			<div class="draggable-landing">
@@ -381,9 +385,12 @@
 		</div>
 	</div>
 	</div>
+		</div>
 	</div>
+</div>
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
+<script src="js/bootstrap.js"></script>
 <script src="js/item_detail.js"></script>
 <script src="js/calculator.js"></script>
 <script src="js/utils.js"></script>

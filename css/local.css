@@ -165,12 +165,9 @@ width: 1px;
 	border:1px solid #e7a516;
 	background-color: rgba(55,55,55,0.9);
 	font-family:'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
-	margin:2px;
 	color:white;
 	font-size:13pt;
 	padding:3px;
-	width:190px;
-	float:left;
 }
 .gray { background-color:gray;}
 .white { background-color:white;}
