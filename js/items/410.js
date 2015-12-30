@@ -1,0 +1,43 @@
+{
+	"name":{
+		"ru":"Многозарядный Гранатомет Милкор",
+		"en":"Milkor Multiple Grenade Launcher"
+	},
+	"category":"launcher",
+	"mobility":66,
+	"clip":6,
+	"ammo":6,
+	"reload_cost":50,
+	"lvlreq":8,
+	"talentreq":21,
+	"classreq":["su"],
+	"id":410,
+	"attacks":[
+	{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":40
+	},
+	{
+		"name":{"ru":"Запуск","en":"Launch"},
+		"type":6,
+		"accuracy":24,
+		"radius":3.5,
+		"cost":30,
+		"min_dist":8,
+		"max_dist":28,
+		"bullets":1,
+		"min_damage":50,
+		"max_damage":65
+	}],
+	"ingredients":{
+		"light_metals":39,
+		"heavy_metals":60,
+		"mech_parts":31
+	}
+}

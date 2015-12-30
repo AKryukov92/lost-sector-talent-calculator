@@ -1,0 +1,43 @@
+{
+	"name":"Norinco 77b",
+	"category":"pistol",
+	"mobility":100,
+	"clip":10,
+	"ammo":20,
+	"reload_cost":20,
+	"id":405,
+	"attacks":[
+	{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"accuracy":90,
+		"cost":35,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":10,
+		"max_damage":25
+	},
+	{
+		"name":{"ru":"Навскидку","en":"Snap"},
+		"type":2,
+		"accuracy":49,
+		"cost":20,
+		"min_dist":4,
+		"max_dist":14,
+		"bullets":1,
+		"min_damage":15,
+		"max_damage":23
+	},
+	{
+		"name":{"ru":"Прицельно","en":"Aimed"},
+		"type":2,
+		"accuracy":57,
+		"cost":30,
+		"min_dist":4,
+		"max_dist":16,
+		"bullets":1,
+		"min_damage":23,
+		"max_damage":32
+	}],
+	"ingredients":0
+}
