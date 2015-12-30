@@ -122,6 +122,9 @@
 	padding:10px;
 	font-family:'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
 	float:left;
+	overflow:auto;
+	min-width:300px;
+	text-align:left;
 }
 .tooltip-content  h3 {
 	color:#00ff00;
@@ -143,11 +146,6 @@
 .ui-tooltip-content{
 	height:0px;
 	background-color:transparent;
-}
-.ui-tooltip-content iframe {
-	border: 0px;
-	width:auto;
-	max-width:440px;
 }
 
 .ui-helper-hidden-accessible {

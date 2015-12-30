@@ -72,21 +72,28 @@ $imagedy = floor($base_id / 20) * $TALENT_BOX_SIZE;
 
 header("Content-Type: text/html; charset=utf-8");
 
+if (!$iframe) {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
 	<meta charset="UTF-8">
-<link href="css/local.css" rel="stylesheet">
+	<title><?php print GetLocalizedProperty($data,"name", $GLOBALS["locale"]); ?></title>
+	<link href="css/local.css" rel="stylesheet">
 </head>
 <body style="margin:0px;">
+<?php } ?>
 <div class="tooltip-content" style="overflow:auto;">
 	<?php if (!$iframe) {?>
 		<div class="tooltip-image-container" style="width:<?php print $TALENT_BOX_SIZE; ?>px;height:<?php print $TALENT_BOX_SIZE; ?>px;">
-			<img src="Skills<?php print $version; ?>.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
+			<img src="images/Skills<?php print $version; ?>.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
 		</div>
 	<?php } ?>
-<h3><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]); ?></h3>
+<h3><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]); ?>
+<?php print "  <a target='_blank' class='white-link' href='talent.php?id=" . $id . "&locale=" . $locale . "&prefix=" . $prefix . "&version=" . $version . "'>";
+	print "link";
+print "</a>";?>
+</h3>
 <?php if (!isset($ranks)) {?>
 	<div class="entry"><span class="key"><?php print Placeholder("t-required");?>:</span>
 		<?php if (isset($data["lvlreq"])) {?>
@@ -127,11 +134,11 @@ header("Content-Type: text/html; charset=utf-8");
 	</div>
 <?php } ?>
 </div>
+<?php if (!$iframe) { ?>
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/utils.js"></script>
-<?php if (!$iframe) { ?>
 <script src="js/analytics.js"></script>
-<?php } ?>
 </body>
 </html>
+<?php } ?>

@@ -29,12 +29,13 @@ if (isset($data["protection"])) {
 }
 
 header("Content-Type: text/html; charset=utf-8");
+if (!$GLOBALS["iframe"]) {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
 	<meta charset="UTF-8">
-<link href="css/local.css" rel="stylesheet">
+	<link href="css/local.css" rel="stylesheet">
 <?php if (isset($data["name"])) { ?>
 	<title><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]);?></title>
 <?php } ?>
@@ -49,7 +50,8 @@ header("Content-Type: text/html; charset=utf-8");
 <?php } ?>
 </head>
 <body style="margin:0px;">
-<div class="tooltip-content" style="overflow:auto;width:300px;">
+<?php } ?>
+<div class="tooltip-content">
 	<?php if (!$GLOBALS["iframe"]) {?>
 		<div class="tooltip-image-container" style="width:<?php print $ITEM_BOX_SIZE; ?>px;height:<?php print $ITEM_BOX_SIZE; ?>px;background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));">
 			<img src="images/items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
@@ -138,11 +140,9 @@ header("Content-Type: text/html; charset=utf-8");
 	<div id="items-pool" style="clear:both;overflow:auto;">
 		<div id="armor-pool" class="pool"></div>
 	</div>
-<?php } ?>
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/utils.js"></script>
-<?php if (!$GLOBALS["iframe"]) { ?>
 <script src="js/item_detail.js"></script>
 <script>
 	function update_link() {}

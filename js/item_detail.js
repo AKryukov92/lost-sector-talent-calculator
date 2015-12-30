@@ -112,6 +112,9 @@ function InventoryModel(locale,data) {
 			}
 			$("#" + slot_name + "-link").attr("href", link);
 			$("#" + slot_name + "-link").removeClass("grey-link white-link green-link blue-link").addClass(selected_color + "-link");
+			$.get(link + "&iframe=true", function(data) {
+				$("#" + slot_name + "-fake-tooltip").html(data);
+			});
 			$("#" + slot_name + "-iframe").attr("src", link + "&iframe=true");
 		}
 	};

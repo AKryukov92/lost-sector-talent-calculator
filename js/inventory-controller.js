@@ -49,7 +49,6 @@ function autoEquipItem(itemId) {
 	inventoryApp.equipItem(item, slots[slots.length - 1]);
 }
 $(document).ready(function(){
-	document.oncontextmenu = function() {return false;};
     $( "#armor-slider" ).slider({
       value:0,
       min: 0,

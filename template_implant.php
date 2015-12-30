@@ -3,6 +3,7 @@ $base_grade = 100;
 
 header("Content-Type: text/html; charset=utf-8");
 
+if (!$GLOBALS["iframe"]) {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -14,7 +15,8 @@ header("Content-Type: text/html; charset=utf-8");
 <?php } ?>
 </head>
 <body>
-<div class="tooltip-content" style="overflow:auto;">
+<?php } ?>
+<div class="tooltip-content">
 	<?php if (!$GLOBALS["iframe"]) {?>
 		<div class="tooltip-image-container" style="width:<?php print $ITEM_BOX_SIZE; ?>px;height:<?php print $ITEM_BOX_SIZE; ?>px;background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));">
 			<img src="images/items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>

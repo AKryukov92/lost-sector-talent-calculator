@@ -75,10 +75,13 @@ function updateTalentTooltip(controller) {
 }
 function refreshTalentTooltipIframe(controller){
 	if (typeof controller.recentItem != 'undefined') {
-		$("#talent-iframe").attr("src", "/talent.php?id=" + controller.recentItem.base().id
-		+ "&locale=" + getLocale()
-		+ "&prefix=" + controller.activeClass.prefix
-		+ "&iframe=true&version=" + $("#selVersion").val());
+		var Url = "/talent.php?id=" + controller.recentItem.base().id
+			+ "&locale=" + getLocale()
+			+ "&prefix=" + controller.activeClass.prefix
+			+ "&iframe=true&version=" + $("#selVersion").val();
+		$.get(Url, function(data) {
+			$("#talent-tooltip").html(data);
+		});
 	}
 }
 function processTalentData(data) {
