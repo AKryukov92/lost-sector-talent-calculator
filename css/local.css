@@ -163,7 +163,7 @@ width: 1px;
 	border:1px solid #e7a516;
 	background-color: rgba(55,55,55,0.9);
 	font-family:'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
-	margin:2px;
+	padding:2px;
 	color:white;
 	font-size:13pt;
 	padding:3px;
@@ -182,6 +182,7 @@ width: 1px;
 .fake-tooltip-container {
 	position:relative;
 	margin-left:-10px;
+	z-index:3;
 	float:left;
 }
 .tunable-item-name {
@@ -205,6 +206,7 @@ width: 1px;
 	height:64px;
 	width:64px;
 	background:radial-gradient(50% 50%, #939182, rgba(255,0,0,0));
+	margin: 0px auto;
 }
 
 .tunable-reset {
@@ -253,14 +255,12 @@ input[type=radio]:not(old):checked +  label > span > span{
 .special-item-container {
 	clear:both;
 	display:block;
-	float:left;
 }
 
 .special-item {
 	background-color: rgba(55,55,55,0.9);
-	float:left;
 	display:block;
-	margin:2px;
+	padding:2px;
 	border:1px solid #e7a516;
 	text-align:center;
 }
