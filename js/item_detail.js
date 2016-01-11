@@ -135,18 +135,20 @@ function InventoryModel(locale,data) {
 			}
 		}
 	};
-	this.autoEquipItem = function(item) {
-		var temp = 0;
-	};
-	this.equipItem = function(item, slot_name) {
+	this.equipItem = function(item, slot_name, fallback) {
+		var slot = $("#" + slot_name + "-container");
+		if (slot.length == 0) {
+			slot = $("#" + fallback + "-container");
+			slot_name = fallback;
+		}
 		var old_item = this.slots[slot_name].item;
 		if (!$.isEmptyObject(old_item)) {
 			this.resetInventorySlot(slot_name);
 		}
 		this.addItem(slot_name, item);
-		$("#" + slot_name + "-container").empty();
-		$("#" + slot_name + "-container").prop("title");
-		$("#" + slot_name + "-container").html(this.getImageForItem(item));
+		slot.empty();
+		slot.prop("title");
+		slot.html(this.getImageForItem(item));
 		this.updateSlotTooltip(slot_name);
 		if (typeof update_link != 'undefined') {
 			update_link();
@@ -185,7 +187,7 @@ function InventoryModel(locale,data) {
 				"<div id=\"item_" + item.id + "\" class=\"swimmer-image-container\">" +
 					this.getImageForItem(item) +
 				"</div>" +
-				"<a id=\"item" + item.id + "name\" href='javascript:autoEquipItem(" + item.id + ")' class=\"fake-tooltip\">" + this.getLocalizedProperty(item, "name") + "</a>" +
+				"<a id=\"item" + item.id + "name\" href='javascript:autoEquipItem(" + item.id + ", \"primary\")' class=\"fake-tooltip\">" + this.getLocalizedProperty(item, "name") + "</a>" +
 			"</div>");
 		$("#item_" + item.id).draggable({
 			containment:"document",
