@@ -91,9 +91,9 @@
 	<div class="talent-tooltip-container" id="talent-tooltip">
 	</div>
 </div>
-<div class="item-manager col-lg-6 col-md-5 col-sm-12">
+<div class="item-manager col-lg-6 col-sm-12">
 	<div class="row">
-	<div id="armor" class="tunable-item col-lg-4 col-md-12 col-sm-4 col-xs-12">
+	<div id="armor" class="tunable-item col-sm-4 col-xs-12">
 		<div class="tunable-item-name"><a target="_blank" id="armor-link"><span id="armor-name"></span><span id="armor-value"></span></a></div>
 		<div style="overflow:auto;">
 			<div class="draggable-landing">
@@ -123,7 +123,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="primary" class="tunable-item col-lg-4 col-md-12 col-sm-4 col-xs-12">
+	<div id="primary" class="tunable-item col-sm-4 col-xs-12">
 		<div class="tunable-item-name"><a target="_blank" id="primary-link"><span id="primary-name"></span><span id="primary-value"></span></a></div>
 		<div style="overflow:auto;">
 			<div class="draggable-landing">
@@ -153,7 +153,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="secondary" class="tunable-item col-lg-4 col-md-12 col-sm-4 col-xs-12">
+	<div id="secondary" class="tunable-item col-sm-4 col-xs-12">
 		<div class="tunable-item-name"><a target="_blank" id="secondary-link"><span id="secondary-name"></span><span id="secondary-value"></span></a></div>
 		<div style="overflow:auto;">
 			<div class="draggable-landing">
@@ -186,26 +186,26 @@
 	</div>
 	<div id="special-items" class="special-item-container row">
 		<div class="special-item col-lg-2 col-md-2 col-xs-2">
-				<a id="hat-link" name="t-link" target="_blank" class="white-link" style="margin:3px;">ссылка</a>
-				<div id="hat-container" class="inventory-item-container">
-					<img src="images/slot-hat.png"/>
+			<a id="hat-link" name="t-link" target="_blank" class="white-link" style="margin:3px;">ссылка</a>
+			<div id="hat-container" class="inventory-item-container">
+				<img src="images/slot-hat.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('hat');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container">
+				<div class="fake-tooltip" id="hat-fake-tooltip">
 				</div>
-				<a class="tunable-reset" onclick="reset_slot('hat');"><span name="t-clear">очистить</span></a>
-				<div class="fake-tooltip-container">
-					<div class="fake-tooltip" id="hat-fake-tooltip">
-					</div>
-				</div>
+			</div>
 		</div>
 		<div class="special-item col-lg-2 col-md-2 col-xs-2">
-				<a id="consumable_1-link" name="t-link" target="_blank" class="white-link">ссылка</a>
-				<div id="consumable_1-container" class="inventory-item-container">
-					<img src="images/slot-consumable_1.png"/>
+			<a id="consumable_1-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="consumable_1-container" class="inventory-item-container">
+				<img src="images/slot-consumable_1.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('consumable_1');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container">
+				<div class="fake-tooltip" id="consumable_1-fake-tooltip">
 				</div>
-				<a class="tunable-reset" onclick="reset_slot('consumable_1');"><span name="t-clear">очистить</span></a>
-				<div class="fake-tooltip-container">
-					<div class="fake-tooltip" id="consumable_1-fake-tooltip">
-					</div>
-				</div>
+			</div>
 		</div>
 		<div class="special-item col-lg-2 col-md-2 col-xs-2">
 			<a id="consumable_2-link" name="t-link" target="_blank" class="white-link">ссылка</a>
@@ -219,37 +219,37 @@
 			</div>
 		</div>
 		<div class="special-item col-lg-2 col-md-2 col-xs-2">
-				<a id="consumable_3-link" name="t-link" target="_blank" class="white-link">ссылка</a>
-				<div id="consumable_3-container" class="inventory-item-container">
-					<img src="images/slot-consumable_3.png"/>
+			<a id="consumable_3-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="consumable_3-container" class="inventory-item-container">
+				<img src="images/slot-consumable_3.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('consumable_3');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container">
+				<div class="fake-tooltip" id="consumable_3-fake-tooltip">
 				</div>
-				<a class="tunable-reset" onclick="reset_slot('consumable_3');"><span name="t-clear">очистить</span></a>
-				<div class="fake-tooltip-container">
-					<div class="fake-tooltip" id="consumable_3-fake-tooltip">
-					</div>
-				</div>
+			</div>
 		</div>
 		<div class="special-item col-lg-2 col-md-2 col-xs-2">
-				<a id="consumable_4-link" name="t-link" target="_blank" class="white-link">ссылка</a>
-				<div id="consumable_4-container" class="inventory-item-container">
-					<img src="images/slot-consumable_4.png"/>
+			<a id="consumable_4-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="consumable_4-container" class="inventory-item-container">
+				<img src="images/slot-consumable_4.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('consumable_4');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container">
+				<div class="fake-tooltip" id="consumable_4-fake-tooltip">
 				</div>
-				<a class="tunable-reset" onclick="reset_slot('consumable_4');"><span name="t-clear">очистить</span></a>
-				<div class="fake-tooltip-container">
-					<div class="fake-tooltip" id="consumable_4-fake-tooltip">
-					</div>
-				</div>
+			</div>
 		</div>
 		<div class="special-item col-lg-2 col-md-2 col-xs-2">
-				<a id="consumable_5-link" name="t-link" target="_blank" class="white-link">ссылка</a>
-				<div id="consumable_5-container" class="inventory-item-container">
-					<img src="images/slot-consumable_5.png"/>
+			<a id="consumable_5-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="consumable_5-container" class="inventory-item-container">
+				<img src="images/slot-consumable_5.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('consumable_5');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container">
+				<div class="fake-tooltip" id="consumable_5-fake-tooltip">
 				</div>
-				<a class="tunable-reset" onclick="reset_slot('consumable_5');"><span name="t-clear">очистить</span></a>
-				<div class="fake-tooltip-container">
-					<div class="fake-tooltip" id="consumable_5-fake-tooltip">
-					</div>
-				</div>
+			</div>
 		</div>
 		
 		<div class="special-item col-xs-3" style="clear:left">
