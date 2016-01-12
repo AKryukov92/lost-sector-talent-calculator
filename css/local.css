@@ -40,7 +40,23 @@
   .ui-tabs-vertical .ui-tabs-panel {
   float: left;
   }
-  
+ 
+.talent-manager {
+	width:100%;
+}
+.item-manager {
+	width:100%;
+}
+@media (min-width:1024px) {
+	.talent-manager {
+		width:50%;
+		float:left;
+	}
+	.item-manager {
+		width:50%;
+		float:left;
+	}
+}
 .talents-background{
 	background-color:black;
 	margin: 2px 2px 2px 0px;
@@ -108,8 +124,8 @@
 	color:#e7a516;
 }
 .general-info{
-	background-color:pink;
 	display:block;
+	float:left;
 }
 .general-info div{
 	float:left;
@@ -163,12 +179,16 @@ width: 1px;
 	border:1px solid #e7a516;
 	background-color: rgba(55,55,55,0.9);
 	font-family:'Trebuchet MS', Tahoma, Verdana, Arial, sans-serif;
-	padding:2px;
 	color:white;
 	font-size:13pt;
-	padding:3px;
-	width:190px;
+	margin:2px;
+	width:100%;
 	float:left;
+}
+@media (min-width:1024px) {
+	.tunable-item {
+		width:32%;
+	}
 }
 .gray { background-color:gray;}
 .white { background-color:white;}
@@ -296,10 +316,21 @@ input[type=radio]:not(old):checked +  label > span > span{
 }
 .special-item {
 	background-color: rgba(55,55,55,0.9);
-	padding:2px;
 	border:1px solid #e7a516;
 	text-align:center;
-	min-width:100px;
+	width:15%;
+	margin:2px;
+	float:left;
+}
+@media (min-width:624px) {
+	.special-item {
+		width:32%;
+	}
+}
+@media (min-width:1024px) {
+	.special-item {
+		width:15%;
+	}
 }
 .special-item img{
 	padding:1px;
@@ -308,21 +339,6 @@ input[type=radio]:not(old):checked +  label > span > span{
 	.special-item .white-link{
 		margin:3px;
 	}
-@media (min-width:410px) {
-	.special-item {
-		min-width:120px;
-	}
-}
-@media (min-width:480px) {
-	.special-item {
-		min-width:150px;
-	}
-}
-@media (min-width:620px) {
-	.special-item {
-		min-width:100px;
-	}
-}
 
 .specials {
 	color:#bac887;
