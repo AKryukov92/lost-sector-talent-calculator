@@ -4,10 +4,8 @@
 	<meta charset="UTF-8">
 	<link href="css/jquery-ui.css" rel="stylesheet">
 	<link href="css/local.css" rel="stylesheet">
-	<link href="css/bootstrap.css" rel="stylesheet">
 </head>
-<body>
-<div class="container" style="display:inline-block;background-color:#757575;width:100%;">
+<body style="background-color:#757575;">
 	<div id="general-info" class="general-info">
 		<div style="float:left;width:250px"><a style="color:#e7a516" href="http://lsonline.ru/"><img src="http://lsonline.ru/data/images/logo.png"/></a></div>
 		<div style="float:left;">
@@ -27,8 +25,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-<div class="talent-manager col-lg-6 col-md-7 col-sm-12">
+<div class="talent-manager">
 	<div id="tabs" style="display:inline-block;">
 		<ul>
 			<li><a id="as-link" href="#tabs-as"><span name="t-assault">Штурмовик</span><br/>
@@ -91,9 +88,8 @@
 	<div class="talent-tooltip-container" id="talent-tooltip">
 	</div>
 </div>
-<div class="item-manager col-lg-6 col-sm-12">
-	<div class="row">
-	<div id="armor" class="tunable-item col-sm-4 col-xs-12">
+<div class="item-manager">
+	<div id="armor" class="tunable-item">
 		<div class="tunable-item-name"><a target="_blank" id="armor-link"><span id="armor-name"></span><span id="armor-value"></span></a></div>
 		<div style="overflow:auto;">
 			<div class="draggable-landing">
@@ -123,7 +119,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="primary" class="tunable-item col-sm-4 col-xs-12">
+	<div id="primary" class="tunable-item">
 		<div class="tunable-item-name"><a target="_blank" id="primary-link"><span id="primary-name"></span><span id="primary-value"></span></a></div>
 		<div style="overflow:auto;">
 			<div class="draggable-landing">
@@ -153,7 +149,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="secondary" class="tunable-item col-sm-4 col-xs-12">
+	<div id="secondary" class="tunable-item">
 		<div class="tunable-item-name"><a target="_blank" id="secondary-link"><span id="secondary-name"></span><span id="secondary-value"></span></a></div>
 		<div style="overflow:auto;">
 			<div class="draggable-landing">
@@ -183,9 +179,8 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	<div id="special-items" class="special-item-container row">
-		<div class="special-item col-lg-2 col-md-2 col-xs-2">
+	<div id="special-items" class="special-item-container">
+		<div class="special-item">
 			<a id="hat-link" name="t-link" target="_blank" class="white-link" style="margin:3px;">ссылка</a>
 			<div id="hat-container" class="inventory-item-container">
 				<img src="images/slot-hat.png"/>
@@ -196,7 +191,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="special-item col-lg-2 col-md-2 col-xs-2">
+		<div class="special-item">
 			<a id="consumable_1-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="consumable_1-container" class="inventory-item-container">
 				<img src="images/slot-consumable_1.png"/>
@@ -207,7 +202,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="special-item col-lg-2 col-md-2 col-xs-2">
+		<div class="special-item">
 			<a id="consumable_2-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="consumable_2-container" class="inventory-item-container">
 				<img src="images/slot-consumable_2.png"/>
@@ -218,7 +213,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="special-item col-lg-2 col-md-2 col-xs-2">
+		<div class="special-item">
 			<a id="consumable_3-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="consumable_3-container" class="inventory-item-container">
 				<img src="images/slot-consumable_3.png"/>
@@ -229,7 +224,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="special-item col-lg-2 col-md-2 col-xs-2">
+		<div class="special-item">
 			<a id="consumable_4-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="consumable_4-container" class="inventory-item-container">
 				<img src="images/slot-consumable_4.png"/>
@@ -240,7 +235,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="special-item col-lg-2 col-md-2 col-xs-2">
+		<div class="special-item">
 			<a id="consumable_5-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="consumable_5-container" class="inventory-item-container">
 				<img src="images/slot-consumable_5.png"/>
@@ -252,7 +247,7 @@
 			</div>
 		</div>
 		
-		<div class="special-item col-xs-3" style="clear:left">
+		<div class="special-item" style="clear:left">
 			<a id="head_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="head_mod-container" class="inventory-item-container">
 				<img src="images/slot-head_mod.png"/>
@@ -263,7 +258,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="special-item col-xs-3">
+		<div class="special-item">
 			<a id="chest_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="chest_mod-container" class="inventory-item-container">
 				<img src="images/slot-chest_mod.png"/>
@@ -274,7 +269,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="special-item col-xs-3">
+		<div class="special-item">
 			<a id="hand_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="hand_mod-container" class="inventory-item-container">
 				<img src="images/slot-hand_mod.png"/>
@@ -285,7 +280,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="special-item col-xs-3">
+		<div class="special-item">
 			<a id="feet_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="feet_mod-container" class="inventory-item-container">
 				<img src="images/slot-feet_mod.png"/>
@@ -367,9 +362,7 @@
 		</div>
 	</div>
 </div>
-</div>
 <script src="js/jquery.js"></script>
-<script src="js/bootstrap.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/item_detail.js"></script>
 <script src="js/calculator.js"></script>
