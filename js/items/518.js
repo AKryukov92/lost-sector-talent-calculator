@@ -28,23 +28,23 @@
 	},{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
-		"accuracy":54,
+		"min_damage":56,
+		"max_damage":76,
+		"accuracy":63,
+		"bullets":7,
 		"cost":40,
 		"min_dist":10,
-		"max_dist":25,
-		"bullets":8,
-		"min_damage":62,
-		"max_damage":82
+		"max_dist":25
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
-		"accuracy":62,
+		"min_damage":62,
+		"max_damage":82,
+		"accuracy":69,
+		"bullets":5,
 		"cost":60,
 		"min_dist":12,
-		"max_dist":29,
-		"bullets":6,
-		"min_damage":56,
-		"max_damage":76
+		"max_dist":29
 	}],
 	"ingredients":0
 }
