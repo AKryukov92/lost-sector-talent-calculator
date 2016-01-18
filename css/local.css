@@ -43,17 +43,18 @@
  
 .talent-manager {
 	width:100%;
+	clear:both;
 }
 .item-manager {
-	width:100%;
+	width: 100%;
 }
-@media (min-width:1024px) {
+@media (min-width:1280px) {
 	.talent-manager {
-		width:50%;
+		width:600px;
 		float:left;
 	}
 	.item-manager {
-		width:50%;
+		width:calc(100% - 600px);
 		float:left;
 	}
 }
@@ -185,7 +186,7 @@ width: 1px;
 	width:100%;
 	float:left;
 }
-@media (min-width:1024px) {
+@media (min-width:1280px) {
 	.tunable-item {
 		width:32%;
 	}
@@ -273,7 +274,7 @@ input[type=radio]:not(old):checked +  label > span > span{
   border-radius    : 3px;
 }
 
-@media (min-width:768px) {
+@media (min-width:600px) {
 	input[type=radio   ]:not(old){
 	  width     : 20px;
 	  margin    : 0;
@@ -327,7 +328,7 @@ input[type=radio]:not(old):checked +  label > span > span{
 		width:32%;
 	}
 }
-@media (min-width:1024px) {
+@media (min-width:1280px) {
 	.special-item {
 		width:15%;
 	}
