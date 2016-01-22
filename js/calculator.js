@@ -168,14 +168,11 @@ function Calculator () {
 	this.prefix = "";
 	this.width = 0;
 	this.items = [];
-	this.rows = [];
-	this.heightmap = [];
 	
 	this.init = function(input) {
 		this.consumeInput(input);
 		this.calculateWidth();
 		this.assignPowerToTalents();
-		this.fillHeightMap();
 		this.mapRefsReqs();
 		this.mapRanks();
 	};
@@ -207,35 +204,6 @@ function Calculator () {
 			}
 		}
 		this.width = max_column;
-	};
-	this.fillHeightMap = function() {
-		this.heightmap = [];
-		var IMPOSSIBLE_LEVEL = 99;
-		var threshold = 0;
-		if (this.items.length == 0) {
-			throw new Error("Talent data is empty");
-		}
-		var found = true;
-		while(found) {
-			found = false;
-			var min_level_req = IMPOSSIBLE_LEVEL;
-			for (var i = 0; i < this.items.length; i++) {
-				if (typeof this.items[i].base().lvlreq == 'undefined') {
-					continue;
-				}
-				var currentLvlReq = this.items[i].base().lvlreq;
-				if (currentLvlReq > threshold) {
-					if (min_level_req > this.items[i].base().lvlreq) {
-						min_level_req = this.items[i].base().lvlreq;
-						found = true;
-					}
-				}
-			}
-			if (found) {
-				threshold = min_level_req;
-				this.heightmap.push(min_level_req);
-			}
-		}
 	};
 	this.mapRefsReqs = function() {
 		for (var i = 0; i < this.items.length; i++) {
@@ -383,51 +351,108 @@ function Calculator () {
 		return totalTalentPoints - this.getSpentTalentPoints();
 	};
 };
-function TalentView(locale) {
+function TalentView(locale, data, atlasActive, atlasInactive, getContextFunction) {
 	if (typeof locale == "undefined") {
 		throw new Error("Locale was not defined");
+	}
+	if (typeof data == "undefined") {
+		throw new Error("Talent data was not defined");
+	}
+	if (typeof atlasActive == "undefined") {
+		throw new Error("Atlas of active talents was not defined");
+	}
+	if (typeof atlasInactive == "undefined") {
+		throw new Error("Atlas of active talents was not defined");
+	}
+	if (typeof getContextFunction == "undefined") {
+		throw new Error("Get context function was not defined");
 	}
 	this.locale = locale;
 	this.applyLocale = function(locale) {
 		this.locale = locale;
 		this.displayLayout();
 	};
+	this.atlasActive = atlasActive;
+	this.atlasInactive = atlasInactive;
+	this.patchdata = data;
 	this.atlasActive;
 	this.atlasInactive;
 	this.recentItem;
-	this.patchdata = {};
-	this.activeClass = {
-		graphicContext:{}
-	};
+	this.activeClassPrefix = "as";
 	this.classes = {
-		"as": new Calculator(),
-		"ju": new Calculator(),
-		"sc": new Calculator(),
-		"su": new Calculator()
+		"as": {
+			calculator: new Calculator(),
+			heightMap: [],
+			ctx: {}
+		},
+		"ju": {
+			calculator: new Calculator(),
+			heightMap: [],
+			ctx: {}
+		},
+		"sc": {
+			calculator: new Calculator(),
+			heightMap: [],
+			ctx: {}
+		},
+		"su": {
+			calculator: new Calculator(),
+			heightMap: [],
+			ctx: {}
+		}
 	};
-	this.handleImages = function (atlasActive, atlasInactive) {
-		this.atlasActive = atlasActive;
-		this.atlasInactive = atlasInactive;
+	this.fillHeightMap = function(calculator) {
+		var result = [];
+		var IMPOSSIBLE_LEVEL = 99;
+		var threshold = 0;
+		if (calculator.items.length == 0) {
+			throw new Error("Talent data is empty");
+		}
+		var found = true;
+		while(found) {
+			found = false;
+			var min_level_req = IMPOSSIBLE_LEVEL;
+			for (var i = 0; i < calculator.items.length; i++) {
+				if (typeof calculator.items[i].base().lvlreq == 'undefined') {
+					continue;
+				}
+				var currentLvlReq = calculator.items[i].base().lvlreq;
+				if (currentLvlReq > threshold) {
+					if (min_level_req > calculator.items[i].base().lvlreq) {
+						min_level_req = calculator.items[i].base().lvlreq;
+						found = true;
+					}
+				}
+			}
+			if (found) {
+				threshold = min_level_req;
+				result.push(min_level_req);
+			}
+		}
+		return result;
+	};
+	this.setActiveClass = function(classPrefix) {
+		this.activeClass = this.classes[classPrefix];
+	};
+	this.classes["as"].calculator.init(this.patchdata.assault_data);
+	this.classes["as"].heightMap = this.fillHeightMap(this.classes["as"].calculator);
+	this.classes["as"].ctx = getContextFunction("as");
+	this.classes["ju"].calculator.init(this.patchdata.juggernaut_data);
+	this.classes["ju"].heightMap = this.fillHeightMap(this.classes["ju"].calculator);
+	this.classes["ju"].ctx = getContextFunction("ju");
+	this.classes["sc"].calculator.init(this.patchdata.scout_data);
+	this.classes["sc"].heightMap = this.fillHeightMap(this.classes["sc"].calculator);
+	this.classes["sc"].ctx = getContextFunction("sc");
+	this.classes["su"].calculator.init(this.patchdata.support_data);
+	this.classes["su"].heightMap = this.fillHeightMap(this.classes["su"].calculator);
+	this.classes["su"].ctx = getContextFunction("su");
+	this.getActiveClass = function() {
+		return this.classes[this.activeClassPrefix];
 	}
-	this.init = function(data) {
-		this.patchdata = data;
-		this.classes["as"].init(this.patchdata.assault_data);
-		this.classes["ju"].init(this.patchdata.juggernaut_data);
-		this.classes["sc"].init(this.patchdata.scout_data);
-		this.classes["su"].init(this.patchdata.support_data);
-		this.activeClass.calculator = this.classes[this.activeClass.prefix];
-	};
 	this.UriHandlers = {
 		"t": {fn: talentUriHandler },
 		/*legacy links handler: */
 		"talent": { fn: talentUriHandler }
-	};
-	this.setActiveClass = function(ctx, classPrefix) {
-		this.activeClass = {
-			prefix : classPrefix,
-			graphicContext : ctx,
-			calculator : this.classes[classPrefix]
-		}
 	};
 	this.displayLayout = function(){
 		this.arrangeRows(5,3,35,50);
@@ -437,24 +462,25 @@ function TalentView(locale) {
 		this.drawTalents();
 	};
 	this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth) {
-		var calculator = this.activeClass.calculator;
+		var heightMap = this.classes[this.activeClassPrefix].heightMap;
+		var calculator = this.classes[this.activeClassPrefix].calculator;
 		this.padding = padding;
 		this.rowHeaderWidth = rowHeaderWidth;
-		this.totalHeight = (margin + padding + itemSize + padding) * calculator.heightmap.length + margin;
+		this.totalHeight = (margin + padding + itemSize + padding) * heightMap.length + margin;
 		this.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * (calculator.width + 1) + margin;
 		
 		this.rows = [];
-		for (var i = 0; i < calculator.heightmap.length; i++) {
+		for (var i = 0; i < heightMap.length; i++) {
 			var row = {
 				x: margin,
 				y: (margin + padding + itemSize + padding) * i + margin,
 				width: this.totalWidth - margin * 2,
 				height: DEST_BOX_SIZE + padding * 2,
-				level: this.heightmap[i],
+				level: heightMap[i],
 				items: []
 			};
 			for (var j = 0; j < calculator.items.length; j++) {
-				if (calculator.items[j].base().lvlreq == calculator.heightmap[i]) {
+				if (calculator.items[j].base().lvlreq == heightMap[i]) {
 					calculator.items[j].calculatePaintPosition(margin, padding, row.y, rowHeaderWidth);
 					row.items.push(calculator.items[j]);
 				}
@@ -463,7 +489,7 @@ function TalentView(locale) {
 		}
 	};
 	this.drawBackground = function() {
-		var ctx = this.activeClass.graphicContext;
+		var ctx = this.classes[this.activeClassPrefix].ctx;
 		ctx.fillStyle = "black";
 		ctx.fillRect(0, 0, this.totalWidth, this.totalHeight);
 		ctx.fillStyle = "#1f1f1f";
@@ -473,8 +499,8 @@ function TalentView(locale) {
 		}
 	};
 	this.drawRowHeader = function(row, bright) {
-		var ctx = this.activeClass.graphicContext;
-		var calculator = this.activeClass.calculator;
+		var ctx = this.classes[this.activeClassPrefix].ctx;
+		var calculator = this.classes[this.activeClassPrefix].calculator;
 		ctx.fillStyle = "#1f1f1f";
 		ctx.fillRect(row.x, row.y, this.rowHeaderWidth, row.height);
 		ctx.font = "1.1em Trebuchet MS,Tahoma,Verdana,Arial,sans-serif";
@@ -498,8 +524,8 @@ function TalentView(locale) {
 		}
 	};
 	this.drawReqToRefLinks = function() {
-		var ctx = this.activeClass.graphicContext;
-		var calculator = this.activeClass.calculator;
+		var ctx = this.classes[this.activeClassPrefix].ctx;
+		var calculator = this.classes[this.activeClassPrefix].calculator;
 		for (var i = 0; i < calculator.items.length; i++) {
 			var item = calculator.items[i];
 			var links = item.getReqToRefLinks();
@@ -514,13 +540,13 @@ function TalentView(locale) {
 		}
 	};
 	this.drawTalents = function() {
-		var calculator = this.activeClass.calculator;
+		var calculator = this.classes[this.activeClassPrefix].calculator;
 		for (var i = 0; i < calculator.items.length; i ++) {
 			this.blitItem(calculator.items[i], false);
 		}
 	};
 	this.blitItem = function(item, hover) {
-		var ctx = this.activeClass.graphicContext;
+		var ctx = this.classes[this.activeClassPrefix].ctx;
 		if (hover) {
 			ctx.fillStyle = "#e7a516";
 		} else if (item.base().AP_cost > 0) {
@@ -548,7 +574,7 @@ function TalentView(locale) {
 		}
 	};
 	this.getItem = function(x, y) {
-		var calculator = this.activeClass.calculator;
+		var calculator = this.classes[this.activeClassPrefix].calculator;
 		for (var i = 0; i < calculator.items.length; i++) {
 			var item = calculator.items[i];
 			if (item.isInBox(x, y)) {
@@ -579,7 +605,7 @@ function TalentView(locale) {
 		}
 	};
 	this.handleMouseMove = function(x, y) {
-		var calculator = this.activeClass.calculator;
+		var calculator = this.classes[this.activeClassPrefix].calculator;
 		for (var i = 0; i < calculator.items.length; i++) {
 			var item = calculator.items[i];
 			if (item.isInBox(x,y)) {
@@ -654,6 +680,15 @@ function TalentView(locale) {
 		// this.markRows();
 		// this.drawTalents();
 	// };
+	// this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth) {
+		// var calculator = this.activeClass.calculator;
+		// this.padding = padding;
+		// this.rowHeaderWidth = rowHeaderWidth;
+		// this.totalHeight = (margin + padding + itemSize + padding) * calculator.heightMap.length + margin;
+		// this.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * (calculator.width + 1) + margin;
+		
+		
+	// }
 	// this.drawBackground = function() {
 		// var ctx = this.activeClass.graphicContext;
 		// var calculator = this.activeClass.calculator;
