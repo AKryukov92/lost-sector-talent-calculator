@@ -1,30 +1,67 @@
 var images;
-var talentApplication = new TalentView(getLocale());
+var talentApplication;
 var initialTalentData = {};
 
 function switchVersionClass(prefix, version) {
-	if (prefix != talentApplication.activeClass.prefix) {
-		// Изменился выбранный класс
-		// нужно выставить активный класс
-		var element = document.getElementById("calculator-" + prefix + "-layout");
-		var ctx = element.getContext('2d');
-		talentApplication.setActiveClass(ctx, prefix);
-		switchToClassLayout(prefix, talentApplication.activeClass.calculator);
+	if (typeof talentApplication == "undefined") {
+		startRefresh(prefix, version);
+		return;
+	}
+	if (prefix != talentApplication.activeClassPrefix) {
+		talentApplication.activeClassPrefix = prefix
+		switchToClassLayout(talentApplication.getActiveClass());
 	}
 	if (talentApplication.patchdata.game_version != version) {
-		// Когда изменилась версия
-		// загрузить новые картинки и данные по талантам
-		var sources = {
-			atlasActive: "images/Skills" + version + ".png",
-			atlasInactive: "images/inactiveSkills" + version + ".png"
-		};
-		loadImages(sources, function(imgs) {
-			talentApplication.handleImages(imgs.atlasActive, imgs.atlasInactive);
-			images = imgs;
-			$.get("/talent_data.php?version=" + version, processTalentData);
-		});
+		startRefresh(prefix, version);
 	}
 };
+function startRefresh(prefix, version) {
+	// Когда изменилась версия
+	// загрузить новые картинки и данные по талантам
+	var sources = {
+		atlasActive: "images/Skills" + version + ".png",
+		atlasInactive: "images/inactiveSkills" + version + ".png"
+	};
+	loadImages(sources, function(imgs) {
+		images = imgs;
+		$.get("/talent_data.php?version=" + version, processTalentData);
+	});
+}
+function getContext(prefix) {
+	var element = document.getElementById("calculator-" + prefix + "-layout");
+	return element.getContext('2d');
+}
+function processTalentData(data) {
+	talentApplication = new TalentView(getLocale(), data, images.atlasActive, images.atlasInactive, getContext);
+	$.each(talentApplication.classes, function(prefix, calculator) {
+		$("#calculator-" + prefix + "-layout").click(function(e) {
+			talentApplication.handleClick(e.offsetX, e.offsetY);
+			update_link();
+			$("#merc-level").html(calculator.getRequiredLevel());
+			$("#points-left").html(calculator.getAvailableTalentPoints());
+			updateTalentTooltip(talentApplication);
+		});
+		$("#calculator-" + prefix + "-layout").mousemove(function(e) {
+			var offset = $(this).offset();
+			talentApplication.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
+			if (!$("#talent-visibility-checkbox").is(":checked")) {
+				updateTalentTooltip(talentApplication);
+			}
+		});
+		$("#" + prefix + "-link").click(function(){
+			var version = $("#selVersion").val();
+			switchVersionClass(prefix, version);
+		});
+	});
+	switchToClassLayout(talentApplication.getActiveClass());
+	if (initialTalentData.gameVersion == talentApplication.patchdata.game_version &&
+		initialTalentData.classPrefix == talentApplication.activeClass.prefix) {
+		talentApplication.classes[initialTalentData.classPrefix].learnTalentsFromString(initialTalentData.talentInput);
+		talentApplication.drawTalents();
+		update_link();
+	}
+	talentApplication.displayLayout();
+}
 function talentUriHandler(key, value, target) {
 	talent = decodeURIComponent(value);
 	var match = /(\d*)(\d)(as|sc|ju|su)_(\w*)/.exec(value);
@@ -84,44 +121,13 @@ function refreshTalentTooltipIframe(controller){
 		});
 	}
 }
-function processTalentData(data) {
-	talentApplication.init(data);
-	switchToClassLayout(talentApplication.activeClass.prefix, talentApplication.activeClass.calculator);
-	if (initialTalentData.gameVersion == talentApplication.patchdata.game_version &&
-		initialTalentData.classPrefix == talentApplication.activeClass.prefix) {
-		talentApplication.classes[initialTalentData.classPrefix].learnTalentsFromString(initialTalentData.talentInput);
-		talentApplication.drawTalents();
-		update_link();
-	}
+function switchToClassLayout(cls) {
+	$("#calculator-" + cls.prefix + "-layout").prop("width", cls.calculator.totalWidth);
+	$("#calculator-" + cls.prefix + "-layout").prop("height", cls.calculator.totalHeight);
+	$("#merc-level").html(cls.calculator.getRequiredLevel());
+	$("#points-left").html(cls.calculator.getAvailableTalentPoints());
 	talentApplication.displayLayout();
 }
-function switchToClassLayout(prefix, calculator) {
-	$("#calculator-" + prefix + "-layout").prop("width", calculator.totalWidth);
-	$("#calculator-" + prefix + "-layout").prop("height", calculator.totalHeight);
-	$("#merc-level").html(calculator.getRequiredLevel());
-	$("#points-left").html(calculator.getAvailableTalentPoints());
-	talentApplication.displayLayout();
-}
-$.each(talentApplication.classes, function(prefix, calculator) {
-	$("#calculator-" + prefix + "-layout").click(function(e) {
-		talentApplication.handleClick(e.offsetX, e.offsetY);
-		update_link();
-		$("#merc-level").html(calculator.getRequiredLevel());
-		$("#points-left").html(calculator.getAvailableTalentPoints());
-		updateTalentTooltip(talentApplication);
-	});
-	$("#calculator-" + prefix + "-layout").mousemove(function(e) {
-		var offset = $(this).offset();
-		talentApplication.handleMouseMove(e.pageX - offset.left, e.pageY - offset.top);
-		if (!$("#talent-visibility-checkbox").is(":checked")) {
-			updateTalentTooltip(talentApplication);
-		}
-	});
-	$("#" + prefix + "-link").click(function(){
-		var version = $("#selVersion").val();
-		switchVersionClass(prefix, version);
-	});
-});
 $("#link-to-build").click(function(){
 	window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());
 });
