@@ -178,7 +178,6 @@ function Calculator () {
 		this.fillHeightMap();
 		this.mapRefsReqs();
 		this.mapRanks();
-		this.arrangeRows(5,3,35,50);
 	};
 	
 	this.consumeInput = function(input) {
@@ -273,31 +272,6 @@ function Calculator () {
 					throw new Error("Illegal talents data");
 				}
 			}
-		}
-	};
-	this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth) {
-		this.padding = padding;
-		this.rowHeaderWidth = rowHeaderWidth;
-		this.totalHeight = (margin + padding + itemSize + padding) * this.heightmap.length + margin;
-		this.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * (this.width + 1) + margin;
-		
-		this.rows = [];
-		for (var i = 0; i < this.heightmap.length; i++) {
-			var row = {
-				x: margin,
-				y: (margin + padding + itemSize + padding) * i + margin,
-				width: this.totalWidth - margin * 2,
-				height: DEST_BOX_SIZE + padding * 2,
-				level: this.heightmap[i],
-				items: []
-			};
-			for (var j = 0; j < this.items.length; j++) {
-				if (this.items[j].base().lvlreq == this.heightmap[i]) {
-					this.items[j].calculatePaintPosition(margin, padding, row.y, rowHeaderWidth);
-					row.items.push(this.items[j]);
-				}
-			}
-			this.rows.push(row);
 		}
 	};
 	this.assignPowerToTalents = function() {
@@ -456,19 +430,45 @@ function TalentView(locale) {
 		}
 	};
 	this.displayLayout = function(){
+		this.arrangeRows(5,3,35,50);
 		this.drawBackground();
 		this.markRows();
 		this.drawReqToRefLinks();
 		this.drawTalents();
 	};
+	this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth) {
+		var calculator = this.activeClass.calculator;
+		this.padding = padding;
+		this.rowHeaderWidth = rowHeaderWidth;
+		this.totalHeight = (margin + padding + itemSize + padding) * calculator.heightmap.length + margin;
+		this.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * (calculator.width + 1) + margin;
+		
+		this.rows = [];
+		for (var i = 0; i < calculator.heightmap.length; i++) {
+			var row = {
+				x: margin,
+				y: (margin + padding + itemSize + padding) * i + margin,
+				width: this.totalWidth - margin * 2,
+				height: DEST_BOX_SIZE + padding * 2,
+				level: this.heightmap[i],
+				items: []
+			};
+			for (var j = 0; j < calculator.items.length; j++) {
+				if (calculator.items[j].base().lvlreq == calculator.heightmap[i]) {
+					calculator.items[j].calculatePaintPosition(margin, padding, row.y, rowHeaderWidth);
+					row.items.push(calculator.items[j]);
+				}
+			}
+			this.rows.push(row);
+		}
+	};
 	this.drawBackground = function() {
 		var ctx = this.activeClass.graphicContext;
-		var calculator = this.activeClass.calculator;
 		ctx.fillStyle = "black";
-		ctx.fillRect(0, 0, calculator.totalWidth, calculator.totalHeight);
+		ctx.fillRect(0, 0, this.totalWidth, this.totalHeight);
 		ctx.fillStyle = "#1f1f1f";
-		for (var i = 0; i < calculator.rows.length; i++) {
-			var row = calculator.rows[i];
+		for (var i = 0; i < this.rows.length; i++) {
+			var row = this.rows[i];
 			ctx.fillRect(row.x, row.y, row.width, row.height);
 		}
 	};
@@ -476,7 +476,7 @@ function TalentView(locale) {
 		var ctx = this.activeClass.graphicContext;
 		var calculator = this.activeClass.calculator;
 		ctx.fillStyle = "#1f1f1f";
-		ctx.fillRect(row.x, row.y, calculator.rowHeaderWidth, row.height);
+		ctx.fillRect(row.x, row.y, this.rowHeaderWidth, row.height);
 		ctx.font = "1.1em Trebuchet MS,Tahoma,Verdana,Arial,sans-serif";
 		var rowHeaderText = "";
 		if (this.locale == "en") {
@@ -493,9 +493,8 @@ function TalentView(locale) {
 		}
 	};
 	this.markRows = function() {
-		var calculator = this.activeClass.calculator;
-		for (var i = 0; i < calculator.rows.length; i ++) {
-			this.drawRowHeader(calculator.rows[i], false);
+		for (var i = 0; i < this.rows.length; i ++) {
+			this.drawRowHeader(this.rows[i], false);
 		}
 	};
 	this.drawReqToRefLinks = function() {
@@ -522,7 +521,6 @@ function TalentView(locale) {
 	};
 	this.blitItem = function(item, hover) {
 		var ctx = this.activeClass.graphicContext;
-		var calculator = this.activeClass.calculator;
 		if (hover) {
 			ctx.fillStyle = "#e7a516";
 		} else if (item.base().AP_cost > 0) {
@@ -594,8 +592,8 @@ function TalentView(locale) {
 				}
 			}
 		}
-		for (var i = 0; i < calculator.rows.length; i++) {
-			var row = calculator.rows[i];
+		for (var i = 0; i < this.rows.length; i++) {
+			var row = this.rows[i];
 			if (x > row.x && x < row.x + row.width &&
 				y > row.y && y < row.y + row.height) {
 				this.drawRowHeader(row, true);
@@ -605,3 +603,66 @@ function TalentView(locale) {
 		}
 	};
 }
+// function TalentSmallView(locale) {
+	// if (typeof locale == "undefined") {
+		// throw new Error("Locale was not defined");
+	// }
+	// this.locale = locale;
+	// this.applyLocale = function(locale) {
+		// this.locale = locale;
+		// this.displayLayout();
+	// };
+	// this.atlasActive;
+	// this.atlasInactive;
+	// this.recentItem;
+	// this.patchdata = {};
+	// this.activeClass = {
+		// graphicContext:{}
+	// };
+	// this.classes = {
+		// "as": new Calculator(),
+		// "ju": new Calculator(),
+		// "sc": new Calculator(),
+		// "su": new Calculator()
+	// };
+	// this.handleImages = function (atlasActive, atlasInactive) {
+		// this.atlasActive = atlasActive;
+		// this.atlasInactive = atlasInactive;
+	// };
+	// this.init = function(data) {
+		// this.patchdata = data;
+		// this.classes["as"].init(this.patchdata.assault_data);
+		// this.classes["ju"].init(this.patchdata.juggernaut_data);
+		// this.classes["sc"].init(this.patchdata.scout_data);
+		// this.classes["su"].init(this.patchdata.support_data);
+		// this.activeClass.calculator = this.classes[this.activeClass.prefix];
+	// };
+	// this.UriHandlers = {
+		// "t": {fn: talentUriHandler },
+		// /*legacy links handler: */
+		// "talent": { fn: talentUriHandler }
+	// };
+	// this.setActiveClass = function(ctx, classPrefix) {
+		// this.activeClass = {
+			// prefix : classPrefix,
+			// graphicContext : ctx,
+			// calculator : this.classes[classPrefix]
+		// }
+	// };
+	// this.displayLayout = function() {
+		// this.drawBackground();
+		// this.markRows();
+		// this.drawTalents();
+	// };
+	// this.drawBackground = function() {
+		// var ctx = this.activeClass.graphicContext;
+		// var calculator = this.activeClass.calculator;
+		// ctx.fillStyle = "black";
+		// ctx.fillRect(0, 0, calculator.totalWidth, calculator.totalHeight);
+		// ctx.fillStyle = "#1f1f1f"
+		// for (var i = 0; i < this.rows.length; i++) {
+			// var row = this.rows[i];
+			// ctx.fillRect(row.x, row.y, row.width, row.height);
+		// }
+	// };
+// }
