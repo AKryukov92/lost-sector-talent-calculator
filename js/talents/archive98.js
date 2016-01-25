@@ -1,4 +1,4 @@
-﻿{"game_version":98,"locale":"ru","data_version":1,"assault_data":{
+﻿{"game_version":98,"locale":"ru","data_version":1,"as":{
 "prefix":"as","grid_height":11,"rows":[{ "level":1 },{ "level":3 },{ "level":4 },{ "level":5 },{ "level":6 },{ "level":7 },{ "level":8 },{ "level":9 },{ "level":10 },{ "level":12 },{ "level":14 }],"talents":[{
 	"id":1,
 	"imageid":1,
@@ -374,7 +374,7 @@
 	"talentreq":481,
 	"AP_cost":1,
 	"column":12
-}]},"juggernaut_data":{
+}]},"ju":{
 "prefix":"ju","grid_height":11,"rows":[{ "level":1 },{ "level":3 },{ "level":4 },{ "level":5 },{ "level":6 },{ "level":7 },{ "level":8 },{ "level":9 },{ "level":10 },{ "level":12 },{ "level":14 }],"talents":[{
 	"id":1,
 	"imageid":1,
@@ -712,7 +712,7 @@
 	"cost":2,
 	"lvlreq":5,
 	"column":3
-}]},"support_data":{"prefix":"su","grid_height":11,"rows":[{ "level":1 },{ "level":3 },{ "level":4 },{ "level":5 },{ "level":6 },{ "level":7 },{ "level":8 },{ "level":9 },{ "level":10 },{ "level":12 },{ "level":14 }],"talents":[{
+}]},"su":{"prefix":"su","grid_height":11,"rows":[{ "level":1 },{ "level":3 },{ "level":4 },{ "level":5 },{ "level":6 },{ "level":7 },{ "level":8 },{ "level":9 },{ "level":10 },{ "level":12 },{ "level":14 }],"talents":[{
 	"id":1,
 	"imageid":1,
 	"name":"Пассивная регенерация",
@@ -1093,7 +1093,7 @@
 	"radius":20,
 	"talentreq":411,
 	"column":10
-}]},"scout_data":{"prefix":"sc","grid_height":11,"rows":[{ "level":1 },{ "level":3 },{ "level":4 },{ "level":5 },{ "level":6 },{ "level":7 },{ "level":8 },{ "level":9 },{ "level":10 },{ "level":12 },{ "level":14 }],"talents":[{
+}]},"sc":{"prefix":"sc","grid_height":11,"rows":[{ "level":1 },{ "level":3 },{ "level":4 },{ "level":5 },{ "level":6 },{ "level":7 },{ "level":8 },{ "level":9 },{ "level":10 },{ "level":12 },{ "level":14 }],"talents":[{
 	"id":1,
 	"imageid":1,
 	"name":"Пассивная регенерация",

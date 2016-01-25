@@ -15,14 +15,17 @@
 			<div><span name="t-level">Уровень</span> <span id="merc-level">1</span></div>
 			<div><label><span name="t-hide-tooltip">Спрятать тултипы талантов</span><input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked></label></div>
 			<div>
-				<label><span name="t-version">Версия игры</span><select id="selVersion">
+				<label id="lblVersion"><span name="t-version">Версия игры</span><select id="selVersion">
 					<option value="98">98</option>
 					<option value="101">101</option>
 					<option value="102" selected>102</option>
-				</select><select id="selLang">
-				<option value="ru">ру</option>
-				<option value="en">en</option>
-			</select></label>
+				</select>
+				<select id="selLang">
+					<option value="ru">ру</option>
+					<option value="en">en</option>
+				</select>
+				<input type="file" id="special-talent-data"></input>
+				</label>
 			</div>
 		</div>
 	</div>
