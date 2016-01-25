@@ -134,7 +134,6 @@ if (!$GLOBALS["iframe"]) {
 	</div>
 	<div class="fake-tooltip-container" style="margin:2px;">
 		<div class="fake-tooltip" id="armor-fake-tooltip">
-			<iframe id="armor-iframe" scrolling="no" frameBorder="0" onload="javascript:resizeIframe(this);"></iframe>
 		</div>
 	</div>
 	<div id="items-pool" style="clear:both;overflow:auto;">
