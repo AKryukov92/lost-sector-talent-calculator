@@ -434,18 +434,47 @@ function TalentView(locale, data, atlasActive, atlasInactive, getContextFunction
 	this.setActiveClass = function(classPrefix) {
 		this.activeClass = this.classes[classPrefix];
 	};
+	this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth, playerClass) {
+		playerClass.padding = padding;
+		playerClass.rowHeaderWidth = rowHeaderWidth;
+		playerClass.totalHeight = (margin + padding + itemSize + padding) * playerClass.heightMap.length + margin;
+		playerClass.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * (playerClass.calculator.width + 1) + margin;
+		
+		playerClass.rows = [];
+		for (var i = 0; i < playerClass.heightMap.length; i++) {
+			var row = {
+				x: margin,
+				y: (margin + padding + itemSize + padding) * i + margin,
+				width: playerClass.totalWidth - margin * 2,
+				height: DEST_BOX_SIZE + padding * 2,
+				level: playerClass.heightMap[i],
+				items: []
+			};
+			for (var j = 0; j < playerClass.calculator.items.length; j++) {
+				if (playerClass.calculator.items[j].base().lvlreq == playerClass.heightMap[i]) {
+					playerClass.calculator.items[j].calculatePaintPosition(margin, padding, row.y, rowHeaderWidth);
+					row.items.push(playerClass.calculator.items[j]);
+				}
+			}
+			playerClass.rows.push(row);
+		}
+	};
 	this.classes["as"].calculator.init(this.patchdata.assault_data);
 	this.classes["as"].heightMap = this.fillHeightMap(this.classes["as"].calculator);
 	this.classes["as"].ctx = getContextFunction("as");
+	this.arrangeRows(5,3,35,50, this.classes["as"]);
 	this.classes["ju"].calculator.init(this.patchdata.juggernaut_data);
 	this.classes["ju"].heightMap = this.fillHeightMap(this.classes["ju"].calculator);
 	this.classes["ju"].ctx = getContextFunction("ju");
+	this.arrangeRows(5,3,35,50, this.classes["ju"]);
 	this.classes["sc"].calculator.init(this.patchdata.scout_data);
 	this.classes["sc"].heightMap = this.fillHeightMap(this.classes["sc"].calculator);
 	this.classes["sc"].ctx = getContextFunction("sc");
+	this.arrangeRows(5,3,35,50, this.classes["sc"]);
 	this.classes["su"].calculator.init(this.patchdata.support_data);
 	this.classes["su"].heightMap = this.fillHeightMap(this.classes["su"].calculator);
 	this.classes["su"].ctx = getContextFunction("su");
+	this.arrangeRows(5,3,35,50, this.classes["su"]);
 	this.getActiveClass = function() {
 		return this.classes[this.activeClassPrefix];
 	}
@@ -455,46 +484,19 @@ function TalentView(locale, data, atlasActive, atlasInactive, getContextFunction
 		"talent": { fn: talentUriHandler }
 	};
 	this.displayLayout = function(){
-		this.arrangeRows(5,3,35,50);
 		this.drawBackground();
 		this.markRows();
 		this.drawReqToRefLinks();
 		this.drawTalents();
 	};
-	this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth) {
-		var heightMap = this.classes[this.activeClassPrefix].heightMap;
-		var calculator = this.classes[this.activeClassPrefix].calculator;
-		this.padding = padding;
-		this.rowHeaderWidth = rowHeaderWidth;
-		this.totalHeight = (margin + padding + itemSize + padding) * heightMap.length + margin;
-		this.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * (calculator.width + 1) + margin;
-		
-		this.rows = [];
-		for (var i = 0; i < heightMap.length; i++) {
-			var row = {
-				x: margin,
-				y: (margin + padding + itemSize + padding) * i + margin,
-				width: this.totalWidth - margin * 2,
-				height: DEST_BOX_SIZE + padding * 2,
-				level: heightMap[i],
-				items: []
-			};
-			for (var j = 0; j < calculator.items.length; j++) {
-				if (calculator.items[j].base().lvlreq == heightMap[i]) {
-					calculator.items[j].calculatePaintPosition(margin, padding, row.y, rowHeaderWidth);
-					row.items.push(calculator.items[j]);
-				}
-			}
-			this.rows.push(row);
-		}
-	};
 	this.drawBackground = function() {
 		var ctx = this.classes[this.activeClassPrefix].ctx;
+		var rows = this.classes[this.activeClassPrefix].rows;
 		ctx.fillStyle = "black";
-		ctx.fillRect(0, 0, this.totalWidth, this.totalHeight);
+		ctx.fillRect(0, 0, this.classes[this.activeClassPrefix].totalWidth, this.classes[this.activeClassPrefix].totalHeight);
 		ctx.fillStyle = "#1f1f1f";
-		for (var i = 0; i < this.rows.length; i++) {
-			var row = this.rows[i];
+		for (var i = 0; i < rows.length; i++) {
+			var row = rows[i];
 			ctx.fillRect(row.x, row.y, row.width, row.height);
 		}
 	};
@@ -519,8 +521,9 @@ function TalentView(locale, data, atlasActive, atlasInactive, getContextFunction
 		}
 	};
 	this.markRows = function() {
-		for (var i = 0; i < this.rows.length; i ++) {
-			this.drawRowHeader(this.rows[i], false);
+		var rows = this.classes[this.activeClassPrefix].rows;
+		for (var i = 0; i < rows.length; i ++) {
+			this.drawRowHeader(rows[i], false);
 		}
 	};
 	this.drawReqToRefLinks = function() {
@@ -606,6 +609,7 @@ function TalentView(locale, data, atlasActive, atlasInactive, getContextFunction
 	};
 	this.handleMouseMove = function(x, y) {
 		var calculator = this.classes[this.activeClassPrefix].calculator;
+		var rows = this.classes[this.activeClassPrefix].rows;
 		for (var i = 0; i < calculator.items.length; i++) {
 			var item = calculator.items[i];
 			if (item.isInBox(x,y)) {
@@ -618,8 +622,8 @@ function TalentView(locale, data, atlasActive, atlasInactive, getContextFunction
 				}
 			}
 		}
-		for (var i = 0; i < this.rows.length; i++) {
-			var row = this.rows[i];
+		for (var i = 0; i < rows.length; i++) {
+			var row = rows[i];
 			if (x > row.x && x < row.x + row.width &&
 				y > row.y && y < row.y + row.height) {
 				this.drawRowHeader(row, true);

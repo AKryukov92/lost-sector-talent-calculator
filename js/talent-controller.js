@@ -33,12 +33,14 @@ function getContext(prefix) {
 }
 function processTalentData(data) {
 	talentApplication = new TalentView(getLocale(), data, images.atlasActive, images.atlasInactive, getContext);
-	$.each(talentApplication.classes, function(prefix, calculator) {
+	$.each(talentApplication.classes, function(prefix, playerClass) {
+		$("#calculator-" + prefix + "-layout").attr("width", talentApplication.classes[prefix].totalWidth);
+		$("#calculator-" + prefix + "-layout").attr("height", talentApplication.classes[prefix].totalHeight);
 		$("#calculator-" + prefix + "-layout").click(function(e) {
 			talentApplication.handleClick(e.offsetX, e.offsetY);
 			update_link();
-			$("#merc-level").html(calculator.getRequiredLevel());
-			$("#points-left").html(calculator.getAvailableTalentPoints());
+			$("#merc-level").html(playerClass.calculator.getRequiredLevel());
+			$("#points-left").html(playerClass.calculator.getAvailableTalentPoints());
 			updateTalentTooltip(talentApplication);
 		});
 		$("#calculator-" + prefix + "-layout").mousemove(function(e) {
@@ -114,7 +116,7 @@ function refreshTalentTooltipIframe(controller){
 	if (typeof controller.recentItem != 'undefined') {
 		var Url = "/talent.php?id=" + controller.recentItem.base().id
 			+ "&locale=" + getLocale()
-			+ "&prefix=" + controller.activeClass.prefix
+			+ "&prefix=" + controller.activeClassPrefix
 			+ "&iframe=true&version=" + $("#selVersion").val();
 		$.get(Url, function(data) {
 			$("#talent-tooltip").html(data);
@@ -133,6 +135,6 @@ $("#link-to-build").click(function(){
 });
 $("#selVersion").change(function(){
 	var version = $("#selVersion").val();
-	var prefix = talentApplication.activeClass.prefix;
+	var prefix = talentApplication.activeClassPrefix;
 	switchVersionClass(prefix, version);
 });
