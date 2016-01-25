@@ -106,7 +106,13 @@ function InventoryModel(locale,data) {
 			var link = "/item.php?"
 				+ "id=" + item.id
 				+ "&locale=" + this.locale;
-			if (item.category != "consumable" && item.category != "hat") {
+			if (item.category != "consumable"
+				&& item.category != "hat"
+				&& item.category != "head_mod"
+				&& item.category != "chest_mod"
+				&& item.category != "feet_mod"
+				&& item.category != "hand_mod"
+			) {
 				link += "&color=" + selected_color
 					+ "&quality=" + selected_quality;
 			}

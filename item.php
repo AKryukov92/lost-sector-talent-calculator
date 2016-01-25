@@ -67,19 +67,19 @@ if ($data["category"] == "shield") {
 	return;
 }
 if ($data["category"] == "head_mod") {
-	include 'template_implant.php';
+	include 'template_head_mod.php';
 	return;
 }
 if ($data["category"] == "hand_mod") {
-	include 'template_implant.php';
+	include 'template_hand_mod.php';
 	return;
 }
 if ($data["category"] == "chest_mod") {
-	include 'template_implant.php';
+	include 'template_chest_mod.php';
 	return;
 }
 if ($data["category"] == "feet_mod") {
-	include 'template_implant.php';
+	include 'template_feet_mod.php';
 	return;
 }
 include 'template_weapon.php';

@@ -37,6 +37,41 @@ if (!$GLOBALS["iframe"]) {
 	</div>
 </div>
 <?php if (!$GLOBALS["iframe"]) { ?>
+	<div class="special-item">
+		<a id="head_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+		<div id="head_mod-container" class="inventory-item-container">
+			<img src="images/slot-head_mod.png"/>
+		</div>
+		<a class="tunable-reset" onclick="reset_slot('head_mod');"><span name="t-clear">очистить</span></a>
+	</div>
+	<div class="fake-tooltip-container" style="margin:2px;">
+		<div class="fake-tooltip" id="head_mod-fake-tooltip">
+		</div>
+	</div>
+	<div id="items-pool" style="clear:both;overflow:auto;">
+		<div id="head_mod-pool" class="pool"></div>
+	</div>
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/item_detail.js"></script>
+<script>
+	function update_link() {}
+</script>
+<script src="js/inventory-controller.js"></script>
+<script>
+var initialLink = new ApplicationLink(location.search);
+if (initialLink.linkString.length != 0) {
+	initialLink.parts.forEach(function(item){
+		if (typeof inventoryApp.UriHandlers[item.key] != 'undefined') {
+			inventoryApp.UriHandlers[item.key].fn(
+				item.key,
+				item.value,
+				inventoryApp.UriHandlers[item.key].target);
+		}
+	});
+}
+</script>
 <script src="js/analytics.js"></script>
 <?php } ?>
 </body>
