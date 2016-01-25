@@ -150,6 +150,35 @@ if (initialLink.linkString.length != 0) {
 	// заходим по ссылке без указания патча ""
 	talentController.orderToDisplay("as", 102);
 }
+$("#lblVersion").on("change","#special-talent-data", function(data) {
+	var specialTalentData = document.getElementById("special-talent-data").files[0];
+	if (specialTalentData) {
+		var reader = new FileReader();
+		reader.readAsText(specialTalentData, "UTF-8");
+		reader.onload = function(e) {
+			var version = 0;
+			talentController.layouts[version] = {};
+			talentController.layouts[version].atlases = {};
+			var loadedImages = 0;
+			var numImages = 2;
+			var sources = {
+				atlasActive: "images/SkillsDefault.png",
+				atlasInactive: "images/inactiveSkillsDefault.png"
+			};
+			for(var src in sources) {
+				talentController.layouts[version].atlases[src] = new Image();
+				talentController.layouts[version].atlases[src].onload = function() {
+					if(++loadedImages >= numImages) {
+						notifyControllerDataLoad(0, JSON.parse(e.target.result));
+						talentController.orderToDisplay(talentController.currentPrefix, 0);
+					}
+				};
+				talentController.layouts[version].atlases[src].src = sources[src];
+			}
+			
+		}
+	}
+});
 $("#selVersion").change(function(){
 	// переключаем версию
 	var version = $("#selVersion").val();
