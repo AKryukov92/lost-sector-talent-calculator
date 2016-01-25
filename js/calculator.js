@@ -463,19 +463,19 @@ function TalentView(locale, data, atlasActive, atlasInactive, getContextFunction
 			playerClass.rows.push(row);
 		}
 	};
-	this.classes["as"].calculator.init(this.patchdata.assault_data);
+	this.classes["as"].calculator.init(this.patchdata["as"]);
 	this.classes["as"].heightMap = this.fillHeightMap(this.classes["as"].calculator);
 	this.classes["as"].ctx = getContextFunction("as");
 	this.arrangeRows(5,3,35,50, this.classes["as"]);
-	this.classes["ju"].calculator.init(this.patchdata.juggernaut_data);
+	this.classes["ju"].calculator.init(this.patchdata["ju"]);
 	this.classes["ju"].heightMap = this.fillHeightMap(this.classes["ju"].calculator);
 	this.classes["ju"].ctx = getContextFunction("ju");
 	this.arrangeRows(5,3,35,50, this.classes["ju"]);
-	this.classes["sc"].calculator.init(this.patchdata.scout_data);
+	this.classes["sc"].calculator.init(this.patchdata["sc"]);
 	this.classes["sc"].heightMap = this.fillHeightMap(this.classes["sc"].calculator);
 	this.classes["sc"].ctx = getContextFunction("sc");
 	this.arrangeRows(5,3,35,50, this.classes["sc"]);
-	this.classes["su"].calculator.init(this.patchdata.support_data);
+	this.classes["su"].calculator.init(this.patchdata["su"]);
 	this.classes["su"].heightMap = this.fillHeightMap(this.classes["su"].calculator);
 	this.classes["su"].ctx = getContextFunction("su");
 	this.arrangeRows(5,3,35,50, this.classes["su"]);

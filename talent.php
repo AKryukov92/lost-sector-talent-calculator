@@ -1,7 +1,7 @@
 <?php
 include "commons.php";
 if(!isset($_GET["id"]) && IsNullOrEmptyString($id)) {
-	print "talent is not specified";
+	print "talent id is not specified";
 	return;
 }
 if (!isset($_GET["prefix"]) && IsNullOrEmptyString($id)) {
@@ -20,49 +20,48 @@ if (isset($_GET["locale"])) {
 
 if (isset($_GET["version"])) {
 	$version = $_GET["version"];
-	$PATH_TO_TALENTS = "js/talents/" . $_GET["version"] . "/" . $prefix;
-	$filename = $PATH_TO_TALENTS . "/" . $id . ".js";
 } else {
 	$version = 102;
-	$filename = "";
 }
+$filename = "js/talents/archive" . $version . ".js";
 
 if (!file_exists($filename)) {
-	$PATH_TO_TALENTS = "js/talents/" . $prefix;
-	$filename = $PATH_TO_TALENTS . "/" . $id . ".js";
-	if (!file_exists($filename)) {
-		print "talent data is not found";
-		return;
-	}
+	print "talent data is not found";
+	return;
 }
+
 $filecontent = file_get_contents($filename);
-$data = json_decode($filecontent, true);
+$talentData = json_decode($filecontent, true);
 if (json_last_error() != 0) {
 	print 'error parsing talent ' . $id . ' data';
 }
-if (isset($data["talentreq"])) {
-	$filename = $PATH_TO_TALENTS . "/" . $data["talentreq"] . ".js";
-	if (file_exists($filename)) {
-		$filecontent = file_get_contents($filename);
-		$required_data = json_decode($filecontent, true);
-	}
-}
 if ($id > 100) {
-	$current_rank = 1;
-	$base_talent = ($id - $id%10);
-	$base_id = $base_talent/10;
-	$next_id = $base_talent + $current_rank;
-	$filename = $PATH_TO_TALENTS . "/" . $next_id . ".js";
-	
-	while (file_exists($filename)) {
-		$filecontent = file_get_contents($filename);
-		$ranks[$current_rank] = json_decode($filecontent, true);
-		$next_id ++;
-		$current_rank ++;
-		$filename = $PATH_TO_TALENTS . "/" . $next_id . ".js";
+	$base_id = floor($id/10);
+	for ($i = 0; $i < count($talentData[$prefix]["talents"]); $i++) {
+		$current = $talentData[$prefix]["talents"][$i];
+		if ($current["id"] == $id) {
+			$data = $current;
+		}
+		if (floor($current["id"]/10) == floor($id/10)) {
+			$ranks[$current["id"]%10] = $current;
+		}
 	}
 } else {
+	for ($i = 0; $i < count($talentData[$prefix]["talents"]); $i++){
+		$current = $talentData[$prefix]["talents"][$i];
+		if ($current["id"] == $id) {
+			$data = $current;
+		}
+	}
 	$base_id = $id;
+}
+if (isset($data["talentreq"])) {
+	for ($i = 0; $i < count($talentData[$prefix]["talents"]); $i++){
+		$current = $talentData[$prefix]["talents"][$i];
+		if ($current["id"] == $data["talentreq"]) {
+			$required_data = $current;
+		}
+	}
 }
 
 $TALENT_BOX_SIZE = 48;
@@ -100,7 +99,12 @@ print "</a>";?>
 			<?php print Placeholder("t-merc-level");?>&nbsp;<?php print $data["lvlreq"]?>
 		<?php } ?>
 		<?php if (isset($required_data["name"])) {?>
-			<?php print ", " . GetLocalizedProperty($required_data,"name", $GLOBALS["locale"]); ?>
+			<?php print ", <a class='white-link' target='_blank' href='/talent.php?id=" . $data["talentreq"]
+					. "&locale=" . $locale
+					. "&prefix=" . $prefix
+					. "&version=" . $version
+					. "'>" . GetLocalizedProperty($required_data,"name", $GLOBALS["locale"])
+					. "</a>"; ?>
 		<?php }?>
 	</div>
 	<?php if(isset($data["cost"])){?>

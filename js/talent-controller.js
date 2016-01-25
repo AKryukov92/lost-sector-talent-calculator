@@ -159,21 +159,25 @@ $("#selVersion").change(function(){
 $("#as-link").click(function(){
 	// переключаем класс
 	var version = $("#selVersion").val();
+	document.title = localizationData["t-assault"][getLocale()];
 	talentController.orderToDisplay("as", version);
 });
 $("#ju-link").click(function(){
 	// переключаем класс
 	var version = $("#selVersion").val();
+	document.title = localizationData["t-juggernaut"][getLocale()];
 	talentController.orderToDisplay("ju", version);
 });
 $("#sc-link").click(function(){
 	// переключаем класс
 	var version = $("#selVersion").val();
+	document.title = localizationData["t-scout"][getLocale()];
 	talentController.orderToDisplay("sc", version);
 });
 $("#su-link").click(function(){
 	// переключаем класс
 	var version = $("#selVersion").val();
+	document.title = localizationData["t-support"][getLocale()];
 	talentController.orderToDisplay("su", version);
 });
 $("#calculator-layout").click(function(e) {

@@ -227,9 +227,18 @@ function applyLocale(){
 	if (typeof inventoryApp != "undefined") {
 		inventoryApp.applyLocale(locale);
 	}
-	if (typeof talentApplication != "undefined") {
-		talentApplication.applyLocale(locale);
-		refreshTalentTooltipIframe(talentApplication);
+	if (typeof talentController != "undefined") {
+		talentController.getView().applyLocale(locale);
+		refreshTalentTooltipIframe(talentController.getView());
+		if (talentController.currentPrefix == "as") {
+			document.title = localizationData["t-assault"][getLocale()];
+		} else if (talentController.currentPrefix == "ju") {
+			document.title = localizationData["t-juggernaut"][getLocale()];
+		} else if (talentController.currentPrefix == "sc") {
+			document.title = localizationData["t-scout"][getLocale()];
+		} else if (talentController.currentPrefix == "su") {
+			document.title = localizationData["t-support"][getLocale()];
+		}
 	}
 }
 
