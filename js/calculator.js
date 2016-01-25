@@ -432,8 +432,12 @@ function TalentView(locale, data, atlasActive, atlasInactive, getContextFunction
 		return result;
 	};
 	this.setActiveClass = function(classPrefix) {
+		this.activeClassPrefix = classPrefix;
 		this.activeClass = this.classes[classPrefix];
 	};
+	this.getActiveClass = function() {
+		return this.classes[this.activeClassPrefix];
+	}
 	this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth, playerClass) {
 		playerClass.padding = padding;
 		playerClass.rowHeaderWidth = rowHeaderWidth;
@@ -475,14 +479,6 @@ function TalentView(locale, data, atlasActive, atlasInactive, getContextFunction
 	this.classes["su"].heightMap = this.fillHeightMap(this.classes["su"].calculator);
 	this.classes["su"].ctx = getContextFunction("su");
 	this.arrangeRows(5,3,35,50, this.classes["su"]);
-	this.getActiveClass = function() {
-		return this.classes[this.activeClassPrefix];
-	}
-	this.UriHandlers = {
-		"t": {fn: talentUriHandler },
-		/*legacy links handler: */
-		"talent": { fn: talentUriHandler }
-	};
 	this.displayLayout = function(){
 		this.drawBackground();
 		this.markRows();
@@ -633,75 +629,3 @@ function TalentView(locale, data, atlasActive, atlasInactive, getContextFunction
 		}
 	};
 }
-// function TalentSmallView(locale) {
-	// if (typeof locale == "undefined") {
-		// throw new Error("Locale was not defined");
-	// }
-	// this.locale = locale;
-	// this.applyLocale = function(locale) {
-		// this.locale = locale;
-		// this.displayLayout();
-	// };
-	// this.atlasActive;
-	// this.atlasInactive;
-	// this.recentItem;
-	// this.patchdata = {};
-	// this.activeClass = {
-		// graphicContext:{}
-	// };
-	// this.classes = {
-		// "as": new Calculator(),
-		// "ju": new Calculator(),
-		// "sc": new Calculator(),
-		// "su": new Calculator()
-	// };
-	// this.handleImages = function (atlasActive, atlasInactive) {
-		// this.atlasActive = atlasActive;
-		// this.atlasInactive = atlasInactive;
-	// };
-	// this.init = function(data) {
-		// this.patchdata = data;
-		// this.classes["as"].init(this.patchdata.assault_data);
-		// this.classes["ju"].init(this.patchdata.juggernaut_data);
-		// this.classes["sc"].init(this.patchdata.scout_data);
-		// this.classes["su"].init(this.patchdata.support_data);
-		// this.activeClass.calculator = this.classes[this.activeClass.prefix];
-	// };
-	// this.UriHandlers = {
-		// "t": {fn: talentUriHandler },
-		// /*legacy links handler: */
-		// "talent": { fn: talentUriHandler }
-	// };
-	// this.setActiveClass = function(ctx, classPrefix) {
-		// this.activeClass = {
-			// prefix : classPrefix,
-			// graphicContext : ctx,
-			// calculator : this.classes[classPrefix]
-		// }
-	// };
-	// this.displayLayout = function() {
-		// this.drawBackground();
-		// this.markRows();
-		// this.drawTalents();
-	// };
-	// this.arrangeRows = function(margin, padding, itemSize, rowHeaderWidth) {
-		// var calculator = this.activeClass.calculator;
-		// this.padding = padding;
-		// this.rowHeaderWidth = rowHeaderWidth;
-		// this.totalHeight = (margin + padding + itemSize + padding) * calculator.heightMap.length + margin;
-		// this.totalWidth = margin + padding + rowHeaderWidth + (padding + itemSize) * (calculator.width + 1) + margin;
-		
-		
-	// }
-	// this.drawBackground = function() {
-		// var ctx = this.activeClass.graphicContext;
-		// var calculator = this.activeClass.calculator;
-		// ctx.fillStyle = "black";
-		// ctx.fillRect(0, 0, calculator.totalWidth, calculator.totalHeight);
-		// ctx.fillStyle = "#1f1f1f"
-		// for (var i = 0; i < this.rows.length; i++) {
-			// var row = this.rows[i];
-			// ctx.fillRect(row.x, row.y, row.width, row.height);
-		// }
-	// };
-// }
