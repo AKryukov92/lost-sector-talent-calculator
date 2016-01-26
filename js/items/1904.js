@@ -1,5 +1,5 @@
 {
-	"id":1900,
+	"id":1904,
 	"name":"A-HT-05",
 	"category":"hand_mod",
 	"description":{
