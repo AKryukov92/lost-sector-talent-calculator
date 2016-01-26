@@ -102,10 +102,12 @@ function refreshTalentTooltipIframe(controller){
 			var Url = "/custom_talent.php";
 			var talent = {
 				current: controller.recentItem.base(),
-				required : controller.recentItem.reqs[0].base(),
 				locale: controller.locale,
 				prefix: controller.activeClassPrefix
 			};
+			if (controller.recentItem.reqs.length > 0) {
+				talent.required = controller.recentItem.reqs[0].base();
+			}
 			$.post(Url, talent, function(data, textStatus, jqXHR) {
 				$("#talent-tooltip").html(data);
 			}, 'text');
