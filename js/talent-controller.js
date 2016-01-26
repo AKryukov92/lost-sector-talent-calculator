@@ -98,13 +98,26 @@ function updateTalentTooltip(controller) {
 }
 function refreshTalentTooltipIframe(controller){
 	if (typeof controller.recentItem != 'undefined') {
-		var Url = "/talent.php?id=" + controller.recentItem.base().id
-			+ "&locale=" + getLocale()
-			+ "&prefix=" + controller.activeClassPrefix
-			+ "&iframe=true&version=" + $("#selVersion").val();
-		$.get(Url, function(data) {
-			$("#talent-tooltip").html(data);
-		});
+		if ($("#selVersion").val() == "0") {
+			var Url = "/custom_talent.php";
+			var talent = {
+				current: controller.recentItem.base(),
+				required : controller.recentItem.reqs[0].base(),
+				locale: controller.locale,
+				prefix: controller.activeClassPrefix
+			};
+			$.post(Url, talent, function(data, textStatus, jqXHR) {
+				$("#talent-tooltip").html(data);
+			}, 'text');
+		} else {
+			var Url = "/talent.php?id=" + controller.recentItem.base().id
+				+ "&locale=" + getLocale()
+				+ "&prefix=" + controller.activeClassPrefix
+				+ "&iframe=true&version=" + $("#selVersion").val();
+			$.get(Url, function(data) {
+				$("#talent-tooltip").html(data);
+			});
+		}
 	}
 }
 $("#link-to-build").click(function(){
@@ -169,8 +182,10 @@ $("#lblVersion").on("change","#special-talent-data", function(data) {
 				talentController.layouts[version].atlases[src] = new Image();
 				talentController.layouts[version].atlases[src].onload = function() {
 					if(++loadedImages >= numImages) {
+						$("#selVersion").append($("<option></option>").attr("value", 0).text("custom"));
 						notifyControllerDataLoad(0, JSON.parse(e.target.result));
 						talentController.orderToDisplay(talentController.currentPrefix, 0);
+						$("#selVersion").val(0);
 					}
 				};
 				talentController.layouts[version].atlases[src].src = sources[src];
