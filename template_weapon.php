@@ -36,7 +36,6 @@ if (!$GLOBALS["iframe"]) {
 <?php if (isset($data["name"])) { ?>
 	<title><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]);?></title>
 <?php } ?>
-<?php if (!$GLOBALS["iframe"]) { ?>
 	<link href="css/jquery-ui.css" rel="stylesheet">
 	<link href="css/local.css" rel="stylesheet">
 	<script>
@@ -44,7 +43,6 @@ if (!$GLOBALS["iframe"]) {
             obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
         }
 	</script>
-<?php } ?>
 </head>
 <body style="margin:0px;">
 <?php } ?>

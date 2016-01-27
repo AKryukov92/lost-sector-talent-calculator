@@ -5,19 +5,19 @@ function InventoryModel(locale,data) {
 	}
 	this.locale = locale;
 	this.slots = {
-		primary: {short_name :"p", item:{} },
-		secondary: { short_name :"s", item:{} },
-		armor: { short_name :"a", item:{} },
-		hat: { short_name :"h", item:{} },
-		consumable_1: { short_name :"c1", item:{} },
-		consumable_2: { short_name :"c2", item:{} },
-		consumable_3: { short_name :"c3", item:{} },
-		consumable_4: { short_name :"c4", item:{} },
-		consumable_5: { short_name :"c5", item:{} },
-		head_mod: {short_name:"hem", item:{} },
-		hand_mod: {short_name:"ham", item:{} },
-		feet_mod: {short_name:"fm", item:{} },
-		chest_mod: {short_name:"cm", item:{} }
+		primary: {short_name :"p", item:{}, grade: 0 },
+		secondary: { short_name :"s", item:{}, grade: 0 },
+		armor: { short_name :"a", item:{}, grade: 0 },
+		hat: { short_name :"h", item:{}, grade: 0 },
+		consumable_1: { short_name :"c1", item:{}, grade: 0 },
+		consumable_2: { short_name :"c2", item:{}, grade: 0 },
+		consumable_3: { short_name :"c3", item:{}, grade: 0 },
+		consumable_4: { short_name :"c4", item:{}, grade: 0 },
+		consumable_5: { short_name :"c5", item:{}, grade: 0 },
+		head_mod: {short_name:"hem", item:{}, grade: 0 },
+		hand_mod: {short_name:"ham", item:{}, grade: 0 },
+		feet_mod: {short_name:"fm", item:{}, grade: 0 },
+		chest_mod: {short_name:"cm", item:{}, grade: 0 }
 	};
 	this.possible_slots = {
 		primary:"",
@@ -86,6 +86,9 @@ function InventoryModel(locale,data) {
 			element.html( " +" + value );
 		}
 	}
+	this.getGrade = function(slot_name, value) {
+		return this.slots[slot_name].grade;
+	}
 	this.addItem = function (slot_name, item){
 		var slot = this.slots[slot_name];
 		if (typeof(slot) == 'undefined')
@@ -98,10 +101,9 @@ function InventoryModel(locale,data) {
 			selected_color = "white";
 		}
 		this.slots[slot_name].color = selected_color;
-		var selected_quality = $("#" + slot_name + "-slider").slider("option", "value");
+		var selected_quality = this.getGrade(slot_name);
 		var item = this.slots[slot_name].item;
 		if (!$.isEmptyObject(item) && typeof item.id != 'undefined'){
-			this.setGrade(slot_name, selected_quality);
 			$("#" + slot_name + "-name").text(this.getLocalizedProperty(item, "name"));
 			var link = "/item.php?"
 				+ "id=" + item.id
@@ -121,7 +123,6 @@ function InventoryModel(locale,data) {
 			$.get(link + "&iframe=true", function(data) {
 				$("#" + slot_name + "-fake-tooltip").html(data);
 			});
-			$("#" + slot_name + "-iframe").attr("src", link + "&iframe=true");
 		}
 	};
 	this.resetInventorySlot = function(slot_name) {
