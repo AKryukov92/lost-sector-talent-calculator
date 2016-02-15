@@ -4,7 +4,8 @@ function slider_slide_handler(slot_name, event, ui) {
 	if ($.isEmptyObject(inventoryApp.slots[slot_name].item)) {
 		return;
 	}
-	inventoryApp.setGrade(slot_name, ui.value);	
+	
+	inventoryApp.setGrade(slot_name, ui.value);
 	if (typeof update_link != 'undefined') {
 		update_link();
 	}

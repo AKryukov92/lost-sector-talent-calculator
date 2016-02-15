@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<link href="css/jquery-ui.css" rel="stylesheet">
 	<link href="css/local.css" rel="stylesheet">
+	<link href="css/local624.css" rel="stylesheet">
+	<link href="css/local1280.css" rel="stylesheet">
 	<title>Lost sector talent calculator</title>
 </head>
 <body style="background-color:#757575;">
@@ -81,94 +83,97 @@
 </div>
 <div class="item-manager">
 	<div id="armor" class="tunable-item">
-		<div class="tunable-item-name"><a target="_blank" id="armor-link"><span id="armor-name"></span><span id="armor-value"></span></a></div>
-		<div style="overflow:auto;">
-			<div class="draggable-landing">
-				<div id="armor-container" class="inventory-item-container">
-					<img src="images/slot-armor.png"/>
-				</div>
-				<a class="tunable-reset" onclick="reset_slot('armor');"><span name="t-clear">очистить</span></a>
-			</div>
-			<div style="float:left;">
-				<input type="radio" name="armor-quality" value="gray" id="armor-quality-gray" class="quality">
-					<label for="armor-quality-gray"><span class="gray"><span class="gray"></span></span></label>
-				</input>
-				<input type="radio" name="armor-quality" value="white" id="armor-quality-white" class="quality" checked>
-					<label for="armor-quality-white"><span class="white"><span class="white"></span></span></label>
-				</input>
-				<input type="radio" name="armor-quality" value="green" id="armor-quality-green" class="quality">
-					<label for="armor-quality-green"><span class="green"><span class="green"></span></span></label>
-				</input>
-				<input type="radio" name="armor-quality" value="blue" id="armor-quality-blue" class="quality">
-					<label for="armor-quality-blue"><span class="blue"><span class="blue"></span></span></label>
-				</input>
-				<div id="armor-slider" style="clear:both;"></div>
-			</div>
+		<div class="tunable-item-name">
+			<a target="_blank" id="armor-link">
+				<span id="armor-name"></span><span id="armor-value"></span>
+			</a>
 		</div>
-		<div class="fake-tooltip-container">
-			<div class="fake-tooltip" id="armor-fake-tooltip">
+		<div class="draggable-landing">
+			<div id="armor-container" class="inventory-item-container">
+				<img src="images/slot-armor.png"/>
 			</div>
+			<a class="tunable-reset" onclick="reset_slot('armor');">
+				<span name="t-clear">очистить</span>
+			</a>
 		</div>
+		<div class="tunable-properties-container">
+			<input type="radio" name="armor-quality" value="gray" id="armor-quality-gray" class="quality">
+				<label for="armor-quality-gray"><span class="gray"></span></label>
+			</input>
+			<input type="radio" name="armor-quality" value="white" id="armor-quality-white" class="quality" checked>
+				<label for="armor-quality-white"><span class="white"></span></label>
+			</input>
+			<input type="radio" name="armor-quality" value="green" id="armor-quality-green" class="quality">
+				<label for="armor-quality-green"><span class="green"></span></label>
+			</input>
+			<input type="radio" name="armor-quality" value="blue" id="armor-quality-blue" class="quality">
+				<label for="armor-quality-blue"><span class="blue"></span></label>
+			</input>
+			<div id="armor-slider"></div>
+		</div>
+		<div class="fake-tooltip-container" id="armor-fake-tooltip"></div>
 	</div>
 	<div id="primary" class="tunable-item">
-		<div class="tunable-item-name"><a target="_blank" id="primary-link"><span id="primary-name"></span><span id="primary-value"></span></a></div>
-		<div style="overflow:auto;">
-			<div class="draggable-landing">
-				<div id="primary-container" class="inventory-item-container">
-					<img src="images/slot-primary.png"/>
-				</div>
-				<a class="tunable-reset" onclick="reset_slot('primary');"><span name="t-clear">очистить</span></a>
-			</div>
-			<div style="float:left;">
-				<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">
-					<label for="primary-quality-gray"><span class="gray"><span class="gray"></span></span></label>
-				</input>
-				<input type="radio" name="primary-quality" value="white" id="primary-quality-white" class="quality" checked>
-					<label for="primary-quality-white"><span class="white"><span class="white"></span></span></label>
-				</input>
-				<input type="radio" name="primary-quality" value="green" id="primary-quality-green" class="quality">
-					<label for="primary-quality-green"><span class="green"><span class="green"></span></span></label>
-				</input>
-				<input type="radio" name="primary-quality" value="blue" id="primary-quality-blue" class="quality">
-					<label for="primary-quality-blue"><span class="blue"><span class="blue"></span></span></label>
-				</input>
-				<div id="primary-slider" style="clear:both;"></div>
-			</div>
+		<div class="tunable-item-name">
+			<a target="_blank" id="primary-link">
+				<span id="primary-name"></span><span id="primary-value"></span>
+			</a>
 		</div>
-		<div class="fake-tooltip-container">
-			<div class="fake-tooltip" id="primary-fake-tooltip">
+		<div class="draggable-landing">
+			<div id="primary-container" class="inventory-item-container">
+				<img src="images/slot-primary.png"/>
 			</div>
+			<a class="tunable-reset" onclick="reset_slot('primary');">
+				<span name="t-clear">очистить</span>
+			</a>
 		</div>
+		<div class="tunable-properties-container">
+			<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">
+				<label for="primary-quality-gray"><span class="gray"></span></label>
+			</input>
+			<input type="radio" name="primary-quality" value="white" id="primary-quality-white" class="quality" checked>
+				<label for="primary-quality-white"><span class="white"></span></label>
+			</input>
+			<input type="radio" name="primary-quality" value="green" id="primary-quality-green" class="quality">
+				<label for="primary-quality-green"><span class="green"></span></label>
+			</input>
+			<input type="radio" name="primary-quality" value="blue" id="primary-quality-blue" class="quality">
+				<label for="primary-quality-blue"><span class="blue"></span></label>
+			</input>
+			<div id="primary-slider"></div>
+		</div>
+		<div class="fake-tooltip-container" id="primary-fake-tooltip"></div>
 	</div>
 	<div id="secondary" class="tunable-item">
-		<div class="tunable-item-name"><a target="_blank" id="secondary-link"><span id="secondary-name"></span><span id="secondary-value"></span></a></div>
-		<div style="overflow:auto;">
-			<div class="draggable-landing">
-				<div id="secondary-container" class="inventory-item-container">
-					<img src="images/slot-secondary.png"/>
-				</div>
-				<a class="tunable-reset" onclick="reset_slot('secondary');"><span name="t-clear">очистить</span></a>
-			</div>
-			<div style="float:left;">
-				<input type="radio" name="secondary-quality" value="gray" id="secondary-quality-gray" class="quality">
-					<label for="secondary-quality-gray"><span class="gray"><span class="gray"></span></span></label>
-				</input>
-				<input type="radio" name="secondary-quality" value="white" id="secondary-quality-white" class="quality" checked>
-					<label for="secondary-quality-white"><span class="white"><span class="white"></span></span></label>
-				</input>
-				<input type="radio" name="secondary-quality" value="green" id="secondary-quality-green" class="quality">
-					<label for="secondary-quality-green"><span class="green"><span class="green"></span></span></label>
-				</input>
-				<input type="radio" name="secondary-quality" value="blue" id="secondary-quality-blue" class="quality">
-					<label for="secondary-quality-blue"><span class="blue"><span class="blue"></span></span></label>
-				</input>
-				<div id="secondary-slider" style="clear:both;"></div>
-			</div>
+		<div class="tunable-item-name">
+			<a target="_blank" id="secondary-link">
+				<span id="secondary-name"></span><span id="secondary-value"></span>
+			</a>
 		</div>
-		<div class="fake-tooltip-container">
-			<div class="fake-tooltip" id="secondary-fake-tooltip">
+		<div class="draggable-landing">
+			<div id="secondary-container" class="inventory-item-container">
+				<img src="images/slot-secondary.png"/>
 			</div>
+			<a class="tunable-reset" onclick="reset_slot('secondary');">
+				<span name="t-clear">очистить</span>
+			</a>
 		</div>
+		<div class="tunable-properties-container">
+			<input type="radio" name="secondary-quality" value="gray" id="secondary-quality-gray" class="quality">
+				<label for="secondary-quality-gray"><span class="gray"></span></label>
+			</input>
+			<input type="radio" name="secondary-quality" value="white" id="secondary-quality-white" class="quality" checked>
+				<label for="secondary-quality-white"><span class="white"></span></label>
+			</input>
+			<input type="radio" name="secondary-quality" value="green" id="secondary-quality-green" class="quality">
+				<label for="secondary-quality-green"><span class="green"></span></label>
+			</input>
+			<input type="radio" name="secondary-quality" value="blue" id="secondary-quality-blue" class="quality">
+				<label for="secondary-quality-blue"><span class="blue"></span></label>
+			</input>
+			<div id="secondary-slider"></div>
+		</div>
+		<div class="fake-tooltip-container" id="secondary-fake-tooltip"></div>
 	</div>
 	<div id="special-items" class="special-item-container">
 		<div class="special-item">
@@ -177,10 +182,7 @@
 				<img src="images/slot-hat.png"/>
 			</div>
 			<a class="tunable-reset" onclick="reset_slot('hat');"><span name="t-clear">очистить</span></a>
-			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="hat-fake-tooltip">
-				</div>
-			</div>
+			<div class="fake-tooltip-container" id="hat-fake-tooltip"></div>
 		</div>
 		<div class="special-item">
 			<a id="consumable_1-link" name="t-link" target="_blank" class="white-link">ссылка</a>
@@ -188,10 +190,7 @@
 				<img src="images/slot-consumable_1.png"/>
 			</div>
 			<a class="tunable-reset" onclick="reset_slot('consumable_1');"><span name="t-clear">очистить</span></a>
-			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="consumable_1-fake-tooltip">
-				</div>
-			</div>
+			<div class="fake-tooltip-container" id="consumable_1-fake-tooltip"></div>
 		</div>
 		<div class="special-item">
 			<a id="consumable_2-link" name="t-link" target="_blank" class="white-link">ссылка</a>
@@ -199,10 +198,7 @@
 				<img src="images/slot-consumable_2.png"/>
 			</div>
 			<a class="tunable-reset" onclick="reset_slot('consumable_2');"><span name="t-clear">очистить</span></a>
-			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="consumable_2-fake-tooltip">
-				</div>
-			</div>
+			<div class="fake-tooltip-container" id="consumable_2-fake-tooltip"></div>
 		</div>
 		<div class="special-item">
 			<a id="consumable_3-link" name="t-link" target="_blank" class="white-link">ссылка</a>
@@ -210,10 +206,7 @@
 				<img src="images/slot-consumable_3.png"/>
 			</div>
 			<a class="tunable-reset" onclick="reset_slot('consumable_3');"><span name="t-clear">очистить</span></a>
-			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="consumable_3-fake-tooltip">
-				</div>
-			</div>
+			<div class="fake-tooltip-container" id="consumable_3-fake-tooltip"></div>
 		</div>
 		<div class="special-item">
 			<a id="consumable_4-link" name="t-link" target="_blank" class="white-link">ссылка</a>
@@ -221,10 +214,7 @@
 				<img src="images/slot-consumable_4.png"/>
 			</div>
 			<a class="tunable-reset" onclick="reset_slot('consumable_4');"><span name="t-clear">очистить</span></a>
-			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="consumable_4-fake-tooltip">
-				</div>
-			</div>
+			<div class="fake-tooltip-container" id="consumable_4-fake-tooltip"></div>
 		</div>
 		<div class="special-item">
 			<a id="consumable_5-link" name="t-link" target="_blank" class="white-link">ссылка</a>
@@ -232,55 +222,40 @@
 				<img src="images/slot-consumable_5.png"/>
 			</div>
 			<a class="tunable-reset" onclick="reset_slot('consumable_5');"><span name="t-clear">очистить</span></a>
-			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="consumable_5-fake-tooltip">
-				</div>
-			</div>
+			<div class="fake-tooltip-container" id="consumable_5-fake-tooltip"></div>
 		</div>
 		
-		<div class="special-item" style="clear:left">
+		<div class="special-item implant" style="clear:left">
 			<a id="head_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="head_mod-container" class="inventory-item-container">
 				<img src="images/slot-head_mod.png"/>
 			</div>
 			<a class="tunable-reset" onclick="reset_slot('head_mod');"><span name="t-clear">очистить</span></a>
-			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="head_mod-fake-tooltip">
-				</div>
-			</div>
+			<div class="fake-tooltip-container" id="head_mod-fake-tooltip"></div>
 		</div>
-		<div class="special-item">
+		<div class="special-item implant">
 			<a id="chest_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="chest_mod-container" class="inventory-item-container">
 				<img src="images/slot-chest_mod.png"/>
 			</div>
 			<a class="tunable-reset" onclick="reset_slot('chest_mod');"><span name="t-clear">очистить</span></a>
-			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="chest_mod-fake-tooltip">
-				</div>
-			</div>
+			<div class="fake-tooltip-container" id="chest_mod-fake-tooltip"></div>
 		</div>
-		<div class="special-item">
+		<div class="special-item implant">
 			<a id="hand_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="hand_mod-container" class="inventory-item-container">
 				<img src="images/slot-hand_mod.png"/>
 			</div>
 			<a class="tunable-reset" onclick="reset_slot('hand_mod');"><span name="t-clear">очистить</span></a>
-			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="hand_mod-fake-tooltip">
-				</div>
-			</div>
+			<div class="fake-tooltip-container" id="hand_mod-fake-tooltip"></div>
 		</div>
-		<div class="special-item">
+		<div class="special-item implant">
 			<a id="feet_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
 			<div id="feet_mod-container" class="inventory-item-container">
 				<img src="images/slot-feet_mod.png"/>
 			</div>
 			<a class="tunable-reset" onclick="reset_slot('feet_mod');"><span name="t-clear">очистить</span></a>
-			<div class="fake-tooltip-container">
-				<div class="fake-tooltip" id="feet_mod-fake-tooltip">
-				</div>
-			</div>
+			<div class="fake-tooltip-container" id="feet_mod-fake-tooltip"></div>
 		</div>
 	</div>
 
