@@ -1,4 +1,7 @@
 @media (min-width:624px) {
+	body {
+		font-size:13pt;
+	}
 	.special-item {
 		width:calc(16.666% - 6px);
 	}
@@ -60,5 +63,10 @@
 	}
 	.special-item .fake-tooltip-container .tooltip-content {
 		display:none;
+	}
+	.swimmer {
+		float:left;
+		padding:1px;
+		width:calc(50% - 2px);
 	}
 }
