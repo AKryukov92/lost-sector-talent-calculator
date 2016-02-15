@@ -80,11 +80,14 @@ function InventoryModel(locale,data) {
 	this.setGrade = function(slot_name, value){
 		var element = $("#" + slot_name + "-value");
 		this.slots[slot_name].grade = value;
-		if (value === 0) {
+		if (value == 0) {
 			element.html( "" );
 		} else {
 			element.html( " +" + value );
 		}
+	};
+	this.getGrade = function(slot_name) {
+		return this.slots[slot_name].grade;
 	}
 	this.getGrade = function(slot_name, value) {
 		return this.slots[slot_name].grade;

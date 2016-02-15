@@ -1,0 +1,64 @@
+@media (min-width:624px) {
+	.special-item {
+		width:calc(16.666% - 6px);
+	}
+	.tunable-item{
+		width:calc(33% - 6px);
+		font-size:13pt;
+	}
+	
+	input[type=radio   ]:not(old){
+	  margin    : 0;
+	  padding   : 0;
+	  font-size : 1em;
+	  opacity   : 0;
+	}
+
+	input[type=radio   ]:not(old) + label{
+	  display      : inline-block;
+	  margin-left  : -2em;
+	  line-height  : 1.5em;
+	}
+
+	input[type=radio   ]:not(old) + label > span{
+	  display          : inline-block;
+	  margin:5px;
+	  border-radius    : 3px;
+	  border           : 1px solid transparent;
+	  vertical-align   : bottom;
+	  float:right;
+	}
+
+	input[type=radio   ]:not(old):checked + label > span{
+	  display          : block;
+	  border           : 1px solid red;
+	  border-radius    : 3px;
+	}
+	
+	.tunable-item .fake-tooltip, .special-item .fake-tooltip {
+		display:none;
+	}
+
+	.fake-tooltip-container {
+		position:relative;
+		z-index:3;
+		clear:both;
+		width:90%;
+	}
+	.tunable-item:hover  .fake-tooltip-container .tooltip-content {
+		position:absolute;
+		display:block;
+		z-index:3;
+	}
+	.tunable-item  .fake-tooltip-container .tooltip-content {
+		display:none;
+	}
+	.special-item:hover .fake-tooltip-container .tooltip-content {
+		position:absolute;
+		display:block;
+		z-index:3;
+	}
+	.special-item .fake-tooltip-container .tooltip-content {
+		display:none;
+	}
+}
