@@ -13,4 +13,9 @@
 		width:calc(100% - 600px);
 		float:left;
 	}
+	.swimmer {
+		float:left;
+		padding:1px;
+		width:calc(33% - 2px);
+	}
 }

@@ -12,10 +12,19 @@
 	<div id="general-info" class="general-info">
 		<div style="float:left;width:250px"><a style="color:#e7a516" href="http://lsonline.ru/"><img src="http://lsonline.ru/data/images/logo.png"/></a></div>
 		<div style="float:left;">
-			<div style="width:100%"><label><span name="t-link">Ссылка</span>: <input id="link-to-build" style="width:80%"></input></label></div>
+			<div>
+				<label>
+					<span name="t-link">Ссылка</span>: <input id="link-to-build" style="width:calc(80% - 20px)"></input>
+				</label>
+			</div>
 			<div style="clear:both;"><span name="t-skill-points">Очки</span> <span id="points-left">0</span></div>
 			<div><span name="t-level">Уровень</span> <span id="merc-level">1</span></div>
-			<div><label><span name="t-hide-tooltip">Спрятать тултипы талантов</span><input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked></label></div>
+			<div>
+				<label>
+				<span name="t-hide-tooltip">Спрятать тултипы талантов</span>
+				<input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked>
+				</label>
+			</div>
 			<div>
 				<label id="lblVersion"><span name="t-version">Версия игры</span><select id="selVersion">
 					<option value="98">98</option>
@@ -32,22 +41,22 @@
 		</div>
 	</div>
 <div class="talent-manager">
-	<div id="tabs" style="display:inline-block;">
+	<div id="tabs">
 		<ul>
-			<li><a id="as-link" href="#tabs-as"><span name="t-assault">Штурмовик</span><br/>
+			<li><a id="as-link" href="#tabs-as"><span name="t-assault">Штурмовик</span>
 			<svg viewbox="0 0 128 128">
 			<path id="path_assault" 
 				style="fill-opacity:0.25098039;stroke-width:3;stroke-opacity:1"
 				d="m 63,2 -18,36 -41,6 29,30 -6,41 37,-19 36,18 -6,-41 28,-28 -40,-6 z"/>
 			</svg></a></li>
-			<li><a id="ju-link" href="#tabs-ju"><span name="t-juggernaut">Джаггернаут</span></br>
+			<li><a id="ju-link" href="#tabs-ju"><span name="t-juggernaut">Джаггернаут</span>
 			<svg viewbox="0 0 128 128">
 			<path id="path_juggernaut"
 				style="fill-opacity:0.25098039;stroke-width:3;stroke-opacity:1"
 				d="m 64,4 -44,9 c 0,0 -0,41 11,68 13,28 33,45 33,45 0,0 19,-15 33,-46 12,-27 10,-67 10,-67 z"/>
 			</svg>
 			</a></li>
-			<li><a id="sc-link" href="#tabs-sc"><span name="t-scout">Скаут</span></br>
+			<li><a id="sc-link" href="#tabs-sc"><span name="t-scout">Скаут</span>
 			<svg viewbox="0 0 128 128">
 			<path id="scout_path_circle"
 				style="fill:none;fill-opacity:0.25098039;stroke-width:7;stroke-opacity:1"
@@ -59,7 +68,7 @@
 				style="fill:none;stroke-width:4;stroke-opacity:1"
 				d="m 0,63 125,0"/>
 			</svg></a></li>
-			<li><a id="su-link" href="#tabs-su"><span name="t-support">Поддержка</span></br>
+			<li><a id="su-link" href="#tabs-su"><span name="t-support">Поддержка</span>
 			<svg viewbox="0 0 128 128">
 			<path id="path_support_cross"
 				style="fill-opacity:0.25098039;stroke-width:4;stroke-opacity:1"
@@ -71,7 +80,7 @@
 			</svg></a></li>
 		</ul>
 		<div class="talents-background" class="ui-tabs-panel ui-widget-content ui-corner-bottom" >
-			<canvas id='calculator-layout'>Your browser do not support this application</canvas>
+			<!-- <canvas id='calculator-layout'>Your browser do not support this application</canvas> -->
 		</div>
 		<div id="tabs-as"></div>
 		<div id="tabs-ju"></div>
@@ -259,7 +268,7 @@
 		</div>
 	</div>
 
-	<div id="items-pool" style="overflow:auto; width:100%;">
+	<div id="items-pool">
 		<ul>
 			<li><a href="#all-armor"><span name="t-armor">Броня</span></a></li>
 			<li><a href="#all-melee"><span name="t-melee">Ближний бой</span></a></li>
@@ -274,7 +283,7 @@
 			<li><a href="#all-hat"><span name="t-hat">Шапки</span></a></li>
 			<li><a href="#all-consumable"><span name="t-consumable">Активки</span></a></li>
 			<li><a href="#all-head-mods"><span name="t-head-mods">Череп</span></a></li>
-			<li><a href="#all-chest-mods"><span name="t-chest-mods">Грудная клетка</span></a></li>
+			<li><a href="#all-chest-mods"><span name="t-chest-mods">Тело</span></a></li>
 			<li><a href="#all-hand-mods"><span name="t-hand-mods">Руки</span></a></li>
 			<li><a href="#all-feet-mods"><span name="t-feet-mods">Ноги</span></a></li>
 		</ul>

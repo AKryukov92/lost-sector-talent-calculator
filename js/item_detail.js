@@ -197,7 +197,7 @@ function InventoryModel(locale,data) {
 				"<div id=\"item_" + item.id + "\" class=\"swimmer-image-container\">" +
 					this.getImageForItem(item) +
 				"</div>" +
-				"<a id=\"item" + item.id + "name\" href='javascript:autoEquipItem(" + item.id + ", \"primary\")' class=\"fake-tooltip\">" + this.getLocalizedProperty(item, "name") + "</a>" +
+				"<a id=\"item" + item.id + "name\" href='javascript:autoEquipItem(" + item.id + ", \"primary\")'>" + this.getLocalizedProperty(item, "name") + "</a>" +
 			"</div>");
 		$("#item_" + item.id).draggable({
 			containment:"document",
