@@ -18,4 +18,8 @@
 		padding:1px;
 		width:calc(33% - 2px);
 	}
+	.ui-slider {
+		margin:20px auto;
+		clear:both;
+	}
 }

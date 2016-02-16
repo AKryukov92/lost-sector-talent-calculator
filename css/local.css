@@ -41,6 +41,7 @@
  /* Custom slider */
  .ui-slider {
 	margin:20px 20px 20px 30px;
+	clear:both;
  }
 
  
@@ -205,11 +206,8 @@ input[type=file] {
 	display:none;
 }
 .draggable-landing{
-	margin-right:5px;
-	overflow:auto;
 	float:left;
-	margin-left:20px;
-	margin-top:10px;
+	margin:10px 5px 10px 20px;
 }
 .inventory-item-container {
 	overflow:hidden;

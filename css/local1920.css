@@ -1,0 +1,10 @@
+@media (min-width:1920px) {
+	.swimmer {
+		width:calc(25% - 2px);
+	}
+	.ui-slider {
+		clear:none;
+		float:left;
+		width:50%;
+	}
+}
