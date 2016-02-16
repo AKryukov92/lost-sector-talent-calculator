@@ -1,4 +1,10 @@
 @media (min-width:624px) {
+	/* Custom tabs */
+	
+	.ui-tabs .ui-tabs-nav li{
+		width:calc(25% - 8px);
+	}
+	/* Other stuff */
 	body {
 		font-size:13pt;
 	}
@@ -41,7 +47,16 @@
 	.tunable-item .fake-tooltip, .special-item .fake-tooltip {
 		display:none;
 	}
-
+	.draggable-landing {
+		margin-top:0px;
+	}
+	.tunable-properties-container {
+		width: 5em;
+	}
+	.ui-slider {
+		margin:20px auto;
+		float:none;
+	}
 	.fake-tooltip-container {
 		position:relative;
 		z-index:3;
@@ -55,6 +70,9 @@
 	}
 	.tunable-item  .fake-tooltip-container .tooltip-content {
 		display:none;
+	}
+	.tunable-properties-container {
+		margin:0 auto;
 	}
 	.special-item:hover .fake-tooltip-container .tooltip-content {
 		position:absolute;
