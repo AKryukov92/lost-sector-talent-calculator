@@ -18,12 +18,18 @@
 	stroke:#c77405;
 }
 /* Custom tabs */
+#items-pool .ui-tabs-nav {
+	height:0px;
+}
 .ui-tabs .ui-tabs-nav li{
 	width:calc(50% - 10px);
 }
 .ui-tabs svg {
 	display:block;
 	margin:10px auto;
+}
+.ui-tabs .ui-tabs-panel {
+	height:0px;
 }
 
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
@@ -263,6 +269,7 @@ input[type=radio   ]:not(old):checked + label > span{
 .special-item-container {
 	clear:both;
 	display:block;
+	overflow:auto;
 }
 .special-item {
 	background-color: rgba(55,55,55,0.9);
