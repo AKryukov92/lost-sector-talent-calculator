@@ -211,9 +211,6 @@ function ClassTalentView(locale, classData, atlasActive, atlasInactive, calculat
 		return {};
 	};
 	
-	this.resizeTo = function(width) {
-		//Do nothing since this is fullscreen mode
-	};
 	this.getCalculator = function() {
 		return calculator;
 	};
