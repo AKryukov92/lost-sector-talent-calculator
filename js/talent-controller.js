@@ -14,14 +14,14 @@ function TalentController() {
 			this.layouts[version] = {};
 			this.loadImages(version);
 		} else {
-			this.activateView(this.layouts[version].view);
+			this.activateView(this.getView());
 		}
 	};
 	this.getView = function() {
-		return talentController.layouts[this.currentVersion].view;
+		return this.layouts[this.currentVersion].classViews[this.currentPrefix];
 	};
 	this.getCalculator = function() {
-		return talentController.layouts[this.currentVersion].view.getActiveClass().calculator;
+		return this.getView().calculator;
 	}
 	this.loadImages = function(version) {
 		this.layouts[version].atlases = {};
@@ -47,11 +47,10 @@ function TalentController() {
 		});
 	};
 	this.activateView = function(talentApplication) {
-		this.layouts[this.currentVersion].view.setActiveClass(this.currentPrefix);
-		$("#calculator-layout").attr("width", talentApplication.getActiveClass().totalWidth);
-		$("#calculator-layout").attr("height", talentApplication.getActiveClass().totalHeight);
+		$("#calculator-layout").attr("width", talentApplication.totalWidth);
+		$("#calculator-layout").attr("height", talentApplication.totalHeight);
 		if (typeof this.talentInput != "undefined") {
-			talentApplication.getActiveClass().calculator.learnTalentsFromString(this.talentInput);
+			talentApplication.calculator.learnTalentsFromString(this.talentInput);
 		}
 		talentApplication.displayLayout();
 		update_link();
@@ -76,8 +75,14 @@ function notifyControllerImageLoad(version) {
 }
 function notifyControllerDataLoad(version, data) {
 	var images = talentController.layouts[version].atlases;
-	talentController.layouts[version].view = new TalentView(getLocale(), data, images.atlasActive, images.atlasInactive, getContext);
-	talentController.activateView(talentController.layouts[version].view);
+	var locale = getLocale();
+	talentController.layouts[version].classViews = {
+		"as": new ClassTalentView(locale, data.as, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
+		"ju": new ClassTalentView(locale, data.ju, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
+		"sc": new ClassTalentView(locale, data.sc, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
+		"su": new ClassTalentView(locale, data.su, images.atlasActive, images.atlasInactive, new Calculator(), getContext)
+	};
+	talentController.activateView(talentController.getView());
 }
 function getContext(prefix) {
 	var element = document.getElementById("calculator-layout");
