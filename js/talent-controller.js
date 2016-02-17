@@ -83,12 +83,21 @@ function notifyControllerImageLoad(version) {
 function notifyControllerDataLoad(version, data) {
 	var images = talentController.layouts[version].atlases;
 	var locale = getLocale();
-	talentController.layouts[version].classViews = {
-		"as": new ClassTalentView(locale, data.as, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
-		"ju": new ClassTalentView(locale, data.ju, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
-		"sc": new ClassTalentView(locale, data.sc, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
-		"su": new ClassTalentView(locale, data.su, images.atlasActive, images.atlasInactive, new Calculator(), getContext)
-	};
+	if ($(window).width() > 624) {
+		talentController.layouts[version].classViews = {
+			"as": new ClassTalentView(locale, data.as, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
+			"ju": new ClassTalentView(locale, data.ju, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
+			"sc": new ClassTalentView(locale, data.sc, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
+			"su": new ClassTalentView(locale, data.su, images.atlasActive, images.atlasInactive, new Calculator(), getContext)
+		};
+	} else {
+		talentController.layouts[version].classViews = {
+			"as": new CompactClassTalentView(locale, data.as, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
+			"ju": new CompactClassTalentView(locale, data.ju, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
+			"sc": new CompactClassTalentView(locale, data.sc, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
+			"su": new CompactClassTalentView(locale, data.su, images.atlasActive, images.atlasInactive, new Calculator(), getContext)
+		};
+	}
 	talentController.activateView(talentController.getView());
 }
 function getContext(prefix) {
@@ -244,4 +253,11 @@ $("#calculator-layout").click(function(e) {
 $("#calculator-layout").mousemove(function(e) {
 	var offset = $(this).offset();
 	talentController.dispatchMouseMove(e.pageX - offset.left, e.pageY - offset.top);
+});
+$(window).resize(function(e) {
+	if ($(window).width() <= 624) {
+		console.log("display small");
+	} else {
+		console.log("display big");
+	}
 });
