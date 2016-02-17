@@ -170,7 +170,7 @@ function Calculator () {
 			}
 			this.items.push(new CalculatorItem(this.talents_data[i]));
 		}
-	}
+	};
 	
 	this.calculateWidth = function() {
 		var max_column = 0;
