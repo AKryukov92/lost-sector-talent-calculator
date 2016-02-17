@@ -23,6 +23,13 @@ function TalentController() {
 	this.getCalculator = function() {
 		return this.getView().calculator;
 	}
+	this.getDataVersion = function() {
+		return 1;
+	};
+	this.getGameVersion = function() {
+		return this.currentVersion;
+	};
+	
 	this.loadImages = function(version) {
 		this.layouts[version].atlases = {};
 		var loadedImages = 0;
@@ -47,8 +54,8 @@ function TalentController() {
 		});
 	};
 	this.activateView = function(talentApplication) {
-		$("#calculator-layout").attr("width", talentApplication.totalWidth);
-		$("#calculator-layout").attr("height", talentApplication.totalHeight);
+		$("#calculator-layout").attr("width", talentApplication.getTotalWidth());
+		$("#calculator-layout").attr("height", talentApplication.getTotalHeight());
 		if (typeof this.talentInput != "undefined") {
 			talentApplication.calculator.learnTalentsFromString(this.talentInput);
 		}
@@ -58,8 +65,8 @@ function TalentController() {
 	this.dispatchClick = function(x, y) {
 		this.getView().handleClick(x, y);
 		update_link();
-		$("#merc-level").html(this.getCalculator().getRequiredLevel());
-		$("#points-left").html(this.getCalculator().getAvailableTalentPoints());
+		$("#merc-level").html(this.getView().getCalculator().getRequiredLevel());
+		$("#points-left").html(this.getView().getCalculator().getAvailableTalentPoints());
 		updateTalentTooltip(this.getView());
 	};
 	this.dispatchMouseMove = function(x, y) {
