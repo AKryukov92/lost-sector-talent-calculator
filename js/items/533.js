@@ -23,8 +23,8 @@
 	{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
-		"accuracy":75,
-		"cost":60,
+		"accuracy":68,
+		"cost":45,
 		"min_dist":13,
 		"max_dist":32,
 		"bullets":6,

@@ -16,21 +16,11 @@ if (isset($_GET["color"])) {
 } else {
 	$color = "white";
 }
-if (isset($_GET["locale"])) {
-	$GLOBALS["locale"] = $_GET["locale"];
-} else {
-	$GLOBALS["locale"] = "ru";
-}
 
 if (isset($_GET["quality"])) {
 	$quality = $_GET["quality"];
 } else {
 	$quality = 0;
-}
-if (isset($_GET["iframe"])) {
-	$GLOBALS["iframe"] = true;
-} else {
-	$GLOBALS["iframe"] = false;
 }
 
 $filecontent = file_get_contents($filename);

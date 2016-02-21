@@ -1,4 +1,20 @@
 <?php
+if (isset($_GET["version"])) {
+	$GLOBALS["version"] = $_GET["version"];
+} else {
+	$GLOBALS["version"] = 102;
+}
+if (isset($_GET["locale"])) {
+	$GLOBALS["locale"] = $_GET["locale"];
+} else {
+	$GLOBALS["locale"] = "ru";
+}
+if (isset($_GET["iframe"])) {
+	$GLOBALS["iframe"] = true;
+} else {
+	$GLOBALS["iframe"] = false;
+}
+
 function GetLocalizedProperty($container, $property, $locale) {
 	if (!isset($container[$property])){
 		return "";
@@ -32,22 +48,32 @@ function Placeholder($key) {
 	}
 }
 function getRequiredTalentName($data){
-	$talentreq_name = "";
+	$filename = "js/talents/archive" . $GLOBALS["version"] . ".js";
+
+	if (!file_exists($filename)) {
+		print "talent data is not found";
+		return;
+	}
+
+	$filecontent = file_get_contents($filename);
+	$talentData = json_decode($filecontent, true);
+	if (json_last_error() != 0) {
+		print 'error parsing talent ' . $id . ' data';
+	}
+	if (isset($data["classreq"])) {
+		$prefix = $data["classreq"][0];
+	} else {
+		$prefix = "as";
+	}
 	if (isset($data["talentreq"])) {
-		if (isset($data["classreq"])) {
-			$talentreq = $data["classreq"][0] . "/" . $data["talentreq"];
-		} else {
-			$talentreq = "as/" . $data["talentreq"];
-		}
-		$filename = "js/talents/" . $talentreq . ".js";
-		if (file_exists($filename)) {
-			$filecontent = file_get_contents($filename);
-			$talent = json_decode($filecontent, true);
-			if (json_last_error() == 0 && isset($talent["name"])) {
-				return GetLocalizedProperty($talent, "name", $GLOBALS["locale"]);
+		for ($i = 0; $i < count($talentData[$prefix]["talents"]); $i++){
+			$current = $talentData[$prefix]["talents"][$i];
+			if ($current["id"] == $data["talentreq"]) {
+				return GetLocalizedProperty($current, "name", $GLOBALS["locale"]);
 			}
 		}
 	}
+	return "";
 }
 
 $GLOBALS['localizationData'] = json_decode(str_replace("'", "\"", "{
