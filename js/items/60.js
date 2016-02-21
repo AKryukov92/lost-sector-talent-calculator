@@ -2,7 +2,7 @@
 	"id":60,
 	"name":{
 		"ru":"Панковская 'Мята'",
-		"ru":"Punks Mint"
+		"en":"Punks Mint"
 	},
 	"category":"consumable",
 	"consumable_type":2,

@@ -8,22 +8,11 @@ if (!isset($_GET["prefix"]) && IsNullOrEmptyString($id)) {
 	print "class prefix is not specified";
 	return;
 }
-$iframe = isset($_GET["iframe"]);
 $id = $_GET["id"];
 $prefix = $_GET["prefix"];
 
-if (isset($_GET["locale"])) {
-	$GLOBALS["locale"] = $_GET["locale"];
-} else {
-	$GLOBALS["locale"] = "ru";
-}
 
-if (isset($_GET["version"])) {
-	$version = $_GET["version"];
-} else {
-	$version = 102;
-}
-$filename = "js/talents/archive" . $version . ".js";
+$filename = "js/talents/archive" . $GLOBALS["version"] . ".js";
 
 if (!file_exists($filename)) {
 	print "talent data is not found";
@@ -85,11 +74,11 @@ if (!$iframe) {
 <div class="tooltip-content" style="overflow:auto;">
 	<?php if (!$iframe) {?>
 		<div class="tooltip-image-container" style="width:<?php print $TALENT_BOX_SIZE; ?>px;height:<?php print $TALENT_BOX_SIZE; ?>px;">
-			<img src="images/Skills<?php print $version; ?>.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
+			<img src="images/Skills<?php print $GLOBALS["version"] ?>.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
 		</div>
 	<?php } ?>
 <h3><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]); ?>
-<?php print "  <a target='_blank' class='white-link' href='talent.php?id=" . $id . "&locale=" . $locale . "&prefix=" . $prefix . "&version=" . $version . "'>";
+<?php print "  <a target='_blank' class='white-link' href='talent.php?id=" . $id . "&locale=" . $locale . "&prefix=" . $prefix . "&version=" . $GLOBALS["version"] . "'>";
 	print "link";
 print "</a>";?>
 </h3>
@@ -102,7 +91,7 @@ print "</a>";?>
 			<?php print ", <a class='white-link' target='_blank' href='/talent.php?id=" . $data["talentreq"]
 					. "&locale=" . $locale
 					. "&prefix=" . $prefix
-					. "&version=" . $version
+					. "&version=" .$GLOBALS["version"]
 					. "'>" . GetLocalizedProperty($required_data,"name", $GLOBALS["locale"])
 					. "</a>"; ?>
 		<?php }?>
