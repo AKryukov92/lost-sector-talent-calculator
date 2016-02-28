@@ -57,7 +57,7 @@ function TalentController() {
 		$("#calculator-layout").attr("width", talentApplication.getTotalWidth());
 		$("#calculator-layout").attr("height", talentApplication.getTotalHeight());
 		if (typeof this.talentInput != "undefined") {
-			talentApplication.calculator.learnTalentsFromString(this.talentInput);
+			talentApplication.getCalculator().learnTalentsFromString(this.talentInput);
 		}
 		talentApplication.displayLayout();
 		update_link();
