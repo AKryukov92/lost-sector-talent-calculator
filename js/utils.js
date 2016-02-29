@@ -51,15 +51,17 @@ function update_link() {
 	var link = location.origin;
 	var talentApplication = talentController.getView();
 	if (typeof talentApplication != 'undefined') {
-		link += "/?t=" + talentApplication.patchdata.data_version +
+		link += "/?t=" +
 			talentController.getGameVersion() +
+			1 +
 			talentApplication.getCalculator().prefix + "_" +
 			talentApplication.getCalculator().getTalentString();
-		var subscription = "[img=" + location.origin + "/s.php?"
-			+ "v=" + talentApplication.patchdata.data_version
-			+ "&c=" + talentApplication.getActiveClass().getCalculator().prefix
-			+ "&t=" + talentApplication.getActiveClass().getCalculator().getTalentString()
-			+ "[/img]";
+		var subscription = "[img=\"" + location.origin + "/sub/" +
+			talentController.getGameVersion() +
+		    1 +
+			talentApplication.getCalculator().prefix + "_" +
+			talentApplication.getCalculator().getTalentString()
+			+ ".png\"][/img]";
 		$("#subscription-template").val(subscription);
 	}
 	if (typeof inventoryApp != 'undefined') {
