@@ -6,25 +6,20 @@ function hexColorAllocate($im,$hex){
     $b = hexdec(substr($hex,4,2));
     return imagecolorallocate($im, $r, $g, $b); 
 }
-$url = "http://localhost/?v=102&c=as&t=cp6og7oe";
-//Handle get parameters
-if (isset($_GET["v"])) {
-	$version = $_GET["v"];
-} else {
-	$version = 102;
-}
-if (isset($_GET["c"])) {
-	$prefix = $_GET["c"];
-} else {
-	$prefix = "as";
-}
-if (isset($_GET["t"])) {
-	$talentstring = $_GET["t"];
-} else {
-	$talentstring = "";
+$url = "lstc.wc.lt/1021as_94vgo255.png";
+$version = 102;
+$prefix = "as";
+$talentstring = "";
+if (isset($_GET["file"])) {
+	$pattern = "/(\d*)(\d)(as|sc|ju|su)_(\w*)/";
+	if (preg_match($pattern, $_GET["file"], $matches) === 1) {
+		$version = $matches[1];
+		$prefix = $matches[3];
+		$talentstring = $matches[4];
+	}
 }
 //Load class data
-$filename = "js/talents/archive" . $version . ".js";
+$filename = "../js/talents/archive" . $version . ".js";
 if (!file_exists($filename)) {
 	print "talent data is not found";
 	return;
@@ -93,7 +88,7 @@ for ($i = count($classData) - 1; $i >= 0; $i--) {
 		}
 	}
 }
-$talentAtlas = imagecreatefrompng("images/Skills" . $version . ".png");
+$talentAtlas = imagecreatefrompng("../images/Skills" . $version . ".png");
 header('Content-type: image/png');
 $spacing = 5;
 $imageSize = 48;

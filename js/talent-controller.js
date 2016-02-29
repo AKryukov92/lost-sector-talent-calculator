@@ -146,6 +146,9 @@ function refreshTalentTooltipIframe(controller){
 $("#link-to-build").click(function(){
 	window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#link-to-build").val());
 });
+$("#subscription-template").click(function(){
+	window.prompt("Для копирования нажмите: Ctrl+C, Enter", $("#subscription-template").val());
+});
 function talentUriHandler(key, value, target) {
 	talent = decodeURIComponent(value);
 	var match = /(\d*)(\d)(as|sc|ju|su)_(\w*)/.exec(value);
