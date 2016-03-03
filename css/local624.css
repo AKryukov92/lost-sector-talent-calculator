@@ -5,8 +5,11 @@
 		width:calc(25% - 8px);
 	}
 	/* Other stuff */
+	 [data-clipboard-target] img{
+		 height:15px;
+	 }
 	body {
-		font-size:13pt;
+		font-size:10pt;
 	}
 	.special-item {
 		width:calc(16.666% - 6px);

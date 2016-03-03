@@ -206,7 +206,8 @@ var localizationData = {
 	't-head-mods':{'ru':'Череп', 'en':'Skull' },
 	't-hand-mods':{'ru':'Руки', 'en':'Arms' },
 	't-feet-mods':{'ru':'Ноги', 'en':'Legs' },
-	't-chest-mods':{'ru':'Грудная клетка', 'en':'Chest' }
+	't-chest-mods':{'ru':'Грудная клетка', 'en':'Chest' },
+	't-subscription':{'ru':'Форумная подпись', 'en':'Forum subscription'}
 	};
 
 function applyLocaleToInterface(locale) {

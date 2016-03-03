@@ -44,8 +44,10 @@
 	clear:both;
  }
 
- 
  /* Other stuff */
+ [data-clipboard-target] img{
+	 height:30px;
+ }
  body {
 	font-size:20pt;
 }
@@ -61,6 +63,7 @@ input[type=file] {
 .talent-manager {
 	width:100%;
 	clear:both;
+	font-size:13pt;
 }
 .item-manager {
 }
