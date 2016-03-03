@@ -91,11 +91,12 @@ function notifyControllerDataLoad(version, data) {
 			"su": new ClassTalentView(locale, data.su, images.atlasActive, images.atlasInactive, new Calculator(), getContext)
 		};
 	} else {
+		var widgetWidth = $(".talents-background").width();
 		talentController.layouts[version].classViews = {
-			"as": new CompactClassTalentView(locale, data.as, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
-			"ju": new CompactClassTalentView(locale, data.ju, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
-			"sc": new CompactClassTalentView(locale, data.sc, images.atlasActive, images.atlasInactive, new Calculator(), getContext),
-			"su": new CompactClassTalentView(locale, data.su, images.atlasActive, images.atlasInactive, new Calculator(), getContext)
+			"as": new CompactClassTalentView(locale, data.as, images.atlasActive, images.atlasInactive, new Calculator(), getContext, widgetWidth),
+			"ju": new CompactClassTalentView(locale, data.ju, images.atlasActive, images.atlasInactive, new Calculator(), getContext, widgetWidth),
+			"sc": new CompactClassTalentView(locale, data.sc, images.atlasActive, images.atlasInactive, new Calculator(), getContext, widgetWidth),
+			"su": new CompactClassTalentView(locale, data.su, images.atlasActive, images.atlasInactive, new Calculator(), getContext, widgetWidth)
 		};
 	}
 	talentController.activateView(talentController.getView());
@@ -216,7 +217,6 @@ $("#lblVersion").on("change","#special-talent-data", function(data) {
 				};
 				talentController.layouts[version].atlases[src].src = sources[src];
 			}
-			
 		}
 	}
 });
@@ -257,10 +257,4 @@ $("#calculator-layout").mousemove(function(e) {
 	var offset = $(this).offset();
 	talentController.dispatchMouseMove(e.pageX - offset.left, e.pageY - offset.top);
 });
-$(window).resize(function(e) {
-	if ($(window).width() <= 624) {
-		console.log("display small");
-	} else {
-		console.log("display big");
-	}
-});
+var clipboard = new Clipboard('[data-clipboard-target]');

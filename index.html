@@ -7,6 +7,7 @@
 	<link href="css/local624.css" rel="stylesheet">
 	<link href="css/local1280.css" rel="stylesheet">
 	<link href="css/local1920.css" rel="stylesheet">
+	<script src="js/clipboard.js"></script>
 	<title>Lost sector talent calculator</title>
 </head>
 <body style="background-color:#757575;">
@@ -15,12 +16,20 @@
 		<div style="float:left;">
 			<div>
 				<label>
-					<span name="t-link">Ссылка</span>: <input id="link-to-build" style="width:calc(80% - 20px)"></input>
+					<button id="btn-link-copy" data-clipboard-target="#link-to-build">
+						<img src="images/clippy.svg" alt="Copy to clipboard">
+					</button>
+					<span name="t-link">Ссылка</span>:
+					<input id="link-to-build" style="width:calc(80% - 20px)"></input>
 				</label>
 			</div>
 			<div>
 				<label>
-					<span name="t-subscription">Форумная подпись</span>: <input id="subscription-template" style="width:calc(80% - 20px)"></input>
+					<button id="btn-subscription-copy" data-clipboard-target="#subscription-template">
+						<img src="images/clippy.svg" alt="Copy to clipboard">
+					</button>
+					<span name="t-subscription">Форумная подпись</span>: 
+					<input id="subscription-template" style="width:calc(40% - 20px)"></input>
 				</label>
 			</div>
 			<div style="clear:both;"><span name="t-skill-points">Очки</span> <span id="points-left">0</span></div>
@@ -87,7 +96,6 @@
 		</ul>
 		<div class="talents-background" class="ui-tabs-panel ui-widget-content ui-corner-bottom" >
 			<canvas id='calculator-layout'>Your browser do not support this application</canvas>
-			<canvas id='calculator-layout2' class="width:100%;">Your browser do not support this application</canvas>
 		</div>
 		<div id="tabs-as"></div>
 		<div id="tabs-ju"></div>
