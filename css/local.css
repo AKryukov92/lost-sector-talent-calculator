@@ -18,6 +18,9 @@
 	stroke:#c77405;
 }
 /* Custom tabs */
+#items-pool{
+    clear: both;
+}
 #items-pool .ui-tabs-nav {
 	height:0px;
 }
@@ -159,7 +162,7 @@ input[type=file] {
 }
 .tooltip-content .entry {
 	color:white;
-	font-size:0.5em;
+	font-size:0.8em;
 	max-width:300px;
 }
 .tooltip-content .entry .key {
@@ -270,7 +273,6 @@ input[type=radio   ]:not(old):checked + label > span{
 .special-item-container {
 	clear:both;
 	display:block;
-	overflow:auto;
 }
 .special-item {
 	background-color: rgba(55,55,55,0.9);
@@ -300,7 +302,7 @@ input[type=radio   ]:not(old):checked + label > span{
 	left:-5px;
 }
 .specials ul li {
-	font-size:0.4em;
+	font-size:0.7em;
 }
 .specials ul {
 	list-style-type: none;
