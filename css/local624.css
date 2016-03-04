@@ -62,6 +62,7 @@
 	}
 	.fake-tooltip-container {
 		position:relative;
+		display:block;
 		z-index:3;
 		clear:both;
 		width:90%;
