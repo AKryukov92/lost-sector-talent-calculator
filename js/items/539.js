@@ -1,4 +1,5 @@
 {
+	"id":539,
 	"name":"SVU",
 	"category":"sniper_rifle",
 	"mobility":70,
@@ -8,21 +9,11 @@
 	"lvlreq":12,
 	"talentreq":24,
 	"classreq":["sc"],
-	"id":539,
 	"attacks":[{
-		"name":{"ru":"Удар","en":"Hit"},
-		"type":1,
-		"accuracy":90,
-		"cost":45,
-		"min_dist":0,
-		"max_dist":2,
-		"min_damage":20,
-		"max_damage":35
-	},{
 		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
-		"min_damage":68,
-		"max_damage":98,
+		"min_damage":70,
+		"max_damage":101,
 		"accuracy":65,
 		"bullets":1,
 		"cost":50,
@@ -31,13 +22,22 @@
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":5,
+		"min_damage":100,
+		"max_damage":147,
 		"accuracy":74,
-		"min_damage":97,
-		"max_damage":143,
 		"bullets":1,
 		"cost":70,
 		"min_dist":18,
 		"max_dist":34
+	},{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":20,
+		"max_damage":35,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":2
 	}],
 	"ingredients":0
 }

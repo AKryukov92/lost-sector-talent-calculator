@@ -165,7 +165,7 @@ function talentUriHandler(key, value, target) {
 		$("#selVersion").val(initialTalentData.gameVersion);
 		talentController.orderToDisplay(initialTalentData.classPrefix, initialTalentData.gameVersion, initialTalentData.talentInput);
 	} else {
-		talentController.orderToDisplay("as", 102);
+		talentController.orderToDisplay("as", 103);
 	}
 }
 var initialLink = new ApplicationLink(location.search);
@@ -188,7 +188,7 @@ if (initialLink.linkString.length != 0) {
 	});
 } else {
 	// заходим по ссылке без указания патча ""
-	talentController.orderToDisplay("as", 102);
+	talentController.orderToDisplay("as", 103);
 }
 $("#lblVersion").on("change","#special-talent-data", function(data) {
 	var specialTalentData = document.getElementById("special-talent-data").files[0];

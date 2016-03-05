@@ -7,8 +7,8 @@
 	"category":"consumable",
 	"consumable_type":3,
 	"description":{
-		"ru":"Управление самодельным беспилотником-разведчиком. Песпилотник пеленгует сигналы костюмов и чипов, определяя местоположение противника в радиусе 12 м. Действует один раунд.",
-		"en":"Home-made reconnaissance drone control. The drone tracks signals from suits and chips locating enemy position in 12m area. Operates for one round."
+		"ru":"Управление самодельным беспилотником-разведчиком. Песпилотник пеленгует сигналы костюмов и чипов, определяя местоположение противника в радиусе 15 м. Действует один раунд.",
+		"en":"Home-made reconnaissance drone control. The drone tracks signals from suits and chips locating enemy position in 15m area. Operates for one round."
 	},
 	"lvlreq":6,
 	"attacks":[{

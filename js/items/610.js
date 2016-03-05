@@ -13,11 +13,11 @@
 	"lvlreq":10,
 	"attacks":[{
 		"name":{"ru":"Бросок","en":"Throw"},
-		"radius":7,
+		"radius":10,
 		"accuracy":90,
 		"cost":40,
 		"min_dist":0,
-		"max_dist":25
+		"max_dist":30
 	}],
 	"ingredients":{
 		"light_metals":2,
