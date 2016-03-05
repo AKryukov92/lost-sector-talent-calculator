@@ -2,7 +2,7 @@
 if (isset($_GET["version"])) {
 	$GLOBALS["version"] = $_GET["version"];
 } else {
-	$GLOBALS["version"] = 102;
+	$GLOBALS["version"] = 103;
 }
 if (isset($_GET["locale"])) {
 	$GLOBALS["locale"] = $_GET["locale"];

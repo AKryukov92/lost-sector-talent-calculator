@@ -1,4 +1,5 @@
 {
+	"id":552,
 	"name":"Dan Wesson PPC",
 	"category":"pistol",
 	"mobility":100,
@@ -7,36 +8,35 @@
 	"reload_cost":20,
 	"description":"Наградное оружие за победу в турнире.",
 	"lvlreq":12,
-	"id":552,
 	"attacks":[{
-		"name":{"ru":"Удар","en":"Hit"},
-		"type":1,
-		"accuracy":90,
-		"cost":35,
-		"min_dist":0,
-		"max_dist":1.5,
-		"min_damage":8,
-		"max_damage":35
-	},{
 		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":3,
+		"min_damage":38,
+		"max_damage":57,
 		"accuracy":47,
 		"cost":32,
 		"bullets":1,
 		"min_dist":4,
-		"max_dist":16,
-		"min_damage":35,
-		"max_damage":60
+		"max_dist":16
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
+		"min_damage":38,
+		"max_damage":57,
 		"accuracy":67,
 		"cost":40,
 		"bullets":1,
 		"min_dist":6,
-		"max_dist":18,
-		"min_damage":35,
-		"max_damage":60
+		"max_dist":18
+	},{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":10,
+		"max_damage":40,
+		"accuracy":90,
+		"cost":35,
+		"min_dist":0,
+		"max_dist":1.5
 	}],
 	"ingredients":0
 }

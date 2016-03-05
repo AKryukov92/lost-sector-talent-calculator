@@ -8,8 +8,8 @@
 		"pl":"Implant (Arms)"
 	},
 	"effects":[{
-		"ru":"Уменьшает затраты ОД на смену оружия на 5",
-		"en":"Decreases AP costs for weapon swapping for 5"
+		"ru":"Уменьшает затраты ОД на смену оружия на 8",
+		"en":"Decreases AP costs for weapon swapping for 8"
 	},{
 		"ru":"Уменьшает запас здоровья на 5",
 		"en":"Decreases health maximum for 5"

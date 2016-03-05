@@ -4,8 +4,8 @@
 	"category":"head_mod",
 	"description":{"ru":"Имплантант (череп)","en":"Implant (Skull)"},
 	"effects":[{
-		"ru":"Увеличивает награды кредитов на 6%",
-		"en":"Increases credits reward multiplier for 6%"
+		"ru":"Увеличивает награды кредитов на 8%",
+		"en":"Increases credits reward multiplier for 8%"
 	},{
 		"ru":"Уменьшает награды опыта на 5%",
 		"en":"Decreases experience multiplier for 5%"

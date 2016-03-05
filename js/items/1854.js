@@ -8,8 +8,8 @@
 		"pl":"Implant (Chest)"
 	},
 	"effects":[{
-		"ru":"Уменьшает разброс урона на 20%",
-		"en":"Decreases Damage spread for 20%"
+		"ru":"Уменьшает разброс урона на 30%",
+		"en":"Decreases Damage spread for 30%"
 	}],
 	"ingredients":0
 }

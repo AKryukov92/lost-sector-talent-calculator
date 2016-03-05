@@ -1,4 +1,5 @@
 {
+	"id":416,
 	"name":{
 		"ru":"Мачете",
 		"en":"Machete"
@@ -8,16 +9,15 @@
 	"lvlreq":6,
 	"talentreq":7,
 	"classreq":["ju","sc"],
-	"id":416,
 	"attacks":[{
 		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"accuracy":100,
 		"cost":30,
 		"min_dist":0,
-		"max_dist":1.8,
-		"min_damage":40,
-		"max_damage":60
+		"max_dist":1.9,
+		"min_damage":38,
+		"max_damage":54
 	}],
 	"ingredients":{
 		"light_metals":13,
