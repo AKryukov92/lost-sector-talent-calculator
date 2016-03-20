@@ -110,33 +110,33 @@ function toggleTalentTooltip() {
 	$("#talent-tooltip").toggle(!display);
 }
 toggleTalentTooltip();
-function updateTalentTooltip(controller) {
-	if (typeof controller.recentItem != 'undefined') {
-		if (controller.recentItem.base().id != recentId) {
-			recentId = controller.recentItem.base().id;
-			refreshTalentTooltipIframe(controller);
+function updateTalentTooltip(view) {
+	if (view.getRecent() != null) {
+		if (view.getRecent().base().id != recentId) {
+			recentId = view.getRecent().base().id;
+			refreshTalentTooltipIframe(view);
 		}
 	}
 }
-function refreshTalentTooltipIframe(controller){
-	if (typeof controller.recentItem != 'undefined') {
+function refreshTalentTooltipIframe(view){
+	if (typeof view.getRecent() != null) {
 		if ($("#selVersion").val() == "0") {
 			var Url = "/custom_talent.php";
 			var talent = {
-				current: controller.recentItem.base(),
-				locale: controller.locale,
-				prefix: controller.activeClassPrefix
+				current: view.getRecent().base(),
+				locale: getLocale(),
+				prefix: view.getCalculator().prefix
 			};
-			if (controller.recentItem.reqs.length > 0) {
-				talent.required = controller.recentItem.reqs[0].base();
+			if (view.getRecent().reqs.length > 0) {
+				talent.required = view.getRecent().reqs[0].base();
 			}
 			$.post(Url, talent, function(data, textStatus, jqXHR) {
 				$("#talent-tooltip").html(data);
 			}, 'text');
 		} else {
-			var Url = "/talent.php?id=" + controller.recentItem.base().id
+			var Url = "/talent.php?id=" + view.getRecent().base().id
 				+ "&locale=" + getLocale()
-				+ "&prefix=" + controller.activeClassPrefix
+				+ "&prefix=" + view.getCalculator().prefix
 				+ "&iframe=true&version=" + $("#selVersion").val();
 			$.get(Url, function(data) {
 				$("#talent-tooltip").html(data);
