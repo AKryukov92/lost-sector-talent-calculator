@@ -29,6 +29,13 @@ function ClassTalentView(locale, classData, atlasActive, atlasInactive, calculat
 	var totalHeight = 0;
 	var rowHeaderWidth = 0;
 	
+	this.getRecent = function() {
+		if (recentItem != null) {
+			return recentItem;
+		}
+		return null;
+	}
+	
 	function fillHeightMap() {
 		var result = [];
 		var IMPOSSIBLE_LEVEL = 99;
