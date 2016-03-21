@@ -226,7 +226,8 @@ $("#selVersion").change(function(){
 	var prefix = talentController.currentPrefix;
 	talentController.orderToDisplay(prefix, version);
 	if (typeof orderToDisplayInventory != 'undefined') {
-		orderToDisplayInventory(version);
+		inventoryApp.version = version;
+		orderToDisplayInventory();
 	}
 });
 $("#as-link").click(function(){
