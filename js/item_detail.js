@@ -1,9 +1,9 @@
-
 function InventoryModel(locale,data) {
 	if (typeof locale == "undefined") {
 		throw new Error("Locale was not defined");
 	}
 	this.locale = locale;
+	this.version = 103;
 	this.slots = {
 		primary: {short_name :"p", item:{}, grade: 0 },
 		secondary: { short_name :"s", item:{}, grade: 0 },
@@ -110,7 +110,8 @@ function InventoryModel(locale,data) {
 			$("#" + slot_name + "-name").text(this.getLocalizedProperty(item, "name"));
 			var link = "/item.php?"
 				+ "id=" + item.id
-				+ "&locale=" + this.locale;
+				+ "&locale=" + this.locale
+				+ "&version=" + this.version;
 			if (item.category != "consumable"
 				&& item.category != "hat"
 				&& item.category != "head_mod"
@@ -129,6 +130,9 @@ function InventoryModel(locale,data) {
 		}
 	};
 	this.resetInventorySlot = function(slot_name) {
+		if ($.isEmptyObject(this.slots[slot_name].item)) {
+			return;
+		}
 		this.addItem(slot_name, {});
 		$("#" + slot_name + "-link").attr("href", "");
 		$("#" + slot_name + "-container").html("<img src=\"images/slot-" + slot_name + ".png\">");
@@ -232,6 +236,11 @@ function InventoryModel(locale,data) {
 	this.clearPool = function() {
 		for (type in this.weapontype_map) {
 			$("#" + type + "-pool").empty();
+		}
+	};
+	this.clearEquipped = function() {
+		for (slot in this.possible_slots) {
+			this.resetInventorySlot(slot);
 		}
 	};
 	this.fillAvailableItems = function(data){

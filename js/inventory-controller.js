@@ -24,6 +24,10 @@ function quality_change_handler(slot_name) {
 function reset_slot(slot_name) {
 	inventoryApp.resetInventorySlot(slot_name);
 }
+function versionUriHandler(key, value, target) {
+	itemstring = decodeURIComponent(value);
+	inventoryApp.version = 0+itemstring;
+}
 function tunableItemUriHandler(key, value, target) {
 	itemstring = decodeURIComponent(value);
 	var item = inventoryApp.getItemById(itemstring.split("_")[0]);
@@ -140,11 +144,12 @@ $(document).ready(function(){
 		show:{delay:200},
 		content:""
 	});
-	orderToDisplayInventory($("#selVersion").val());
+	orderToDisplayInventory();
 });
-function orderToDisplayInventory(version) {
-	$.get("/item_data.php?version=" + version, function(data) {
-		inventoryApp.clearPool();
+function orderToDisplayInventory() {
+	inventoryApp.clearPool();
+	inventoryApp.clearEquipped();
+	$.get("/item_data.php?version=" + inventoryApp.version, function(data) {
 		inventoryApp.fillAvailableItems(data);
 		for (slot in inventoryApp.possible_slots) {
 			$("#" + slot + "-container").droppable({
