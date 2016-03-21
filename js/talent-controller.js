@@ -225,6 +225,9 @@ $("#selVersion").change(function(){
 	var version = $("#selVersion").val();
 	var prefix = talentController.currentPrefix;
 	talentController.orderToDisplay(prefix, version);
+	if (typeof orderToDisplayInventory != 'undefined') {
+		orderToDisplayInventory(version);
+	}
 });
 $("#as-link").click(function(){
 	// переключаем класс
