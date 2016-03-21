@@ -48,10 +48,10 @@ function Placeholder($key) {
 	}
 }
 function getRequiredTalentName($data){
-	$filename = "js/talents/archive" . $GLOBALS["version"] . ".js";
+	$filename = "js/talents/archive" . $GLOBALS["version"] . ".json";
 
 	if (!file_exists($filename)) {
-		print "talent data is not found";
+		print "talent data is not found " . $filename;
 		return;
 	}
 
