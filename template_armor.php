@@ -35,12 +35,14 @@ if (!$GLOBALS["iframe"]) {
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="css/local.css" rel="stylesheet">
 <?php if (isset($data["name"])) { ?>
 	<title><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]);?></title>
 <?php } ?>
 	<link href="css/jquery-ui.css" rel="stylesheet">
 	<link href="css/local.css" rel="stylesheet">
+	<link href="css/local624.css" rel="stylesheet">
+	<link href="css/local1280.css" rel="stylesheet">
+	<link href="css/local1920.css" rel="stylesheet">
 </head>
 <body style="margin:0px;">
 <?php } ?>
@@ -50,7 +52,7 @@ if (!$GLOBALS["iframe"]) {
 			<img src="images/items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
 		</div>
 	<?php } ?>
-	<div style="color:<?php print $colorname; ?>;font-size:16pt;">
+	<div class="item-name" style="color:<?php print $colorname; ?>;">
 		<?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]); 
 			if ($quality != 0)
 			{ print " +".$quality; } ?>
@@ -96,35 +98,39 @@ if (!$GLOBALS["iframe"]) {
 </div>
 <?php if (!$GLOBALS["iframe"]) { ?>
 	<div id="armor" class="tunable-item">
-		<div><a target="_blank" id="armor-link"><span id="armor-name"></span><span id="armor-value"></span></a></div>
-		<div style="overflow:auto;">
-			<div class="draggable-landing">
-				<div id="armor-container" class="inventory-item-container">
-					<img src="images/slot-armor.png"/>
-				</div>
-				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('armor');"><span id="armor-reset">очистить</span></a>
-			</div>
-			<div style="float:left;">
-				<input type="radio" name="armor-quality" value="gray" id="armor-quality-gray" class="quality">
-					<label for="armor-quality-gray"><span class="gray"><span class="gray"></span></span></label>
-				</input>
-				<input type="radio" name="armor-quality" value="white" id="armor-quality-white" class="quality" checked>
-					<label for="armor-quality-white"><span class="white"><span class="white"></span></span></label>
-				</input>
-				<input type="radio" name="armor-quality" value="green" id="armor-quality-green" class="quality">
-					<label for="armor-quality-green"><span class="green"><span class="green"></span></span></label>
-				</input>
-				<input type="radio" name="armor-quality" value="blue" id="armor-quality-blue" class="quality">
-					<label for="armor-quality-blue"><span class="blue"><span class="blue"></span></span></label>
-				</input>
-				<div id="armor-slider" style="clear:both;"></div>
-			</div>
-			<select id="selLang" style="margin:10px;float:right;">
-				<option value="ru">ру</option>
-				<option value="en">en</option>
-			</select>
+		<div class="tunable-item-name">
+			<a target="_blank" id="armor-link">
+				<span id="armor-name"></span><span id="armor-value"></span>
+			</a>
 		</div>
+		<div class="draggable-landing">
+			<div id="armor-container" class="inventory-item-container">
+				<img src="images/slot-armor.png"/>
+			</div>
+			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('armor');">
+				<span id="armor-reset">очистить</span>
+			</a>
+		</div>
+		<div class="tunable-properties-container">
+			<input type="radio" name="armor-quality" value="gray" id="armor-quality-gray" class="quality">
+				<label for="armor-quality-gray"><span class="gray"></span></label>
+			</input>
+			<input type="radio" name="armor-quality" value="white" id="armor-quality-white" class="quality" checked>
+				<label for="armor-quality-white"><span class="white"></span></label>
+			</input>
+			<input type="radio" name="armor-quality" value="green" id="armor-quality-green" class="quality">
+				<label for="armor-quality-green"><span class="green"></span></label>
+			</input>
+			<input type="radio" name="armor-quality" value="blue" id="armor-quality-blue" class="quality">
+				<label for="armor-quality-blue"><span class="blue"></span></label>
+			</input>
+		</div>
+		<div id="armor-slider"></div>
 	</div>
+	<select id="selLang" style="margin:10px;float:right;">
+		<option value="ru">ру</option>
+		<option value="en">en</option>
+	</select>
 	<div class="fake-tooltip-container" style="margin:2px;">
 		<div class="fake-tooltip" id="armor-fake-tooltip">
 		</div>
