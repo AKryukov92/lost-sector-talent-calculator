@@ -140,7 +140,8 @@ $(document).ready(function(){
 		show:{delay:200},
 		content:""
 	});
-	$.get("/item_data.php", function(data) {
+	var version = $("#selVersion").val();
+	$.get("/item_data.php?version=" + version, function(data) {
 		inventoryApp.fillAvailableItems(data);
 		for (slot in inventoryApp.possible_slots) {
 			$("#" + slot + "-container").droppable({

@@ -12,7 +12,7 @@ $id = $_GET["id"];
 $prefix = $_GET["prefix"];
 
 
-$filename = "js/talents/archive" . $GLOBALS["version"] . ".js";
+$filename = "js/talents/archive" . $GLOBALS["version"] . ".json";
 
 if (!file_exists($filename)) {
 	print "talent data is not found";
@@ -22,7 +22,7 @@ if (!file_exists($filename)) {
 $filecontent = file_get_contents($filename);
 $talentData = json_decode($filecontent, true);
 if (json_last_error() != 0) {
-	print 'error parsing talent ' . $id . ' data';
+	print 'error parsing talents data';
 }
 if ($id > 100) {
 	$base_id = floor($id/10);
