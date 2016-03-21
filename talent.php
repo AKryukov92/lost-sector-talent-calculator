@@ -11,8 +11,7 @@ if (!isset($_GET["prefix"]) && IsNullOrEmptyString($id)) {
 $id = $_GET["id"];
 $prefix = $_GET["prefix"];
 
-
-$filename = "js/talents/archive" . $GLOBALS["version"] . ".json";
+$filename = "js/talents/archive" . talentsVersionFallback($GLOBALS["version"]) . ".json";
 
 if (!file_exists($filename)) {
 	print "talent data is not found";
