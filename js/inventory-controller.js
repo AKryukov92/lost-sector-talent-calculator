@@ -140,8 +140,11 @@ $(document).ready(function(){
 		show:{delay:200},
 		content:""
 	});
-	var version = $("#selVersion").val();
+	orderToDisplayInventory($("#selVersion").val());
+});
+function orderToDisplayInventory(version) {
 	$.get("/item_data.php?version=" + version, function(data) {
+		inventoryApp.clearPool();
 		inventoryApp.fillAvailableItems(data);
 		for (slot in inventoryApp.possible_slots) {
 			$("#" + slot + "-container").droppable({
@@ -165,5 +168,7 @@ $(document).ready(function(){
 				});
 			}
 		}
+	}).fail(function() {
+		inventoryApp.clearPool();
 	});
-});
+}

@@ -31,18 +31,10 @@ function GetLocalizedProperty($container, $property, $locale) {
 }
 
 function talentsVersionFallback($v) {
-	if ($v == 103) {
-		return 103;
-	}
-	if ($v == 102) {
-		return 102;
-	}
-	if ($v == 101) {
-		return 101;
-	}
 	if ($v == 100 || $v == 99) {
 		return 98;
 	}
+	return $v;
 }
 // Function for basic field validation (present and neither empty nor only white space
 function IsNullOrEmptyString($question){

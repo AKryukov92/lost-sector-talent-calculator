@@ -229,6 +229,11 @@ function InventoryModel(locale,data) {
 			this.updateSlotTooltip(slot);
 		}
 	};
+	this.clearPool = function() {
+		for (type in this.weapontype_map) {
+			$("#" + type + "-pool").empty();
+		}
+	};
 	this.fillAvailableItems = function(data){
 		this.itemData = data;
 		for (var i = 0; i < this.itemData.length; i++) {
