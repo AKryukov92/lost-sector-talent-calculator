@@ -8,7 +8,10 @@ if (!$GLOBALS["iframe"]) {
 <html>
 <head>
 	<meta charset="UTF-8">
-<link href="css/local.css" rel="stylesheet">
+	<link href="css/local.css" rel="stylesheet">
+	<link href="css/local624.css" rel="stylesheet">
+	<link href="css/local1280.css" rel="stylesheet">
+	<link href="css/local1920.css" rel="stylesheet">
 <?php if (isset($data["name"])) { ?>
 	<title><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]);?></title>
 <?php } ?>
@@ -21,7 +24,7 @@ if (!$GLOBALS["iframe"]) {
 			<img src="images/items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
 		</div>
 	<?php } ?>
-	<div style="color:#ff7700;font-size:16pt;"><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]); ?></div>
+	<div class="item-name" style="color:#ff7700;"><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]); ?></div>
 	<div class="entry"><?php print Placeholder("t-avatar");?></div>
 	<div class="entry"><?php print Placeholder("t-protection");?>: 5</div>
 	<?php if (isset($data["classreq"])) { ?>

@@ -32,12 +32,14 @@ if (!$GLOBALS["iframe"]) {
 <html>
 <head>
 	<meta charset="UTF-8">
-<link href="css/local.css" rel="stylesheet">
 <?php if (isset($data["name"])) { ?>
 	<title><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]);?></title>
 <?php } ?>
 	<link href="css/jquery-ui.css" rel="stylesheet">
 	<link href="css/local.css" rel="stylesheet">
+	<link href="css/local624.css" rel="stylesheet">
+	<link href="css/local1280.css" rel="stylesheet">
+	<link href="css/local1920.css" rel="stylesheet">
 	<script>
         function resizeIframe(obj) {
             obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
@@ -52,7 +54,7 @@ if (!$GLOBALS["iframe"]) {
 			<img src="images/items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
 		</div>
 	<?php } ?>
-	<div style="color:<?php print $colorname; ?>;font-size:16pt;">
+	<div class="item-name" style="color:<?php print $colorname; ?>;">
 		<?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]);
 			if ($quality != 0)
 			{ print " +".$quality; } ?>
@@ -121,40 +123,42 @@ if (!$GLOBALS["iframe"]) {
 </div>
 <?php if (!$GLOBALS["iframe"]) { ?>
 	<div id="primary" class="tunable-item">
-		<div><a target="_blank" id="primary-link"><span id="primary-name"></span><span id="primary-value"></span></a></div>
-		<div style="overflow:auto;">
-			<div class="draggable-landing">
-				<div id="primary-container" class="inventory-item-container">
-					<img src="images/slot-primary.png"/>
-				</div>
-				<a class="tunable-reset" onclick="player_model.reset_inventory_slot('primary');"><span id="primary-reset">очистить</span></a>
-			</div>
-			<div style="float:left;">
-				<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">
-					<label for="primary-quality-gray"><span class="gray"><span class="gray"></span></span></label>
-				</input>
-				<input type="radio" name="primary-quality" value="white" id="primary-quality-white" class="quality" checked>
-					<label for="primary-quality-white"><span class="white"><span class="white"></span></span></label>
-				</input>
-				<input type="radio" name="primary-quality" value="green" id="primary-quality-green" class="quality">
-					<label for="primary-quality-green"><span class="green"><span class="green"></span></span></label>
-				</input>
-				<input type="radio" name="primary-quality" value="blue" id="primary-quality-blue" class="quality">
-					<label for="primary-quality-blue"><span class="blue"><span class="blue"></span></span></label>
-				</input>
-				<div id="primary-slider" style="clear:both;"></div>
-			</div>
-			<select id="selLang" style="margin:10px;float:right;">
-				<option value="ru">ру</option>
-				<option value="en">en</option>
-			</select>
+		<div class="tunable-item-name">
+			<a target="_blank" id="primary-link">
+				<span id="primary-name"></span><span id="primary-value"></span>
+			</a>
 		</div>
+		<div class="draggable-landing">
+			<div id="primary-container" class="inventory-item-container">
+				<img src="images/slot-primary.png"/>
+			</div>
+			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('primary');"><span id="primary-reset">очистить</span></a>
+		</div>
+		<div class="tunable-properties-container">
+			<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">
+				<label for="primary-quality-gray"><span class="gray"></span></label>
+			</input>
+			<input type="radio" name="primary-quality" value="white" id="primary-quality-white" class="quality" checked>
+				<label for="primary-quality-white"><span class="white"></span></label>
+			</input>
+			<input type="radio" name="primary-quality" value="green" id="primary-quality-green" class="quality">
+				<label for="primary-quality-green"><span class="green"></span></label>
+			</input>
+			<input type="radio" name="primary-quality" value="blue" id="primary-quality-blue" class="quality">
+				<label for="primary-quality-blue"><span class="blue"></span></label>
+			</input>
+		</div>
+		<div id="primary-slider"></div>
 	</div>
+	<select id="selLang" style="margin:10px;float:right;">
+		<option value="ru">ру</option>
+		<option value="en">en</option>
+	</select>
 	<div class="fake-tooltip-container" style="margin:2px;">
 		<div class="fake-tooltip" id="primary-fake-tooltip">
 		</div>
 	</div>
-	<div id="items-pool" style="clear:both;overflow:auto;">
+	<div id="items-pool">
 		<ul>
 			<li><a href="#all-melee"><span name="t-melee">Ближний бой</span></a></li>
 			<li><a href="#all-pistol"><span name="t-pistol">Пистолеты</span></a></li>

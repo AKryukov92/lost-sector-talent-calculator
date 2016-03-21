@@ -33,6 +33,7 @@
 }
 .ui-tabs .ui-tabs-panel {
 	height:0px;
+	clear:both;
 }
 
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
@@ -51,8 +52,9 @@
  [data-clipboard-target] img{
 	 height:30px;
  }
- body {
+body {
 	font-size:20pt;
+	background-color:#757575;
 }
 input {
 	font:1em Arial;
@@ -317,7 +319,10 @@ input[type=radio   ]:not(old):checked + label > span{
 .attack h3 {
 	color:#e7a516;
 }
-
+.item-name {
+	font-size: 1.1em;
+	color:white;
+}
 .weapon-property {
     color:white;
     font-size: 14px;

@@ -31,7 +31,10 @@ if (!$GLOBALS["iframe"]) {
 <html>
 <head>
 	<meta charset="UTF-8">
-<link href="css/local.css" rel="stylesheet">
+	<link href="css/local.css" rel="stylesheet">
+	<link href="css/local624.css" rel="stylesheet">
+	<link href="css/local1280.css" rel="stylesheet">
+	<link href="css/local1920.css" rel="stylesheet">
 <?php if (isset($data["name"])) { ?>
 	<title><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]);?></title>
 <?php } ?>
@@ -44,7 +47,7 @@ if (!$GLOBALS["iframe"]) {
 			<img src="images/items.png" style="margin-left:-<?php print $imagedx; ?>px; margin-top:-<?php print $imagedy; ?>px;"/>
 		</div>
 	<?php } ?>
-	<div style="color:white;font-size:16pt;" id="item<?php print $data["id"]; ?>name"><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]); ?></div>
+	<div class="item-name" id="item<?php print $data["id"]; ?>name"><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]); ?></div>
 	<?php if (!IsNullOrEmptyString($consumable_type_name)) { ?>
 		<div class="entry"><?php print Placeholder("t-active-item"); ?> (<?php print $consumable_type_name; ?>)</div>
 	<?php } ?>
