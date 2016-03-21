@@ -1,15 +1,14 @@
 <?php
+include "commons.php";
 $TALENTS_DATA_DIRECTORY = "js/talents";
 
 header('Content-type: application/json;charset=UTF-8');
 
-if (isset($_GET["version"])) {
-	$version = $_GET["version"];
-	$filename = $TALENTS_DATA_DIRECTORY . "/archive" . $version . ".json";
-	if (file_exists($filename)) {
-		print(file_get_contents($filename));
-		return;
-	}
+$version = talentsVersionFallback($GLOBALS["version"]);
+$filename = $TALENTS_DATA_DIRECTORY . "/archive" . $version . ".json";
+if (!file_exists($filename)) {
+	print ('{"error":"data was not found"}');
+	return;
 }
-print ('{"error":"data was not found"}');
+print(file_get_contents($filename));
 ?>
