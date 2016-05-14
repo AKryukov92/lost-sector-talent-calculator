@@ -47,98 +47,32 @@ function resizeIframe(obj) {
 		}
 	}, 100);
 }
-function update_link() {
-	var link = location.origin;
-	var talentApplication = talentController.getView();
-	if (typeof talentApplication != 'undefined') {
-		link += "/?t=" +
-			talentController.getGameVersion() +
-			1 +
-			talentApplication.getCalculator().prefix + "_" +
-			talentApplication.getCalculator().getTalentString();
-		var subscription = "[img=\"" + location.origin + "/sub/" +
-			talentController.getGameVersion() +
-		    1 +
-			talentApplication.getCalculator().prefix + "_" +
-			talentApplication.getCalculator().getTalentString()
-			+ ".png\"][/img]";
-		$("#subscription-template").val(subscription);
-	}
-	if (typeof inventoryApp != 'undefined') {
-		var slot = inventoryApp.slots["primary"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&p=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
-		}
-		slot = inventoryApp.slots["secondary"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&s=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
-		}
-		slot = inventoryApp.slots["armor"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&a=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
-		}
-		slot = inventoryApp.slots["hat"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&h=" + slot.item.id;
-		}
-		slot = inventoryApp.slots["consumable_1"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&c1=" + slot.item.id;
-		}
-		slot = inventoryApp.slots["consumable_2"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&c2=" + slot.item.id;
-		}
-		slot = inventoryApp.slots["consumable_3"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&c3=" + slot.item.id;
-		}
-		slot = inventoryApp.slots["consumable_4"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&c4=" + slot.item.id;
-		}
-		slot = inventoryApp.slots["consumable_5"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&c5=" + slot.item.id;
-		}
-		slot = inventoryApp.slots["head_mod"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&hem=" + slot.item.id;
-		}
-		slot = inventoryApp.slots["chest_mod"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&cm=" + slot.item.id;
-		}
-		slot = inventoryApp.slots["hand_mod"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&ham=" + slot.item.id;
-		}
-		slot = inventoryApp.slots["feet_mod"];
-		if (!$.isEmptyObject(slot.item)) {
-			link += "&fm=" + slot.item.id;
-		}
-	}
-	$("#link-to-build").val(link);
-}
 
 function ApplicationLink(linkString) {
-	
 	this.linkString = linkString;
 	this.parts = [];
 	
-	this.processParts = function() {
+	if (linkString.length != 0) {
 		var array = [];
-		if (linkString.length != 0) {
-			linkString.replace("?", "").split("&").forEach(function(UriItem) {
-				var keyvalue = UriItem.split("=");
-				var key = keyvalue[0];
-				var value = keyvalue[1];
-				array.push({"key":key , "value":value });
-			});
-		}
+		linkString.replace("?", "").split("&").forEach(function(UriItem) {
+			var keyvalue = UriItem.split("=");
+			var key = keyvalue[0];
+			var value = keyvalue[1];
+			array.push({"key":key , "value":value });
+		});
 		this.parts = array;
-	}	
-	this.processParts();
+	}
+	
+	this.handleParts = function(uriHandlers){
+		this.parts.forEach(function(item){
+			if (typeof uriHandlers[item.key] != 'undefined') {
+				uriHandlers[item.key].fn(
+					item.key,
+					item.value,
+					uriHandlers[item.key].target);
+			}
+		});
+	}
 }
 
 var localizationData = {

@@ -52,31 +52,6 @@ function InventoryModel(locale,data) {
 		feet_mod: { slots:["feet_mod"] },
 		chest_mod: { slots:["chest_mod"] }
 	};
-	this.UriHandlers = {
-		"p": {fn: tunableItemUriHandler, target: "primary" },
-		"s": { fn: tunableItemUriHandler, target: "secondary" },
-		"a": { fn: tunableItemUriHandler, target: "armor" },
-		"h": { fn: specialItemUriHandler, target: "hat" },
-		"c1": { fn: specialItemUriHandler, target: "consumable_1" },
-		"c2": { fn: specialItemUriHandler, target: "consumable_2" },
-		"c3": { fn: specialItemUriHandler, target: "consumable_3" },
-		"c4": { fn: specialItemUriHandler, target: "consumable_4" },
-		"c5": { fn: specialItemUriHandler, target: "consumable_5" },
-		"hem": { fn: specialItemUriHandler, target: "head_mod" },
-		"ham": { fn: specialItemUriHandler, target: "hand_mod" },
-		"fm": { fn: specialItemUriHandler, target: "feet_mod" },
-		"cm": { fn: specialItemUriHandler, target: "chest_mod" },
-		/*legacy links handlers: */
-		"primary": { fn: tunableItemUriHandler, target: "primary" },
-		"secondary": { fn: tunableItemUriHandler, target: "secondary" },
-		"armor": { fn: tunableItemUriHandler, target: "armor" },
-		"hat": { fn: specialItemUriHandler, target: "hat" },
-		"consumable1": { fn: specialItemUriHandler, target: "consumable_1" },
-		"consumable2": { fn: specialItemUriHandler, target: "consumable_2" },
-		"consumable3": { fn: specialItemUriHandler, target: "consumable_3" },
-		"consumable4": { fn: specialItemUriHandler, target: "consumable_4" },
-		"consumable5": { fn: specialItemUriHandler, target: "consumable_5" }
-	};
 	this.setGrade = function(slot_name, value){
 		var element = $("#" + slot_name + "-value");
 		this.slots[slot_name].grade = value;
@@ -138,9 +113,6 @@ function InventoryModel(locale,data) {
 		$("#" + slot_name + "-container").html("<img src=\"images/slot-" + slot_name + ".png\">");
 		$("#" + slot_name + "-name").text("");
 		$("#" + slot_name + "-value").text("");
-		if (typeof update_link != 'undefined') {
-			update_link();
-		}
 	};
 	this.removeItem = function(item){
 		for (slot in this.slots) {
@@ -164,9 +136,6 @@ function InventoryModel(locale,data) {
 		slot.prop("title");
 		slot.html(this.getImageForItem(item));
 		this.updateSlotTooltip(slot_name);
-		if (typeof update_link != 'undefined') {
-			update_link();
-		}
 	};
 	this.getItemById = function(query_id){
 		for (var i = 0; i < this.itemData.length; i++) {
