@@ -58,23 +58,7 @@ if (!$GLOBALS["iframe"]) {
 <script src="js/jquery-ui.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/item_detail.js"></script>
-<script>
-	function update_link() {}
-</script>
-<script src="js/inventory-controller.js"></script>
-<script>
-var initialLink = new ApplicationLink(location.search);
-if (initialLink.linkString.length != 0) {
-	initialLink.parts.forEach(function(item){
-		if (typeof inventoryApp.UriHandlers[item.key] != 'undefined') {
-			inventoryApp.UriHandlers[item.key].fn(
-				item.key,
-				item.value,
-				inventoryApp.UriHandlers[item.key].target);
-		}
-	});
-}
-</script>
+<script src="js/single-item-controller.js"></script>
 <script src="js/analytics.js"></script>
 <?php } ?>
 </body>
