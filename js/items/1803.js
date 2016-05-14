@@ -4,7 +4,7 @@
 	"category":"head_mod",
 	"description":{"ru":"Имплантант (череп)","en":"Implant (Skull)"},
 	"effects":[{
-		"ru":"Увеличивает наносимый урон (кроме ближнего боя) на 6%",
+		"ru":"Увеличивает наносимый урон (кроме ближнего боя) на 3%",
 		"en":"Increases damage multiplier (except melee) for 3%"
 	},{
 		"ru":"Уменьшает общую стойкость к урону на 3%",
