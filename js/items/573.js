@@ -1,0 +1,39 @@
+{
+	"name":{
+		"ru":"THOR Grenade launcher",
+		"en":"THOR Grenade Launcher"
+	},
+	"category":"launcher",
+	"mobility":65,
+	"clip":8,
+	"ammo":8,
+	"reload_cost":60,
+	"lvlreq":12,
+	"talentreq":21,
+	"classreq":["su"],
+	"id":573,
+	"attacks":[
+	{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":20,
+		"max_damage":40,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5
+	},
+	{
+		"name":{"ru":"Запуск","en":"Launch"},
+		"type":6,
+		"min_damage":41,
+		"max_damage":53,
+		"accuracy":23,
+		"bullets":1,
+		"radius":3.5,
+		"cost":25,
+		"min_dist":9,
+		"max_dist":29
+	}],
+	"ingredients":0
+}

@@ -2,7 +2,7 @@
 if (isset($_GET["version"])) {
 	$GLOBALS["version"] = $_GET["version"];
 } else {
-	$GLOBALS["version"] = 103;
+	$GLOBALS["version"] = 104;
 }
 if (isset($_GET["locale"])) {
 	$GLOBALS["locale"] = $_GET["locale"];
@@ -34,6 +34,9 @@ function talentsVersionFallback($v) {
 	if ($v == 100 || $v == 99) {
 		return 98;
 	}
+	if ($v == 104) {
+		return 103;
+	}
 	return $v;
 }
 // Function for basic field validation (present and neither empty nor only white space
@@ -55,7 +58,7 @@ function Placeholder($key) {
 	}
 }
 function getRequiredTalentName($data){
-	$filename = "js/talents/archive" . $GLOBALS["version"] . ".json";
+	$filename = "js/talents/archive" . talentsVersionFallback($GLOBALS["version"]) . ".json";
 
 	if (!file_exists($filename)) {
 		print "talent data is not found " . $filename;

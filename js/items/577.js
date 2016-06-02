@@ -1,0 +1,52 @@
+{
+	"name":{
+		"ru":"Макаров",
+		"en":"Makarov"
+	},
+	"category":"pistol",
+	"description":{
+		"ru":"Пистолет Макарова. не имеет привязки к классу и поставляется с особой кобурой, позволяющей менять оружие за 0 ОД.",
+		"en":"Makarov's pistol. It's not bounded to any class, and comes with a special holster, allowing to change weapons for 0 AP."
+	},
+	"mobility":100,
+	"clip":8,
+	"ammo":24,
+	"reload_cost":20,
+	"lvlreq":10,
+	"id":577,
+	"attacks":[{
+		"name":{"ru":"Навскидку","en":"Snap"},
+		"type":2,
+		"min_damage":28,
+		"max_damage":39,
+		"accuracy":51,
+		"bullets":1,
+		"cost":20,
+		"min_dist":3,
+		"max_dist":16
+	},{
+		"name":{"ru":"Прицельно","en":"Aimed"},
+		"type":2,
+		"min_damage":28,
+		"max_damage":39,
+		"accuracy":59,
+		"bullets":1,
+		"cost":30,
+		"min_dist":4,
+		"max_dist":18
+	},{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":10,
+		"max_damage":25,
+		"accuracy":90,
+		"cost":35,
+		"min_dist":0,
+		"max_dist":1.5
+	}],
+	"ingredients":{
+		"light_metals":4,
+		"heavy_metals":6,
+		"mech_parts":3
+	}
+}
