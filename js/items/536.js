@@ -4,7 +4,7 @@
 		"en":"PKM"
 	},
 	"category":"machinegun",
-	"mobility":60,
+	"mobility":59,
 	"clip":100,
 	"ammo":200,
 	"reload_cost":50,
@@ -13,19 +13,10 @@
 	"classreq":["ju"],
 	"id":536,
 	"attacks":[{
-		"name":{"ru":"Удар","en":"Hit"},
-		"type":1,
-		"accuracy":90,
-		"cost":45,
-		"min_dist":0,
-		"max_dist":1.8,
-		"min_damage":30,
-		"max_damage":40
-	},{
 		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
-		"min_damage":97,
-		"max_damage":126,
+		"min_damage":95,
+		"max_damage":123,
 		"accuracy":57,
 		"bullets":15,
 		"cost":55,
@@ -34,13 +25,22 @@
 	},{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":5,
-		"min_damage":202,
-		"max_damage":250,
+		"min_damage":199,
+		"max_damage":246,
 		"accuracy":42,
 		"bullets":25,
 		"cost":70,
 		"min_dist":10,
 		"max_dist":25
+	},{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":30,
+		"max_damage":40,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.8
 	}],
 	"ingredients":{
 		"light_metals":37,

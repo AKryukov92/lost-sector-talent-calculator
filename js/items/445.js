@@ -1,7 +1,7 @@
 {
 	"name":"UMP45",
 	"category":"smg",
-	"mobility":92,
+	"mobility":90,
 	"clip":60,
 	"ammo":120,
 	"reload_cost":20,
@@ -10,34 +10,34 @@
 	"classreq":["as","ju","su"],
 	"id":445,
 	"attacks":[{
-		"name":{"ru":"Удар","en":"Hit"},
-		"type":1,
-		"accuracy":90,
-		"cost":40,
-		"min_dist":0,
-		"max_dist":1.5,
-		"min_damage":10,
-		"max_damage":25
-	},{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":2,
+		"min_damage":42,
+		"max_damage":52,
 		"accuracy":51,
+		"bullets":10,
 		"cost":32,
 		"min_dist":8,
-		"max_dist":16,
-		"bullets":10,
-		"min_damage":40,
-		"max_damage":49
+		"max_dist":16
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":2,
+		"min_damage":42,
+		"max_damage":52,
 		"accuracy":61,
+		"bullets":5,
 		"cost":40,
 		"min_dist":10,
-		"max_dist":22,
-		"bullets":5,
-		"min_damage":40,
-		"max_damage":49
+		"max_dist":22
+	},{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":10,
+		"max_damage":25,
+		"accuracy":90,
+		"cost":40,
+		"min_dist":0,
+		"max_dist":1.5
 	}],
 	"ingredients":{
 		"light_metals":18,

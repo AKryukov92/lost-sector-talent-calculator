@@ -370,7 +370,7 @@ var uriHandlers = {
 var initialLink = new ApplicationLink(location.search);
 if (initialLink.linkString.length == 0) {
 	// заходим по ссылке без данных
-	talentController.orderToDisplay("as", 103);
+	talentController.orderToDisplay("as", 104);
 }
 $(document).ready(function(){
 	$("#link-to-build").click(function(){

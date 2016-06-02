@@ -1,7 +1,7 @@
 {
 	"name":"KRISS Vector",
 	"category":"smg",
-	"mobility":90,
+	"mobility":92,
 	"clip":50,
 	"ammo":100,
 	"reload_cost":20,
@@ -10,34 +10,34 @@
 	"classreq":["as","ju","su"],
 	"id":461,
 	"attacks":[{
-		"name":{"ru":"Удар","en":"Hit"},
-		"type":1,
-		"accuracy":90,
-		"cost":40,
-		"min_dist":0,
-		"max_dist":1.5,
-		"min_damage":10,
-		"max_damage":25
-	},{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
+		"min_damage":36,
+		"max_damage":49,
 		"accuracy":52,
+		"bullets":8,
 		"cost":33,
 		"min_dist":8,
-		"max_dist":22,
-		"bullets":8,
-		"min_damage":38,
-		"max_damage":51
+		"max_dist":22
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
+		"min_damage":36,
+		"max_damage":49,
 		"accuracy":69,
+		"bullets":6,
 		"cost":45,
 		"min_dist":12,
-		"max_dist":26,
-		"bullets":6,
-		"min_damage":36,
-		"max_damage":49
+		"max_dist":26
+	},{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":10,
+		"max_damage":25,
+		"accuracy":90,
+		"cost":40,
+		"min_dist":0,
+		"max_dist":1.5
 	}],
 	"ingredients":{
 		"light_metals":28,

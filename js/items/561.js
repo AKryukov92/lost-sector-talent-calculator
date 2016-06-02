@@ -12,8 +12,8 @@
 	"attacks":[{
 		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
-		"min_damage":102,
-		"max_damage":133,
+		"min_damage":106,
+		"max_damage":138,
 		"accuracy":58,
 		"bullets":15,
 		"cost":55,
@@ -22,8 +22,8 @@
 	},{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":5,
-		"min_damage":207,
-		"max_damage":258,
+		"min_damage":211,
+		"max_damage":264,
 		"accuracy":43,
 		"bullets":25,
 		"cost":70,

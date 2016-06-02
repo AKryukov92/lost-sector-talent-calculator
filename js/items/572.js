@@ -28,7 +28,7 @@
 		"bullets":1,
 		"cost":45,
 		"min_dist":9,
-		"max_dist":24
+		"max_dist":25
 	}],
 	"ingredients":0
 }
