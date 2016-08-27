@@ -3,6 +3,15 @@
 	this.currentPrefix;
 	this.currentVersion;
 	this.talentInput;
+	function talentsVersionFallback(v){
+		if (v == 100 || v == 99){
+			return 98;
+		}
+		if (v == 104 || v == 105){
+			return 103;
+		}
+		return v;
+	}
 	this.orderToDisplay = function(prefix, version, talentInput) {
 		if (prefix == this.currentPrefix && version == this.currentVersion) {
 			return;
@@ -35,8 +44,8 @@
 		var loadedImages = 0;
 		var numImages = 2;
 		var sources = {
-			atlasActive: "images/Skills" + version + ".png",
-			atlasInactive: "images/inactiveSkills" + version + ".png"
+			atlasActive: "images/Skills" + talentsVersionFallback(version) + ".png",
+			atlasInactive: "images/inactiveSkills" + talentsVersionFallback(version) + ".png"
 		};
 		for(var src in sources) {
 			this.layouts[version].atlases[src] = new Image();
@@ -370,7 +379,7 @@ var uriHandlers = {
 var initialLink = new ApplicationLink(location.search);
 if (initialLink.linkString.length == 0) {
 	// заходим по ссылке без данных
-	talentController.orderToDisplay("as", 104);
+	talentController.orderToDisplay("as", 105);
 }
 $(document).ready(function(){
 	$("#link-to-build").click(function(){

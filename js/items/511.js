@@ -5,7 +5,7 @@
 		"en":"Rebis Grenade B (Inert Rebis)"
 	},
 	"category":"consumable",
-	"consumable_type":3,
+	"consumable_type":1,
 	"description":{
 		"ru":"Создает облако инертного ребиса, которое существует в течении 2х раундов. Персонаж, завершивший ход внутри облака получает эффект:",
 		"en":"Creates a cloud of inert rebis, which lasts for 2 rounds. A character who finished the turn inside the cloud receives an effect:"

@@ -1,19 +1,19 @@
 {
-	"name":"P90",
+	"name":"MP5",
 	"category":"smg",
 	"mobility":92,
 	"clip":50,
 	"ammo":100,
 	"reload_cost":20,
-	"lvlreq":6,
-	"talentreq":8,
+	"lvlreq":12,
+	"talentreq":26,
 	"classreq":["as","ju","su"],
-	"id":427,
+	"id":444,
 	"attacks":[{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
-		"min_damage":30,
-		"max_damage":39,
+		"min_damage":38,
+		"max_damage":47,
 		"accuracy":52,
 		"bullets":8,
 		"cost":33,
@@ -22,8 +22,8 @@
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
-		"min_damage":30,
-		"max_damage":39,
+		"min_damage":38,
+		"max_damage":47,
 		"accuracy":69,
 		"bullets":6,
 		"cost":45,
@@ -39,9 +39,5 @@
 		"min_dist":0,
 		"max_dist":1.5
 	}],
-	"ingredients":{
-		"light_metals":18,
-		"heavy_metals":26,
-		"mech_parts":13
-	}
+	"ingredients":0
 }
