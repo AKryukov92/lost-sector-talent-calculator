@@ -5,7 +5,7 @@
 		"en":"Rebis Grenade A (Active Rebis)"
 	},
 	"category":"consumable",
-	"consumable_type":3,
+	"consumable_type":1,
 	"lvlreq":5,
 	"talentreq":3,
 	"classreq":["sc","su"],

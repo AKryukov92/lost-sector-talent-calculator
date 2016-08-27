@@ -3,7 +3,7 @@ function InventoryModel(locale,data) {
 		throw new Error("Locale was not defined");
 	}
 	this.locale = locale;
-	this.version = 104;
+	this.version = 105;
 	this.slots = {
 		primary: {short_name :"p", item:{}, grade: 0 },
 		secondary: { short_name :"s", item:{}, grade: 0 },

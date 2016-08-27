@@ -1,0 +1,47 @@
+{
+	"name":"Steyr L-A1",
+	"category":"pistol",
+	"description":{
+		"ru":"Увеличивает затраты на смену оружия на 35",
+		"en":"Increases AP costs for weapon swapping for 35"
+	},
+	"mobility":96,
+	"clip":11,
+	"ammo":11,
+	"reload_cost":40,
+	"lvlreq":12,
+	"talentreq":19,
+	"classreq":["sc"],
+	"id":579,
+	"attacks":[{
+		"name":{"ru":"Навскидку","en":"Snap"},
+		"type":3,
+		"min_damage":38,
+		"max_damage":59,
+		"accuracy":42,
+		"bullets":1,
+		"cost":30,
+		"min_dist":4,
+		"max_dist":16
+	},{
+		"name":{"ru":"Прицельно","en":"Aimed"},
+		"type":3,
+		"min_damage":38,
+		"max_damage":61,
+		"accuracy":62,
+		"bullets":1,
+		"cost":40,
+		"min_dist":6,
+		"max_dist":18
+	},{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":10,
+		"max_damage":40,
+		"accuracy":90,
+		"cost":35,
+		"min_dist":0,
+		"max_dist":1.5
+	}],
+	"ingredients":0
+}

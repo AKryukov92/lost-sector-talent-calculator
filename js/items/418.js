@@ -5,7 +5,7 @@
 	},
 	"category":"melee",
 	"type":1,
-	"mobility":84,
+	"mobility":82,
 	"lvlreq":7,
 	"talentreq":7,
 	"classreq":["ju","sc"],
