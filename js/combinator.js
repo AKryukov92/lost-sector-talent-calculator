@@ -197,11 +197,11 @@ function Combinator() {
 				var action = new Action(this.actionIdSequence++);
 				action.source = item;
 				action.cost = item.attacks[i].cost;
-				action.name = item.attacks[i].name;
+				action.name = getLocalizedProperty(item, "name") + " " + getLocalizedProperty(item.attacks[i], "name");
 				action.minDist = item.attacks[i].min_dist;
 				action.maxDist = item.attacks[i].max_dist;
 				if (item.category == 'consumable') {
-					//Гранаты
+					//Активки
 					action.numberOfUses = 1;
 				}
 				action.possibleRepeat = true;
@@ -214,7 +214,7 @@ function Combinator() {
 				reload.source = item;
 				reload.cost = item.reload_cost;
 				action.possibleRepeat = false;
-				reload.name = "Пер-ка";
+				reload.name = getLocalizedProperty(item, "name") + " перезарядка";
 				reload.imageid = getImageId(item);
 				reload.imagesrc = "items";
 				this.actions.push(reload);
@@ -225,7 +225,7 @@ function Combinator() {
 			consumable.source = item;
 			consumable.cost = item.AP_cost;
 			consumable.imageid = getImageId(item);
-			consumable.name = "расход";
+			consumable.name = item.name;
 			consumable.numberOfUses = 1;
 			consumable.possibleRepeat = true;
 			consumable.imagesrc = "items";
@@ -281,4 +281,10 @@ function Combinator() {
 		}
 		return totalSets;
 	};
+}
+function calculateBaseAttributes(calculator, items){
+	var PperM = 
+}
+function performActions(calculator){
+	
 }

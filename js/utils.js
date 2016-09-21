@@ -74,7 +74,20 @@ function ApplicationLink(linkString) {
 		});
 	}
 }
-
+function getLocalizedProperty(container, property, locale) {
+	if (typeof container[property] == "undefined") {
+		throw new Error("Свойство не существует");
+	}
+	if (typeof container[property] === "object" && container[property] !== null) {
+		if (typeof container[property][locale] != 'undefined') {
+			return container[property][locale];
+		} else {
+			return container[property]["ru"];
+		}
+	} else {
+		return container[property];
+	}
+}
 var localizationData = {
 	't-clear':{ 'ru':'очистить', 'en':'clear' },
 	't-armor':{ 'ru':'Броня', 'en':'Armor' },

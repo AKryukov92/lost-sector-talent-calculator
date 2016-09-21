@@ -2,7 +2,15 @@ var TALENT_NOT_LEARNED = 0;
 var TALENT_LEARNED = 1;
 var DEST_BOX_SIZE = 35;
 var SOURCE_BOX_SIZE = 48;
-
+function talentsVersionFallback(v){
+	if (v == 100 || v == 99){
+		return 98;
+	}
+	if (v == 104 || v == 105){
+		return 103;
+	}
+	return v;
+}
 function CalculatorItem(talent) {
 	if (typeof talent.id == 'undefined') {
 		throw new Error("Illegal talent data. 'id' not defined");

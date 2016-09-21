@@ -20,30 +20,8 @@ if (isset($data["imageid"])) {
 } else {
 	$imageId = $id;
 }
-
-$filename = "js/items/archive" . $GLOBALS["version"] . ".json";
-if (!file_exists($filename)) {
-	print "item data is not found";
-	return;
-}
-
-$filecontent = file_get_contents($filename);
-$itemsData = json_decode($filecontent, true);
-if (json_last_error() != 0) {
-	print 'error parsing items data';
-}
-$data = null;
-for ($i = 0; $i < count($itemsData); $i++) {
-	$current = $itemsData[$i];
-	if ($current["id"] == $id) {
-		$data = $current;
-		break;
-	}
-}
-if ($data == null) {
-	print "item data is not found";
-	return;
-}
+$itemsData = LoadItemData($GLOBALS["version"]);
+$data = FindItem($id, $itemsData);
 $ITEM_BOX_SIZE = 64;
 
 $imagedx = ($imageId % 20) * $ITEM_BOX_SIZE;
