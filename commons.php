@@ -30,6 +30,36 @@ function GetLocalizedProperty($container, $property, $locale) {
 	}
 }
 
+function LoadItemData($version){
+	$filename = "js/items/archive" . $version . ".json";
+	if (!file_exists($filename)) {
+		print "item data is not found";
+		die;
+	}
+
+	$filecontent = file_get_contents($filename);
+	$itemsData = json_decode($filecontent, true);
+	if (json_last_error() != 0) {
+		print 'error parsing items data';
+		die;
+	}
+	return $itemsData;
+}
+
+function FindItem($id, $itemsData){
+	$data = null;
+	for ($i = 0; $i < count($itemsData); $i++) {
+		$current = $itemsData[$i];
+		if ($current["id"] == $id) {
+			return $current;
+			break;
+		}
+	}
+	if ($data == null) {
+		print "item data is not found";
+		die;
+	}
+}
 function talentsVersionFallback($v) {
 	if ($v == 100 || $v == 99) {
 		return 98;

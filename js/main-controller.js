@@ -3,15 +3,6 @@
 	this.currentPrefix;
 	this.currentVersion;
 	this.talentInput;
-	function talentsVersionFallback(v){
-		if (v == 100 || v == 99){
-			return 98;
-		}
-		if (v == 104 || v == 105){
-			return 103;
-		}
-		return v;
-	}
 	this.orderToDisplay = function(prefix, version, talentInput) {
 		if (prefix == this.currentPrefix && version == this.currentVersion) {
 			return;
@@ -250,7 +241,7 @@ function update_link() {
 	}
 	$("#link-to-build").val(link);
 }
-function orderToDisplayInventory() {
+function orderToDisplayInventory(handleUri) {
 	inventoryApp.clearPool();
 	inventoryApp.clearEquipped();
 	$.get("/item_data.php?version=" + inventoryApp.version, function(data) {
@@ -269,7 +260,9 @@ function orderToDisplayInventory() {
 				}
 			});
 		}
-		initialLink.handleParts(uriHandlers);
+		if (handleUri){
+			initialLink.handleParts(uriHandlers);
+		}
 	}).fail(function() {
 		inventoryApp.clearPool();
 	});
@@ -395,7 +388,7 @@ $(document).ready(function(){
 		var prefix = talentController.currentPrefix;
 		talentController.orderToDisplay(prefix, version);
 		inventoryApp.version = version;
-		orderToDisplayInventory();
+		orderToDisplayInventory(false);
 	});
 	$("#as-link").click(function(){
 		// переключаем класс
@@ -518,5 +511,5 @@ $(document).ready(function(){
 		show:{delay:200},
 		content:""
 	});
-	orderToDisplayInventory();
+	orderToDisplayInventory(true);
 });

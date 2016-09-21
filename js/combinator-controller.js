@@ -11,10 +11,10 @@ function fillAvailableActions(combinator) {
 		var imagesource = "";
 		var boxSize = 0;
 		if (action.imagesrc == "items") {
-			imagesource = "images/Items.png";
+			imagesource = "/images/Items.png";
 			boxSize = 64;
 		} else if (action.imagesrc == "talents") {
-			imagesource = "images/Skills" + initialTalentData.gameVersion + ".png";
+			imagesource = "/images/Skills" + talentsVersionFallback(initialTalentData.gameVersion) + ".png";
 			boxSize = 48;
 		} else {
 			imagesource = "";
@@ -22,17 +22,14 @@ function fillAvailableActions(combinator) {
 		var dx = (action.imageid % 20) * boxSize;
 		var dy = (~~(action.imageid / 20)) * boxSize;
 		text += 
-		"<div style='float:left; width:80px'>" +
-			"<div class='action' style='width:" + boxSize + "px;height:" + boxSize + "px;'>"
+		"<div style='float:left;'>" +
+			"<label><div class='action' style='width:" + boxSize + "px;height:" + boxSize + "px;'>"
 				+ "<img src='" + imagesource + "' style='margin-left:-" + dx + "px;margin-top:-" + dy + "px'/>"
 			+ "</div>"
 			+ "<div>"
-				+ action.source.name 
+				+ getLocalizedProperty(action, "name")
 			+ "</div>"
-			+ "<div>"
-				+ action.name
-			+ "</div>"
-			+ "<input type='checkbox' id='useAction" + action.id + "' checked onclick='actionToggle(" + action.id + ")'>Вкл</input>"
+			+ "<input type='checkbox' id='useAction" + action.id + "' checked onclick='actionToggle(" + action.id + ")'/>Вкл</label>"
 		+ "</div>";
 	}
 	$("#availableActions").append(text);
@@ -46,9 +43,7 @@ function actionToggle(actionId) {
 		}
 	}
 }
-$("#runAnalysis").click(function() {
-	combine();
-});
+$("#runAnalysis").click(combine);
 function prepareActions() {
 	var reportText = "";
 	$("#report").append(reportText);
@@ -79,7 +74,7 @@ function combine() {
 		for (var j = 0; j < totalSets[i].actions.length; j++) {
 			var row = totalSets[i].actions.length + " ";
 			for (var j = 0; j < totalSets[i].actions.length; j++) {
-				row += "(" + totalSets[i].actions[j].name + " " + totalSets[i].actions[j].source.name + ") ";
+				row += "(" + getLocalizedProperty(totalSets[i].actions[j], "name") + ") ";
 			}
 			rowCount ++;
 			console.log(row);
@@ -105,27 +100,23 @@ function talentUriHandler(key, value, target) {
 		};
 	}
 	var sources = {
-		atlasActive: "images/Skills" + initialTalentData.gameVersion + ".png",
-		items: "images/Items.png"
+		atlasActive: "/images/Skills" + talentsVersionFallback(initialTalentData.gameVersion) + ".png",
+		items: "/images/Items.png"
 	};
 	loadImages(sources, function(imgs) {
 		images = imgs;
 		$.get("/talent_data.php?version=" + initialTalentData.gameVersion, function(data) {
 			this.patchdata = data;
-			if (initialTalentData.classPrefix == "ju") {
-				calculator.init(this.patchdata.juggernaut_data);
+			if (typeof initialTalentData.classPrefix != 'undefined'){
+				calculator.init(this.patchdata[initialTalentData.classPrefix]);
+			} else {
+				calculator.init(this.patchdata.as);
 			}
-			if (initialTalentData.classPrefix == "sc") {
-				calculator.init(this.patchdata.scout_data);
-			}
-			if (initialTalentData.classPrefix == "su") {
-				calculator.init(this.patchdata.support_data);
-			}
-			calculator.init(this.patchdata.assault_data);
 			if (initialTalentData.talentInput.length > 0) {
 				calculator.learnTalentsFromString(initialTalentData.talentInput);
 			}
 			prepareActions();
+			$("#runAnalysis").prop('disabled',false);
 		});
 	});
 }

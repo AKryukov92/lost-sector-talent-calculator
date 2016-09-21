@@ -1,65 +1,49 @@
 <?php
-function IsNullOrEmptyString($question) {
-	return (!isset($question) || trim($question)==='');
-}
-function GetItemData($id) {
-	$filename = "js/items/" . $id . ".js";
-	if (file_exists($filename)) {
-		return file_get_contents($filename);
-	}
-	return "{}";
-}
+include "commons.php";
+$itemsData = LoadItemData($GLOBALS["version"]);
+
 $talentString = "";
-$primary = "{}";
-$secondary = "{}";
-$armor = "{}";
-$hat = "{}";
-$consumable1 = "{}";
-$consumable2 = "{}";
-$consumable3 = "{}";
-$consumable4 = "{}";
-$consumable5 = "{}";
 if (isset($_GET["t"])) {
 	$talentString = $_GET["t"];
 }
-if (isset($_GET["p"])) {
-	$primary = GetItemData($_GET["p"]);
+if (!isset($_GET["p"]) || ($primary = json_encode(FindItem($_GET["p"], $itemsData))) == null) {
+	$primary = "{}";
 }
-if (isset($_GET["s"])) {
-	$secondary = GetItemData($_GET["s"]);
+if (!isset($_GET["s"]) || ($secondary = json_encode(FindItem($_GET["s"], $itemsData))) == null) {
+	$secondary = "{}";
 }
-if (isset($_GET["a"])) {
-	$armor = GetItemData($_GET["a"]);
+if (!isset($_GET["a"]) || ($armor = json_encode(FindItem($_GET["a"], $itemsData))) == null) {
+	$armor = "{}";
 }
-if (isset($_GET["h"])) {
-	$hat = GetItemData($_GET["h"]);
+if (!isset($_GET["h"]) || ($hat = json_encode(FindItem($_GET["h"], $itemsData))) == null) {
+	$hat = "{}";
 }
-if (isset($_GET["c1"])) {
-	$consumable1 = GetItemData($_GET["c1"]);
+if (!isset($_GET["c1"]) || ($consumable1 = json_encode(FindItem($_GET["c1"], $itemsData))) == null) {
+	$consumable1 = "{}";
 }
-if (isset($_GET["c2"])) {
-	$consumable2 = GetItemData($_GET["c2"]);
+if (!isset($_GET["c2"]) || ($consumable2 = json_encode(FindItem($_GET["c2"], $itemsData))) == null) {
+	$consumable2 = "{}";
 }
-if (isset($_GET["c3"])) {
-	$consumable3 = GetItemData($_GET["c3"]);
+if (!isset($_GET["c3"]) || ($consumable3 = json_encode(FindItem($_GET["c3"], $itemsData))) == null) {
+	$consumable3 = "{}";
 }
-if (isset($_GET["c4"])) {
-	$consumable4 = GetItemData($_GET["c4"]);
+if (!isset($_GET["c4"]) || ($consumable4 = json_encode(FindItem($_GET["c4"], $itemsData))) == null) {
+	$consumable4 = "{}";
 }
-if (isset($_GET["c5"])) {
-	$consumable5 = GetItemData($_GET["c5"]);
+if (!isset($_GET["c5"]) || ($consumable5 = json_encode(FindItem($_GET["c5"], $itemsData))) == null) {
+	$consumable5 = "{}";
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="css/local.css" rel="stylesheet">
-	<script src="js/jquery.js" charset="utf-8"></script>
-	<script src="js/item_detail.js" charset="utf-8"></script>
-	<script src="js/calculator.js" charset="utf-8"></script>
-	<script src="js/combinator.js" charset="utf-8"></script>
-	<script src="js/utils.js" charset="utf-8"></script>
+	<link href="/css/local.css" rel="stylesheet">
+	<script src="/js/jquery.js" charset="utf-8"></script>
+	<script src="/js/item_detail.js" charset="utf-8"></script>
+	<script src="/js/calculator.js" charset="utf-8"></script>
+	<script src="/js/combinator.js" charset="utf-8"></script>
+	<script src="/js/utils.js" charset="utf-8"></script>
 	<script>
 		var talentString = "<?php print $talentString; ?>";
 		var primary = <?php print $primary; ?>;
@@ -74,9 +58,9 @@ if (isset($_GET["c5"])) {
 </head>
 <body style="margin:0px;">
 <div id="availableActions" style="overflow:auto;"></div>
-<input type="button" id="runAnalysis" value="Рассчитать"/>
+<button id="runAnalysis" disabled>Рассчитать</button>
 <div id="report"></div>
-<script src="js/combinator-controller.js"></script>
-<script src="js/analytics.js"></script>
+<script src="/js/combinator-controller.js"></script>
+<script src="/js/analytics.js"></script>
 </body>
 </html>
