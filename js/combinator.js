@@ -1,7 +1,9 @@
 ﻿function Action(id, cost, name, numberOfUses) {
 	this.id = id;
+	this.type = "generic";
 	this.cost = cost;
 	this.isActive = true;
+	this.possibleRepeat = false;
 	this.imageid = 0;
 	this.name = name;
 	this.maxDist = 99;
@@ -16,17 +18,23 @@
 		return this.cost == action.cost &&
 			this.imageid == action.imageid &&
 			this.numberOfUses == action.numberOfUses;
-	}
+	};
 	this.getWeapon = function() {
 		if (typeof this.source != 'undefined' && typeof this.source.category != 'undefined') {
 			return this.source;
 		} else {
 			return null;
 		}
-	}
+	};
+	this.getDamage = function(){
+		
+	};
 	this.isSwap = function() {
 		return this.cost == 10 && this.imageid == 1 && this.possibleRepeat == false;
-	}
+	};
+	this.setRange = function(min, max){
+		
+	};
 }
 
 function AttributeModifier() {
@@ -114,7 +122,6 @@ function ActionSet(unitState, action) {
 				recentImageId = [];
 			}
 		}
-		return;
 	};
 	this.validateSwapBeforeOtherWeapon = function() {
 		var currentWeapon = null;
@@ -149,6 +156,13 @@ function ActionSet(unitState, action) {
 			}
 		}
 	};
+	this.toString = function(){
+		var row = this.actions.length + " ";
+		for (var j = 0; j < this.actions.length; j++) {
+			row += "(" + getLocalizedProperty(this.actions[j], "name") + ") ";
+		}
+		return row;
+	}
 }
 
 function getImageId(talentOrItem) {
@@ -172,20 +186,9 @@ function Combinator() {
 					talent.status == TALENT_NOT_LEARNED) {
 				continue;
 			}
-			if (typeof talent.AP_cost == 'undefined') {
-				continue;
+			if (typeof talent.AP_cost != 'undefined') {
+				this.actions.push(makeTalent(talent));
 			}
-			var action = new Action(this.actionIdSequence++);
-			if (typeof talent.number_of_uses != 'undefined') {
-				action.numberOfUses = talent.number_of_uses;
-			}
-			action.source = talent;
-			action.cost = talent.AP_cost;
-			action.imageid = getImageId(talent);
-			action.possibleRepeat = false;
-			action.name = talent.name;
-			action.imagesrc = "talents";
-			this.actions.push(action);
 		}
 	};
 	this.addFromItem = function(item) {
@@ -194,63 +197,21 @@ function Combinator() {
 		}
 		if (typeof item.attacks != 'undefined' && item.attacks.length > 0) {
 			for (var i = 0; i < item.attacks.length; i++) {
-				var action = new Action(this.actionIdSequence++);
-				action.source = item;
-				action.cost = item.attacks[i].cost;
-				action.name = getLocalizedProperty(item, "name") + " " + getLocalizedProperty(item.attacks[i], "name");
-				action.minDist = item.attacks[i].min_dist;
-				action.maxDist = item.attacks[i].max_dist;
-				if (item.category == 'consumable') {
-					//Активки
-					action.numberOfUses = 1;
-				}
-				action.possibleRepeat = true;
-				action.imageid = getImageId(item);
-				action.imagesrc = "items";
-				this.actions.push(action);
+				this.actions.push(makeAttack(item, item.attacks[i]));
 			}
 			if (typeof item.reload_cost != 'undefined') {
-				var reload = new Action(this.actionIdSequence++);
-				reload.source = item;
-				reload.cost = item.reload_cost;
-				action.possibleRepeat = false;
-				reload.name = getLocalizedProperty(item, "name") + " перезарядка";
-				reload.imageid = getImageId(item);
-				reload.imagesrc = "items";
-				this.actions.push(reload);
+				this.actions.push(makeReload(item));
 			}
 		}
 		if (typeof item.AP_cost != 'undefined') {
-			var consumable = new Action(this.actionIdSequence++);
-			consumable.source = item;
-			consumable.cost = item.AP_cost;
-			consumable.imageid = getImageId(item);
-			consumable.name = item.name;
-			consumable.numberOfUses = 1;
-			consumable.possibleRepeat = true;
-			consumable.imagesrc = "items";
-			this.actions.push(consumable);
+			this.actions.push(makeConsumable(item));
 		}
 	};
-	this.addSwap = function(item) {
-		var swap = new Action(this.actionIdSequence++);
-		swap.cost = 10;
-		swap.name = "Сменить";
-		swap.source = { name: "Действие" };
-		swap.imageid = 2;
-		swap.imagesrc = "special";
-		swap.possibleRepeat = false;
-		this.actions.push(swap);
+	this.addSwap = function() {
+		this.actions.push(makeSwap());
 	};
-	this.addDuck = function(item) {
-		var duck = new Action(this.actionIdSequence++);
-		duck.cost = 15;
-		duck.name = "Присесть";
-		duck.source = { name: "Действие" };
-		duck.possibleRepeat = false;
-		duck.imageid = 1;
-		duck.imagesrc = "special";
-		this.actions.push(duck);
+	this.addDuck = function() {
+		this.actions.push(makeDuck());
 	};
 	this.createRoots = function () {
 		var ret = [];
@@ -280,5 +241,80 @@ function Combinator() {
 			temp = this.produceLeaves(temp);
 		}
 		return totalSets;
+	};
+	function makeTalent(talent){
+		var action = new Action(this.actionIdSequence++);
+		if (typeof talent.number_of_uses != 'undefined') {
+			action.numberOfUses = talent.number_of_uses;
+		}
+		action.type = "talent";
+		action.source = talent;
+		action.cost = talent.AP_cost;
+		action.imageid = getImageId(talent);
+		action.name = talent.name;
+		action.imagesrc = "talents";
+		return action;
+	};
+	function makeAttack(item, attack){
+		var action = new Action(this.actionIdSequence++);
+		action.type = "attack";
+		action.source = attack;
+		action.item = item;
+		action.cost = attack.cost;
+		action.name = getLocalizedProperty(item, "name") + " " + getLocalizedProperty(attack, "name");
+		action.minDist = attack.min_dist;
+		action.maxDist = attack.max_dist;
+		if (item.category == 'consumable'){
+			//Активки типа гранат
+			action.numberOfUses = 1;
+		}
+		action.possibleRepeat = true;
+		action.imageid = getImageId(item);
+		action.imagesrc = "items";
+		return action;
+	};
+	function makeReload(item){
+		var reload = new Action(this.actionIdSequence++);
+		reload.type = "reload";
+		reload.source = item;
+		reload.cost = item.reload_cost;
+		reload.name = getLocalizedProperty(item, "name") + " перезарядка"
+		reload.imageid = getImageId(item);
+		reload.imagesrc = "items";
+		return reload;
+	};
+	function makeConsumable(item){
+		var consumable = new Action(this.actionIdSequence++);
+		//Активки типа Цереры
+		consumable.type = "consumable";
+		consumable.source = item;
+		consumable.cost = item.AP_cost;
+		consumable.imageid = getImageId(item);
+		consumable.name = item.name;
+		consumable.numberOfUses = 1;
+		consumable.possibleRepeat = true;
+		consumable.imagesrc = "items";
+		return consumable;
+	};
+	function makeSwap (){
+		var swap = new Action(this.actionIdSequence++);
+		swap.type = "swap";
+		swap.cost = 10;
+		swap.name = 
+		swap.name = "Сменить";
+		swap.source = { name: "Действие" };
+		swap.imageid = 2;
+		swap.imagesrc = "special";
+		return swap;
+	};
+	function makeDuck (){
+		var duck = new Action(this.actionIdSequence++);
+		duck.type = "duck";
+		duck.cost = 15;
+		duck.name = "Присесть";
+		duck.source = { name: "Действие" };
+		duck.imageid = 1;
+		duck.imagesrc = "special";
+		return duck;
 	};
 }
