@@ -1,0 +1,34 @@
+{
+	"name":"GM94",
+	"category":"launcher",
+	"mobility":70,
+	"clip":3,
+	"ammo":6,
+	"reload_cost":40,
+	"lvlreq":12,
+	"talentreq":21,
+	"classreq":["su"],
+	"id":572,
+	"attacks":[{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.9,
+		"min_damage":20,
+		"max_damage":30
+	},{
+		"name":{"ru":"Запуск","en":"Launch"},
+		"type":6,
+		"min_damage":68,
+		"max_damage":90,
+		"radius":4,
+		"accuracy":28,
+		"bullets":1,
+		"cost":45,
+		"min_dist":9,
+		"max_dist":25
+	}],
+	"ingredients":0
+}

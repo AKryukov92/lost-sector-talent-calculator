@@ -1,0 +1,47 @@
+{
+	"name":"FN FAL",
+	"category":"assault_rifle",
+	"description":{
+		"ru":"Крубпнокалиберная штурмовая винтовка. Пробивает цели насквозь.",
+		"en":"Large-caliber assault rifle. Breaks targets through."
+	},
+	"mobility":82,
+	"clip":20,
+	"ammo":40,
+	"reload_cost":20,
+	"lvlreq":10,
+	"talentreq":22,
+	"classreq":["as"],
+	"id":455,
+	"attacks":[{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":20,
+		"max_damage":30,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5
+	},{
+		"name":{"ru":"Очередь","en":"Burst"},
+		"type":5,
+		"min_damage":53,
+		"max_damage":74,
+		"accuracy":61,
+		"bullets":5,
+		"cost":45,
+		"min_dist":11,
+		"max_dist":26
+	},{
+		"name":{"ru":"Прицельно","en":"Aimed"},
+		"type":5,
+		"min_damage":58,
+		"max_damage":69,
+		"accuracy":74,
+		"bullets":3,
+		"cost":55,
+		"min_dist":13,
+		"max_dist":30
+	}],
+	"ingredients":0
+}

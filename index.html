@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="css/jquery-ui.css" rel="stylesheet">
+	<link href="css/local.css" rel="stylesheet">
+	<link href="css/local624.css" rel="stylesheet">
+	<link href="css/local1280.css" rel="stylesheet">
+	<link href="css/local1920.css" rel="stylesheet">
+	<title>Lost sector talent calculator</title>
+</head>
+<body>
+	<div id="general-info" class="general-info">
+		<div style="float:left;width:250px">
+			<a style="color:#e7a516" href="http://lsonline.ru/">
+				<img src="http://lsonline.ru/data/images/logo.png"/>
+			</a>
+		</div>
+		<div style="float:left;">
+			<div>
+				<label>
+					<button id="btn-link-copy" data-clipboard-target="#link-to-build">
+						<img src="images/clippy.svg" alt="Copy to clipboard">
+					</button>
+					<span name="t-link">Ссылка</span>:
+					<input id="link-to-build" style="width:calc(70% - 20px)"></input>
+				</label>
+			</div>
+			<div>
+				<label>
+					<button id="btn-subscription-copy" data-clipboard-target="#subscription-template">
+						<img src="images/clippy.svg" alt="Copy to clipboard">
+					</button>
+					<span name="t-subscription">Форумная подпись</span>: 
+					<input id="subscription-template" style="width:calc(40% - 20px)"></input>
+				</label>
+			</div>
+			<div style="clear:both;"><span name="t-skill-points">Очки</span> <span id="points-left">0</span></div>
+			<div><span name="t-level">Уровень</span> <span id="merc-level">1</span></div>
+			<div>
+				<label>
+				<span name="t-hide-tooltip">Спрятать тултипы талантов</span>
+				<input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked>
+				</label>
+			</div>
+			<div>
+				<label id="lblVersion"><span name="t-version">Версия игры</span><select id="selVersion">
+					<option value="98">98</option>
+					<option value="99">99</option>
+					<option value="100">100</option>
+					<option value="101">101</option>
+					<option value="102">102</option>
+					<option value="103">103</option>
+					<option value="104">104</option>
+					<option value="105" selected>105</option>
+				</select>
+				<select id="selLang">
+					<option value="ru">ру</option>
+					<option value="en">en</option>
+				</select>
+				<input type="file" id="special-talent-data"></input>
+				</label>
+			</div>
+		</div>
+	</div>
+<div class="talent-manager">
+	<div id="tabs">
+		<ul>
+			<li><a id="as-link" href="#tabs-as"><span name="t-assault">Штурмовик</span>
+			<svg viewbox="0 0 128 128">
+			<path id="path_assault" 
+				style="fill-opacity:0.25098039;stroke-width:3;stroke-opacity:1"
+				d="m 63,2 -18,36 -41,6 29,30 -6,41 37,-19 36,18 -6,-41 28,-28 -40,-6 z"/>
+			</svg></a></li>
+			<li><a id="ju-link" href="#tabs-ju"><span name="t-juggernaut">Джаггернаут</span>
+			<svg viewbox="0 0 128 128">
+			<path id="path_juggernaut"
+				style="fill-opacity:0.25098039;stroke-width:3;stroke-opacity:1"
+				d="m 64,4 -44,9 c 0,0 -0,41 11,68 13,28 33,45 33,45 0,0 19,-15 33,-46 12,-27 10,-67 10,-67 z"/>
+			</svg>
+			</a></li>
+			<li><a id="sc-link" href="#tabs-sc"><span name="t-scout">Скаут</span>
+			<svg viewbox="0 0 128 128">
+			<path id="scout_path_circle"
+				style="fill:none;fill-opacity:0.25098039;stroke-width:7;stroke-opacity:1"
+				d="M 111,63 A 48,48 0 0 1 62,111 48,48 0 0 1 14,63 48,48 0 0 1 62,14 48,48 0 0 1 111,62" />
+			<path id="scout_path_vertical"
+				style="fill:none;stroke-width:4;stroke-opacity:1"
+				d="M 63,-0 63,127"/>
+			<path id="scout_path_horizontal"
+				style="fill:none;stroke-width:4;stroke-opacity:1"
+				d="m 0,63 125,0"/>
+			</svg></a></li>
+			<li><a id="su-link" href="#tabs-su"><span name="t-support">Поддержка</span>
+			<svg viewbox="0 0 128 128">
+			<path id="path_support_cross"
+				style="fill-opacity:0.25098039;stroke-width:4;stroke-opacity:1"
+				d="m 80,4 -32,-0 0,42 -43,0 -0,33 43,0 0,42 33,0 0,-42 42,0 0,-33 -42,-0 z"
+			/>
+			<path id="path_support_wrench"
+				style="fill-opacity:1;stroke:none;"
+				d="m 33,95 -15,-3 -11,12 -3,-0 C 2,80 23,80 34,79 L 79,33 C 79,21 80,2 103,0 l 0,4 -11,11 2,15 16,4 11,-12 4,0 c -2,22 -19,22 -32,23 L 49,94 c -1,15 -1,30 -24,33 l -0,-4 12,-12 z"/>
+			</svg></a></li>
+		</ul>
+		<div class="talents-background" class="ui-tabs-panel ui-widget-content ui-corner-bottom" >
+			<canvas id='calculator-layout'>Your browser do not support this application</canvas>
+		</div>
+		<div id="tabs-as"></div>
+		<div id="tabs-ju"></div>
+		<div id="tabs-sc">></div>
+		<div id="tabs-su"></div>
+	</div>
+	<div class="talent-tooltip-container" id="talent-tooltip">
+	</div>
+</div>
+<div class="item-manager">
+	<div id="armor" class="tunable-item">
+		<div class="tunable-item-name">
+			<a target="_blank" id="armor-link">
+				<span id="armor-name"></span><span id="armor-value"></span>
+			</a>
+		</div>
+		<div class="draggable-landing">
+			<div id="armor-container" class="inventory-item-container">
+				<img src="images/slot-armor.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('armor');">
+				<span name="t-clear">очистить</span>
+			</a>
+		</div>
+		<div class="tunable-properties-container">
+			<input type="radio" name="armor-quality" value="gray" id="armor-quality-gray" class="quality">
+				<label for="armor-quality-gray"><span class="gray"></span></label>
+			</input>
+			<input type="radio" name="armor-quality" value="white" id="armor-quality-white" class="quality" checked>
+				<label for="armor-quality-white"><span class="white"></span></label>
+			</input>
+			<input type="radio" name="armor-quality" value="green" id="armor-quality-green" class="quality">
+				<label for="armor-quality-green"><span class="green"></span></label>
+			</input>
+			<input type="radio" name="armor-quality" value="blue" id="armor-quality-blue" class="quality">
+				<label for="armor-quality-blue"><span class="blue"></span></label>
+			</input>
+		</div>
+		<div id="armor-slider"></div>
+		<div class="fake-tooltip-container" id="armor-fake-tooltip"></div>
+	</div>
+	<div id="primary" class="tunable-item">
+		<div class="tunable-item-name">
+			<a target="_blank" id="primary-link">
+				<span id="primary-name"></span><span id="primary-value"></span>
+			</a>
+		</div>
+		<div class="draggable-landing">
+			<div id="primary-container" class="inventory-item-container">
+				<img src="images/slot-primary.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('primary');">
+				<span name="t-clear">очистить</span>
+			</a>
+		</div>
+		<div class="tunable-properties-container">
+			<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">
+				<label for="primary-quality-gray"><span class="gray"></span></label>
+			</input>
+			<input type="radio" name="primary-quality" value="white" id="primary-quality-white" class="quality" checked>
+				<label for="primary-quality-white"><span class="white"></span></label>
+			</input>
+			<input type="radio" name="primary-quality" value="green" id="primary-quality-green" class="quality">
+				<label for="primary-quality-green"><span class="green"></span></label>
+			</input>
+			<input type="radio" name="primary-quality" value="blue" id="primary-quality-blue" class="quality">
+				<label for="primary-quality-blue"><span class="blue"></span></label>
+			</input>
+		</div>
+		<div id="primary-slider"></div>
+		<div class="fake-tooltip-container" id="primary-fake-tooltip"></div>
+	</div>
+	<div id="secondary" class="tunable-item">
+		<div class="tunable-item-name">
+			<a target="_blank" id="secondary-link">
+				<span id="secondary-name"></span><span id="secondary-value"></span>
+			</a>
+		</div>
+		<div class="draggable-landing">
+			<div id="secondary-container" class="inventory-item-container">
+				<img src="images/slot-secondary.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('secondary');">
+				<span name="t-clear">очистить</span>
+			</a>
+		</div>
+		<div class="tunable-properties-container">
+			<input type="radio" name="secondary-quality" value="gray" id="secondary-quality-gray" class="quality">
+				<label for="secondary-quality-gray"><span class="gray"></span></label>
+			</input>
+			<input type="radio" name="secondary-quality" value="white" id="secondary-quality-white" class="quality" checked>
+				<label for="secondary-quality-white"><span class="white"></span></label>
+			</input>
+			<input type="radio" name="secondary-quality" value="green" id="secondary-quality-green" class="quality">
+				<label for="secondary-quality-green"><span class="green"></span></label>
+			</input>
+			<input type="radio" name="secondary-quality" value="blue" id="secondary-quality-blue" class="quality">
+				<label for="secondary-quality-blue"><span class="blue"></span></label>
+			</input>
+		</div>
+		<div id="secondary-slider"></div>
+		<div class="fake-tooltip-container" id="secondary-fake-tooltip"></div>
+	</div>
+	<div id="special-items" class="special-item-container">
+		<div class="special-item">
+			<a id="hat-link" name="t-link" target="_blank" class="white-link" style="margin:3px;">ссылка</a>
+			<div id="hat-container" class="inventory-item-container">
+				<img src="images/slot-hat.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('hat');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container" id="hat-fake-tooltip"></div>
+		</div>
+		<div class="special-item">
+			<a id="consumable_1-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="consumable_1-container" class="inventory-item-container">
+				<img src="images/slot-consumable_1.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('consumable_1');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container" id="consumable_1-fake-tooltip"></div>
+		</div>
+		<div class="special-item">
+			<a id="consumable_2-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="consumable_2-container" class="inventory-item-container">
+				<img src="images/slot-consumable_2.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('consumable_2');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container" id="consumable_2-fake-tooltip"></div>
+		</div>
+		<div class="special-item">
+			<a id="consumable_3-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="consumable_3-container" class="inventory-item-container">
+				<img src="images/slot-consumable_3.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('consumable_3');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container" id="consumable_3-fake-tooltip"></div>
+		</div>
+		<div class="special-item">
+			<a id="consumable_4-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="consumable_4-container" class="inventory-item-container">
+				<img src="images/slot-consumable_4.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('consumable_4');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container" id="consumable_4-fake-tooltip"></div>
+		</div>
+		<div class="special-item">
+			<a id="consumable_5-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="consumable_5-container" class="inventory-item-container">
+				<img src="images/slot-consumable_5.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('consumable_5');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container" id="consumable_5-fake-tooltip"></div>
+		</div>
+		
+		<div class="special-item implant" style="clear:left">
+			<a id="head_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="head_mod-container" class="inventory-item-container">
+				<img src="images/slot-head_mod.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('head_mod');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container" id="head_mod-fake-tooltip"></div>
+		</div>
+		<div class="special-item implant">
+			<a id="chest_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="chest_mod-container" class="inventory-item-container">
+				<img src="images/slot-chest_mod.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('chest_mod');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container" id="chest_mod-fake-tooltip"></div>
+		</div>
+		<div class="special-item implant">
+			<a id="hand_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="hand_mod-container" class="inventory-item-container">
+				<img src="images/slot-hand_mod.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('hand_mod');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container" id="hand_mod-fake-tooltip"></div>
+		</div>
+		<div class="special-item implant">
+			<a id="feet_mod-link" name="t-link" target="_blank" class="white-link">ссылка</a>
+			<div id="feet_mod-container" class="inventory-item-container">
+				<img src="images/slot-feet_mod.png"/>
+			</div>
+			<a class="tunable-reset" onclick="reset_slot('feet_mod');"><span name="t-clear">очистить</span></a>
+			<div class="fake-tooltip-container" id="feet_mod-fake-tooltip"></div>
+		</div>
+	</div>
+
+	<div id="items-pool">
+		<ul>
+			<li><a href="#all-armor"><span name="t-armor">Броня</span></a></li>
+			<li><a href="#all-melee"><span name="t-melee">Ближний бой</span></a></li>
+			<li><a href="#all-pistol"><span name="t-pistol">Пистолеты</span></a></li>
+			<li><a href="#all-smg"><span name="t-smg">ПП</span></a></li>
+			<li><a href="#all-shotgun"><span name="t-shotgun">Дробовики</span></a></li>
+			<li><a href="#all-assault-rifle"><span name="t-assault-rifle">Автоматы</span></a></li>
+			<li><a href="#all-sniper-rifle"><span name="t-sniper-rifle">Снайперское</span></a></li>
+			<li><a href="#all-machinegun"><span name="t-machinegun">Пулеметы</span></a></li>
+			<li><a href="#all-launcher"><span name="t-launcher">Взрывное</span></a></li>
+			<li><a href="#all-shield"><span name="t-shield">Щиты</span></a></li>
+			<li><a href="#all-hat"><span name="t-hat">Шапки</span></a></li>
+			<li><a href="#all-consumable"><span name="t-consumable">Активки</span></a></li>
+			<li><a href="#all-head-mods"><span name="t-head-mods">Череп</span></a></li>
+			<li><a href="#all-chest-mods"><span name="t-chest-mods">Тело</span></a></li>
+			<li><a href="#all-hand-mods"><span name="t-hand-mods">Руки</span></a></li>
+			<li><a href="#all-feet-mods"><span name="t-feet-mods">Ноги</span></a></li>
+		</ul>
+		<div id="all-armor">
+			<div id="armor-pool" class="pool"></div>
+		</div>
+		<div id="all-melee">
+			<div id="melee-pool" class="pool"></div>
+		</div>
+		<div id="all-pistol">
+			<div id="pistol-pool" class="pool"></div>
+		</div>
+		<div id="all-smg">
+			<div id="smg-pool" class="pool"></div>
+		</div>
+		<div id="all-shotgun">
+			<div id="shotgun-pool" class="pool"></div>
+		</div>
+		<div id="all-assault-rifle">
+			<div id="assault_rifle-pool" class="pool"></div>
+		</div>
+		<div id="all-sniper-rifle">
+			<div id="sniper_rifle-pool" class="pool"></div>
+		</div>
+		<div id="all-machinegun">
+			<div id="machinegun-pool" class="pool"></div>
+		</div>
+		<div id="all-launcher">
+			<div id="launcher-pool" class="pool"></div>
+		</div>
+		<div id="all-shield">
+			<div id="shield-pool" class="pool"></div>
+		</div>
+		<div id="all-hat">
+			<div id="hat-pool" class="pool"></div>
+		</div>
+		<div id="all-consumable">
+			<div id="consumable-pool" class="pool"></div>
+		</div>
+		<div id="all-head-mods">
+			<div id="head_mod-pool" class="pool"></div>
+		</div>
+		<div id="all-chest-mods">
+			<div id="chest_mod-pool" class="pool"></div>
+		</div>
+		<div id="all-hand-mods">
+			<div id="hand_mod-pool" class="pool"></div>
+		</div>
+		<div id="all-feet-mods">
+			<div id="feet_mod-pool" class="pool"></div>
+		</div>
+	</div>
+</div>
+<script src="js/clipboard.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/item_detail.js"></script>
+<script src="js/class-talent-view.js"></script>
+<script src="js/small-talent-view.js"></script>
+<script src="js/calculator.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/main-controller.js"></script>
+<script src="js/analytics.js"></script>
+</body>
+</html>

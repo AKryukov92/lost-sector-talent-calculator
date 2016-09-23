@@ -1,0 +1,3 @@
+RewriteBase /sub/
+RewriteEngine On
+RewriteRule (.+\.png)$ s.php?file=$1

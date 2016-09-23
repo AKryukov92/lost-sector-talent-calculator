@@ -1,0 +1,39 @@
+{
+	"name":{
+		"ru":"RG-6 Гном",
+		"en":"RG-6 Dwarf"
+	},
+	"category":"launcher",
+	"mobility":67,
+	"clip":6,
+	"ammo":6,
+	"reload_cost":50,
+	"lvlreq":11,
+	"talentreq":21,
+	"classreq":["su"],
+	"id":486,
+	"attacks":[
+	{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":20,
+		"max_damage":40,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5
+	},
+	{
+		"name":{"ru":"Запуск","en":"Launch"},
+		"type":6,
+		"min_damage":53,
+		"max_damage":69,
+		"accuracy":23,
+		"bullets":1,
+		"radius":3.5,
+		"cost":30,
+		"min_dist":7,
+		"max_dist":27
+	}],
+	"ingredients":0
+}

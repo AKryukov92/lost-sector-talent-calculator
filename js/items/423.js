@@ -1,0 +1,38 @@
+{
+	"name":{
+		"ru":"Дробовик Шарк",
+		"en":"Shark Shotgun"
+	},
+	"category":"shotgun",
+	"mobility":85,
+	"clip":3,
+	"ammo":12,
+	"reload_cost":30,
+	"lvlreq":4,
+	"id":423,
+	"attacks":[{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":20,
+		"max_damage":30,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5
+	},{
+		"name":{"ru":"Навскидку","en":"Snap"},
+		"type":4,
+		"min_damage":63,
+		"max_damage":89,
+		"accuracy":36,
+		"bullets":1,
+		"cost":40,
+		"min_dist":4,
+		"max_dist":9
+	}],
+	"ingredients":{
+		"light_metals":10,
+		"heavy_metals":16,
+		"mech_parts":8
+	}
+}
