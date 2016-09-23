@@ -3,6 +3,7 @@ var patchdata = {};
 var images = [];
 var combinator = new Combinator();
 var initialTalentData = {};
+var currentSets = [];
 
 function fillAvailableActions(combinator) {
 	var text = "";
@@ -61,7 +62,7 @@ function prepareActions() {
 }
 function combine() {
 	var totalSets = combinator.createTree();
-	var rowCount = 0;
+	currentSets = [];
 	for (var i = totalSets.length - 1; i >= 0; i--) {
 		totalSets[i].validateRepeatedActions();
 		if (!totalSets[i].valid) {
@@ -71,16 +72,11 @@ function combine() {
 		if (!totalSets[i].valid) {
 			continue;
 		}
-		for (var j = 0; j < totalSets[i].actions.length; j++) {
-			var row = totalSets[i].actions.length + " ";
-			for (var j = 0; j < totalSets[i].actions.length; j++) {
-				row += "(" + getLocalizedProperty(totalSets[i].actions[j], "name") + ") ";
-			}
-			rowCount ++;
-			console.log(row);
-		}
+		currentSets.push(totalSets[i]);
+		//console.log(totalSets[i].toString());
 	}
-	console.log(rowCount);
+	estimate(currentSets[0]);
+	console.log(currentSets.length);
 }
 function talentUriHandler(key, value, target) {
 	talent = decodeURIComponent(value);
