@@ -282,9 +282,3 @@ function Combinator() {
 		return totalSets;
 	};
 }
-function calculateBaseAttributes(calculator, items){
-	var PperM = 
-}
-function performActions(calculator){
-	
-}

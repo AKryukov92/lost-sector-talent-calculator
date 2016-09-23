@@ -2,35 +2,43 @@
 include "commons.php";
 $itemsData = LoadItemData($GLOBALS["version"]);
 
+function parseId($id){
+	if (preg_match('/(\d*).*/', $id, $groups)){
+		return $groups[1];
+	} else {
+		die("cant parse id $id ");
+	}
+}
+
 $talentString = "";
 if (isset($_GET["t"])) {
 	$talentString = $_GET["t"];
 }
-if (!isset($_GET["p"]) || ($primary = json_encode(FindItem($_GET["p"], $itemsData))) == null) {
+if (!isset($_GET["p"]) || ($primary = json_encode(FindItem(parseId($_GET["p"]), $itemsData))) == null) {
 	$primary = "{}";
 }
-if (!isset($_GET["s"]) || ($secondary = json_encode(FindItem($_GET["s"], $itemsData))) == null) {
+if (!isset($_GET["s"]) || ($secondary = json_encode(FindItem(parseId($_GET["s"]), $itemsData))) == null) {
 	$secondary = "{}";
 }
-if (!isset($_GET["a"]) || ($armor = json_encode(FindItem($_GET["a"], $itemsData))) == null) {
+if (!isset($_GET["a"]) || ($armor = json_encode(FindItem(parseId($_GET["a"]), $itemsData))) == null) {
 	$armor = "{}";
 }
-if (!isset($_GET["h"]) || ($hat = json_encode(FindItem($_GET["h"], $itemsData))) == null) {
+if (!isset($_GET["h"]) || ($hat = json_encode(FindItem(parseId($_GET["h"]), $itemsData))) == null) {
 	$hat = "{}";
 }
-if (!isset($_GET["c1"]) || ($consumable1 = json_encode(FindItem($_GET["c1"], $itemsData))) == null) {
+if (!isset($_GET["c1"]) || ($consumable1 = json_encode(FindItem(parseId($_GET["c1"]), $itemsData))) == null) {
 	$consumable1 = "{}";
 }
-if (!isset($_GET["c2"]) || ($consumable2 = json_encode(FindItem($_GET["c2"], $itemsData))) == null) {
+if (!isset($_GET["c2"]) || ($consumable2 = json_encode(FindItem(parseId($_GET["c2"]), $itemsData))) == null) {
 	$consumable2 = "{}";
 }
-if (!isset($_GET["c3"]) || ($consumable3 = json_encode(FindItem($_GET["c3"], $itemsData))) == null) {
+if (!isset($_GET["c3"]) || ($consumable3 = json_encode(FindItem(parseId($_GET["c3"]), $itemsData))) == null) {
 	$consumable3 = "{}";
 }
-if (!isset($_GET["c4"]) || ($consumable4 = json_encode(FindItem($_GET["c4"], $itemsData))) == null) {
+if (!isset($_GET["c4"]) || ($consumable4 = json_encode(FindItem(parseId($_GET["c4"]), $itemsData))) == null) {
 	$consumable4 = "{}";
 }
-if (!isset($_GET["c5"]) || ($consumable5 = json_encode(FindItem($_GET["c5"], $itemsData))) == null) {
+if (!isset($_GET["c5"]) || ($consumable5 = json_encode(FindItem(parseId($_GET["c5"]), $itemsData))) == null) {
 	$consumable5 = "{}";
 }
 ?>

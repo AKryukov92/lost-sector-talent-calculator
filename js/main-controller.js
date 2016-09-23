@@ -173,9 +173,8 @@ function loadSpecialTalentData(data){
 	}
 }
 function update_link() {
-	var link = location.origin;
 	var talentApplication = talentController.getView();
-	link += "/?t=" +
+	var link = "/?t=" +
 		talentController.getGameVersion() +
 		1 +
 		talentApplication.getCalculator().prefix + "_" +
@@ -239,7 +238,7 @@ function update_link() {
 	if (!$.isEmptyObject(slot.item)) {
 		link += "&fm=" + slot.item.id;
 	}
-	$("#link-to-build").val(link);
+	$("#link-to-build").val(location.origin + "/combinator.php" + link);
 }
 function orderToDisplayInventory(handleUri) {
 	inventoryApp.clearPool();
