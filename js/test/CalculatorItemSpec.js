@@ -485,11 +485,14 @@ describe("test addRank", function(){
 		expect(item45.ranks[3]).toEqual(talent454);
 	});
 });
-
-it('should check is usable talent marked as usable', function() {
-	var item39 = new CalculatorItem(talent39);
-	expect(item39.isUsable()).toEqual(false);
-	var item86 = new CalculatorItem(talent86);
-	expect(item86.isUsable()).toEqual(true);
+describe('test isUsable',function(){
+	it('is truthy if talent marked as usable', function() {
+		var item86 = new CalculatorItem(talent86);
+		expect(item86.isUsable()).toEqual(true);
+	});
+	it('is falsy if talent have no AP_cost', function(){
+		var item39 = new CalculatorItem(talent39);
+		expect(item39.isUsable()).toEqual(false);
+	});
 });
 });
