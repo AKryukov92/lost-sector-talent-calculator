@@ -1,0 +1,25 @@
+@media (min-width:1280px) {
+	.special-item {
+		width:15%;
+	}
+	.tunable-item {
+		width:calc(33%-6px);
+	}
+	.talent-manager {
+		width:600px;
+		float:left;
+	}
+	.item-manager {
+		width:calc(100% - 600px);
+		float:left;
+	}
+	.swimmer {
+		float:left;
+		padding:1px;
+		width:calc(33% - 2px);
+	}
+	.ui-slider {
+		margin:20px auto;
+		clear:both;
+	}
+}

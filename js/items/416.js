@@ -1,0 +1,26 @@
+{
+	"id":416,
+	"name":{
+		"ru":"Мачете",
+		"en":"Machete"
+	},
+	"category":"melee",
+	"mobility":88,
+	"lvlreq":6,
+	"talentreq":7,
+	"classreq":["ju","sc"],
+	"attacks":[{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"accuracy":100,
+		"cost":30,
+		"min_dist":0,
+		"max_dist":1.9,
+		"min_damage":38,
+		"max_damage":54
+	}],
+	"ingredients":{
+		"light_metals":13,
+		"heavy_metals":28
+	}
+}
