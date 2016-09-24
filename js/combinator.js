@@ -32,9 +32,6 @@
 	this.isSwap = function() {
 		return this.cost == 10 && this.imageid == 1 && this.possibleRepeat == false;
 	};
-	this.setRange = function(min, max){
-		
-	};
 }
 
 function AttributeModifier() {

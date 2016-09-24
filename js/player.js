@@ -7,7 +7,7 @@ var handlers = {
 		console.log("attack");
 		player.updateCurrentWeapon(action.item);
 		var attack = action.source;
-		victim.takeDamage(attack.min_damage, attack.max_damage);
+		victim.takeDamage(player.dealDamage(attack));
 	},
 	reload: function(player, action, victim){
 		console.log("reload");
@@ -25,9 +25,10 @@ var handlers = {
 		console.log("duck");
 		
 	}
-}
-function Player(p,s,a,h,c1,c2,c3,c4,c5,i1,i2,i3,i4){
+};
+function Player(calc,p,s,a,h,c1,c2,c3,c4,c5,i1,i2,i3,i4){
 	this.current = null;
+	this.calculator = calc;
 	this.updateCurrentWeapon = function(item){
 		if (this.current == null){
 			this.current = item;
@@ -35,20 +36,26 @@ function Player(p,s,a,h,c1,c2,c3,c4,c5,i1,i2,i3,i4){
 		if (this.current.id != item.id){
 			this.current = item;
 		}
-	}
+	};
+	this.dealDamage = function(attack){
+		return {
+			min:attack.min_damage,
+			max:attack.max_damage
+		};
+	};
 }
 function Target(){
 	this.damageTakenMin = 0;
 	this.damageTakenMax = 0;
-	this.takeDamage = function(min, max){
-		this.damageTakenMax += max;
-		this.damageTakenMin += min;
-	}
+	this.takeDamage = function(range){
+		this.damageTakenMax += range.max;
+		this.damageTakenMin += range.min;
+	};
 }
 
-function estimate(as){
+function estimate(as, calc){
 	console.log(as.toString());
-	var player = new Player();
+	var player = new Player(calc);
 	var target = new Target();
 	for (var i = 0; i < as.actions.length; i++){
 		var current = as.actions[i];

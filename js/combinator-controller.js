@@ -75,7 +75,7 @@ function combine() {
 		currentSets.push(totalSets[i]);
 		//console.log(totalSets[i].toString());
 	}
-	estimate(currentSets[0]);
+	estimate(currentSets[0], calculator);
 	console.log(currentSets.length);
 }
 function talentUriHandler(key, value, target) {

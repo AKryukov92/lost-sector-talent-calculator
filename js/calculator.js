@@ -239,10 +239,9 @@ function Calculator () {
 			throw new Error("Assign power to talents first");
 		}
 		var powersum = 0;
-		for (var i = 0; i < this.talents_data.length; i++) {
-			if (this.talents_data[i].status == TALENT_LEARNED) {
-				powersum += this.talents_data[i].power;
-			}
+		var learned = getLearnedTalents();
+		for (var i = 0; i < learned.length; i++) {
+			powersum += learned[i].power;
 		}
 		return powersum;
 	};
@@ -296,11 +295,10 @@ function Calculator () {
 	};
 	this.getSpentTalentPoints = function() {
 		var count = 0;
-		for (var i = 0; i < this.talents_data.length; i++) {
-			if (typeof this.talents_data[i].cost != 'undefined') {
-				if (this.talents_data[i].status == TALENT_LEARNED) {
-					count += this.talents_data[i].cost;
-				}
+		var learned = getLearnedTalents();
+		for (var i = 0; i < learned.length; i++) {
+			if (typeof learned[i].cost != 'undefined') {
+				count += learned[i].cost;
 			}
 		}
 		return count;
@@ -316,11 +314,10 @@ function Calculator () {
 			maxLevel = Math.ceil((spentPoints - 4) / 3) + 4;
 		}
 		var i;
-		for(var i = 0; i < this.talents_data.length; i++) {
-			if (this.talents_data[i].lvlreq > maxLevel) {
-				if (this.talents_data[i].status == TALENT_LEARNED) {
-					maxLevel = this.talents_data[i].lvlreq;
-				}
+		var learned = getLearnedTalents();
+		for(var i = 0; i < learned.length; i++) {
+			if (learned[i].lvlreq > maxLevel) {
+				maxLevel = learned[i].lvlreq;
 			}
 		}
 		return maxLevel;
@@ -335,4 +332,13 @@ function Calculator () {
 		}
 		return totalTalentPoints - this.getSpentTalentPoints();
 	};
+	this.getLearnedTalents = function(){
+		var ret = [];
+		for (var i = 0; i < this.talents_data.length; i++){
+			if (this.talents_data[i].status == TALENT_LEARNED){
+				ret.push(this.talents_data[i]);
+			}
+		}
+		return ret;
+	}
 };
