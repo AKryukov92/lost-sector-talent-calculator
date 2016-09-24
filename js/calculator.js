@@ -21,7 +21,7 @@ function CalculatorItem(talent) {
 	if (typeof talent.column == 'undefined') {
 		throw new Error("Illegal talent data. 'column' not defined");
 	}
-	this.reqs = [];
+	this.req = false;
 	this.refs = [];
 	this.ranks = [];
 	if (typeof talent.imageid != 'undefined') {
@@ -29,10 +29,10 @@ function CalculatorItem(talent) {
 		this.imageBoundsY = (~~(talent.imageid / 20)) * SOURCE_BOX_SIZE; 
 	} else {
 		this.imageBoundsX = (talent.id % 20) * SOURCE_BOX_SIZE;
-		this.imageBoundsY = (~~(talent.id / 20)) * SOURCE_BOX_SIZE; 
+		this.imageBoundsY = (~~(talent.id / 20)) * SOURCE_BOX_SIZE;
 	}
-	this.addReq = function(talent) {
-		this.reqs.push(talent);
+	this.setReq = function(talent) {
+		this.req = talent;
 	};
 	this.addRef = function(talent) {
 		this.refs.push(talent);
@@ -41,87 +41,57 @@ function CalculatorItem(talent) {
 		return this.ranks[0];
 	};
 	this.addRank = function(talent) {
-		if (this.ranks.length == 0) {
-			talent.status = TALENT_NOT_LEARNED;
-			this.ranks.push(talent);
-		} else {
-			var i = 0;
-			var left = talent.id;
-			while(i < this.ranks.length) {
-			var right = this.ranks[i].id;
-				if (talent.id < this.ranks[i].id) {
-					break;
-				} else {
-					i++;
-				}
-			}
-			talent.status = TALENT_NOT_LEARNED;
-			this.ranks.splice(i,0,talent);
-		}
-	};
-	this.canLearn = function() {
-		for(var i = 0; i < this.reqs.length; i++) {
-			if (this.reqs[i].base().status == TALENT_NOT_LEARNED) {
-				return false;
-			}
-		}
-		if (this.reqs.length > 0) {
-			for (var i = 0; i < this.reqs[0].refs.length; i++) {
-				if (this.reqs[0].refs[i].base().status == TALENT_LEARNED) {
-					return false;
-				}
-			}
-		}
 		var i = 0;
 		while(i < this.ranks.length) {
-			if (this.ranks[i].status == TALENT_NOT_LEARNED) {
-				return true;
+			if (talent.id < this.ranks[i].id) {
+				break;
 			}
 			i++;
 		}
-		return false;
+		talent.status = TALENT_NOT_LEARNED;
+		this.ranks.splice(i,0,talent);
 	};
-	this.canUnlearn = function() {
-		if (this.ranks.length > 1) {
-			var i = this.ranks.length - 1;
-			while (i >= 1) {
-				if (this.ranks[i].status == TALENT_LEARNED) {
-					return true;
-				}
-				i--;
+	this.anyRefLearned = function() {
+		for (var i = 0; i < this.refs.length; i++){
+			if (this.refs[i].base().status == TALENT_LEARNED){
+				return true;
 			}
 		}
-		if (this.ranks[0].status == TALENT_NOT_LEARNED) {
-			return false;
-		}
-		for(var i = 0; i < this.refs.length; i++) {
-			if (this.refs[i].base().status == TALENT_LEARNED) {
+		return false;
+	}
+	this.canLearn = function() {
+		if (this.req){
+			if (this.req.base().status == TALENT_NOT_LEARNED){
+				return false;
+			}
+			if (this.req.anyRefLearned()){
 				return false;
 			}
 		}
-		return true;
+		return this.getLearnedCount() < this.ranks.length;
+	};
+	this.canUnlearn = function() {
+		var i = this.getLearnedCount();
+		if (i > 1){
+			return true;
+		} else if (i == 1){
+			return !this.anyRefLearned();
+		}
+		return false;
 	};
 	this.getLearnedCount = function() {
 		var i = 0;
 		while (i < this.ranks.length) {
-			if (this.ranks[i].status == TALENT_LEARNED) {
-				i++;
-			} else {
+			if (this.ranks[i].status != TALENT_LEARNED) {
 				break;
 			}
+			i++;
 		}
 		return i;
 	};
 	this.learn = function() {
 		if (this.canLearn()) {
-			var i = 0;
-			while(i < this.ranks.length) {
-				if (this.ranks[i].status == TALENT_LEARNED) {
-					i++;
-				} else {
-					break;
-				}
-			}
+			var i = this.getLearnedCount();
 			this.ranks[i].status = TALENT_LEARNED;
 		} else {
 			throw new Error("Talent can not be learned.");
@@ -129,15 +99,8 @@ function CalculatorItem(talent) {
 	};
 	this.unlearn = function() {
 		if (this.canUnlearn()) {
-			var i = 0;
-			while(i < this.ranks.length) {
-				if (this.ranks[i].status == TALENT_LEARNED) {
-					i++;
-				} else {
-					break;
-				}
-			}
-			this.ranks[i-1].status = TALENT_NOT_LEARNED;
+			var i = this.getLearnedCount() - 1;
+			this.ranks[i].status = TALENT_NOT_LEARNED;
 		} else {
 			throw new Error("Talent can not be unlearned.");
 		}
@@ -197,7 +160,7 @@ function Calculator () {
 				var found = false;
 				for (var j = 0; j < this.items.length; j++) {
 					if (this.items[j].base().id == current.base().talentreq) {
-						current.addReq(this.items[j]);
+						current.setReq(this.items[j]);
 						this.items[j].addRef(current);
 						found = true;
 						break;

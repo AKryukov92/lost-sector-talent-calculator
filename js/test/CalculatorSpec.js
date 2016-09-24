@@ -154,65 +154,6 @@ describe('testing Calculator class', function() {
 		expect(calculator.width).toEqual(12);
 	});
 	
-	it('should put talent.levelreq to heightmap', function() {
-		var assault_data = {
-			prefix:"as",
-			talents:[talent1]
-		};
-		var calculator = new Calculator();
-		calculator.consumeInput(assault_data);
-		calculator.fillHeightMap();
-		expect(calculator.heightmap[0]).toEqual(1);
-		expect(calculator.heightmap.length).toEqual(1);
-	});
-	
-	it('should fill heightmap if talents are on same line', function() {
-		var assault_data = {
-			prefix:"as",
-			talents:[talent1,talent2]
-		}
-		var calculator = new Calculator();
-		calculator.consumeInput(assault_data);
-		calculator.fillHeightMap();
-		expect(calculator.heightmap[0]).toEqual(1);
-		expect(calculator.heightmap.length).toEqual(1);
-	});
-	
-	it('should fill heightmap if talents are on different lines', function() {
-		var assault_data = {
-			prefix:"as",
-			talents:[talent1,talent2, talent4]
-		}
-		var calculator = new Calculator();
-		calculator.consumeInput(assault_data);
-		calculator.fillHeightMap();
-		expect(calculator.heightmap[0]).toEqual(1);
-		expect(calculator.heightmap[1]).toEqual(4);
-		expect(calculator.heightmap.length).toEqual(2);
-	});
-	
-	it('should fill heightmap if talents are on different lines and in mixed order', function() {
-		var assault_data = {
-			prefix:"as",
-			talents:[talent1, talent4, talent2]
-		}
-		var calculator = new Calculator();
-		calculator.consumeInput(assault_data);
-		calculator.fillHeightMap();
-		expect(calculator.heightmap[0]).toEqual(1);
-		expect(calculator.heightmap[1]).toEqual(4);
-		expect(calculator.heightmap.length).toEqual(2);
-	});
-	
-	it('should throw error on filling height map', function() {
-		var assault_data = {
-			prefix:"as",
-			talents:[]
-		};
-		var calculator = new Calculator();
-		calculator.consumeInput(assault_data);
-		expect(function() { calculator.fillHeightMap(); }).toThrow(new Error("Talent data is empty"));
-	});
 	
 	it('should create Calculator object and fill items', function() {
 		var assault_data = {
@@ -224,7 +165,7 @@ describe('testing Calculator class', function() {
 		expect(calculator.items.length).toEqual(2);
 	});
 	
-	it('creates object and fills refs and reqs for items', function() {
+	it('creates object and fills refs and req for items', function() {
 		var assault_data = {
 			prefix:"as",
 			talents:[talent2, talent4]
@@ -233,7 +174,7 @@ describe('testing Calculator class', function() {
 		calculator.consumeInput(assault_data);
 		calculator.mapRefsReqs();
 		expect(calculator.items[0].refs).toContain(calculator.items[1]);
-		expect(calculator.items[1].reqs).toContain(calculator.items[0]);
+		expect(calculator.items[1].req).toEqual(calculator.items[0]);
 	});
 	
 	it('throws exception on mapping refs and reqs',  function() {
@@ -312,18 +253,6 @@ describe('testing Calculator class', function() {
 		expect(calculator.getPowerSum()).toEqual(1);
 		calculator.items[1].learn();
 		expect(calculator.getPowerSum()).toEqual(17);
-	});
-	
-	it("should create rows for items", function() {
-		var assault_data = {
-			prefix:"as",
-			talents:[talent1, talent2, talent4]
-		}
-		var calculator = new Calculator();
-		calculator.consumeInput(assault_data);
-		calculator.fillHeightMap();
-		calculator.arrangeRows();
-		expect(calculator.rows.length).toEqual(2);
 	});
 	
 	it("calculates spent points", function() {
