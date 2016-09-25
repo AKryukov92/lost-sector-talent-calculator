@@ -248,9 +248,9 @@ function ClassTalentView(locale, classData, atlasActive, atlasInactive, calculat
 			for (var i = 0; i < item.refs.length; i++) {
 				blitItem(item.refs[i], false);
 			}
-			if (item.reqs.length > 0) {
-				for (var i = 0; i < item.reqs[0].refs.length; i++) {
-					blitItem(item.reqs[0].refs[i], false);
+			if (item.req) {
+				for (var i = 0; i < item.req.refs.length; i++) {
+					blitItem(item.req.refs[i], false);
 				}
 			}
 			blitItem(item, false);
