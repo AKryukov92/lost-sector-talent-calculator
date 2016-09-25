@@ -424,6 +424,7 @@
 		"ru":"Увеличивает наносимый урон (кроме ближнего боя) на 5%",
 		"en":"Increases damage multiplier (except melee) for 5%"
 	},
+	"cost":0,
 	"lvlreq":14,
 	"column":0
 },{
@@ -490,6 +491,7 @@
 		"ru":"Увеличивает количество активных слотов на 1.",
 		"en":"Increases number of active slots for 1"
 	},
+	"cost":0,
 	"lvlreq":5,
 	"column":2
 },{
@@ -1029,6 +1031,7 @@
 		"ru":"Увеличивает наносимый урон (кроме ближнего боя) на 5%",
 		"en":"Increases damage multiplier (except melee) for 5%"
 	},
+	"cost":0,
 	"lvlreq":14,
 	"column":0
 },{
@@ -1079,6 +1082,7 @@
 		"ru":"Увеличивает количество активных слотов на 1.",
 		"en":"Increases number of active slots for 1"
 	},
+	"cost":0,
 	"lvlreq":5,
 	"column":2
 },{
@@ -1702,6 +1706,7 @@
 		"ru":"Увеличивает наносимый урон (кроме ближнего боя) на 5%",
 		"en":"Increases damage multiplier (except melee) for 5%"
 	},
+	"cost":0,
 	"lvlreq":14,
 	"column":0
 },{
@@ -1768,6 +1773,7 @@
 		"ru":"Увеличивает количество активных слотов на 1.",
 		"en":"Increases number of active slots for 1"
 	},
+	"cost":0,
 	"lvlreq":5,
 	"column":2
 },{
@@ -2353,6 +2359,7 @@
 		"ru":"Увеличивает наносимый урон (кроме ближнего боя) на 5%",
 		"en":"Increases damage multiplier (except melee) for 5%"
 	},
+	"cost":0,
 	"lvlreq":14,
 	"column":0
 },{
@@ -2419,6 +2426,7 @@
 		"ru":"Увеличивает количество активных слотов на 1.",
 		"en":"Increases number of active slots for 1"
 	},
+	"cost":0,
 	"lvlreq":5,
 	"column":2
 },{

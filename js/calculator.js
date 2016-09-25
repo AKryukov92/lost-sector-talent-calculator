@@ -136,6 +136,9 @@ function Calculator () {
 		this.prefix = input.prefix;
 		this.items = [];
 		for (var i = 0; i < this.talents_data.length; i++) {
+			if (typeof this.talents_data[i].cost == 'undefined'){
+				throw new Error("Illegal class data. Talent cost is not defined in: " + this.talents_data[i].id);
+			}
 			if (typeof this.talents_data[i].rankof == 'undefined') {
 				this.items.push(new CalculatorItem(this.talents_data[i]));
 			}
@@ -235,7 +238,7 @@ function Calculator () {
 			} else if (chr >= 48 && chr <= 57) {
 				powersum += (chr - 48) * power;
 			} else {
-				console.log("unexpected character: " + chr);
+				throw new Error("Unexpected character in talentstring: " + input.charAt(i));
 			}
 			power *= 33;
 			i ++;
@@ -250,6 +253,9 @@ function Calculator () {
 		}
 		for (i = this.talents_data.length - 1; i >= 0; i--) {
 			var talent = this.talents_data[i];
+			if (typeof talent.power == 'undefined'){
+				throw new Error("Talent power is not defined.");
+			}
 			if (talent.power <= powersum) {
 				talent.status = TALENT_LEARNED;
 				powersum -= talent.power;

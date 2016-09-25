@@ -1,5 +1,6 @@
 describe('testing Calculator class', function() {
-	var talent1, talent2, talent4, talent48, talent86, talent39, talent392, talent45, talent452, talent453, talent454, talent70, talent73;
+	var talent1, talent2, talent3, talent4, talent13, talent48, talent86, talent39, talent392, talent421, talent45, talent452, talent453, talent454, talent471, talent62, talent70, talent73;
+	
 beforeEach(function() {
 	talent1 = {
 		id:1,
@@ -20,6 +21,21 @@ beforeEach(function() {
 		lvlreq:1,
 		column:1
 	};
+	talent3 = {
+		id:4,
+		imageid:4,
+		name:{
+			ru:"Штурмовые гранаты",
+			en:"Assault grenades"
+		},
+		description:{
+			ru:"Позволяет пользоваться простыми штурмовыми гранатами.",
+			en:"Allows you to use simple assault grenades in combat."
+		},
+		cost:1,
+		lvlreq:3,
+		column:0
+	};
 	talent4 = {
 		id:35,
 		imageid:35,
@@ -29,6 +45,21 @@ beforeEach(function() {
 		lvlreq:4,
 		talentreq:2,
 		column:1
+	};
+	talent13 = {
+		id:13,
+		imageid:13,
+		name:{
+			ru:"Снайперские винтовки (специалист)",
+			en:"Sniper Rifles (specialist)"
+		},
+		description:{
+			ru:"Позволяет использовать снайперские винтовки полицейской классификации.",
+			en:"Sniper Rifles usig skill of police classification."
+		},
+		cost:1,
+		lvlreq:5,
+		column:6
 	};
 	talent48 = {
 		id:48,
@@ -72,6 +103,25 @@ beforeEach(function() {
 		column:7,
 		rankof:39
 	};
+	talent421 = {
+		id:421,
+		imageid:42,
+		name:{
+			ru:"Взрывостойкий",
+			en:"Explosion resistant"
+		},
+		description:{
+			ru:"Добавляет базовое сопротивление взрывам.",
+			en:"Adds basic resistance to explosions."
+		},
+		effect:{
+			ru:"Увеличивает сопротивление взрывам на 5%",
+			en:"Increases explosion resist for 5%"
+		},
+		cost:1,
+		lvlreq:5,
+		column:7
+	};
 	talent45 = {
 		id:45,
 		imageid:45,
@@ -114,6 +164,43 @@ beforeEach(function() {
 		lvlreq:13,
 		rankof:45,
 		column:8
+	};
+	talent471 = {
+		id:471,
+		imageid:47,
+		name:{
+			ru:"Эксперт по баллистике",
+			en:"Ballistics expert"
+		},
+		description:{
+			ru:"Увеличивает наносимый урон.",
+			en:"Increases inflicting damage."
+		},
+		effect:{
+			ru:"Увеличивает наносимый урон (кроме ближнего боя) на 5%",
+			en:"Increases damage multiplier (except melee) for 5%"
+		},
+		cost:1,
+		lvlreq:5,
+		column:7
+	};
+	talent62 = {
+		id:62,
+		imageid:62,
+		name:{
+			ru:"Патронташ",
+			en:"Bandolier"
+		},
+		description:{
+			ru:"Открывает одну ячейку для активных предметов.",
+			en:"Unlocks one cell for active items."
+		},
+		effect:{
+			ru:"Увеличивает количество активных слотов на 1.",
+			en:"Increases number of active slots for 1"
+		},
+		lvlreq:5,
+		column:2
 	};
 	talent70 = {
 		id:70,
@@ -166,7 +253,7 @@ describe('test consumeInput', function(){
 		var assault_data = {
 			prefix:"as",
 			talents:[talent39, talent392]
-		}
+		};
 		var calculator = new Calculator();
 		calculator.consumeInput(assault_data);
 		expect(calculator.items.length).toEqual(1);
@@ -181,19 +268,29 @@ describe('test consumeInput', function(){
 		
 		expect(function() {calculator.consumeInput(assault_data); }).toThrow(new Error("Illegal class data. Talents data not defined"));
 	});
-	it('throws exception about if data has no prefix', function() {
+	
+	it('throws exception if data has no prefix', function() {
 		var assault_data = {
 			talents:[]
 		};
 		var calculator = new Calculator();
 		expect(function() {calculator.consumeInput(assault_data); }).toThrow(new Error("Illegal class data. Class prefix not defined"));
 	});
+	
+	it("throws exception if any of talent have no cost", function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent62]
+		};
+		var calculator = new Calculator();
+		expect(function(){calculator.consumeInput(assault_data); }).toThrow(new Error("Illegal class data. Talent cost is not defined in: 62"));
+	});
 
 	it("considers that no learned talents require level 1", function() {
 		var assault_data = {
 			prefix:"as",
 			talents:[talent1, talent2]
-		}
+		};
 		var calculator = new Calculator();
 		calculator.consumeInput(assault_data);
 		expect(calculator.getRequiredLevel()).toEqual(1);
@@ -274,7 +371,7 @@ describe("test mapRefsReqs", function(){
 		var assault_data = {
 			prefix:"as",
 			talents:[talent4]
-		}
+		};
 		var calculator = new Calculator();
 		calculator.consumeInput(assault_data);
 		expect(function(){ calculator.mapRefsReqs(); }).toThrow(new Error("Illegal talents data"));
@@ -350,6 +447,7 @@ it('assigns power to talents', function() {
 	expect(calculator.talents_data[2].power).toEqual(4);
 	expect(calculator.talents_data[3].power).toEqual(8);
 });
+
 describe('test getPowerSum', function(){
 	it('calculates powersum', function() {
 		var assault_data = {
@@ -370,7 +468,7 @@ describe('test getPowerSum', function(){
 		var assault_data = {
 			prefix:"as",
 			talents:[talent1, talent2, talent4, talent39, talent392]
-		}
+		};
 		var calculator = new Calculator();
 		calculator.consumeInput(assault_data);
 		calculator.mapRanks();
@@ -384,12 +482,13 @@ describe('test getPowerSum', function(){
 		var assault_data = {
 			prefix:"as",
 			talents:[talent1, talent2, talent4]
-		}
+		};
 		var calculator = new Calculator();
 		calculator.consumeInput(assault_data);
 		expect(function() { calculator.getPowerSum(); }).toThrow(new Error("Assign power to talents first"));
 	});
 });
+
 describe('test getTalentString', function(){
 		var calculator = new Calculator();
 	it("produces '0' if powersum is 0", function() {
@@ -463,35 +562,188 @@ describe("test parseTalentString", function(){
 	it("produces 1089 if talentstring '001'", function(){
 		expect(calculator.parseTalentString("001")).toEqual(1089);
 	});
+	it("throws exception if talentstring contains unexpected character", function(){
+		expect(function(){ calculator.parseTalentString("]"); }).toThrow(new Error("Unexpected character in talentstring: ]"));
+	});
 });
+
 describe("test learnTalentsFromString", function(){
+	it("should learn single talent", function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.assignPowerToTalents();
+		calculator.learnTalentsFromString("1");
+		expect(talent1.status).toEqual(TALENT_LEARNED);
+		expect(talent2.status).toEqual(TALENT_NOT_LEARNED);
+	});
 	
-});
-it("calculates spent points", function() {
-	var assault_data = {
-		prefix: "as",
-		talents:[talent1]
-	}
-	var calculator = new Calculator();
-	calculator.consumeInput(assault_data);
-	expect(calculator.getSpentTalentPoints()).toEqual(0);
-	calculator.items[0].learn();
-	expect(calculator.getSpentTalentPoints()).toEqual(1);
+	it("should learn two talents", function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.assignPowerToTalents();
+		calculator.learnTalentsFromString("3");
+		expect(talent1.status).toEqual(TALENT_LEARNED);
+		expect(talent2.status).toEqual(TALENT_LEARNED);
+	});
+	
+	it("should learn second talent", function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.assignPowerToTalents();
+		calculator.learnTalentsFromString("2");
+		expect(talent1.status).toEqual(TALENT_NOT_LEARNED);
+		expect(talent2.status).toEqual(TALENT_LEARNED);
+	});
+	
+	it("should learn nothing if powersum is greater than max power of talents", function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.assignPowerToTalents();
+		calculator.learnTalentsFromString("4");
+		expect(talent1.status).toEqual(TALENT_NOT_LEARNED);
+		expect(talent2.status).toEqual(TALENT_NOT_LEARNED);
+	});
+	
+	it("should learn rank of talent skipping root", function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent39, talent392]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.assignPowerToTalents();
+		calculator.learnTalentsFromString("2");
+		expect(talent39.status).toEqual(TALENT_NOT_LEARNED);
+		expect(talent392.status).toEqual(TALENT_LEARNED);
+	});
+	
+	it("should throw exception on learning without assigning power to talents", function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		expect(function(){ calculator.learnTalentsFromString("1");  }).toThrow(new Error("Talent power is not defined."));
+	});
 });
 
-it("calculates level based on learned talents", function() {
-	var assault_data = {
-		prefix:"as",
-		talents:[talent1, talent2, talent4]
-	}
-	var calculator = new Calculator();
-	calculator.consumeInput(assault_data);
-	calculator.items[0].learn();
-	expect(calculator.getRequiredLevel()).toEqual(1);
-	calculator.items[1].learn();
-	expect(calculator.getRequiredLevel()).toEqual(2);
-	calculator.items[2].learn();
-	expect(calculator.getRequiredLevel()).toEqual(4);
+describe("test getSpentTalentPoints", function(){
+	it("calculates spent points", function() {
+		var assault_data = {
+			prefix: "as",
+			talents:[talent1]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		expect(calculator.getSpentTalentPoints()).toEqual(0);
+		calculator.items[0].learn();
+		expect(calculator.getSpentTalentPoints()).toEqual(1);
+	});
+	
+	it("calculates spent points for ranks of talent", function(){
+		var assault_data = {
+			prefix: "as",
+			talents:[talent39, talent392]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.mapRanks();
+		calculator.items[0].learn();
+		calculator.items[0].learn();
+		expect(calculator.getSpentTalentPoints()).toEqual(4);
+	});
 });
 
+describe("test getRequiredLevel", function(){
+	it("considers spent points below 5 level", function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.items[0].learn();
+		calculator.items[1].learn();
+		expect(calculator.getRequiredLevel()).toEqual(2);
+	});
+	
+	it("considers spent points above 5 level", function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2, talent3, talent4, talent13, talent39, talent471, talent421]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.items[0].learn();
+		calculator.items[1].learn();
+		calculator.items[2].learn();
+		calculator.items[3].learn();
+		calculator.items[4].learn();
+		calculator.items[5].learn();
+		calculator.items[6].learn();
+		calculator.items[7].learn();
+		expect(calculator.getRequiredLevel()).toEqual(6);
+	});
+	
+	it("considers required level", function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent3]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.items[0].learn();
+		expect(calculator.getRequiredLevel()).toEqual(3);
+	});
+});
+
+describe("test getAvailableTalentPoints", function(){
+	var calculator = new Calculator();
+	it("returns 0 if all points spent at level 3", function(){
+		calculator.getRequiredLevel = function(){ return 3; };
+		calculator.getSpentTalentPoints = function(){ return 3 };
+		expect(calculator.getAvailableTalentPoints()).toEqual(0);
+	});
+	
+	it("returns 1 if no points spent at level 1", function(){
+		calculator.getRequiredLevel = function(){ return 1; };
+		calculator.getSpentTalentPoints = function(){ return 0; };
+		expect(calculator.getAvailableTalentPoints()).toEqual(1);
+	});
+	
+	it("returns 1 if 6 points spent at level 5", function(){
+		calculator.getRequiredLevel = function(){ return 5; };
+		calculator.getSpentTalentPoints = function(){ return 6; };
+		expect(calculator.getAvailableTalentPoints()).toEqual(1);
+	});
+	
+	it("returns 5 if 2 points spent at level 5", function(){
+		calculator.getRequiredLevel = function(){ return 5; };
+		calculator.getSpentTalentPoints = function(){ return 2; };
+		expect(calculator.getAvailableTalentPoints()).toEqual(5);
+	});
+	
+	it("returns 8 if 2 points spent at level 6", function(){
+		calculator.getRequiredLevel = function(){ return 6; };
+		calculator.getSpentTalentPoints = function(){ return 2; };
+		expect(calculator.getAvailableTalentPoints()).toEqual(8);
+	});
+});
 });
