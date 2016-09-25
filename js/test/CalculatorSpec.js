@@ -1,5 +1,5 @@
 describe('testing Calculator class', function() {
-	var talent1, talent2, talent4, talent48, talent86, talent39, talent392, talent45, talent452, talent453, talent454;
+	var talent1, talent2, talent4, talent48, talent86, talent39, talent392, talent45, talent452, talent453, talent454, talent70, talent73;
 beforeEach(function() {
 	talent1 = {
 		id:1,
@@ -115,6 +115,27 @@ beforeEach(function() {
 		rankof:45,
 		column:8
 	};
+	talent70 = {
+		id:70,
+		imageid:70,
+		name:"Упор",
+		description:"Увеличивает точность наемника на 7 в сидячем положении.",
+		cost:1,
+		lvlreq:8,
+		talentreq:45,
+		column:8
+	};
+	talent73 = {
+		id:73,
+		imageid:73,
+		name:"Подавляющая высота",
+		description:"Увеличивает шанс критической атаки на 30% по цели, находящейся на 2 или более метров ниже наемника. Шанс считается для каждой пули отдельно.",
+		cost:1,
+		lvlreq:8,
+		talentreq:45,
+		radius:2,
+		column:9
+	};
 });
 
 describe('test construction', function(){
@@ -138,6 +159,7 @@ describe('test consumeInput', function(){
 		var calculator = new Calculator();
 		calculator.consumeInput(assault_data);
 		expect(calculator.items.length).toEqual(2);
+		expect(calculator.talents_data.length).toEqual(2);
 	});
 	
 	it("should not add ranks in talents list", function(){
@@ -148,9 +170,10 @@ describe('test consumeInput', function(){
 		var calculator = new Calculator();
 		calculator.consumeInput(assault_data);
 		expect(calculator.items.length).toEqual(1);
+		expect(calculator.talents_data.length).toEqual(2);
 	});
 
-	it('should throw exception if data have no talents', function() {
+	it('throws exception if data have no talents', function() {
 		var assault_data = {
 			prefix:"as"
 		};
@@ -158,7 +181,7 @@ describe('test consumeInput', function(){
 		
 		expect(function() {calculator.consumeInput(assault_data); }).toThrow(new Error("Illegal class data. Talents data not defined"));
 	});
-	it('should throw exception about if data has no prefix', function() {
+	it('throws exception about if data has no prefix', function() {
 		var assault_data = {
 			talents:[]
 		};
@@ -176,75 +199,142 @@ describe('test consumeInput', function(){
 		expect(calculator.getRequiredLevel()).toEqual(1);
 	});
 });
-it('should set Calculator width to max value', function() {
-	var assault_data = {
-		prefix:"as",
-		talents:[talent1, talent48, talent86]
-	};
-	var calculator = new Calculator();
-	calculator.consumeInput(assault_data);
-	calculator.calculateWidth();
-	expect(calculator.width).toEqual(12);
+
+describe("test calculateWidth", function(){
+	it('should set Calculator width to max value', function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent48, talent86]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.calculateWidth();
+		expect(calculator.width).toEqual(12);
+	});
+	it('should set Calculator width to column of single talent', function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.calculateWidth();
+		expect(calculator.width).toEqual(0);
+	});
+	it('should set Calculator width to 0 if no talents specified',function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.calculateWidth();
+		expect(calculator.width).toEqual(0);
+	});
 });
 
-it('creates object and fills refs and req for items', function() {
-	var assault_data = {
-		prefix:"as",
-		talents:[talent2, talent4]
-	};
-	var calculator = new Calculator();
-	calculator.consumeInput(assault_data);
-	calculator.mapRefsReqs();
-	expect(calculator.items[0].refs).toContain(calculator.items[1]);
-	expect(calculator.items[1].req).toEqual(calculator.items[0]);
+describe("test mapRefsReqs", function(){
+	it('should set req and refs for items', function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent2, talent4]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.mapRefsReqs();
+		expect(calculator.items[0].refs).toContain(calculator.items[1]);
+		expect(calculator.items[1].req).toEqual(calculator.items[0]);
+	});
+	
+	it('should not set req for talent without requirement', function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent2]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.mapRefsReqs();
+		expect(calculator.items[0].req).toEqual(false);
+	});
+	
+	it('should set reqs and forked refs', function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent45,talent70,talent73]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.mapRefsReqs();
+		expect(calculator.items[1].req).toEqual(calculator.items[0]);
+		expect(calculator.items[2].req).toEqual(calculator.items[0]);
+		expect(calculator.items[0].refs).toContain(calculator.items[1], calculator.items[2]);
+	});
+
+	it('throws exception if data do not contain required talent',  function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent4]
+		}
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		expect(function(){ calculator.mapRefsReqs(); }).toThrow(new Error("Illegal talents data"));
+	});
 });
 
-it('throws exception on mapping refs and reqs',  function() {
-	var assault_data = {
-		prefix:"as",
-		talents:[talent4]
-	}
-	var calculator = new Calculator();
-	calculator.consumeInput(assault_data);
-	expect(function(){ calculator.mapRefsReqs(); }).toThrow(new Error("Illegal talents data"));
-});
+describe('test mapRanks', function(){
+	it('puts ranks of talent to single item. input in natural order', function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent45, talent452, talent453, talent454]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.mapRanks();
+		expect(calculator.items[0].ranks[0]).toEqual(talent45);
+		expect(calculator.items[0].ranks[1]).toEqual(talent452);
+		expect(calculator.items[0].ranks[2]).toEqual(talent453);
+		expect(calculator.items[0].ranks[3]).toEqual(talent454);
+	});
 
-it('puts ranks of talent to single item. input in natural order', function() {
-	var assault_data = {
-		prefix:"as",
-		talents:[talent45, talent452, talent453, talent454]
-	};
-	var calculator = new Calculator();
-	calculator.consumeInput(assault_data);
-	calculator.mapRanks();
-	expect(calculator.items[0].ranks[0]).toEqual(talent45);
-	expect(calculator.items[0].ranks[1]).toEqual(talent452);
-	expect(calculator.items[0].ranks[2]).toEqual(talent453);
-	expect(calculator.items[0].ranks[3]).toEqual(talent454);
-});
+	it('puts ranks of talent to single item. ranks in reverse order', function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent454, talent453, talent452, talent45]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.mapRanks();
+		expect(calculator.items[0].ranks[0]).toEqual(talent45);
+		expect(calculator.items[0].ranks[1]).toEqual(talent452);
+		expect(calculator.items[0].ranks[2]).toEqual(talent453);
+		expect(calculator.items[0].ranks[3]).toEqual(talent454);
+	});
+	
+	it('should not mix ranks of different talents', function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent39, talent392, talent452, talent45]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.mapRanks();
+		expect(calculator.items[0].ranks[0]).toEqual(talent39);
+		expect(calculator.items[0].ranks[1]).toEqual(talent392);
+		expect(calculator.items[0].ranks.length).toEqual(2);
+		expect(calculator.items[1].ranks[0]).toEqual(talent45);
+		expect(calculator.items[1].ranks[1]).toEqual(talent452);
+		expect(calculator.items[1].ranks.length).toEqual(2);
+	});
 
-it('puts ranks of talent to single item. ranks in reverse order', function() {
-	var assault_data = {
-		prefix:"as",
-		talents:[talent454, talent453, talent452, talent45]
-	};
-	var calculator = new Calculator();
-	calculator.consumeInput(assault_data);
-	calculator.mapRanks();
-	expect(calculator.items[0].ranks[0]).toEqual(talent45);
-	expect(calculator.items[0].ranks[1]).toEqual(talent452);
-	expect(calculator.items[0].ranks[2]).toEqual(talent453);
-	expect(calculator.items[0].ranks[3]).toEqual(talent454);
-});
-
-it('should throw exception on mapping ranks', function() {
-	var assault_data = {
-		prefix:"as",
-		talents:[ talent392]
-	};
-	var calculator = new Calculator();
-	calculator.consumeInput(assault_data);
-	expect(function() {calculator.mapRanks(); }).toThrow(new Error("Illegal talents data"));
+	it('throws exception if root talent is not present', function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent392]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		expect(function() {calculator.mapRanks(); }).toThrow(new Error("Illegal talents data"));
+	});
 });
 
 it('assigns power to talents', function() {
@@ -254,29 +344,129 @@ it('assigns power to talents', function() {
 	};
 	var calculator = new Calculator();
 	calculator.consumeInput(assault_data);
-	calculator.mapRanks();
 	calculator.assignPowerToTalents();
-	expect(calculator.items[0].ranks[0].power).toEqual(1);
-	expect(calculator.items[0].ranks[1].power).toEqual(2);
-	expect(calculator.items[0].ranks[2].power).toEqual(4);
-	expect(calculator.items[0].ranks[3].power).toEqual(8);
+	expect(calculator.talents_data[0].power).toEqual(1);
+	expect(calculator.talents_data[1].power).toEqual(2);
+	expect(calculator.talents_data[2].power).toEqual(4);
+	expect(calculator.talents_data[3].power).toEqual(8);
 });
-it('calculates powersum', function() {
-	var assault_data = {
-		prefix:"as",
-		talents:[talent45, talent452, talent453, talent454, talent48, talent86]
-	};
-	var calculator = new Calculator();
-	calculator.consumeInput(assault_data);
-	calculator.mapRanks();
-	calculator.assignPowerToTalents();
-	expect(calculator.getPowerSum()).toEqual(0);
-	calculator.items[0].learn();
-	expect(calculator.getPowerSum()).toEqual(1);
-	calculator.items[1].learn();
-	expect(calculator.getPowerSum()).toEqual(17);
+describe('test getPowerSum', function(){
+	it('calculates powersum', function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent45, talent452, talent453, talent454, talent48, talent86]
+		};
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.assignPowerToTalents();
+		expect(calculator.getPowerSum()).toEqual(0);
+		calculator.items[0].learn();
+		expect(calculator.getPowerSum()).toEqual(1);
+		calculator.items[1].learn();
+		expect(calculator.getPowerSum()).toEqual(17);
+	});
+	
+	it("calculates powersum for rank", function(){
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2, talent4, talent39, talent392]
+		}
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		calculator.mapRanks();
+		calculator.assignPowerToTalents();
+		calculator.items[3].learn();
+		calculator.items[3].learn();
+		expect(calculator.getPowerSum()).toEqual(24);
+	});
+
+	it("throws exception on getPowerSum if assignPowerToTalents was not called", function() {
+		var assault_data = {
+			prefix:"as",
+			talents:[talent1, talent2, talent4]
+		}
+		var calculator = new Calculator();
+		calculator.consumeInput(assault_data);
+		expect(function() { calculator.getPowerSum(); }).toThrow(new Error("Assign power to talents first"));
+	});
+});
+describe('test getTalentString', function(){
+		var calculator = new Calculator();
+	it("produces '0' if powersum is 0", function() {
+		calculator.getPowerSum = function(){ return 0; };
+		expect(calculator.getTalentString()).toEqual("0");
+	});
+	it("produces '9' if powersum = 9", function(){
+		calculator.getPowerSum = function(){ return 9; };
+		expect(calculator.getTalentString()).toEqual("9");
+	});
+	it("produces 'a' if powersum = 10", function(){
+		calculator.getPowerSum = function(){ return 10; };
+		expect(calculator.getTalentString()).toEqual("a");
+	});
+	it("produces 'w' if powersum = 32", function(){
+		calculator.getPowerSum = function(){ return 32; };
+		expect(calculator.getTalentString()).toEqual("w");
+	});
+	it("produces '01' if powersum = 33", function(){
+		calculator.getPowerSum = function(){ return 33; };
+		expect(calculator.getTalentString()).toEqual("01");
+	});
+	it("produces 'a1' if powersum = 43", function(){
+		calculator.getPowerSum = function(){ return 43; };
+		expect(calculator.getTalentString()).toEqual("a1");
+	});
+	it("produces '0a' if powersum = 330", function(){
+		calculator.getPowerSum = function(){ return 330; };
+		expect(calculator.getTalentString()).toEqual("0a");
+	});
+	it("produces 'ww' if powersum = 1088", function(){
+		calculator.getPowerSum = function(){ return 1088; };
+		expect(calculator.getTalentString()).toEqual("ww");
+	});
+	it("produces '001' if powersum = 1089", function(){
+		calculator.getPowerSum = function(){ return 1089; };
+		expect(calculator.getTalentString()).toEqual("001");
+	});
+	it("throws exception if getPowerSum throws exception", function(){
+		calculator.getPowerSum = function(){ throw new Error("Assign power to talents first"); }
+		expect(function() { calculator.getTalentString(); }).toThrow(new Error("Assign power to talents first"));
+	});
 });
 
+describe("test parseTalentString", function(){
+	var calculator = new Calculator();
+	it("produces 0 if talentstring '0'", function(){
+		expect(calculator.parseTalentString("0")).toEqual(0);
+	});
+	it("produces 9 if talentstring '9'", function(){
+		expect(calculator.parseTalentString("9")).toEqual(9);
+	});
+	it("produces 10 if talentstring 'a'", function(){
+		expect(calculator.parseTalentString("a")).toEqual(10);
+	});
+	it("produces 32 if talentstring 'w'", function(){
+		expect(calculator.parseTalentString("w")).toEqual(32);
+	});
+	it("produces 33 if talentstring '01'", function(){
+		expect(calculator.parseTalentString("01")).toEqual(33);
+	});
+	it("produces 43 if talentstring 'a1'", function(){
+		expect(calculator.parseTalentString("a1")).toEqual(43);
+	});
+	it("produces 330 if talentstring '0a'", function(){
+		expect(calculator.parseTalentString("0a")).toEqual(330);
+	});
+	it("produces 1088 if talentstring 'ww'", function(){
+		expect(calculator.parseTalentString("ww")).toEqual(1088);
+	});
+	it("produces 1089 if talentstring '001'", function(){
+		expect(calculator.parseTalentString("001")).toEqual(1089);
+	});
+});
+describe("test learnTalentsFromString", function(){
+	
+});
 it("calculates spent points", function() {
 	var assault_data = {
 		prefix: "as",
@@ -304,24 +494,4 @@ it("calculates level based on learned talents", function() {
 	expect(calculator.getRequiredLevel()).toEqual(4);
 });
 
-it("produces empty talentstring if nothing learned", function() {
-	var assault_data = {
-		prefix:"as",
-		talents:[talent1, talent2, talent4]
-	}
-	var calculator = new Calculator();
-	calculator.consumeInput(assault_data);
-	calculator.assignPowerToTalents();
-	expect(calculator.getTalentString()).toEqual("0");
-});
-
-it("throws error on getPowerSum if assignPowerToTalents was not called", function() {
-	var assault_data = {
-		prefix:"as",
-		talents:[talent1, talent2, talent4]
-	}
-	var calculator = new Calculator();
-	calculator.consumeInput(assault_data);
-	expect(function() { calculator.getPowerSum(); }).toThrow(new Error("Assign power to talents first"));
-});
 });
