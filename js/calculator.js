@@ -136,10 +136,9 @@ function Calculator () {
 		this.prefix = input.prefix;
 		this.items = [];
 		for (var i = 0; i < this.talents_data.length; i++) {
-			if (typeof this.talents_data[i].rankof != 'undefined') {
-				continue;
+			if (typeof this.talents_data[i].rankof == 'undefined') {
+				this.items.push(new CalculatorItem(this.talents_data[i]));
 			}
-			this.items.push(new CalculatorItem(this.talents_data[i]));
 		}
 	};
 	

@@ -187,7 +187,7 @@ describe('test construction', function(){
 });
 
 describe("test anyRefLearned", function(){
-	it('should be truthy if any ref of talent is learned', function(){
+	it('is truthy if any ref of talent is learned', function(){
 		var item45 = new CalculatorItem(talent45);
 		var item70 = new CalculatorItem(talent70);
 		var item73 = new CalculatorItem(talent73);
@@ -200,7 +200,7 @@ describe("test anyRefLearned", function(){
 		expect(item45.anyRefLearned()).toEqual(true);
 	});
 	
-	it('should be falsy if no ref of talent is learned', function(){
+	it('is falsy if no ref of talent is learned', function(){
 		var item45 = new CalculatorItem(talent45);
 		var item70 = new CalculatorItem(talent70);
 		var item73 = new CalculatorItem(talent73);
