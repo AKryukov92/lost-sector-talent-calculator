@@ -3,34 +3,28 @@
 		return;
 	}
 	inventoryApp.setGrade(slot_name, ui.value);
+	$("#" + slot_name + "-value")
+		.html(inventoryApp.getGradeString(slot_name));
 }
 
 function quality_change_handler(slot_name) {
-	if ($.isEmptyObject(inventoryApp.slots[slot_name].item)) {
-		return;
-	}
+	if (!$.isEmptyObject(inventoryApp.slots[slot_name].item)) {
 	inventoryApp.updateSlotTooltip(slot_name);
+	}
 }
 
-function reset_slot(slot_name) {
-	inventoryApp.resetInventorySlot(slot_name);
+function resetSlot(slot_name) {
+	clearSlot(slot_name);
+	inventoryApp.resetSlot(slot_name);
 }
 function versionUriHandler(key, value, target) {
 	itemstring = decodeURIComponent(value);
 	inventoryApp.version = 0+itemstring;
 }
-function autoEquipItem(itemId, fallback) {
-	var item = inventoryApp.getItemById(itemId);
-	var slots = inventoryApp.weapontype_map[item.category].slots;
-	for (var i = 0; i < slots.length; i++) {
-		if (isEmpty(inventoryApp.slots[slots[i]].item)) {
-			inventoryApp.equipItem(item, slots[i], fallback);
-			return;
-		}
-	}
-	inventoryApp.equipItem(item, slots[slots.length - 1], fallback);
+function autoEquipItem(itemId) {
+	inventoryApp.autoEquipItem(itemId);
 }
-var inventoryApp = new InventoryModel(getLocale());
+var inventoryApp = new InventoryModel(getLocale(), defaultVersion);
 $(document).ready(function(){
     $( "#armor-slider" ).slider({
       value:0,
@@ -79,11 +73,34 @@ $(document).ready(function(){
 	});
 	orderToDisplayInventory();
 });
+function clearPool(app) {
+	for (type in app.weapontype_map) {
+		$("#" + type + "-pool").empty();
+	}
+}
+function clearSlot(slot){
+	$("#" + slot + "-link").attr("href", "");
+	$("#" + slot + "-container").html("<img src=\"images/slot-" + slot + ".png\">");
+	$("#" + slot + "-name").text("");
+	$("#" + slot + "-value").text("");
+}
 function orderToDisplayInventory() {
-	inventoryApp.clearPool();
-	inventoryApp.clearEquipped();
+	clearPool(inventoryApp);
+	for (slot in inventoryApp.possible_slots) {
+		clearSlot(slot);
+	}
 	$.get("/item_data.php?version=" + inventoryApp.version, function(data) {
-		inventoryApp.fillAvailableItems(data);
+		inventoryApp.consumeData(data);
+		for (var i = 0; i < inventoryApp.itemData.length; i++){
+			var item =  inventoryApp.itemData[i];
+			$("#" + item.category + "-pool")
+				.append(inventoryApp.getSwimmerForPool(item));
+			$("#item_" + item.id).draggable({
+				containment:"document",
+				helper:"clone",
+				appendTo: "body"
+			});
+		}
 		for (slot in inventoryApp.possible_slots) {
 			$("#" + slot + "-container").droppable({
 				accept:inventoryApp.possible_slots[slot],
@@ -98,6 +115,6 @@ function orderToDisplayInventory() {
 			});
 		}
 	}).fail(function() {
-		inventoryApp.clearPool();
+		clearPool(inventoryApp);
 	});
 }

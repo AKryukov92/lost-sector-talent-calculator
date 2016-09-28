@@ -30,7 +30,7 @@ describe('testing Combinator class', function() {
 			talentreq:391,
 			column:8
 		};
-		action57 = new Action(20, "Глухая оборона", 2);
+		action57 = new Action(1, 20, "Глухая оборона", 2);
 		action57.imageid = 57;
 		talent71 = {
 			status:1,
@@ -44,7 +44,7 @@ describe('testing Combinator class', function() {
 			AP_cost:10,
 			column:9
 		};
-		action71 = new Action(10, "Сошки");
+		action71 = new Action(2, 10, "Сошки");
 		action71.imageid = 71;
 		talent86 = {
 			status:0,
@@ -58,7 +58,7 @@ describe('testing Combinator class', function() {
 			AP_cost:1,
 			column:12
 		};
-		action86 = new Action(1, "Стрелять до конца");
+		action86 = new Action(3, 1, "Стрелять до конца");
 		action86.imageid = 86;
 		item324 = {
 			name:"Шлем скаута",
@@ -99,11 +99,11 @@ describe('testing Combinator class', function() {
 				max_dist:9
 			}]
 		};
-		action401a = new Action(45, "Удар");
+		action401a = new Action(4, 45, "Удар");
 		action401a.imageid = 401;
-		action401b = new Action(40, "Навскидку");
+		action401b = new Action(5, 40, "Навскидку");
 		action401b.imageid = 401;
-		action401r = new Action(20, "Перезарядка");
+		action401r = new Action(6, 20, "Перезарядка");
 		action401r.imageid = 401;
 		item422 = {
 			id:422,
@@ -129,7 +129,7 @@ describe('testing Combinator class', function() {
 				}]
 			}]
 		};
-		action422 = new Action(40, "Бросок");
+		action422 = new Action(7, 40, "Бросок");
 		action422.imageid = 422;
 		item465 = {
 			name:"Гранатомет М79",
@@ -164,11 +164,11 @@ describe('testing Combinator class', function() {
 				max_damage:78
 			}]
 		}
-		action465a = new Action(45, "Удар");
+		action465a = new Action(8, 45, "Удар");
 		action465a.imageid = 465;
-		action465b = new Action(35, "Запуск");
+		action465b = new Action(9, 35, "Запуск");
 		action465b.imageid = 465;
-		action465r = new Action(20, "Перезарядка");
+		action465r = new Action(10, 20, "Перезарядка");
 		action465r.imageid = 465;
 		itemDummy = {
 			name:"Болванка с перезарядкой без атак",
@@ -185,9 +185,9 @@ describe('testing Combinator class', function() {
 			lvlreq:5,
 			AP_cost:20
 		};
-		action607 = new Action(20, "Запас амуниции", 1);
+		action607 = new Action(11, 20, "Запас амуниции", 1);
 		action607.imageid = 607;
-		swap = new Action(10, "Сменить");
+		swap = new Action(12, 10, "Сменить");
 		swap.imageid = 2;
 		swap.imagesrc = "special";
 		calculator = {
@@ -301,10 +301,4 @@ describe('testing Combinator class', function() {
 		expect(swap.imageid).toEqual(2);
 		expect(swap.imagesrc).toEqual("special");
 	});
-	// it('should throw exception about illegal data', function() {
-		// var assault_data = {
-			// prefix:"as"
-		// };
-		// expect(function() {new Calculator(assault_data); }).toThrow(new Error("Illegal class data. Talents data not defined"));
-	// });
 });

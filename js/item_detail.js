@@ -1,9 +1,13 @@
-function InventoryModel(locale,data) {
+function InventoryModel(locale, version, data) {
 	if (typeof locale == "undefined") {
 		throw new Error("Locale was not defined");
 	}
+	if (typeof version == "undefined"){
+		throw new Error("Version was not defined");
+	}
 	this.locale = locale;
-	this.version = 105;
+	this.version = version;
+	this.itemData = [];
 	this.slots = {
 		primary: {short_name :"p", item:{}, grade: 0 },
 		secondary: { short_name :"s", item:{}, grade: 0 },
@@ -53,24 +57,25 @@ function InventoryModel(locale,data) {
 		chest_mod: { slots:["chest_mod"] }
 	};
 	this.setGrade = function(slot_name, value){
-		var element = $("#" + slot_name + "-value");
 		this.slots[slot_name].grade = value;
-		if (value == 0) {
-			element.html( "" );
-		} else {
-			element.html( " +" + value );
-		}
 	};
 	this.getGrade = function(slot_name) {
 		return this.slots[slot_name].grade;
 	}
+	this.getGradeString = function(slot_name){
+		if (this.slots[slot_name].grade == 0) {
+			return "";
+		} else {
+			return " +" + this.slots[slot_name].grade;
+		}
+	};
 	this.getGrade = function(slot_name, value) {
 		return this.slots[slot_name].grade;
 	}
 	this.addItem = function (slot_name, item){
 		var slot = this.slots[slot_name];
 		if (typeof(slot) == 'undefined')
-			return;
+			throw new Error("Slot not found: " + slot_name);
 		slot.item = item;
 	};
 	this.updateSlotTooltip = function(slot_name){
@@ -79,9 +84,9 @@ function InventoryModel(locale,data) {
 			selected_color = "white";
 		}
 		this.slots[slot_name].color = selected_color;
-		var selected_quality = this.getGrade(slot_name);
+		var selected_quality = this.slots[slot_name].grade;
 		var item = this.slots[slot_name].item;
-		if (!$.isEmptyObject(item) && typeof item.id != 'undefined'){
+		if (!isEmpty(item) && typeof item.id != 'undefined'){
 			$("#" + slot_name + "-name").text(this.getLocalizedProperty(item, "name"));
 			var link = "/item.php?"
 				+ "id=" + item.id
@@ -104,15 +109,12 @@ function InventoryModel(locale,data) {
 			});
 		}
 	};
-	this.resetInventorySlot = function(slot_name) {
-		if ($.isEmptyObject(this.slots[slot_name].item)) {
-			return;
+	this.resetSlot = function(slot_name) {
+		if (typeof(this.slots[slot_name]) == 'undefined')
+			throw new Error("Slot not found: " + slot_name);
+		if (!isEmpty(this.slots[slot_name].item)) {
+			this.addItem(slot_name, {});
 		}
-		this.addItem(slot_name, {});
-		$("#" + slot_name + "-link").attr("href", "");
-		$("#" + slot_name + "-container").html("<img src=\"images/slot-" + slot_name + ".png\">");
-		$("#" + slot_name + "-name").text("");
-		$("#" + slot_name + "-value").text("");
 	};
 	this.removeItem = function(item){
 		for (slot in this.slots) {
@@ -121,33 +123,14 @@ function InventoryModel(locale,data) {
 			}
 		}
 	};
-	this.equipItem = function(item, slot_name, fallback) {
-		var slot = $("#" + slot_name + "-container");
-		if (slot.length == 0) {
-			slot = $("#" + fallback + "-container");
-			slot_name = fallback;
-		}
-		var old_item = this.slots[slot_name].item;
-		if (!$.isEmptyObject(old_item)) {
-			this.resetInventorySlot(slot_name);
-		}
-		this.addItem(slot_name, item);
-		slot.empty();
-		slot.prop("title");
-		slot.html(this.getImageForItem(item));
-		this.updateSlotTooltip(slot_name);
-	};
 	this.getItemById = function(query_id){
 		for (var i = 0; i < this.itemData.length; i++) {
 			var current = this.itemData[i];
-			if (typeof(current) == 'undefined') {
-				continue;
-			}
 			if (typeof(current.id) == 'undefined') {
-				continue;
+				throw new Error("Illegal data: id is not defined");
 			}
 			if (typeof(current.category) == 'undefined') {
-				continue;
+				throw new Error("Illegal data: category is not defined");
 			}
 			if (current.id == query_id){
 				return current;
@@ -164,19 +147,13 @@ function InventoryModel(locale,data) {
 		var diffx = item_image_id % 20 * 64;
 		return "<img src=\"images/items.png\" style=\"margin-left:-" + diffx + "px;margin-top:-" + diffy + "px;\"/>";
 	};
-	this.addItemToPool = function(item){
-		$("#" + item.category + "-pool")
-			.append("<div class=\"swimmer\">" +
-				"<div id=\"item_" + item.id + "\" class=\"swimmer-image-container\">" +
-					this.getImageForItem(item) +
-				"</div>" +
-				"<a id=\"item" + item.id + "name\" href='javascript:autoEquipItem(" + item.id + ", \"primary\")'>" + this.getLocalizedProperty(item, "name") + "</a>" +
-			"</div>");
-		$("#item_" + item.id).draggable({
-			containment:"document",
-			helper:"clone",
-			appendTo: "body"
-		});
+	this.getSwimmerForPool = function(item){
+		return "<div class=\"swimmer\">" +
+			"<div id=\"item_" + item.id + "\" class=\"swimmer-image-container\">" +
+				this.getImageForItem(item) +
+			"</div>" +
+			"<a id=\"item" + item.id + "name\" href='javascript:autoEquipItem(" + item.id + ")'>" + this.getLocalizedProperty(item, "name") + "</a>" +
+		"</div>";
 	};
 	this.getLocalizedProperty = function(container, property, locale) {
 		if (typeof container[property] == "undefined") {
@@ -202,34 +179,24 @@ function InventoryModel(locale,data) {
 			this.updateSlotTooltip(slot);
 		}
 	};
-	this.clearPool = function() {
-		for (type in this.weapontype_map) {
-			$("#" + type + "-pool").empty();
-		}
-	};
 	this.clearEquipped = function() {
 		for (slot in this.possible_slots) {
-			this.resetInventorySlot(slot);
+			this.resetSlot(slot);
 		}
 	};
-	this.fillAvailableItems = function(data){
+	this.consumeData = function(data){
 		this.itemData = data;
 		for (var i = 0; i < this.itemData.length; i++) {
 			var current = this.itemData[i];
-			if (typeof(current) == 'undefined') {
-				continue;
-			}
 			if (typeof(current.id) == 'undefined') {
-				continue;
+				throw new Error("Item id is not defined");
 			}
 			if (typeof(current.category) == 'undefined') {
-				continue;
+				throw new Error("Item " + current.id + " category is not defined");
 			}
-			//console.log("adding " + current.name + " to pool");
-			this.addItemToPool(current);
 			if (typeof this.weapontype_map[current.category] == 'undefined') {
-				throw new Error("Unknown category:" + current.category);
-			}				
+				throw new Error("Unknown category: " + current.category);
+			}
 			var slots_of_item = this.weapontype_map[current.category].slots;
 			for (var j = 0; j < slots_of_item.length; j ++) {
 				if (this.possible_slots[slots_of_item[j]] === "") {
@@ -239,5 +206,20 @@ function InventoryModel(locale,data) {
 				}
 			}
 		}
+	};
+	this.autoEquipItem = function(itemId){
+		var item = this.getItemById(itemId);
+		var slots = this.weapontype_map[item.category].slots;
+		var targetSlot = slots[slots.length - 1];
+		for (var i = 0; i < slots.length; i++) {
+			if (isEmpty(this.slots[slots[i]].item)) {
+				targetSlot = slots[i];
+				break;
+			}
+		}
+		this.resetSlot(targetSlot);
+		this.addItem(targetSlot, item);
+		this.updateSlotTooltip(targetSlot);
+		return targetSlot;
 	};
 }
