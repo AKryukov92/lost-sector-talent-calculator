@@ -241,10 +241,22 @@ function update_link() {
 	$("#link-to-build").val(location.origin + "/combinator.php" + link);
 }
 function orderToDisplayInventory(handleUri) {
-	inventoryApp.clearPool();
-	inventoryApp.clearEquipped();
+	clearPool(inventoryApp);
+	for (slot in inventoryApp.possible_slots) {
+		clearSlot(slot);
+	}
 	$.get("/item_data.php?version=" + inventoryApp.version, function(data) {
-		inventoryApp.fillAvailableItems(data);
+		inventoryApp.consumeData(data);
+		for (var i = 0; i < inventoryApp.itemData.length; i++){
+			var item =  inventoryApp.itemData[i];
+			$("#" + item.category + "-pool")
+				.append(inventoryApp.getSwimmerForPool(item));
+			$("#item_" + item.id).draggable({
+				containment:"document",
+				helper:"clone",
+				appendTo: "body"
+			});
+		}
 		for (slot in inventoryApp.possible_slots) {
 			$("#" + slot + "-container").droppable({
 				accept:inventoryApp.possible_slots[slot],
@@ -263,7 +275,7 @@ function orderToDisplayInventory(handleUri) {
 			initialLink.handleParts(uriHandlers);
 		}
 	}).fail(function() {
-		inventoryApp.clearPool();
+		clearPool(inventoryApp);
 	});
 }
 function talentUriHandler(key, value, target) {
@@ -284,12 +296,13 @@ function talentUriHandler(key, value, target) {
 		talentController.orderToDisplay("as", 103);
 	}
 }
-
 function slider_slide_handler(slot_name, event, ui) {
 	if ($.isEmptyObject(inventoryApp.slots[slot_name].item)) {
 		return;
 	}
 	inventoryApp.setGrade(slot_name, ui.value);
+	$("#" + slot_name + "-value")
+		.html(inventoryApp.getGradeString(slot_name));
 	update_link();
 }
 
@@ -301,8 +314,9 @@ function quality_change_handler(slot_name) {
 	update_link();
 }
 
-function reset_slot(slot_name) {
-	inventoryApp.resetInventorySlot(slot_name);
+function resetSlot(slot_name) {
+	clearSlot(slot_name);
+	inventoryApp.resetSlot(slot_name);
 	update_link();
 }
 function versionUriHandler(key, value, target) {
@@ -323,22 +337,28 @@ function specialItemUriHandler(key, value, target) {
 	var item = inventoryApp.getItemById(itemstring.split("_")[0]);
 	inventoryApp.equipItem(item, target);
 }
-function autoEquipItem(itemId, fallback) {
-	var item = inventoryApp.getItemById(itemId);
-	var slots = inventoryApp.weapontype_map[item.category].slots;
-	for (var i = 0; i < slots.length; i++) {
-		if (isEmpty(inventoryApp.slots[slots[i]].item)) {
-			inventoryApp.equipItem(item, slots[i], fallback);
-			update_link();
-			return;
-		}
+function clearPool(app) {
+	for (type in app.weapontype_map) {
+		$("#" + type + "-pool").empty();
 	}
-	inventoryApp.equipItem(item, slots[slots.length - 1], fallback);
+}
+function clearSlot(slot){
+	$("#" + slot + "-link").attr("href", "");
+	$("#" + slot + "-container").html("<img src=\"images/slot-" + slot + ".png\">");
+	$("#" + slot + "-name").text("");
+	$("#" + slot + "-value").text("");
+}
+function autoEquipItem(itemId) {
+	var updated_slot = inventoryApp.autoEquipItem(itemId);
+	var slot = $("#" + updated_slot + "-container");
+	slot.empty();
+	slot.prop("title");
+	slot.html(inventoryApp.getImageForItem(inventoryApp.getItemById(itemId)));
 	update_link();
 }
 
 var clipboard = new Clipboard('[data-clipboard-target]');
-var inventoryApp = new InventoryModel(getLocale());
+var inventoryApp = new InventoryModel(getLocale(), defaultVersion);
 var talentController = new TalentController();
 toggleTalentTooltip();
 var uriHandlers = {
@@ -371,7 +391,7 @@ var uriHandlers = {
 var initialLink = new ApplicationLink(location.search);
 if (initialLink.linkString.length == 0) {
 	// заходим по ссылке без данных
-	talentController.orderToDisplay("as", 105);
+	talentController.orderToDisplay("as", defaultVersion);
 }
 $(document).ready(function(){
 	$("#link-to-build").click(function(){

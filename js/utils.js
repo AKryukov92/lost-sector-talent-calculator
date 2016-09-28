@@ -1,3 +1,4 @@
+var defaultVersion = 105;
 function loadImages(sources, callback) {
 	var images = {};
 	var loadedImages = 0;

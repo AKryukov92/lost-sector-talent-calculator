@@ -107,7 +107,7 @@ if (!$GLOBALS["iframe"]) {
 			<div id="armor-container" class="inventory-item-container">
 				<img src="images/slot-armor.png"/>
 			</div>
-			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('armor');">
+			<a class="tunable-reset" onclick="resetSlot('armor');">
 				<span id="armor-reset">очистить</span>
 			</a>
 		</div>

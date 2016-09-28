@@ -45,7 +45,7 @@ if (!$GLOBALS["iframe"]) {
 		<div id="feet_mod-container" class="inventory-item-container">
 			<img src="images/slot-feet_mod.png"/>
 		</div>
-		<a class="tunable-reset" onclick="reset_slot('feet_mod');"><span name="t-clear">очистить</span></a>
+		<a class="tunable-reset" onclick="resetSlot('feet_mod');"><span name="t-clear">очистить</span></a>
 	</div>
 	<div class="fake-tooltip-container" style="margin:2px;">
 		<div class="fake-tooltip" id="feet_mod-fake-tooltip">

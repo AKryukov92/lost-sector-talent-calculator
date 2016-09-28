@@ -132,7 +132,7 @@ if (!$GLOBALS["iframe"]) {
 			<div id="primary-container" class="inventory-item-container">
 				<img src="images/slot-primary.png"/>
 			</div>
-			<a class="tunable-reset" onclick="player_model.reset_inventory_slot('primary');"><span id="primary-reset">очистить</span></a>
+			<a class="tunable-reset" onclick="resetSlot('primary');"><span id="primary-reset">очистить</span></a>
 		</div>
 		<div class="tunable-properties-container">
 			<input type="radio" name="primary-quality" value="gray" id="primary-quality-gray" class="quality">

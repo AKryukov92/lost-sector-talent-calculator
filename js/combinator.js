@@ -184,7 +184,7 @@ function Combinator() {
 				continue;
 			}
 			if (typeof talent.AP_cost != 'undefined') {
-				this.actions.push(makeTalent(talent));
+				this.actions.push(makeTalent(this.actionIdSequence++, talent));
 			}
 		}
 	};
@@ -194,21 +194,21 @@ function Combinator() {
 		}
 		if (typeof item.attacks != 'undefined' && item.attacks.length > 0) {
 			for (var i = 0; i < item.attacks.length; i++) {
-				this.actions.push(makeAttack(item, item.attacks[i]));
+				this.actions.push(makeAttack(this.actionIdSequence++, item, item.attacks[i]));
 			}
 			if (typeof item.reload_cost != 'undefined') {
-				this.actions.push(makeReload(item));
+				this.actions.push(makeReload(this.actionIdSequence++, item));
 			}
 		}
 		if (typeof item.AP_cost != 'undefined') {
-			this.actions.push(makeConsumable(item));
+			this.actions.push(makeConsumable(this.actionIdSequence++, item));
 		}
 	};
 	this.addSwap = function() {
-		this.actions.push(makeSwap());
+		this.actions.push(makeSwap(this.actionIdSequence++));
 	};
 	this.addDuck = function() {
-		this.actions.push(makeDuck());
+		this.actions.push(makeDuck(this.actionIdSequence++));
 	};
 	this.createRoots = function () {
 		var ret = [];
@@ -239,26 +239,27 @@ function Combinator() {
 		}
 		return totalSets;
 	};
-	function makeTalent(talent){
-		var action = new Action(this.actionIdSequence++);
+	function makeTalent(id, talent){
+		var action = new Action(id);
 		if (typeof talent.number_of_uses != 'undefined') {
 			action.numberOfUses = talent.number_of_uses;
 		}
+		if (typeof talent.AP_cost != 'undefined'){
+			action.cost = talent.AP_cost;
+		}
+		action.name = talent.name;
 		action.type = "talent";
 		action.source = talent;
-		action.cost = talent.AP_cost;
 		action.imageid = getImageId(talent);
-		action.name = talent.name;
 		action.imagesrc = "talents";
 		return action;
 	};
-	function makeAttack(item, attack){
-		var action = new Action(this.actionIdSequence++);
+	function makeAttack(id, item, attack){
+		var name = getLocalizedProperty(item, "name") + " " + getLocalizedProperty(attack, "name");
+		var action = new Action(id, attack.cost, name);
 		action.type = "attack";
 		action.source = attack;
 		action.item = item;
-		action.cost = attack.cost;
-		action.name = getLocalizedProperty(item, "name") + " " + getLocalizedProperty(attack, "name");
 		action.minDist = attack.min_dist;
 		action.maxDist = attack.max_dist;
 		if (item.category == 'consumable'){
@@ -270,45 +271,37 @@ function Combinator() {
 		action.imagesrc = "items";
 		return action;
 	};
-	function makeReload(item){
-		var reload = new Action(this.actionIdSequence++);
+	function makeReload(id, item){
+		var name = getLocalizedProperty(item, "name") + " перезарядка";
+		var reload = new Action(id, item.reload_cost, name);
 		reload.type = "reload";
 		reload.source = item;
-		reload.cost = item.reload_cost;
-		reload.name = getLocalizedProperty(item, "name") + " перезарядка"
 		reload.imageid = getImageId(item);
 		reload.imagesrc = "items";
 		return reload;
 	};
-	function makeConsumable(item){
-		var consumable = new Action(this.actionIdSequence++);
+	function makeConsumable(id, item){
+		var name = getLocalizedProperty(item, "name");
+		var consumable = new Action(id, item.AP_cost, name, 1);
 		//Активки типа Цереры
 		consumable.type = "consumable";
 		consumable.source = item;
-		consumable.cost = item.AP_cost;
 		consumable.imageid = getImageId(item);
-		consumable.name = item.name;
-		consumable.numberOfUses = 1;
 		consumable.possibleRepeat = true;
 		consumable.imagesrc = "items";
 		return consumable;
 	};
-	function makeSwap (){
-		var swap = new Action(this.actionIdSequence++);
+	function makeSwap (id){
+		var swap = new Action(id, 10, "Сменить");
 		swap.type = "swap";
-		swap.cost = 10;
-		swap.name = 
-		swap.name = "Сменить";
 		swap.source = { name: "Действие" };
 		swap.imageid = 2;
 		swap.imagesrc = "special";
 		return swap;
 	};
-	function makeDuck (){
-		var duck = new Action(this.actionIdSequence++);
+	function makeDuck (id){
+		var duck = new Action(id, 15, "Присесть");
 		duck.type = "duck";
-		duck.cost = 15;
-		duck.name = "Присесть";
 		duck.source = { name: "Действие" };
 		duck.imageid = 1;
 		duck.imagesrc = "special";

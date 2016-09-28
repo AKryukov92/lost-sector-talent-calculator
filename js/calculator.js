@@ -204,7 +204,7 @@ function Calculator () {
 			throw new Error("Assign power to talents first");
 		}
 		var powersum = 0;
-		var learned = getLearnedTalents();
+		var learned = this.getLearnedTalents();
 		for (var i = 0; i < learned.length; i++) {
 			powersum += learned[i].power;
 		}
@@ -263,11 +263,9 @@ function Calculator () {
 	};
 	this.getSpentTalentPoints = function() {
 		var count = 0;
-		var learned = getLearnedTalents();
+		var learned = this.getLearnedTalents();
 		for (var i = 0; i < learned.length; i++) {
-			if (typeof learned[i].cost != 'undefined') {
-				count += learned[i].cost;
-			}
+			count += learned[i].cost;
 		}
 		return count;
 	};
@@ -282,7 +280,7 @@ function Calculator () {
 			maxLevel = Math.ceil((spentPoints - 4) / 3) + 4;
 		}
 		var i;
-		var learned = getLearnedTalents();
+		var learned = this.getLearnedTalents();
 		for(var i = 0; i < learned.length; i++) {
 			if (learned[i].lvlreq > maxLevel) {
 				maxLevel = learned[i].lvlreq;
