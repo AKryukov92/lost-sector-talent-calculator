@@ -1,16 +1,37 @@
 ﻿function slider_slide_handler(slot_name, event, ui) {
-	if ($.isEmptyObject(inventoryApp.slots[slot_name].item)) {
+	if (isEmpty(inventoryApp.getItemBySlot(slot_name))) {
 		return;
 	}
 	inventoryApp.setGrade(slot_name, ui.value);
-	$("#" + slot_name + "-value")
-		.html(inventoryApp.getGradeString(slot_name));
+	$("#" + slot_name + "-title")
+		.html(inventoryApp.getItemTitle(slot_name));
 }
 
 function quality_change_handler(slot_name) {
-	if (!$.isEmptyObject(inventoryApp.slots[slot_name].item)) {
-	inventoryApp.updateSlotTooltip(slot_name);
+	if (isEmpty(inventoryApp.getItemBySlot(slot_name))) {
+		return;
 	}
+	var selected_color = $("input[name=" + slot_name +"-quality]:checked", "#" + slot_name).val();
+	inventoryApp.setColor(slot_name, selected_color);
+	updateSlotTooltip(slot_name);
+}
+function updateSlotTooltip(slotName){
+	if (isEmpty(inventoryApp.getItemBySlot(slotName))) {
+		return;
+	}
+	var link = inventoryApp.getItemUrlBySlot(slotName);
+	$("#" + slotName + "-link")
+		.attr("href", link)
+		.text(inventoryApp.getItemTitle(slotName));
+	$("#" + slotName + "-link")
+		.removeClass("grey-link white-link green-link blue-link")
+		.addClass(inventoryApp.getColor(slotName) + "-link");
+	$("#" + slotName + "-container")
+		.html(inventoryApp.getImageForSlot(slotName));
+	$.get(link + "&iframe=true", function(data) {
+		$("#" + slotName + "-fake-tooltip")
+			.html(data);
+	});
 }
 
 function resetSlot(slot_name) {
@@ -21,8 +42,13 @@ function versionUriHandler(key, value, target) {
 	itemstring = decodeURIComponent(value);
 	inventoryApp.version = 0+itemstring;
 }
-function autoEquipItem(itemId) {
-	inventoryApp.autoEquipItem(itemId);
+function equipItem(itemId) {
+	inventoryApp.equipItem(itemId, activeSlot);
+	updateSlotTooltip(activeSlot);
+	var slot = $("#" + activeSlot + "-container");
+	slot.empty();
+	slot.prop("title");
+	slot.html(inventoryApp.getImageForSlot(activeSlot));
 }
 var inventoryApp = new InventoryModel(getLocale(), defaultVersion);
 $(document).ready(function(){
@@ -81,8 +107,7 @@ function clearPool(app) {
 function clearSlot(slot){
 	$("#" + slot + "-link").attr("href", "");
 	$("#" + slot + "-container").html("<img src=\"images/slot-" + slot + ".png\">");
-	$("#" + slot + "-name").text("");
-	$("#" + slot + "-value").text("");
+	$("#" + slot + "-title").text("");
 }
 function orderToDisplayInventory() {
 	clearPool(inventoryApp);
@@ -108,9 +133,7 @@ function orderToDisplayInventory() {
 				hoverClass: "ui-state-active",
 				drop:function(event, ui) {
 					var item_id = ui.draggable.context.id.split("_")[1];
-					var item = inventoryApp.getItemById(item_id);
-					var slot_name = $(this).context.id.split("-")[0];
-					inventoryApp.equipItem(item, slot_name);
+					inventoryApp.autoEquipItem(item_id);
 				}
 			});
 		}

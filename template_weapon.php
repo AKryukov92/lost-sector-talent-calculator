@@ -40,11 +40,7 @@ if (!$GLOBALS["iframe"]) {
 	<link href="css/local624.css" rel="stylesheet">
 	<link href="css/local1280.css" rel="stylesheet">
 	<link href="css/local1920.css" rel="stylesheet">
-	<script>
-        function resizeIframe(obj) {
-            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-        }
-	</script>
+	<script>var activeSlot = "primary";</script>
 </head>
 <body style="margin:0px;">
 <?php } ?>
@@ -125,7 +121,7 @@ if (!$GLOBALS["iframe"]) {
 	<div id="primary" class="tunable-item">
 		<div class="tunable-item-name">
 			<a target="_blank" id="primary-link">
-				<span id="primary-name"></span><span id="primary-value"></span>
+				<span id="primary-title"></span>
 			</a>
 		</div>
 		<div class="draggable-landing">

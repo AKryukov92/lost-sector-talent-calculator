@@ -4281,7 +4281,7 @@
 		"gold":250
 	}
 },{
-	"name":{"ru":"Многозарядный гранатомет EX-41","en":""},
+	"name":{"ru":"Многозарядный гранатомет EX-41","en":"EX-41 Grenade Launcher"},
 	"category":"launcher",
 	"mobility":68,
 	"clip":3,

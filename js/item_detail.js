@@ -8,20 +8,20 @@ function InventoryModel(locale, version, data) {
 	this.locale = locale;
 	this.version = version;
 	this.itemData = [];
-	this.slots = {
-		primary: {short_name :"p", item:{}, grade: 0 },
-		secondary: { short_name :"s", item:{}, grade: 0 },
-		armor: { short_name :"a", item:{}, grade: 0 },
-		hat: { short_name :"h", item:{}, grade: 0 },
-		consumable_1: { short_name :"c1", item:{}, grade: 0 },
-		consumable_2: { short_name :"c2", item:{}, grade: 0 },
-		consumable_3: { short_name :"c3", item:{}, grade: 0 },
-		consumable_4: { short_name :"c4", item:{}, grade: 0 },
-		consumable_5: { short_name :"c5", item:{}, grade: 0 },
-		head_mod: {short_name:"hem", item:{}, grade: 0 },
-		hand_mod: {short_name:"ham", item:{}, grade: 0 },
-		feet_mod: {short_name:"fm", item:{}, grade: 0 },
-		chest_mod: {short_name:"cm", item:{}, grade: 0 }
+	var slots = {
+		primary: {short_name :"p", item:null, grade: 0, color:"white" },
+		secondary: { short_name :"s", item:null, grade: 0, color:"white" },
+		armor: { short_name :"a", item:null, grade: 0, color:"white" },
+		hat: { short_name :"h", item:null, grade: 0, color:"white" },
+		consumable_1: { short_name :"c1", item:null, grade: 0, color:"white" },
+		consumable_2: { short_name :"c2", item:null, grade: 0, color:"white" },
+		consumable_3: { short_name :"c3", item:null, grade: 0, color:"white" },
+		consumable_4: { short_name :"c4", item:null, grade: 0, color:"white" },
+		consumable_5: { short_name :"c5", item:null, grade: 0, color:"white" },
+		head_mod: {short_name:"hem", item:null, grade: 0, color:"white" },
+		hand_mod: {short_name:"ham", item:null, grade: 0, color:"white" },
+		feet_mod: {short_name:"fm", item:null, grade: 0, color:"white" },
+		chest_mod: {short_name:"cm", item:null, grade: 0, color:"white" }
 	};
 	this.possible_slots = {
 		primary:"",
@@ -56,135 +56,10 @@ function InventoryModel(locale, version, data) {
 		feet_mod: { slots:["feet_mod"] },
 		chest_mod: { slots:["chest_mod"] }
 	};
-	this.setGrade = function(slot_name, value){
-		this.slots[slot_name].grade = value;
-	};
-	this.getGrade = function(slot_name) {
-		return this.slots[slot_name].grade;
-	}
-	this.getGradeString = function(slot_name){
-		if (this.slots[slot_name].grade == 0) {
-			return "";
-		} else {
-			return " +" + this.slots[slot_name].grade;
-		}
-	};
-	this.getGrade = function(slot_name, value) {
-		return this.slots[slot_name].grade;
-	}
-	this.addItem = function (slot_name, item){
-		var slot = this.slots[slot_name];
-		if (typeof(slot) == 'undefined')
-			throw new Error("Slot not found: " + slot_name);
-		slot.item = item;
-	};
-	this.updateSlotTooltip = function(slot_name){
-		var selected_color = $("input[name=" + slot_name +"-quality]:checked", "#" + slot_name).val();
-		if (typeof selected_color == 'undefined') {
-			selected_color = "white";
-		}
-		this.slots[slot_name].color = selected_color;
-		var selected_quality = this.slots[slot_name].grade;
-		var item = this.slots[slot_name].item;
-		if (!isEmpty(item) && typeof item.id != 'undefined'){
-			$("#" + slot_name + "-name").text(this.getLocalizedProperty(item, "name"));
-			var link = "/item.php?"
-				+ "id=" + item.id
-				+ "&locale=" + this.locale
-				+ "&version=" + this.version;
-			if (item.category != "consumable"
-				&& item.category != "hat"
-				&& item.category != "head_mod"
-				&& item.category != "chest_mod"
-				&& item.category != "feet_mod"
-				&& item.category != "hand_mod"
-			) {
-				link += "&color=" + selected_color
-					+ "&quality=" + selected_quality;
-			}
-			$("#" + slot_name + "-link").attr("href", link);
-			$("#" + slot_name + "-link").removeClass("grey-link white-link green-link blue-link").addClass(selected_color + "-link");
-			$.get(link + "&iframe=true", function(data) {
-				$("#" + slot_name + "-fake-tooltip").html(data);
-			});
-		}
-	};
-	this.resetSlot = function(slot_name) {
-		if (typeof(this.slots[slot_name]) == 'undefined')
-			throw new Error("Slot not found: " + slot_name);
-		if (!isEmpty(this.slots[slot_name].item)) {
-			this.addItem(slot_name, {});
-		}
-	};
-	this.removeItem = function(item){
-		for (slot in this.slots) {
-			if(slot.item.id === item.id) {
-				slot.item = null;
-			}
-		}
-	};
-	this.getItemById = function(query_id){
-		for (var i = 0; i < this.itemData.length; i++) {
-			var current = this.itemData[i];
-			if (typeof(current.id) == 'undefined') {
-				throw new Error("Illegal data: id is not defined");
-			}
-			if (typeof(current.category) == 'undefined') {
-				throw new Error("Illegal data: category is not defined");
-			}
-			if (current.id == query_id){
-				return current;
-			}
-		}
-	};
-	this.getImageForItem = function (item) {
-		if (typeof item.imageid != 'undefined') {
-			var item_image_id = item.imageid;
-		} else {
-			var item_image_id = item.id;
-		}
-		var diffy = (~~(item_image_id / 20)) * 64;
-		var diffx = item_image_id % 20 * 64;
-		return "<img src=\"images/items.png\" style=\"margin-left:-" + diffx + "px;margin-top:-" + diffy + "px;\"/>";
-	};
-	this.getSwimmerForPool = function(item){
-		return "<div class=\"swimmer\">" +
-			"<div id=\"item_" + item.id + "\" class=\"swimmer-image-container\">" +
-				this.getImageForItem(item) +
-			"</div>" +
-			"<a id=\"item" + item.id + "name\" href='javascript:autoEquipItem(" + item.id + ")'>" + this.getLocalizedProperty(item, "name") + "</a>" +
-		"</div>";
-	};
-	this.getLocalizedProperty = function(container, property, locale) {
-		if (typeof container[property] == "undefined") {
-			throw new Error("Свойство не существует");
-		}
-		if (typeof container[property] === "object" && container[property] !== null) {
-			if (typeof container[property][locale] != 'undefined') {
-				return container[property][locale];
-			} else {
-				return container[property][this.locale];
-			}
-		} else {
-			return container[property];
-		}
-	};
-	this.applyLocale = function(locale) {
-		this.locale = locale;
-		for (var i = 0; i < this.itemData.length; i++) {
-			var current = this.itemData[i];
-			$("#item" + current.id + "name").html(this.getLocalizedProperty(current, "name"));
-		}
-		for (slot in this.possible_slots){
-			this.updateSlotTooltip(slot);
-		}
-	};
-	this.clearEquipped = function() {
-		for (slot in this.possible_slots) {
-			this.resetSlot(slot);
-		}
-	};
 	this.consumeData = function(data){
+		if (typeof data == "undefined"){
+			throw new Error("Data is not defined");
+		}
 		this.itemData = data;
 		for (var i = 0; i < this.itemData.length; i++) {
 			var current = this.itemData[i];
@@ -207,19 +82,153 @@ function InventoryModel(locale, version, data) {
 			}
 		}
 	};
+	this.getItemById = function(itemId){
+		for (var i = 0; i < this.itemData.length; i++) {
+			if (this.itemData[i].id == itemId){
+				return this.itemData[i];
+			}
+		}
+		throw new Error("Id " + itemId + " is not found");
+	};
+	this.getItemBySlot = function(slot_name){
+		var slot = slots[slot_name];
+		if (typeof(slot) == 'undefined')
+			throw new Error("Slot not found: " + slot_name);
+		return slots[slot_name].item;
+	}
 	this.autoEquipItem = function(itemId){
 		var item = this.getItemById(itemId);
-		var slots = this.weapontype_map[item.category].slots;
-		var targetSlot = slots[slots.length - 1];
-		for (var i = 0; i < slots.length; i++) {
-			if (isEmpty(this.slots[slots[i]].item)) {
-				targetSlot = slots[i];
+		var itemSlots = this.weapontype_map[item.category].slots;
+		var targetSlot = itemSlots[itemSlots.length - 1];
+		for (var i = 0; i < itemSlots.length; i++) {
+			if (isEmpty(slots[itemSlots[i]].item)) {
+				targetSlot = itemSlots[i];
 				break;
 			}
 		}
 		this.resetSlot(targetSlot);
-		this.addItem(targetSlot, item);
-		this.updateSlotTooltip(targetSlot);
+		addItem(targetSlot, item);
 		return targetSlot;
+	};
+	this.equipItem = function(itemId, targetSlot){
+		var item = this.getItemById(itemId);
+		var slots = this.weapontype_map[item.category].slots;
+		for (var i = 0; i < slots.length; i++){
+			if (targetSlot == slots[i]){
+				this.resetSlot(targetSlot);
+				addItem(targetSlot, item);
+				return;
+			}
+		}
+		throw new Error("Item " + itemId + " can not be equipped in slot " + targetSlot);
+	};
+	this.resetSlot = function(slot_name) {
+		if (typeof(slots[slot_name]) == 'undefined')
+			throw new Error("Slot not found: " + slot_name);
+		slots[slot_name].item = null;
+	};
+	this.setGrade = function(slot_name, value){
+		if (typeof(slots[slot_name]) == 'undefined')
+			throw new Error("Slot not found: " + slot_name);
+		slots[slot_name].grade = value;
+	};
+	this.getItemTitle = function(slot_name){
+		var slot = slots[slot_name];
+		if (typeof(slot) == 'undefined')
+			throw new Error("Slot not found: " + slot_name);
+		if (isEmpty(slot.item))
+			return "";
+		var name = getLocalizedProperty(slot.item, "name");
+		if (slot.grade == 0) {
+			return name;
+		} else {
+			return name + " +" + slots[slot_name].grade;
+		}
+	};
+	this.setColor = function(slot_name, color){
+		var slot = slots[slot_name];
+		if (typeof(slot) == 'undefined')
+			throw new Error("Slot not found: " + slot_name);
+		slots[slot_name].color = color;
+	}
+	this.getColor = function(slot_name){
+		var slot = slots[slot_name];
+		if (typeof(slot) == 'undefined')
+			throw new Error("Slot not found: " + slot_name);
+		return slots[slot_name].color;
+	}
+	function addItem(slot_name, item){
+		var slot = slots[slot_name];
+		if (typeof(slot) == 'undefined')
+			throw new Error("Slot not found: " + slot_name);
+		slot.item = item;
+	};
+	this.getItemUrlBySlot = function(slot_name){
+		var item = slots[slot_name].item;
+		var link = "/item.php?"
+			+ "id=" + item.id
+			+ "&locale=" + this.locale
+			+ "&version=" + this.version;
+		if (item.category != "consumable"
+			&& item.category != "hat"
+			&& item.category != "head_mod"
+			&& item.category != "chest_mod"
+			&& item.category != "feet_mod"
+			&& item.category != "hand_mod"
+		) {
+			link += "&color=" + slots[slot_name].color
+				+ "&quality=" + slots[slot_name].grade;
+		}
+		return link;
+	}
+	this.getImageForId = function (itemId) {
+		var diffy = (~~(itemId / 20)) * 64;
+		var diffx = itemId % 20 * 64;
+		return "<img src='/images/items.png' style='margin-left:-" + diffx + "px;margin-top:-" + diffy + "px;'/>";
+	};
+	this.getImageForSlot = function(slot_name){
+		var slot = slots[slot_name];
+		if (typeof(slot) == 'undefined')
+			throw new Error("Slot not found: " + slot_name);
+		if (isEmpty(slot.item)){
+			return "<img src='/images/slot-" + slot_name + ".png'>";
+		}
+		return this.getImageForId(slot.item.id);
+	};
+	this.getSwimmerForPool = function(item){
+		if (typeof item == "undefined"){
+			throw new Error("Item is not defined");
+		}
+		return "<div class='swimmer'>" +
+			"<div id='item_" + item.id + "' class='swimmer-image-container'>" +
+				this.getImageForId(item.id) +
+			"</div>" +
+			"<a id='item" + item.id + "name' href='javascript:equipItem(" + item.id + ")'>" + getLocalizedProperty(item, "name") + "</a>" +
+		"</div>";
+	};
+	this.applyLocale = function(locale) {
+		this.locale = locale;
+		for (var i = 0; i < this.itemData.length; i++) {
+			var current = this.itemData[i];
+			$("#item" + current.id + "name").html(getLocalizedProperty(current, "name"));
+		}
+		for (slot in this.possible_slots){
+			this.updateSlotTooltip(slot);
+		}
+	};
+	this.clearEquipped = function() {
+		for (slot in this.possible_slots) {
+			this.resetSlot(slot);
+		}
+	};
+	this.makeLinkPart = function(slot_name){
+		var slot = slots[slot_name];
+		if (typeof(slot) == 'undefined')
+			throw new Error("Slot not found: " + slot_name);
+		if (!isEmpty(slot.item)) {
+			return "&" + slot.short_name + "=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
+		}else {
+			return "";
+		}
 	};
 }

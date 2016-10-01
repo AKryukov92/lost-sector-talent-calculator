@@ -43,6 +43,7 @@ if (!$GLOBALS["iframe"]) {
 	<link href="css/local624.css" rel="stylesheet">
 	<link href="css/local1280.css" rel="stylesheet">
 	<link href="css/local1920.css" rel="stylesheet">
+	<script>var activeSlot = "armor";</script>
 </head>
 <body style="margin:0px;">
 <?php } ?>
@@ -100,7 +101,7 @@ if (!$GLOBALS["iframe"]) {
 	<div id="armor" class="tunable-item">
 		<div class="tunable-item-name">
 			<a target="_blank" id="armor-link">
-				<span id="armor-name"></span><span id="armor-value"></span>
+				<span id="armor-title"></span>
 			</a>
 		</div>
 		<div class="draggable-landing">

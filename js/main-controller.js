@@ -172,7 +172,8 @@ function loadSpecialTalentData(data){
 		}
 	}
 }
-function update_link() {
+function update_link() {}
+function real_update_link() {
 	var talentApplication = talentController.getView();
 	var link = "/?t=" +
 		talentController.getGameVersion() +
@@ -186,58 +187,19 @@ function update_link() {
 		talentApplication.getCalculator().getTalentString()
 		+ ".png\"][/img]";
 	$("#subscription-template").val(subscription);
-	var slot = inventoryApp.slots["primary"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&p=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
-	}
-	slot = inventoryApp.slots["secondary"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&s=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
-	}
-	slot = inventoryApp.slots["armor"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&a=" + slot.item.id + "_" + slot.color + "_" + slot.grade;
-	}
-	slot = inventoryApp.slots["hat"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&h=" + slot.item.id;
-	}
-	slot = inventoryApp.slots["consumable_1"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&c1=" + slot.item.id;
-	}
-	slot = inventoryApp.slots["consumable_2"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&c2=" + slot.item.id;
-	}
-	slot = inventoryApp.slots["consumable_3"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&c3=" + slot.item.id;
-	}
-	slot = inventoryApp.slots["consumable_4"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&c4=" + slot.item.id;
-	}
-	slot = inventoryApp.slots["consumable_5"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&c5=" + slot.item.id;
-	}
-	slot = inventoryApp.slots["head_mod"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&hem=" + slot.item.id;
-	}
-	slot = inventoryApp.slots["chest_mod"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&cm=" + slot.item.id;
-	}
-	slot = inventoryApp.slots["hand_mod"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&ham=" + slot.item.id;
-	}
-	slot = inventoryApp.slots["feet_mod"];
-	if (!$.isEmptyObject(slot.item)) {
-		link += "&fm=" + slot.item.id;
-	}
+	link+=inventoryApp.makeLinkPart("primary");
+	link+=inventoryApp.makeLinkPart("secondary");
+	link+=inventoryApp.makeLinkPart("armor");
+	link+=inventoryApp.makeLinkPart("hat");
+	link+=inventoryApp.makeLinkPart("consumable_1");
+	link+=inventoryApp.makeLinkPart("consumable_2");
+	link+=inventoryApp.makeLinkPart("consumable_3");
+	link+=inventoryApp.makeLinkPart("consumable_4");
+	link+=inventoryApp.makeLinkPart("consumable_5");
+	link+=inventoryApp.makeLinkPart("head_mod");
+	link+=inventoryApp.makeLinkPart("chest_mod");
+	link+=inventoryApp.makeLinkPart("hand_mod");
+	link+=inventoryApp.makeLinkPart("feet_mod");
 	$("#link-to-build").val(location.origin + "/combinator.php" + link);
 }
 function orderToDisplayInventory(handleUri) {
@@ -264,15 +226,15 @@ function orderToDisplayInventory(handleUri) {
 				hoverClass: "ui-state-active",
 				drop:function(event, ui) {
 					var item_id = ui.draggable.context.id.split("_")[1];
-					var item = inventoryApp.getItemById(item_id);
-					var slot_name = $(this).context.id.split("-")[0];
-					inventoryApp.equipItem(item, slot_name);
+					inventoryApp.autoEquipItem(item_id);
+					updateSlotTooltip(slot);
 					update_link();
 				}
 			});
 		}
 		if (handleUri){
 			initialLink.handleParts(uriHandlers);
+			update_link = real_update_link;
 		}
 	}).fail(function() {
 		clearPool(inventoryApp);
@@ -297,20 +259,19 @@ function talentUriHandler(key, value, target) {
 	}
 }
 function slider_slide_handler(slot_name, event, ui) {
-	if ($.isEmptyObject(inventoryApp.slots[slot_name].item)) {
-		return;
-	}
 	inventoryApp.setGrade(slot_name, ui.value);
-	$("#" + slot_name + "-value")
-		.html(inventoryApp.getGradeString(slot_name));
+	$("#" + slot_name + "-title")
+		.html(inventoryApp.getItemTitle(slot_name));
 	update_link();
 }
 
 function quality_change_handler(slot_name) {
-	if ($.isEmptyObject(inventoryApp.slots[slot_name].item)) {
+	if (isEmpty(inventoryApp.getItemBySlot(slot_name))) {
 		return;
 	}
-	inventoryApp.updateSlotTooltip(slot_name);
+	var selected_color = $("input[name=" + slot_name +"-quality]:checked", "#" + slot_name).val();
+	inventoryApp.setColor(slot_name, selected_color);
+	updateSlotTooltip(slot_name);
 	update_link();
 }
 
@@ -325,35 +286,57 @@ function versionUriHandler(key, value, target) {
 }
 function tunableItemUriHandler(key, value, target) {
 	itemstring = decodeURIComponent(value);
-	var item = inventoryApp.getItemById(itemstring.split("_")[0]);
-	inventoryApp.slots[target].color = itemstring.split("_")[1];
-	inventoryApp.slots[target].quality = itemstring.split("_")[2];
-	$("#" + target + "-slider").slider("value", inventoryApp.slots[target].quality);
-	$("#" + target + "-quality-" + inventoryApp.slots[target].color).prop('checked', true);
-	inventoryApp.equipItem(item, target);
+	var props = itemstring.split("_");
+	$("#" + target + "-quality-" + props[1])
+		.prop('checked', true);
+	$("#" + target + "-slider")
+		.slider("value", props[2]);
+	inventoryApp.setGrade(target, props[2]);
+	inventoryApp.setColor(target, props[1]);
+	inventoryApp.equipItem(props[0], target);
+	updateSlotTooltip(target);
 }
 function specialItemUriHandler(key, value, target) {
 	itemstring = decodeURIComponent(value);
-	var item = inventoryApp.getItemById(itemstring.split("_")[0]);
-	inventoryApp.equipItem(item, target);
+	var props = itemstring.split("_");
+	inventoryApp.equipItem(props[0], target);
+	updateSlotTooltip(slot);
 }
 function clearPool(app) {
 	for (type in app.weapontype_map) {
 		$("#" + type + "-pool").empty();
 	}
 }
+function updateSlotTooltip(slotName){
+	if (isEmpty(inventoryApp.getItemBySlot(slotName))) {
+		return;
+	}
+	var link = inventoryApp.getItemUrlBySlot(slotName);
+	$("#" + slotName + "-link")
+		.attr("href", link)
+		.text(inventoryApp.getItemTitle(slotName));
+	$("#" + slotName + "-link")
+		.removeClass("grey-link white-link green-link blue-link")
+		.addClass(inventoryApp.getColor(slotName) + "-link");
+	$("#" + slotName + "-container")
+		.html(inventoryApp.getImageForSlot(slotName));
+	$.get(link + "&iframe=true", function(data) {
+		$("#" + slotName + "-fake-tooltip")
+			.html(data);
+	});
+}
 function clearSlot(slot){
 	$("#" + slot + "-link").attr("href", "");
 	$("#" + slot + "-container").html("<img src=\"images/slot-" + slot + ".png\">");
-	$("#" + slot + "-name").text("");
-	$("#" + slot + "-value").text("");
+	$("#" + slot + "-title").text("");
 }
-function autoEquipItem(itemId) {
+function equipItem(itemId) {
 	var updated_slot = inventoryApp.autoEquipItem(itemId);
+	updateSlotTooltip(updated_slot);
 	var slot = $("#" + updated_slot + "-container");
 	slot.empty();
 	slot.prop("title");
-	slot.html(inventoryApp.getImageForItem(inventoryApp.getItemById(itemId)));
+	slot.html(inventoryApp.getImageForSlot(updated_slot));
 	update_link();
 }
 
