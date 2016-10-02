@@ -265,13 +265,50 @@ describe('testing InventoryModel class', function() {
 		});
 	});
 	
-	describe("test getItemTitle", function(){
+	describe("test setGrade", function(){
 		var model;
 		beforeEach(function(){
 			model = new InventoryModel("en", defaultVersion);
 			item418 = {name:"Axe",category:"melee",type:1,mobility:82,lvlreq:7,talentreq:7,classreq:["ju","sc"],id:418,attacks:[{name:"Hit",type:1,accuracy:100,cost:45,min_dist:0,max_dist:2.1,min_damage:70,max_damage:105}]};
+			item103 = {id:103,name:"Rebis injection large",consumable_type:1,category:"consumable",description:"Восстанавливает 55 очков здоровья",lvlreq:10,talentreq:2,AP_cost:20};
+			model.consumeData([item418, item103]);
+			model.updateSlotTooltip = function( slot ){}
+		});
+		
+		it("should set grade of primary item to blue", function(){
+			model.equipItem(418, "primary");
+			model.setGrade("primary", 1);
+			expect(model.getItemTitle("primary")).toEqual("Axe +1");
+		});
+		
+		it("throws exception if value is below 0", function(){
+			model.equipItem(418,"primary");
+			expect(function(){
+				model.setGrade("primary", -1);
+			}).toThrow(new Error("Grade should be between 0 and 15"));
+		});
+		
+		it("throws exception if value is above 15", function(){
+			model.equipItem(418,"primary");
+			expect(function(){
+				model.setGrade("primary", 16);
+			}).toThrow(new Error("Grade should be between 0 and 15"));
+		});
+		
+		it("throws exception if slot can not be tuned", function(){
+			model.equipItem(103, "consumable_1");
+			expect(function(){
+				model.setGrade("consumable_1", 3);
+			}).toThrow(new Error("Item in slot consumable_1 can not be upgraded"));
+		});
+	});
+	
+	describe("test getItemTitle", function(){
+		var model;
+		beforeEach(function(){
+			model = new InventoryModel("en", defaultVersion);
 			item435 = {name:"Vanguard Light Armor",category:"armor",id:435,protection:35};
-			model.consumeData([item418, item435]);
+			model.consumeData([item435]);
 			model.updateSlotTooltip = function( slot ){}
 		});
 		
@@ -291,8 +328,40 @@ describe('testing InventoryModel class', function() {
 				model.getItemTitle("fake");
 			}).toThrow(new Error("Slot not found: fake"));
 		});
+		
 		it("should get empty string if slot is empty", function(){
 			expect(model.getItemTitle("primary")).toEqual("");
+		});
+	});
+	
+	describe("test setColor", function(){
+		var model;
+		beforeEach(function(){
+			model = new InventoryModel("en", defaultVersion);
+			item418 = {name:"Axe",category:"melee",type:1,mobility:82,lvlreq:7,talentreq:7,classreq:["ju","sc"],id:418,attacks:[{name:"Hit",type:1,accuracy:100,cost:45,min_dist:0,max_dist:2.1,min_damage:70,max_damage:105}]};
+			item103 = {id:103,name:"Rebis injection large",consumable_type:1,category:"consumable",description:"Восстанавливает 55 очков здоровья",lvlreq:10,talentreq:2,AP_cost:20};
+			model.consumeData([item418, item103]);
+			model.updateSlotTooltip = function( slot ){}
+		});
+		
+		it("should set color of slot", function(){
+			model.equipItem(418, "primary");
+			model.setColor("primary", "blue");
+			expect(model.getColor("primary")).toEqual("blue");
+		});
+		
+		it("throws exception if color is unknown", function(){
+			model.equipItem(418, "primary");
+			expect(function(){
+				model.setColor("primary", "fake");
+			}).toThrow(new Error("Invalid color: fake"));
+		});
+		
+		it("throws exception if slot can not be tuned", function(){
+			model.equipItem(103, "consumable_1");
+			expect(function(){
+				model.setColor("consumable_1", "blue");
+			}).toThrow(new Error("Item in slot consumable_1 can not be upgraded"));
 		});
 	});
 	
@@ -433,6 +502,68 @@ describe('testing InventoryModel class', function() {
 			model.setColor("primary", "green");
 			model.setGrade("primary", 5);
 			expect(model.makeLinkPart("primary")).toEqual("&p=446_green_5");
+		});
+	});
+	
+	describe("test getItemUrlBySlot", function(){
+		var model;
+		beforeEach(function(){
+			model = new InventoryModel("en", 105);
+			item446 = {name:"USP45",category:"pistol",mobility:100,clip:12,ammo:24,reload_cost:20,lvlreq:2,id:446,attacks:[{name:"Snap",type:2,accuracy:49,cost:20,min_dist:4,max_dist:14,bullets:1,min_damage:17,max_damage:26}]};
+			item432 = {name:"M60",category:"machinegun",mobility:57,clip:75,ammo:150,reload_cost:50,lvlreq:5,id:432,attacks:[{name:"Snap",type:5,min_damage:94,max_damage:122,bullets:15,accuracy:54,cost:55,min_dist:15,max_dist:45}]};
+			item418 = {name:"Axe",category:"melee",type:1,mobility:82,lvlreq:7,talentreq:7,classreq:["ju","sc"],id:418,attacks:[{name:"Hit",type:1,accuracy:100,cost:45,min_dist:0,max_dist:2.1,min_damage:70,max_damage:105}]};
+			item467 = {name:"Vanguard Medium Armor",category:"armor",id:467,protection:60,lvlreq:6};
+			item435 = {name:"Vanguard Light Armor",category:"armor",id:435,protection:35};
+			item103 = {id:103,name:"Rebis injection large",consumable_type:1,category:"consumable",description:"Восстанавливает 55 очков здоровья",lvlreq:10,talentreq:2,AP_cost:20};
+			model.consumeData([item446, item432, item418, item467, item435, item103]);
+			model.updateSlotTooltip = function( slot ){}
+		});
+		
+		it("should make empty string if slot is empty", function(){
+			expect(model.getItemUrlBySlot("primary")).toEqual("");
+		});
+		
+		it("should make link for tunable item", function(){
+			model.equipItem(446, "primary");
+			expect(model.getItemUrlBySlot("primary")).toEqual("/item.php?id=446&locale=en&version=105&color=white&quality=0");
+		});
+		
+		it("should make link for blue tunable item", function(){
+			model.equipItem(446, "primary");
+			model.setColor("primary", "blue");
+			expect(model.getItemUrlBySlot("primary")).toEqual("/item.php?id=446&locale=en&version=105&color=blue&quality=0");
+		});
+		
+		it("should make link for upgraded tunable item", function(){
+			model.equipItem(446, "primary");
+			model.setGrade("primary", 7);
+			expect(model.getItemUrlBySlot("primary")).toEqual("/item.php?id=446&locale=en&version=105&color=white&quality=7");
+		});
+		
+		it("should make link for green upgraded tunable item", function(){
+			model.equipItem(446, "primary");
+			model.setColor("primary", "green");
+			model.setGrade("primary", 9);
+			expect(model.getItemUrlBySlot("primary")).toEqual("/item.php?id=446&locale=en&version=105&color=green&quality=9");
+		});
+		
+		it("should make link for gray upgraded secondary item", function(){
+			model.equipItem(418, "secondary");
+			model.setColor("secondary","gray");
+			model.setGrade("secondary", 3);
+			expect(model.getItemUrlBySlot("secondary")).toEqual("/item.php?id=418&locale=en&version=105&color=gray&quality=3");
+		});
+		
+		it("should make link for blue updaged armor", function(){
+			model.equipItem(467, "armor");
+			model.setColor("armor","blue");
+			model.setGrade("armor", 4);
+			expect(model.getItemUrlBySlot("armor")).toEqual("/item.php?id=467&locale=en&version=105&color=blue&quality=4");
+		});
+		
+		it("should make link for consumable", function(){
+			model.equipItem(103,"consumable_1");
+			expect(model.getItemUrlBySlot("consumable_1")).toEqual("/item.php?id=103&locale=en&version=105");
 		});
 	});
 });
