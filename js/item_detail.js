@@ -9,20 +9,26 @@ function InventoryModel(locale, version, data) {
 	this.version = version;
 	this.itemData = [];
 	var slots = {
-		primary: {short_name :"p", item:null, grade: 0, color:"white" },
-		secondary: { short_name :"s", item:null, grade: 0, color:"white" },
-		armor: { short_name :"a", item:null, grade: 0, color:"white" },
-		hat: { short_name :"h", item:null, grade: 0, color:"white" },
-		consumable_1: { short_name :"c1", item:null, grade: 0, color:"white" },
-		consumable_2: { short_name :"c2", item:null, grade: 0, color:"white" },
-		consumable_3: { short_name :"c3", item:null, grade: 0, color:"white" },
-		consumable_4: { short_name :"c4", item:null, grade: 0, color:"white" },
-		consumable_5: { short_name :"c5", item:null, grade: 0, color:"white" },
-		head_mod: {short_name:"hem", item:null, grade: 0, color:"white" },
-		hand_mod: {short_name:"ham", item:null, grade: 0, color:"white" },
-		feet_mod: {short_name:"fm", item:null, grade: 0, color:"white" },
-		chest_mod: {short_name:"cm", item:null, grade: 0, color:"white" }
+		primary: {short_name :"p", item:null, grade: 0, color:"white", tunable:true },
+		secondary: { short_name :"s", item:null, grade: 0, color:"white", tunable:true },
+		armor: { short_name :"a", item:null, grade: 0, color:"white", tunable:true },
+		hat: { short_name :"h", item:null, grade: 0, color:"white", tunable:false },
+		consumable_1: { short_name :"c1", item:null, grade: 0, color:"white", tunable:false },
+		consumable_2: { short_name :"c2", item:null, grade: 0, color:"white", tunable:false },
+		consumable_3: { short_name :"c3", item:null, grade: 0, color:"white", tunable:false },
+		consumable_4: { short_name :"c4", item:null, grade: 0, color:"white", tunable:false },
+		consumable_5: { short_name :"c5", item:null, grade: 0, color:"white", tunable:false },
+		head_mod: {short_name:"hem", item:null, grade: 0, color:"white", tunable:false },
+		hand_mod: {short_name:"ham", item:null, grade: 0, color:"white", tunable:false },
+		feet_mod: {short_name:"fm", item:null, grade: 0, color:"white", tunable:false },
+		chest_mod: {short_name:"cm", item:null, grade: 0, color:"white", tunable:false }
 	};
+	var colors = Object.freeze({
+		gray: 0,
+		white: 1,
+		green: 2,
+		blue: 3
+	});
 	this.possible_slots = {
 		primary:"",
 		secondary:"",
@@ -130,6 +136,12 @@ function InventoryModel(locale, version, data) {
 	this.setGrade = function(slot_name, value){
 		if (typeof(slots[slot_name]) == 'undefined')
 			throw new Error("Slot not found: " + slot_name);
+		if (value < 0 || value > 15){
+			throw new Error("Grade should be between 0 and 15");
+		}
+		if (!slots[slot_name].tunable){
+			throw new Error("Item in slot " + slot_name + " can not be upgraded");
+		}
 		slots[slot_name].grade = value;
 	};
 	this.getItemTitle = function(slot_name){
@@ -146,9 +158,15 @@ function InventoryModel(locale, version, data) {
 		}
 	};
 	this.setColor = function(slot_name, color){
+		if (typeof colors[color] == "undefined"){
+			throw new Error("Invalid color: " + color);
+		}
 		var slot = slots[slot_name];
 		if (typeof(slot) == 'undefined')
 			throw new Error("Slot not found: " + slot_name);
+		if (!slot.tunable){
+			throw new Error("Item in slot " + slot_name + " can not be upgraded");
+		}
 		slots[slot_name].color = color;
 	}
 	this.getColor = function(slot_name){
@@ -164,23 +182,20 @@ function InventoryModel(locale, version, data) {
 		slot.item = item;
 	};
 	this.getItemUrlBySlot = function(slot_name){
-		var item = slots[slot_name].item;
+		var item = this.getItemBySlot(slot_name);
+		if (isEmpty(item)){
+			return "";
+		}
 		var link = "/item.php?"
 			+ "id=" + item.id
 			+ "&locale=" + this.locale
 			+ "&version=" + this.version;
-		if (item.category != "consumable"
-			&& item.category != "hat"
-			&& item.category != "head_mod"
-			&& item.category != "chest_mod"
-			&& item.category != "feet_mod"
-			&& item.category != "hand_mod"
-		) {
+		if (slots[slot_name].tunable){
 			link += "&color=" + slots[slot_name].color
 				+ "&quality=" + slots[slot_name].grade;
 		}
 		return link;
-	}
+	};
 	this.getImageForId = function (itemId) {
 		var diffy = (~~(itemId / 20)) * 64;
 		var diffx = itemId % 20 * 64;
