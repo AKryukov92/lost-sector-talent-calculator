@@ -4,33 +4,13 @@ var images = [];
 var combinator = new Combinator();
 var initialTalentData = {};
 var currentSets = [];
+var inventoryApp = new InventoryModel("en", defaultVersion);
 
 function fillAvailableActions(combinator) {
 	var text = "";
 	for (var i = 0; i < combinator.actions.length; i++) {
-		var action = combinator.actions[i];
-		var imagesource = "";
-		var boxSize = 0;
-		if (action.imagesrc == "items") {
-			imagesource = "/images/Items.png";
-			boxSize = 64;
-		} else if (action.imagesrc == "talents") {
-			imagesource = "/images/Skills" + talentsVersionFallback(initialTalentData.gameVersion) + ".png";
-			boxSize = 48;
-		} else {
-			imagesource = "";
-		}
-		var dx = (action.imageid % 20) * boxSize;
-		var dy = (~~(action.imageid / 20)) * boxSize;
-		text += 
-		"<div style='float:left;'>" +
-			"<label><div class='action' style='width:" + boxSize + "px;height:" + boxSize + "px;'>"
-				+ "<img src='" + imagesource + "' style='margin-left:-" + dx + "px;margin-top:-" + dy + "px'/>"
-			+ "</div>"
-			+ "<div>"
-				+ getLocalizedProperty(action, "name")
-			+ "</div>"
-			+ "<input type='checkbox' id='useAction" + action.id + "' checked onclick='actionToggle(" + action.id + ")'/>Вкл</label>"
+		text += "<div style='float:left;'><label>" + combinator.actions[i].toString()
+		+ "<input type='checkbox' id='useAction" + this.id + "' checked onclick='actionToggle(" + this.id + ")'/>Вкл</label>"
 		+ "</div>";
 	}
 	$("#availableActions").append(text);
@@ -63,6 +43,7 @@ function prepareActions() {
 function combine() {
 	var totalSets = combinator.createTree();
 	currentSets = [];
+	var estimatedResults = [];
 	for (var i = totalSets.length - 1; i >= 0; i--) {
 		totalSets[i].validateRepeatedActions();
 		if (!totalSets[i].valid) {
@@ -73,9 +54,22 @@ function combine() {
 			continue;
 		}
 		currentSets.push(totalSets[i]);
+		estimatedResults.push(estimate(totalSets[i], calculator));
 		//console.log(totalSets[i].toString());
 	}
-	estimate(currentSets[0], calculator);
+	estimatedResults.sort(function(l,r) {
+		return r.totalMin - l.totalMin;
+	});
+	var report = "";
+	for (var i = 0; i < 200 && i < estimatedResults.length; i++){
+		estimatedResults[i].actionSet.validateSwapBeforeOtherWeapon();
+		report += "<div class='action-set'>" 
+			+ estimatedResults[i].actionSet.toString() 
+			+ "<span style='float:right'>min:" + estimatedResults[i].totalMin 
+			+ " max:" + estimatedResults[i].totalMax + "</span>"
+		"</div>";
+	}
+	$("#report").html(report);
 	console.log(currentSets.length);
 }
 function talentUriHandler(key, value, target) {
@@ -90,7 +84,7 @@ function talentUriHandler(key, value, target) {
 		};
 	} else {
 		initialTalentData = {
-			gameVersion : 102,
+			gameVersion : defaultVersion,
 			classPrefix : "as",
 			talentInput : ""
 		};

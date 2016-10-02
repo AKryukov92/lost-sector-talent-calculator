@@ -168,13 +168,13 @@ function InventoryModel(locale, version, data) {
 			throw new Error("Item in slot " + slot_name + " can not be upgraded");
 		}
 		slots[slot_name].color = color;
-	}
+	};
 	this.getColor = function(slot_name){
 		var slot = slots[slot_name];
 		if (typeof(slot) == 'undefined')
 			throw new Error("Slot not found: " + slot_name);
 		return slots[slot_name].color;
-	}
+	};
 	function addItem(slot_name, item){
 		var slot = slots[slot_name];
 		if (typeof(slot) == 'undefined')

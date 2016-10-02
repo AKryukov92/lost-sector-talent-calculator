@@ -8,29 +8,43 @@
 	this.name = name;
 	this.maxDist = 99;
 	this.minDist = 0;
+	this.source = {};
+	this.imagesrc = "";
+	this.boxSize = 0;
+	
 	if (typeof numberOfUses == 'undefined') {
 		this.numberOfUses = Number.MAX_VALUE;
 	} else {
 		this.numberOfUses = numberOfUses;
 	}
-	this.source = {};
+	
+	this.getGuid = function(){
+		return "" + this.cost + this.imageid + this.numberOfUses;
+	}
 	this.isEqual = function(action) {
 		return this.cost == action.cost &&
 			this.imageid == action.imageid &&
 			this.numberOfUses == action.numberOfUses;
 	};
 	this.getWeapon = function() {
-		if (typeof this.source != 'undefined' && typeof this.source.category != 'undefined') {
-			return this.source;
-		} else {
+		if (typeof this.item == 'undefined') {
 			return null;
+		} else {
+			return this.item;
 		}
-	};
-	this.getDamage = function(){
-		
 	};
 	this.isSwap = function() {
 		return this.cost == 10 && this.imageid == 1 && this.possibleRepeat == false;
+	};
+	this.toString = function(){
+		var dx = (this.imageid % 20) * this.boxSize;
+		var dy = (~~(this.imageid / 20)) * this.boxSize;
+		return "<div class='action' style='width:" + this.boxSize + "px;height:" + this.boxSize + "px;'>"
+			+ "<img src='" + this.imagesrc + "' style='margin-left:-" + dx + "px;margin-top:-" + dy + "px'/>"
+			+ "</div>"
+			+ "<div>"
+				+ this.name
+			+ "</div>";
 	};
 }
 
@@ -95,43 +109,32 @@ function ActionSet(unitState, action) {
 			return null;
 		}
 	};
-	this.validateRepeatedActions = function() {
-		var recent = false;
-		var recentImageId = [];
-		for (var i = 0; i < this.actions.length; i++) {
-			var action = this.actions[i];
-			if (!action.possibleRepeat) {
-				var found = false;
-				for (var j = 0; j < recentImageId.length; j++) {
-					if (action.imageid == recentImageId[j]) {
-						found = true;
-					}
-				}
-				if (recent && found) {
-					this.valid = false;
-					return;
-				} else {
-					recent = true;
-					recentImageId.push(action.imageid);
-				}
-			} else {
-				recent = false;
-				recentImageId = [];
+	this.validateRepeatedActions = function(){
+		var prev = this.actions[0];
+		for(var i = 1; i < this.actions.length;i++){
+			var current = this.actions[i];
+			if (current.possibleRepeat){
+				prev = current;
+				continue;
+			}
+			if(prev.getGuid() == current.getGuid()){
+				this.valid = false;
+				return;
 			}
 		}
 	};
 	this.validateSwapBeforeOtherWeapon = function() {
-		var currentWeapon = null;
+		var currentWeaponId = null;
 		var requireNewWeapon = false;
 		var attackActionIndex = 0;
 		for (var i = 0; i < this.actions.length; i++) {
 			if (this.actions[i].getWeapon() != null) {
-				currentWeapon = this.actions[i].getWeapon();
+				currentWeaponId = this.actions[i].getWeapon().id;
 				attackActionIndex = i;
 				break;
 			}
 		}
-		if (currentWeapon == null) {
+		if (currentWeaponId == null) {
 			return;
 		}
 		for (var i = 0; i < this.actions.length; i++) {
@@ -141,12 +144,12 @@ function ActionSet(unitState, action) {
 					requireNewWeapon = true;
 				}
 			} else if (requireNewWeapon){
-				if (tempWeapon == currentWeapon) {
+				if (tempWeapon.id == currentWeaponId) {
 					this.valid = false;
 					return;
 				}
 			} else {
-				if (tempWeapon != currentWeapon) {
+				if (tempWeapon.id != currentWeaponId) {
 					this.valid = false;
 					return;
 				}
@@ -156,7 +159,7 @@ function ActionSet(unitState, action) {
 	this.toString = function(){
 		var row = this.actions.length + " ";
 		for (var j = 0; j < this.actions.length; j++) {
-			row += "(" + getLocalizedProperty(this.actions[j], "name") + ") ";
+			row += "<div class='action-block'>" + this.actions[j].toString() + "</div>";
 		}
 		return row;
 	}
@@ -194,7 +197,7 @@ function Combinator() {
 		}
 		if (typeof item.attacks != 'undefined' && item.attacks.length > 0) {
 			for (var i = 0; i < item.attacks.length; i++) {
-				this.actions.push(makeAttack(this.actionIdSequence++, item, item.attacks[i]));
+				this.actions.push(makeAttack(this.actionIdSequence++, item, i));
 			}
 			if (typeof item.reload_cost != 'undefined') {
 				this.actions.push(makeReload(this.actionIdSequence++, item));
@@ -239,72 +242,83 @@ function Combinator() {
 		}
 		return totalSets;
 	};
-	function makeTalent(id, talent){
-		var action = new Action(id);
-		if (typeof talent.number_of_uses != 'undefined') {
-			action.numberOfUses = talent.number_of_uses;
-		}
-		if (typeof talent.AP_cost != 'undefined'){
-			action.cost = talent.AP_cost;
-		}
-		action.name = talent.name;
-		action.type = "talent";
-		action.source = talent;
-		action.imageid = getImageId(talent);
-		action.imagesrc = "talents";
-		return action;
-	};
-	function makeAttack(id, item, attack){
-		var name = getLocalizedProperty(item, "name") + " " + getLocalizedProperty(attack, "name");
-		var action = new Action(id, attack.cost, name);
-		action.type = "attack";
-		action.source = attack;
-		action.item = item;
-		action.minDist = attack.min_dist;
-		action.maxDist = attack.max_dist;
-		if (item.category == 'consumable'){
-			//Активки типа гранат
-			action.numberOfUses = 1;
-		}
-		action.possibleRepeat = true;
-		action.imageid = getImageId(item);
-		action.imagesrc = "items";
-		return action;
-	};
-	function makeReload(id, item){
-		var name = getLocalizedProperty(item, "name") + " перезарядка";
-		var reload = new Action(id, item.reload_cost, name);
-		reload.type = "reload";
-		reload.source = item;
-		reload.imageid = getImageId(item);
-		reload.imagesrc = "items";
-		return reload;
-	};
-	function makeConsumable(id, item){
-		var name = getLocalizedProperty(item, "name");
-		var consumable = new Action(id, item.AP_cost, name, 1);
-		//Активки типа Цереры
-		consumable.type = "consumable";
-		consumable.source = item;
-		consumable.imageid = getImageId(item);
-		consumable.possibleRepeat = true;
-		consumable.imagesrc = "items";
-		return consumable;
-	};
-	function makeSwap (id){
-		var swap = new Action(id, 10, "Сменить");
-		swap.type = "swap";
-		swap.source = { name: "Действие" };
-		swap.imageid = 2;
-		swap.imagesrc = "special";
-		return swap;
-	};
-	function makeDuck (id){
-		var duck = new Action(id, 15, "Присесть");
-		duck.type = "duck";
-		duck.source = { name: "Действие" };
-		duck.imageid = 1;
-		duck.imagesrc = "special";
-		return duck;
-	};
 }
+function makeTalent(id, talent){
+	if (typeof talent.AP_cost == 'undefined'){
+		throw new Error("Can not make action for passive talent");
+	}
+	if (typeof talent.number_of_uses == 'undefined') {
+		throw new Error("Number of uses is not defined");
+	}
+	var action = new Action(id);
+	action.numberOfUses = talent.number_of_uses;
+	action.cost = talent.AP_cost;
+	action.name = "Использовать";
+	action.type = "talent";
+	action.source = talent;
+	action.imageid = getImageId(talent);
+	action.imagesrc = "/images/Skills" + talentsVersionFallback(initialTalentData.gameVersion) + ".png";
+	action.boxSize = 48;
+	return action;
+};
+function makeAttack(id, item, attackIndex){
+	var attack = item.attacks[attackIndex];
+	var name = getLocalizedProperty(attack, "name");
+	var action = new Action(id, attack.cost, name);
+	action.type = "attack";
+	action.source = attack;
+	action.item = item;
+	action.minDist = attack.min_dist;
+	action.maxDist = attack.max_dist;
+	if (item.category == 'consumable'){
+		//Активки типа гранат
+		action.numberOfUses = 1;
+	}
+	action.possibleRepeat = true;
+	action.imageid = getImageId(item);
+	action.imagesrc = "/images/Items.png";
+	action.boxSize = 64;
+	return action;
+};
+function makeReload(id, item){
+	var name = "Перезарядка";
+	var reload = new Action(id, item.reload_cost, name);
+	reload.type = "reload";
+	reload.source = item;
+	reload.item = item;
+	reload.imageid = getImageId(item);
+	reload.imagesrc = "/images/Items.png";
+	reload.boxSize = 64;
+	return reload;
+};
+function makeConsumable(id, item){
+	var name = "Использовать";
+	var consumable = new Action(id, item.AP_cost, name, 1);
+	//Активки типа Цереры
+	consumable.type = "consumable";
+	consumable.item = null;
+	consumable.source = item;
+	consumable.imageid = getImageId(item);
+	consumable.possibleRepeat = true;
+	consumable.imagesrc = "/images/Items.png";
+	consumable.boxSize = 64;
+	return consumable;
+};
+function makeSwap (id){
+	var swap = new Action(id, 10, "Сменить");
+	swap.type = "swap";
+	swap.source = { name: "Действие" };
+	swap.item = null;
+	swap.imageid = 2;
+	swap.imagesrc = "special";
+	return swap;
+};
+function makeDuck (id){
+	var duck = new Action(id, 15, "Присесть");
+	duck.type = "duck";
+	duck.source = { name: "Действие" };
+	duck.item = null;
+	duck.imageid = 1;
+	duck.imagesrc = "special";
+	return duck;
+};
