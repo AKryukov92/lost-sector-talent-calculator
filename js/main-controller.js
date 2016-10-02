@@ -255,23 +255,22 @@ function talentUriHandler(key, value, target) {
 		$("#selVersion").val(initialTalentData.gameVersion);
 		talentController.orderToDisplay(initialTalentData.classPrefix, initialTalentData.gameVersion, initialTalentData.talentInput);
 	} else {
-		talentController.orderToDisplay("as", 103);
+		talentController.orderToDisplay("as", defaultVersion);
 	}
 }
 function slider_slide_handler(slot_name, event, ui) {
 	inventoryApp.setGrade(slot_name, ui.value);
-	$("#" + slot_name + "-title")
-		.html(inventoryApp.getItemTitle(slot_name));
+	$("#" + slot_name + "-link")
+		.text(inventoryApp.getItemTitle(slot_name));
 	update_link();
 }
 
-function quality_change_handler(slot_name) {
-	if (isEmpty(inventoryApp.getItemBySlot(slot_name))) {
-		return;
-	}
-	var selected_color = $("input[name=" + slot_name +"-quality]:checked", "#" + slot_name).val();
-	inventoryApp.setColor(slot_name, selected_color);
-	updateSlotTooltip(slot_name);
+function quality_change_handler(slotName) {
+	var selected_color = $("input[name=" + slotName +"-quality]:checked", "#" + slotName).val();
+	inventoryApp.setColor(slotName, selected_color);
+	$("#" + slotName + "-link")
+		.removeClass("grey-link white-link green-link blue-link")
+		.addClass(inventoryApp.getColor(slotName) + "-link");
 	update_link();
 }
 
@@ -326,9 +325,11 @@ function updateSlotTooltip(slotName){
 	});
 }
 function clearSlot(slot){
-	$("#" + slot + "-link").attr("href", "");
-	$("#" + slot + "-container").html("<img src=\"images/slot-" + slot + ".png\">");
-	$("#" + slot + "-title").text("");
+	$("#" + slot + "-link")
+		.attr("href", "")
+		.text("");
+	$("#" + slot + "-container")
+		.html("<img src=\"images/slot-" + slot + ".png\">");
 }
 function equipItem(itemId) {
 	var updated_slot = inventoryApp.autoEquipItem(itemId);
