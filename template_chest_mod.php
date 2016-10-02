@@ -13,6 +13,7 @@ if (!$GLOBALS["iframe"]) {
 	<link href="css/local624.css" rel="stylesheet">
 	<link href="css/local1280.css" rel="stylesheet">
 	<link href="css/local1920.css" rel="stylesheet">
+	<script>var activeSlot = "chest_mod";</script>
 <?php if (isset($data["name"])) { ?>
 	<title><?php print GetLocalizedProperty($data, "name", $GLOBALS["locale"]);?></title>
 <?php } ?>

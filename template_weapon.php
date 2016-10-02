@@ -120,9 +120,7 @@ if (!$GLOBALS["iframe"]) {
 <?php if (!$GLOBALS["iframe"]) { ?>
 	<div id="primary" class="tunable-item">
 		<div class="tunable-item-name">
-			<a target="_blank" id="primary-link">
-				<span id="primary-title"></span>
-			</a>
+			<a target="_blank" id="primary-link"></a>
 		</div>
 		<div class="draggable-landing">
 			<div id="primary-container" class="inventory-item-container">

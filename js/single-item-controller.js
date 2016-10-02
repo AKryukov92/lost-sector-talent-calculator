@@ -3,7 +3,7 @@
 		return;
 	}
 	inventoryApp.setGrade(slot_name, ui.value);
-	$("#" + slot_name + "-title")
+	$("#" + slot_name + "-link")
 		.html(inventoryApp.getItemTitle(slot_name));
 }
 
@@ -105,9 +105,11 @@ function clearPool(app) {
 	}
 }
 function clearSlot(slot){
-	$("#" + slot + "-link").attr("href", "");
-	$("#" + slot + "-container").html("<img src=\"images/slot-" + slot + ".png\">");
-	$("#" + slot + "-title").text("");
+	$("#" + slot + "-link")
+		.attr("href", "")
+		.text("");
+	$("#" + slot + "-container")
+		.html("<img src=\"images/slot-" + slot + ".png\">");
 }
 function orderToDisplayInventory() {
 	clearPool(inventoryApp);

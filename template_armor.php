@@ -100,9 +100,7 @@ if (!$GLOBALS["iframe"]) {
 <?php if (!$GLOBALS["iframe"]) { ?>
 	<div id="armor" class="tunable-item">
 		<div class="tunable-item-name">
-			<a target="_blank" id="armor-link">
-				<span id="armor-title"></span>
-			</a>
+			<a target="_blank" id="armor-link"></a>
 		</div>
 		<div class="draggable-landing">
 			<div id="armor-container" class="inventory-item-container">
