@@ -47,6 +47,7 @@ if (!isset($_GET["c5"]) || ($consumable5 = json_encode(FindItem(parseId($_GET["c
 <head>
 	<meta charset="UTF-8">
 	<link href="/css/local.css" rel="stylesheet">
+	<link href="/css/combinator.css" rel="stylesheet">
 	<script src="/js/jquery.js" charset="utf-8"></script>
 	<script src="/js/item_detail.js" charset="utf-8"></script>
 	<script src="/js/calculator.js" charset="utf-8"></script>
