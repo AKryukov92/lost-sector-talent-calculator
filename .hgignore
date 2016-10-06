@@ -7,3 +7,4 @@ tools/ImageCompressor/out/
 noinclude/
 tools/dds/
 tools/png/
+*antispam.log
