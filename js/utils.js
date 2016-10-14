@@ -155,7 +155,8 @@ var localizationData = {
 	't-hand-mods':{'ru':'Руки', 'en':'Arms' },
 	't-feet-mods':{'ru':'Ноги', 'en':'Legs' },
 	't-chest-mods':{'ru':'Грудная клетка', 'en':'Chest' },
-	't-subscription':{'ru':'Форумная подпись', 'en':'Forum subscription'}
+	't-subscription':{'ru':'Форумная подпись', 'en':'Forum subscription'},
+	't-movecost':{'ru':'Цена перемещения','en':'Movement costs'}
 	};
 
 function applyLocaleToInterface(locale) {

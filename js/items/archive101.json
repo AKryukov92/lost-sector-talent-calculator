@@ -124,6 +124,7 @@
 	},
 	"category":"armor",
 	"id":216,
+	"mobility":105,
 	"protection":60,
 	"lvlreq":4,
 	"description":{
@@ -351,7 +352,12 @@
 	"specials":[
 	{
 		"duration":1,
-		"effects":["Увеличивает максимум очков действия на 40"]
+        "effects": [{
+			"name":{
+				"ru":"Увеличивает максимум очков действия на 40", 
+				"en":"Increases maximum of action points by 40"
+			}
+		}]
 	}],
 	"ingredients":{
 		"bio":3,
@@ -983,6 +989,7 @@
 	},
 	"category":"armor",
 	"id":325,
+	"mobility":109,
 	"protection":60,
 	"lvlreq":7,
 	"description":{
@@ -1003,6 +1010,7 @@
 	},
 	"category":"armor",
 	"id":326,
+	"mobility":110,
 	"protection":68,
 	"lvlreq":10,
 	"description":{
@@ -1023,6 +1031,7 @@
 	},
 	"category":"armor",
 	"id":327,
+	"mobility":111,
 	"protection":75,
 	"lvlreq":13,
 	"description":{
@@ -1043,6 +1052,7 @@
 	},
 	"category":"armor",
 	"id":328,
+	"mobility":109,
 	"protection":61,
 	"lvlreq":7,
 	"description":{
@@ -1058,6 +1068,7 @@
 	},
 	"category":"armor",
 	"id":329,
+	"mobility":110,
 	"protection":69,
 	"lvlreq":10,
 	"description":{
@@ -1073,6 +1084,7 @@
 	},
 	"category":"armor",
 	"id":330,
+	"mobility":111,
 	"protection":77,
 	"lvlreq":13,
 	"description":{
@@ -1102,6 +1114,7 @@
 	},
 	"category":"armor",
 	"id":332,
+	"mobility":90,
 	"protection":85,
 	"lvlreq":7,
 	"description":{
@@ -1122,6 +1135,7 @@
 	},
 	"category":"armor",
 	"id":333,
+	"mobility":91,
 	"protection":100,
 	"lvlreq":10,
 	"description":{
@@ -1142,6 +1156,7 @@
 	},
 	"category":"armor",
 	"id":334,
+	"mobility":92,
 	"protection":115,
 	"lvlreq":13,
 	"description":{
@@ -1162,6 +1177,7 @@
 	},
 	"category":"armor",
 	"id":335,
+	"mobility":90,
 	"protection":88,
 	"lvlreq":7,
 	"description":{
@@ -1177,6 +1193,7 @@
 	},
 	"category":"armor",
 	"id":336,
+	"mobility":91,
 	"protection":103,
 	"lvlreq":10,
 	"description":{
@@ -1192,6 +1209,7 @@
 	},
 	"category":"armor",
 	"id":337,
+	"mobility":92,
 	"protection":117,
 	"lvlreq":13,
 	"description":{
@@ -1416,8 +1434,12 @@
 		{
 			"duration":1,
 			"effects":[{
+				"name":{
 				"ru":"Делит мобильность на 2",
 				"en":"Divides mobility by 2"
+				},
+				"attr":"mobility",
+				"val":"0.5"
 			}]
 		}]
 	}],
@@ -1506,8 +1528,12 @@
 		{
 			"duration":1,
 			"effects":[{
+				"name":{
 				"ru":"Делит мобильность на 2",
 				"en":"Divides mobility by 2"
+				},
+				"attr":"mobility",
+				"val":"0.5"
 			}]
 		}]
 	}],
@@ -1698,8 +1724,10 @@
 		{
 			"duration":1,
 			"effects":[{
+			"name":{
 				"ru":"Устанавливает дальность зрения равным 5",
 				"en":"Sets sight range equal to 5"
+				}
 			}]
 		}]
 	}],
@@ -1729,8 +1757,10 @@
 		{
 			"duration":1,
 			"effects":[{
+			"name":{
 				"ru":"Уменьшает максимум очков действия на 40",
 				"en":"Decreases maximum of action points for 40"
+				}
 			}]
 		}]
 	}],
@@ -3353,8 +3383,10 @@
 		"specials":[{
 			"duration":3,
 			"effects":[{
+			"name":{
 				"ru":"Наносит 30 ед. повреждения каждый раунд.",
 				"en":"Causes 30 damage each round"
+				}
 			}]
 		}]
 	}],
@@ -3390,8 +3422,12 @@
 		"specials":[{
 			"duration":2,
 			"effects":[{
+			"name":{
 				"ru":"Уменьшает мобильность на 17%",
 				"en":"Decreases mobility for 17%"
+				},
+				"attr":"mobility",
+				"val":"0.83"
 			}]
 		}]
 	}],
@@ -3428,11 +3464,15 @@
 		"specials":[{
 			"duration":3,
 			"effects":[{
+			"name":{
 				"ru":"Наносит 14 ед. повреждения каждый раунд.",
 				"en":"causes 14 damage each round"
+				}
 			},{
+			"name":{
 				"ru":"Уменьшает эффективность лечения на 30%",
 				"en":"Decreases healing effectiveness for 30%"
+				}
 			}]
 		}]
 	}],
@@ -3550,8 +3590,10 @@
 		"specials":[{
 			"duration":2,
 			"effects":[{
+			"name":{
 				"ru":"Наносит 32 ед. повреждения каждый раунд.",
 				"en":"Causes 32 damage each round."
+				}
 			}]
 		}]
 	}],
@@ -3584,14 +3626,20 @@
 		"specials":[{
 			"duration":2,
 			"effects":[{
+			"name":{
 				"ru":"Уменьшает текущее здоровье на 5",
 				"en":"Decreases current health for 5"
+				}
 			},{
+			"name":{
 			"ru":"Уменьшает общую стойкость к урону на 0.15",
 			"en":"Decreases total resist for 0.15"
+			}
 			},{
+			"name":{
 				"ru":"Уменьшает эффективность лечения на 50%",
 				"en":"Decreases healing effectiveness for 50%"
+				}
 			}]
 		}]
 	}],
@@ -4085,11 +4133,15 @@
 		"specials":[{
 			"duration":3,
 			"effects":[{
+			"name":{
 				"ru":"Наносит 14 ед. повреждения каждый раунд.",
 				"en":"Causes 14 damage each round."
+				}
 			},{
+			"name":{
 				"ru":"Уменьшает эффективность лечения на 30%",
 				"en":"Decreases healing effectiveness for 30%"
+				}
 			}]
 		}]
 	}],
@@ -4119,14 +4171,18 @@
 		"specials":[{
 			"duration":0,
 			"effects":[{
+			"name":{
 				"ru":"Дает иммунитет к: Горение",
 				"en":"Gives immunity to: Burning"
+				}
 			}]
 		},{
 			"duration":1,
 			"effects":[{
+			"name":{
 				"ru":"Увеличивает текущее здоровье на 40",
 				"en":"Increases current health for 40"
+				}
 			}]
 		}]
 	}],
@@ -4157,14 +4213,18 @@
 		"specials":[{
 			"duration":0,
 			"effects":[{
+			"name":{
 				"ru":"Увеличивает текущее здоровье на 30",
 				"en":"Increases current health for 30"
+				}
 			}]
 		},{
 			"duration":1,
 			"effects":[{
+			"name":{
 				"ru":"Увеличивает текущее здоровье на 30",
 				"en":"Increases current health for 30"
+				}
 			}]
 		}]
 	}],
@@ -4480,11 +4540,15 @@
 		"specials":[{
 			"duration":3,
 			"effects":[{
+			"name":{
 				"ru":"Наносит 14 ед. повреждения каждый раунд.",
 				"en":"Causes 14 damage each round"
+				}
 			},{
+			"name":{
 				"ru":"Уменьшает эффективность лечения на 30%",
 				"en":"Decreases healing effectiveness for 30%"
+				}
 			}]
 		}]
 	}],
@@ -4833,8 +4897,10 @@
 		"specials":[{
 			"duration":1,
 			"effects":[{
+			"name":{
 				"ru":"Уменьшает максимум очков действия на 40",
 				"en":"Decreases maximum of action points for 40"
+				}
 			}]
 		}]
 	}],
@@ -5560,15 +5626,19 @@
 	{
 		"duration":0,
 		"effects":[{
+		"name":{
 			"ru":"Уменьшает текущее здоровье на 20",
 			"en":"Decreases current health for 20"
+			}
 		}]
 	},
 	{
 		"duration":1,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает максимум очков действия на 50",
 			"en":"Increases maximum of action points for 50"
+			}
 		}]
 	}],
 	"ingredients": 0
@@ -5750,11 +5820,17 @@
 	{
 		"duration":5,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает общую стойкость к урону на 20%.",
 			"en":"Increases total resist for 20%"
+			}
 		},{
+		"name":{
 			"ru":"Уменьшает мобильность на 5%",
 			"en":"Decreases mobility for 5%"
+			},
+			"attr":"mobility",
+			"val":"0.95"
 		}]
 	}],
 	"ingredients":0
@@ -5800,11 +5876,17 @@
 	{
 		"duration":5,
 		"effects": [{
+		"name":{
 			"ru":"Увеличивает урон в ближнем бою на 30%.",
 			"en":"Increases melee damage multiplier for 30%"
+			}
 		},{
+		"name":{
 			"ru":"Уменьшает мобильность на 7%.",
 			"en":"Decreases mobility for 7%"
+			},
+			"attr":"mobility",
+			"val":"0.93"
 		}]
 	}],
 	"ingredients":0
@@ -5826,20 +5908,26 @@
 	"specials":[{
 		"duration":0,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает текущую броню на 30",
 			"en":"Increases current defence for 30"
+			}
 		}]
 	},{
 		"duration":2,
 		"effects": [{
+		"name":{
 			"ru":"Увеличивает текущую броню на 10",
 			"en":"Increases current defence for 10"
+			}
 		}]
 	},{
 		"duration":3,
 		"effects": [{
+		"name":{
 			"ru":"Дает иммунитет к 'Коррозия'",
 			"en":"Gives immunity to: Corrosion"
+			}
 		}]
 	}],
 	"ingredients":0
@@ -5862,15 +5950,19 @@
 	{
 		"duration":0,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает текущую броню на 20",
 			"en":"Increases current defence for 20"
+			}
 		}]
 	},
 	{
 		"duration":2,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает текущую броню на 15",
 			"en":"Increases current defence for 15"
+			}
 		}]
 	}],
 	"ingredients":{
@@ -5915,20 +6007,26 @@
 	"specials":[{
 		"duration":5,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает текущую броню на 8",
 			"en":"Increases current defence for 8"
+			}
 		}]
 	},{
 		"duration":20,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает запас брони на 40",
 			"en":"Increases defence maximum for 40"
+			}
 		}]
 	},{
 		"duration":0,
 		"effects": [{
+		"name":{
 			"ru":"Увеличивает текущую броню на 20",
 			"en":"Increases current defence for 20"
+			}
 		}]
 	}],
 	"ingredients":0
@@ -5948,17 +6046,27 @@
 	{
 		"duration":5,
 		"effects":[{
+		"name":{
 			"ru":"Уменьшает текущее здоровье на 7",
 			"en":"Decreases current health for 7"
+			}
 		},{
+		"name":{
 			"ru":"Увеличивает мобильность на 8%",
 			"en":"Increases mobility for 8%"
+			},
+			"attr":"mobility",
+			"val":"1.08"
 		},{
+		"name":{
 			"ru":"Увеличивает максимум очков действия на 10",
 			"en":"Increases maximum of action points for 10"
+			}
 		},{
+		"name":{
 			"ru":"Увеличивает шанс крит. попадания на 5%",
 			"en":"Increases crit.hit chance for 5%"
+			}
 		}]
 	}],
 	"ingredients":0
@@ -5978,8 +6086,10 @@
 	{
 		"duration":10,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает шанс крит. попадания на 5%",
 			"en":"Increases crit.hit chance for 5%"
+			}
 		}]
 	}],
 	"ingredients":{
@@ -6002,8 +6112,12 @@
 	{
 		"duration":10,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает мобильность на 8%",
 			"en":"Increases mobility for 8%"
+			},
+			"attr":"mobility",
+			"val":"1.08"
 		}]
 	}],
 	"ingredients":{
@@ -6026,8 +6140,10 @@
 	{
 		"duration":5,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает урон в ближнем бою на 20%",
 			"en":"Increases melee damage multiplier for 20%"
+			}
 		}]
 	}],
 	"ingredients":{
@@ -6049,8 +6165,10 @@
 	"specials":[{
 		"duration":10,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает общую стойкость к урону на 10%",
 			"en":"Increases total resist for 10%"
+			}
 		}]
 	}],
 	"ingredients":{
@@ -6076,8 +6194,10 @@
 	{
 		"duration":10,
 		"effects":[{
+		"name":{
 			"ru":"Устанавливает дальность зрения равным 40",
 			"en":"Sets sight range equal to 40"
+			}
 		}]
 	}],
 	"ingredients":{
@@ -6100,8 +6220,10 @@
 	{
 		"duration":5,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает сопротивление взрывам на 30%",
 			"en":"Increases explosion resist for 30%"
+			}
 		},{
 			"ru":"Увеличивает сопротивление ударам на 30%",
 			"en":"Increases melee resist for 30%"
@@ -6130,8 +6252,10 @@
 	{
 		"duration":1,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает максимум очков действия на 30",
 			"en":"Increases maximum of action points for 30"
+			}
 		}]
 	}],
 	"ingredients":{
@@ -6153,15 +6277,19 @@
 	{
 		"duration":10,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает запас здоровья на 50",
 			"en":"Increases health maximum for 50"
+			}
 		}]
 	},
 	{
 		"duration":0,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает текущее здоровье на 50",
 			"en":"Increases current health for 50"
+			}
 		}]
 	}],
 	"ingredients":{
@@ -6206,15 +6334,19 @@
 	{
 		"duration":0,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает текущее здоровье на 12",
 			"en":"Increases current health for 12"
+			}
 		}]
 	},
 	{
 		"duration":2,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает текущее здоровье на 12",
 			"en":"Increases current health for 12"
+			}
 		}]
 	}],
 	"ingredients":0
@@ -6237,15 +6369,19 @@
 	{
 		"duration":0,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает текущее здоровье на 18",
 			"en":"Increases current health for 18"
+			}
 		}]
 	},
 	{
 		"duration":2,
 		"effects":[{
+		"name":{
 			"ru":"Увеличиваеют текущее здоровье на 18",
 			"en":"Increases current health for 18"
+			}
 		}]
 	}],
 	"ingredients":{
@@ -6270,15 +6406,19 @@
 	{
 		"duration":0,
 		"effects":[{
+		"name":{
 			"ru":"Увеличивает текущее здоровье на 25",
 			"en":"Increases current health for 25"
+			}
 		}]
 	},
 	{
 		"duration":2,
 		"effects":[{
+		"name":{
 			"ru":"Увеличиваеют текущее здоровье на 25",
 			"en":"Increases current health for 25"
+			}
 		}]
 	}],
 	"ingredients":0
@@ -6298,11 +6438,15 @@
 	{
 		"duration":5,
 		"effects":[{
+		"name":{
 			"ru":"Дает иммунитет к: Оглушение",
 			"en":"Gives immunity to: Stun"
+			}
 		},{
+		"name":{
 			"ru":"Дает иммунитет к: Адреналиновые",
 			"en":"Gives immunity to: Adrenaline"
+			}
 		}]
 	}],
 	"ingredients":0

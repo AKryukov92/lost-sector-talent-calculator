@@ -26,9 +26,10 @@ var handlers = {
 		
 	}
 };
-function Player(calc,p,s,a,h,c1,c2,c3,c4,c5,i1,i2,i3,i4){
+function Player(calc,items){
 	this.current = null;
 	this.calculator = calc;
+	this.items = items;
 	this.updateCurrentWeapon = function(item){
 		if (this.current == null){
 			this.current = item;
@@ -43,6 +44,12 @@ function Player(calc,p,s,a,h,c1,c2,c3,c4,c5,i1,i2,i3,i4){
 			max:attack.max_damage
 		};
 	};
+	this.getBaseMoveCost = function(){
+		if (typeof p.mobility == "undefined"){
+			throw new Error("Mobility of primary weapon is not defined");
+		}
+		return p.mobility
+	};
 }
 function Target(as){
 	this.totalMax = 0;
@@ -54,7 +61,7 @@ function Target(as){
 	};
 }
 
-function estimate(as, calc){
+function estimate(as, calc, items){
 	var player = new Player(calc);
 	var target = new Target(as);
 	for (var i = 0; i < as.actions.length; i++){

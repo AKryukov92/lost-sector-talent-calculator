@@ -566,4 +566,60 @@ describe('testing InventoryModel class', function() {
 			expect(model.getItemUrlBySlot("consumable_1")).toEqual("/item.php?id=103&locale=en&version=105");
 		});
 	});
+	
+	describe("test getMoveCost and getMobility", function(){
+		var model;
+		beforeEach(function(){
+			model = new InventoryModel("en", 105);
+			item418 = {name:"Axe",category:"melee",type:1,mobility:82,lvlreq:7,talentreq:7,classreq:["ju","sc"],id:418,attacks:[{name:"Hit",type:1,accuracy:100,cost:45,min_dist:0,max_dist:2.1,min_damage:70,max_damage:105}]};
+			item432 = {name:"M60",category:"machinegun",mobility:57,clip:75,ammo:150,reload_cost:50,lvlreq:5,id:432,attacks:[{name:"Snap",type:5,min_damage:94,max_damage:122,bullets:15,accuracy:54,cost:55,min_dist:15,max_dist:45}]};
+			item401 = {name:"Remington M870 Shotgun",category:"shotgun",mobility:85,id:401};
+			item447 = {name:"Desert Eagle",category:"pistol",mobility:94,id:447};
+			item441 = {name:"AS VAL", category:"assault_rifle", mobility:78,id:441};
+			item332 = {name:"Ju armor 1", category:"armor", mobility:90, id:332};
+			item426 = {name:"Uzi", category:"smg", mobility:90, id:426};
+			model.consumeData([item332, item432, item401, item418, item426, item441, item447]);
+			model.updateSlotTooltip = function( slot ){}
+		});
+		
+		it("should return base values if nothing equipped", function(){
+			expect(model.getMoveCost()).toEqual(4.5);
+			expect(model.getMobility()).toEqual(100);
+		});
+		
+		it("should take into account primary weapon", function(){
+			model.autoEquipItem(432);
+			expect(model.getMoveCost()).toEqual(7.9);
+			expect(model.getMobility()).toEqual(57);
+		});
+		
+		it("should take into account primary and secondary weapons", function(){
+			model.autoEquipItem(432);
+			model.autoEquipItem(418);
+			expect(model.getMoveCost()).toEqual(9.6);
+			expect(model.getMobility()).toEqual(47);
+		});
+		
+		it("should take into account armor and weapons", function(){
+			model.autoEquipItem(401);
+			model.autoEquipItem(426);
+			model.autoEquipItem(332);
+			expect(model.getMoveCost()).toEqual(6.5);
+			expect(model.getMobility()).toEqual(69);
+		});
+		
+		it("should check Remington + Desert Eagle", function(){
+			model.autoEquipItem(401);
+			model.autoEquipItem(447);
+			expect(model.getMoveCost()).toEqual(5.6);
+			expect(model.getMobility()).toEqual(80);
+		});
+		
+		it("should check AS VAL + Desert Eagle", function(){
+			model.autoEquipItem(441);
+			model.autoEquipItem(447);
+			expect(model.getMoveCost()).toEqual(6.1);
+			expect(model.getMobility()).toEqual(73);
+		});
+	});
 });
