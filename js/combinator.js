@@ -276,7 +276,7 @@ function makeAttack(id, item, attackIndex){
 	}
 	action.possibleRepeat = true;
 	action.imageid = getImageId(item);
-	action.imagesrc = "/images/Items.png";
+	action.imagesrc = "/images/items.png";
 	action.boxSize = 64;
 	return action;
 };
@@ -287,7 +287,7 @@ function makeReload(id, item){
 	reload.source = item;
 	reload.item = item;
 	reload.imageid = getImageId(item);
-	reload.imagesrc = "/images/Items.png";
+	reload.imagesrc = "/images/items.png";
 	reload.boxSize = 64;
 	return reload;
 };
@@ -300,7 +300,7 @@ function makeConsumable(id, item){
 	consumable.source = item;
 	consumable.imageid = getImageId(item);
 	consumable.possibleRepeat = true;
-	consumable.imagesrc = "/images/Items.png";
+	consumable.imagesrc = "/images/items.png";
 	consumable.boxSize = 64;
 	return consumable;
 };

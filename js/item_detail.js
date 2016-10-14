@@ -116,6 +116,21 @@ function InventoryModel(locale, version, data) {
 		addItem(targetSlot, item);
 		return targetSlot;
 	};
+	function getRawCost(){
+		var cost = 4.5;
+		for (slot in slots){
+			if (!isEmpty(slots[slot].item) && typeof slots[slot].item.mobility != "undefined"){
+				cost /= (slots[slot].item.mobility/100);
+			}
+		}
+		return cost;
+	};
+	this.getMobility = function(){
+		return Math.round(100 * 4.5 / getRawCost());
+	};
+	this.getMoveCost = function(){
+		return Math.round(getRawCost()*10)/10;
+	};
 	this.equipItem = function(itemId, targetSlot){
 		var item = this.getItemById(itemId);
 		var slots = this.weapontype_map[item.category].slots;

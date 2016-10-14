@@ -25,20 +25,22 @@ function actionToggle(actionId) {
 	}
 }
 $("#runAnalysis").click(combine);
-function prepareActions() {
+function prepareActions(items) {
 	var reportText = "";
 	$("#report").append(reportText);
 	combinator.addSwap();
 	combinator.addDuck();
 	combinator.addFromCalculator(calculator);
-	combinator.addFromItem(primary);
-	combinator.addFromItem(secondary);
-	combinator.addFromItem(consumable1);
-	combinator.addFromItem(consumable2);
-	combinator.addFromItem(consumable3);
-	combinator.addFromItem(consumable4);
-	combinator.addFromItem(consumable5);
+	for(var i = 0; i < items.length; i++){
+		combinator.addFromItem(items[i]);
+	}
 	fillAvailableActions(combinator);
+}
+function fillInventory(items){
+	inventoryApp.consumeData(items);
+	for(var i = 0; i < items.length; i++){
+		inventoryApp.autoEquipItem(items[i].id);
+	}
 }
 function combine() {
 	var totalSets = combinator.createTree();
@@ -72,7 +74,7 @@ function combine() {
 	$("#report").html(report);
 	console.log(currentSets.length);
 }
-function talentUriHandler(key, value, target) {
+function orderToDisplay(key, value) {
 	talent = decodeURIComponent(value);
 	var match = /(\d*)(\d)(as|sc|ju|su)_(\w*)/.exec(value);
 	if (match != null) {
@@ -91,7 +93,7 @@ function talentUriHandler(key, value, target) {
 	}
 	var sources = {
 		atlasActive: "/images/Skills" + talentsVersionFallback(initialTalentData.gameVersion) + ".png",
-		items: "/images/Items.png"
+		items: "/images/items.png"
 	};
 	loadImages(sources, function(imgs) {
 		images = imgs;
@@ -105,9 +107,16 @@ function talentUriHandler(key, value, target) {
 			if (initialTalentData.talentInput.length > 0) {
 				calculator.learnTalentsFromString(initialTalentData.talentInput);
 			}
-			prepareActions();
+			var items = [];
+			for(var i = 0; i < allItems.length; i++){
+				if (!isEmpty(allItems[i])){
+					items.push(allItems[i]);
+				}
+			}
+			prepareActions(items);
+			fillInventory(items);
 			$("#runAnalysis").prop('disabled',false);
 		});
 	});
 }
-talentUriHandler("", talentString);
+orderToDisplay("", talentString);

@@ -180,13 +180,6 @@ function real_update_link() {
 		1 +
 		talentApplication.getCalculator().prefix + "_" +
 		talentApplication.getCalculator().getTalentString();
-	var subscription = "[img=\"" + location.origin + "/sub/" +
-		talentController.getGameVersion() +
-		1 +
-		talentApplication.getCalculator().prefix + "_" +
-		talentApplication.getCalculator().getTalentString()
-		+ ".png\"][/img]";
-	$("#subscription-template").val(subscription);
 	link+=inventoryApp.makeLinkPart("primary");
 	link+=inventoryApp.makeLinkPart("secondary");
 	link+=inventoryApp.makeLinkPart("armor");
@@ -200,7 +193,10 @@ function real_update_link() {
 	link+=inventoryApp.makeLinkPart("chest_mod");
 	link+=inventoryApp.makeLinkPart("hand_mod");
 	link+=inventoryApp.makeLinkPart("feet_mod");
-	$("#link-to-build").val(location.origin + "/combinator.php" + link);
+	$("#link-to-build").val(location.origin + link);
+	$("#combinator-link").attr("href",location.origin + "/combinator.php" + link);
+	$("#mobility").text(inventoryApp.getMobility());
+	$("#movecost").text(inventoryApp.getMoveCost());
 }
 function orderToDisplayInventory(handleUri) {
 	clearPool(inventoryApp);

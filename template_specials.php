@@ -1,7 +1,7 @@
 <?php
 function PrintEffects($element) {
 	for ($j = 0; $j < count($element["effects"]); $j++) {
-		print "<li>". GetLocalizedProperty($element["effects"],$j, $GLOBALS["locale"]) . "</li>";
+		print "<li>". GetLocalizedProperty($element["effects"][$j], "name", $GLOBALS["locale"]) . "</li>";
 	}
 } ?>
 

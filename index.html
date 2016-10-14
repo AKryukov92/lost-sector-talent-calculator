@@ -27,13 +27,7 @@
 				</label>
 			</div>
 			<div>
-				<label>
-					<button id="btn-subscription-copy" data-clipboard-target="#subscription-template">
-						<img src="images/clippy.svg" alt="Copy to clipboard">
-					</button>
-					<span name="t-subscription">Форумная подпись</span>: 
-					<input id="subscription-template" style="width:calc(40% - 20px)"></input>
-				</label>
+				<a id="combinator-link">Комбинации</a>
 			</div>
 			<div style="clear:both;"><span name="t-skill-points">Очки</span> <span id="points-left">0</span></div>
 			<div><span name="t-level">Уровень</span> <span id="merc-level">1</span></div>
@@ -282,6 +276,10 @@
 			</div>
 			<a class="tunable-reset" onclick="resetSlot('feet_mod');"><span name="t-clear">очистить</span></a>
 			<div class="fake-tooltip-container" id="feet_mod-fake-tooltip"></div>
+		</div>
+		<div id="summary">
+			<div><span name="t-mobility">Мобильность</span>: <span id="mobility"></span></div>
+			<div><span name="t-movecost">Цена хода</span>: <span id="movecost"></span></div>
 		</div>
 	</div>
 

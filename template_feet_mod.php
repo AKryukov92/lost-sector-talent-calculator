@@ -34,7 +34,7 @@ if (!$GLOBALS["iframe"]) {
 	<?php if (isset($data["effects"])) {
 		for($i = 0; $i < count($data["effects"]); $i++) {
 			print "<div name=\"" . $i . "\" style=\"color:#bac887;clear:both;\">"
-			. GetLocalizedProperty($data["effects"], $i, $locale)
+			. GetLocalizedProperty($data["effects"][$i], "name", $locale)
 			. "</div>";
 		}
 	} ?>

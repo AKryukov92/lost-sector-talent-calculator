@@ -56,13 +56,15 @@ if (!isset($_GET["c5"]) || ($consumable5 = json_encode(FindItem(parseId($_GET["c
 	<script src="/js/utils.js" charset="utf-8"></script>
 	<script>
 		var talentString = "<?php print $talentString; ?>";
-		var primary = <?php print $primary; ?>;
-		var secondary = <?php print $secondary; ?>;
-		var consumable1 = <?php print $consumable1; ?>;
-		var consumable2 = <?php print $consumable2; ?>;
-		var consumable3 = <?php print $consumable3; ?>;
-		var consumable4 = <?php print $consumable4; ?>;
-		var consumable5 = <?php print $consumable5; ?>;
+		var allItems = [
+			<?php print $armor; ?>,
+			<?php print $primary; ?>,
+			<?php print $secondary; ?>,
+			<?php print $consumable1; ?>,
+			<?php print $consumable2; ?>,
+			<?php print $consumable3; ?>,
+			<?php print $consumable4; ?>,
+			<?php print $consumable5; ?>];
 		var temp = 0;
 	</script>
 </head>
