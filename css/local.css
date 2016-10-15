@@ -410,12 +410,11 @@ input[type=radio   ]:not(old):checked + label > span{
 	overflow:hidden;
 }
 
-.talent-tooltip-container {
-	display:inline-block;
-	vertical-align:top;
-}
-
 .action {
 	overflow:hidden;
 	margin:3px;
+}
+
+.talent-manager .talent-tooltip-container .tooltip-content {
+	display:none;
 }

@@ -22,4 +22,12 @@
 		margin:20px auto;
 		clear:both;
 	}
+	.talent-manager:hover .talent-tooltip-container .tooltip-content {
+		position:absolute;
+		left:600px;
+		right:auto;
+		top:auto;
+		display:block;
+		z-index:4;
+	}
 }

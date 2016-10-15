@@ -65,12 +65,10 @@
 		display:block;
 		z-index:3;
 		clear:both;
-		width:90%;
 	}
 	.tunable-item:hover  .fake-tooltip-container .tooltip-content {
 		position:absolute;
 		display:block;
-		z-index:3;
 	}
 	.tunable-item  .fake-tooltip-container .tooltip-content {
 		display:none;
@@ -90,5 +88,12 @@
 		float:left;
 		padding:1px;
 		width:calc(50% - 2px);
+	}
+	.talent-manager:hover .talent-tooltip-container .tooltip-content {
+		position:absolute;
+		top:0px;
+		right:0px;
+		display:block;
+		z-index:4;
 	}
 }
