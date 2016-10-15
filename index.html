@@ -34,7 +34,7 @@
 			<div>
 				<label>
 				<span name="t-hide-tooltip">Спрятать тултипы талантов</span>
-				<input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();" checked>
+				<input id="talent-visibility-checkbox" type="checkbox" onclick="toggleTalentTooltip();">
 				</label>
 			</div>
 			<div>
@@ -58,6 +58,8 @@
 		</div>
 	</div>
 <div class="talent-manager">
+	<div class="talent-tooltip-container" id="talent-tooltip">
+	</div>
 	<div id="tabs">
 		<ul>
 			<li><a id="as-link" href="#tabs-as"><span name="t-assault">Штурмовик</span>
@@ -103,8 +105,6 @@
 		<div id="tabs-ju"></div>
 		<div id="tabs-sc">></div>
 		<div id="tabs-su"></div>
-	</div>
-	<div class="talent-tooltip-container" id="talent-tooltip">
 	</div>
 </div>
 <div class="item-manager">
