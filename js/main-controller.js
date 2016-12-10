@@ -254,11 +254,12 @@ function talentUriHandler(key, value, target) {
 		talentController.orderToDisplay("as", defaultVersion);
 	}
 }
-function slider_slide_handler(slot_name, event, ui) {
-	inventoryApp.setGrade(slot_name, ui.value);
-	$("#" + slot_name + "-link")
-		.text(inventoryApp.getItemTitle(slot_name));
+function slider_slide_handler(slotName, event, ui) {
+	inventoryApp.setGrade(slotName, ui.value);
+	$("#" + slotName + "-link")
+		.text(inventoryApp.getItemTitle(slotName));
 	update_link();
+	updateSlotTooltip(slotName);
 }
 
 function quality_change_handler(slotName) {
@@ -268,12 +269,14 @@ function quality_change_handler(slotName) {
 		.removeClass("grey-link white-link green-link blue-link")
 		.addClass(inventoryApp.getColor(slotName) + "-link");
 	update_link();
+	updateSlotTooltip(slotName);
 }
 
-function resetSlot(slot_name) {
-	clearSlot(slot_name);
-	inventoryApp.resetSlot(slot_name);
+function resetSlot(slotName) {
+	clearSlot(slotName);
+	inventoryApp.resetSlot(slotName);
 	update_link();
+	updateSlotTooltip(slotName);
 }
 function versionUriHandler(key, value, target) {
 	itemstring = decodeURIComponent(value);
