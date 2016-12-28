@@ -41,7 +41,7 @@
 		"bullets":1,
 		"cost":70,
 		"min_dist":18,
-		"max_dist":40
+		"max_dist":45
 	},{
 		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,

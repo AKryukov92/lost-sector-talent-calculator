@@ -1,4 +1,4 @@
-var defaultVersion = 105;
+var defaultVersion = 106;
 function loadImages(sources, callback) {
 	var images = {};
 	var loadedImages = 0;

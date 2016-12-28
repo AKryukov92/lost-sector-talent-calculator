@@ -1,7 +1,7 @@
 {
 	"name":"Keltec KSG slug",
 	"category":"shotgun",
-	"mobility":79,
+	"mobility":80,
 	"clip":6,
 	"ammo":24,
 	"reload_cost":40,
@@ -14,6 +14,26 @@
 	},
 	"id":534,
 	"attacks":[{
+		"name":{"ru":"Навскидку","en":"Snap"},
+		"type":3,
+		"min_damage":59,
+		"max_damage":71,
+		"accuracy":60,
+		"bullets":1,
+		"cost":45,
+		"min_dist":6,
+		"max_dist":20
+	},{
+		"name":{"ru":"Прицельно","en":"Aimed"},
+		"type":3,
+		"min_damage":64,
+		"max_damage":76,
+		"accuracy":68,
+		"bullets":1,
+		"cost":50,
+		"min_dist":7,
+		"max_dist":21
+	},{
 		"name":{"ru":"Удар","en":"Hit"},
 		"type":1,
 		"min_damage":20,
@@ -22,26 +42,6 @@
 		"cost":45,
 		"min_dist":0,
 		"max_dist":1.5
-	},{
-		"name":{"ru":"Навскидку","en":"Snap"},
-		"type":3,
-		"min_damage":59,
-		"max_damage":71,
-		"accuracy":61,
-		"bullets":1,
-		"cost":45,
-		"min_dist":8,
-		"max_dist":22
-	},{
-		"name":{"ru":"Прицельно","en":"Aimed"},
-		"type":3,
-		"min_damage":64,
-		"max_damage":76,
-		"accuracy":67,
-		"bullets":1,
-		"cost":50,
-		"min_dist":9,
-		"max_dist":23
 	}],
 	"ingredients":0
 }

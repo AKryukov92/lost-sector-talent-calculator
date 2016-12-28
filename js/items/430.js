@@ -10,15 +10,6 @@
 	"classreq":["as"],
 	"id":430,
 	"attacks":[{
-		"name":{"ru":"Удар","en":"Hit"},
-		"type":1,
-		"accuracy":90,
-		"cost":45,
-		"min_dist":0,
-		"max_dist":1.5,
-		"min_damage":20,
-		"max_damage":30
-	},{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
 		"accuracy":61,
@@ -38,6 +29,15 @@
 		"bullets":6,
 		"min_damage":61,
 		"max_damage":89
+	},{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5,
+		"min_damage":20,
+		"max_damage":30
 	}],
 	"ingredients":0
 }

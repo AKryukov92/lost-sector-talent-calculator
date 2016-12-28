@@ -10,15 +10,6 @@
 	"classreq":["as","ju","su"],
 	"id":449,
 	"attacks":[{
-		"name":{"ru":"Удар","en":"Hit"},
-		"type":1,
-		"min_damage":10,
-		"max_damage":25,
-		"accuracy":90,
-		"cost":40,
-		"min_dist":0,
-		"max_dist":1.5
-	},{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":2,
 		"min_damage":37,
@@ -28,6 +19,15 @@
 		"cost":30,
 		"min_dist":5,
 		"max_dist":15
+	},{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":10,
+		"max_damage":25,
+		"accuracy":90,
+		"cost":40,
+		"min_dist":0,
+		"max_dist":1.5
 	}],
 	"ingredients":{
 		"light_metals":26,

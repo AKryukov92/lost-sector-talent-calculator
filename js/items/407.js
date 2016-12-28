@@ -1,0 +1,47 @@
+{
+	"name":{"ru":"АКС74У","en":"AKS74U"},
+	"category":"smg",
+	"description":{
+		"ru":"Облегченная штурмовая винтовка",
+		"en":"Lightened assault rifle"
+	},
+	"mobility":87,
+	"clip":30,
+	"ammo":60,
+	"reload_cost":20,
+	"lvlreq":10,
+	"talentreq":26,
+	"classreq":["as","ju","su"],
+	"id":407,
+	"attacks":[{
+		"name":{"ru":"Очередь","en":"Burst"},
+		"type":3,
+		"min_damage":39,
+		"max_damage":53,
+		"accuracy":57,
+		"bullets":6,
+		"cost":33,
+		"min_dist":10,
+		"max_dist":23
+	},{
+		"name":{"ru":"Прицельно","en":"Aimed"},
+		"type":3,
+		"min_damage":53,
+		"max_damage":61,
+		"accuracy":70,
+		"bullets":4,
+		"cost":50,
+		"min_dist":12,
+		"max_dist":28
+	},{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":20,
+		"max_damage":30,
+		"accuracy":90,
+		"cost":45,
+		"min_dist":0,
+		"max_dist":1.5
+	}],
+	"ingredients":0
+}

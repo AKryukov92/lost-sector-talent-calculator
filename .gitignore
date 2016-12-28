@@ -1,0 +1,9 @@
+skillstga/
+skills/
+syntax: glob
+allitemspng/
+allhats/
+tools/ImageCompressor/out/
+noinclude/
+tools/dds/
+tools/png/

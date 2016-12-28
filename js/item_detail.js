@@ -138,7 +138,7 @@ function InventoryModel(locale, version, data) {
 			if (targetSlot == slots[i]){
 				this.resetSlot(targetSlot);
 				addItem(targetSlot, item);
-				return;
+				return targetSlot;
 			}
 		}
 		throw new Error("Item " + itemId + " can not be equipped in slot " + targetSlot);

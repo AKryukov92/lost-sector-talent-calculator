@@ -12,8 +12,8 @@
 	"attacks":[{
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":3,
-		"min_damage":38,
-		"max_damage":47,
+		"min_damage":42,
+		"max_damage":49,
 		"accuracy":52,
 		"bullets":8,
 		"cost":33,
@@ -22,8 +22,8 @@
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
-		"min_damage":38,
-		"max_damage":47,
+		"min_damage":42,
+		"max_damage":49,
 		"accuracy":69,
 		"bullets":6,
 		"cost":45,

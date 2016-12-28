@@ -6,7 +6,7 @@ function talentsVersionFallback(v){
 	if (v == 100 || v == 99){
 		return 98;
 	}
-	if (v == 104 || v == 105){
+	if (v == 104 || v == 105 || v == 106){
 		return 103;
 	}
 	return v;

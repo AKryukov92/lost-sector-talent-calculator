@@ -26,7 +26,7 @@
 		"name":{"ru":"Очередь","en":"Burst"},
 		"type":5,
 		"min_damage":199,
-		"max_damage":246,
+		"max_damage":241,
 		"accuracy":42,
 		"bullets":25,
 		"cost":70,

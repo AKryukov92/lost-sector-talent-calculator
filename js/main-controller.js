@@ -297,7 +297,7 @@ function tunableItemUriHandler(key, value, target) {
 function specialItemUriHandler(key, value, target) {
 	itemstring = decodeURIComponent(value);
 	var props = itemstring.split("_");
-	inventoryApp.equipItem(props[0], target);
+	var slot = inventoryApp.equipItem(props[0], target);
 	updateSlotTooltip(slot);
 }
 function clearPool(app) {

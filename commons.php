@@ -2,7 +2,7 @@
 if (isset($_GET["version"])) {
 	$GLOBALS["version"] = $_GET["version"];
 } else {
-	$GLOBALS["version"] = 105;
+	$GLOBALS["version"] = 106;
 }
 if (isset($_GET["locale"])) {
 	$GLOBALS["locale"] = $_GET["locale"];
@@ -64,7 +64,7 @@ function talentsVersionFallback($v) {
 	if ($v == 100 || $v == 99) {
 		return 98;
 	}
-	if ($v == 104 || $v == 105) {
+	if ($v == 104 || $v == 105 || $v == 106) {
 		return 103;
 	}
 	return $v;

@@ -12,8 +12,8 @@
 	"attacks":[{
 		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":5,
-		"min_damage":70,
-		"max_damage":101,
+		"min_damage":72,
+		"max_damage":103,
 		"accuracy":65,
 		"bullets":1,
 		"cost":50,
@@ -22,8 +22,8 @@
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":5,
-		"min_damage":100,
-		"max_damage":147,
+		"min_damage":102,
+		"max_damage":150,
 		"accuracy":74,
 		"bullets":1,
 		"cost":70,
