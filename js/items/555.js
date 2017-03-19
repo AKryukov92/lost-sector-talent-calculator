@@ -9,42 +9,42 @@
 		"en":"Heavy Vanguard pistol. This is what Lost Sector was beginning with."
 	},
 	"mobility":92,
-	"clip":5,
-	"ammo":15,
+	"clip":10,
+	"ammo":30,
 	"reload_cost":20,
 	"id":555,
 	"lvlreq":12,
 	"talentreq":6,
 	"classreq":["as","sc"],
 	"attacks":[{
-		"name":{"ru":"Удар","en":"Hit"},
-		"type":1,
-		"accuracy":90,
-		"cost":35,
-		"min_dist":0,
-		"max_dist":1.5,
-		"min_damage":10,
-		"max_damage":40
-	},{
 		"name":{"ru":"Навскидку","en":"Snap"},
 		"type":3,
+		"min_damage":39,
+		"max_damage":55,
 		"accuracy":43,
+		"bullets":2,
 		"cost":32,
 		"min_dist":4,
-		"max_dist":17,
-		"bullets":1,
-		"min_damage":39,
-		"max_damage":55
+		"max_dist":17
 	},{
 		"name":{"ru":"Прицельно","en":"Aimed"},
 		"type":3,
+		"min_damage":39,
+		"max_damage":55,
 		"accuracy":67,
+		"bullets":1,
 		"cost":50,
 		"min_dist":6,
-		"max_dist":20,
-		"bullets":1,
-		"min_damage":39,
-		"max_damage":55
+		"max_dist":20
+	},{
+		"name":{"ru":"Удар","en":"Hit"},
+		"type":1,
+		"min_damage":10,
+		"max_damage":40,
+		"accuracy":90,
+		"cost":35,
+		"min_dist":0,
+		"max_dist":1.5
 	}],
 	"ingredients":0
 }
